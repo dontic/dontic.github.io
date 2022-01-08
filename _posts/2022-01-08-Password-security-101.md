@@ -19,18 +19,19 @@ ___
 
 # How in the world are my passwords hacked?
 
+There are many ways a person can obtain your credentials.
+
 ## Leaks
 
 ![A strong password isn't useful if it's used everywhere](/assets/images/2022-01-08-Password-security-101/dataleaks.jpeg)
 
 More often than not, an attacker can gain access into one of your accounts by means of a data breach or leak from a service you use.
 
-**Info** Leaks happen when an online service is breached and lists of accounts and passwords are extracted. Usually these are distributed as super long lists of "username:password" pairs plain text or .csv files are obtained.
-{: .notice--info}
+Leaks happen when an online service is breached and lists of accounts and passwords are extracted. Usually these are distributed as super long dictionaries of "username:password" pairs in plain text or csv files.
 
 Attackers can then use what is called "Credential Stuffing" to check for services that accept that authentication pairs. These attacks consist on automated software that injects username:password pairs into multiple sites, often using proxies, and it returns the username:password pairs that were successful and it's services.
 
-**Note** Next time you create a strong password, throw some ":" or "," or other common csv separators in there to mess with the attackers.
+**Tip:** Next time you create a strong password, throw some ":" or "," or other common csv separators in there to mess with these kind of attackers.
 {: .notice--info}
 
 ### An example of these attacks:  
