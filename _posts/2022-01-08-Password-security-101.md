@@ -9,13 +9,13 @@ toc: true
 toc_sticky: true
 ---
 
-![A strong password isn't useful if it's used everywhere](/assets/images/2022-01-08-Password-security-101/strongpassword.png)
-
-[TLDR](#TLDR)
-
 Password security is becoming more concerning these days. Using the same password for everything is not enough.
 
 Here are some tips that can help you protect yourself against attackers and hackers.
+
+[TLDR](#tldr)
+
+___
 
 # How in the world are my passwords hacked?
 
@@ -72,11 +72,15 @@ There are many other ways that an attacker can target you and gather sensitive i
 
 You wouldn't believe how easy it is to hack into an admin account on a windows pc.
 
+___
+
 # How can I protect myself?
 
 There are several ways you can protect yourself against these attacks.
 
 ## Use different passwords + password manager
+
+![A strong password isn't useful if it's used everywhere](/assets/images/2022-01-08-Password-security-101/strongpassword.png)
 
 Password managers are awesome and you should definitely be using one.  
 
@@ -130,6 +134,8 @@ I use this all the time when travelling in airports or hotels.
 If you use symbols, numbers, upper and lower case in your passwords, they will be much harder to crack or bruteforce.
 
 However, if you use the same password everywhere and it gets leaked, it won't matter how strong it is as the attackers will be able to use it anywhere.
+
+___
 
 # TLDR
 
