@@ -128,7 +128,7 @@ author:
       url: "https://github.com/dontic"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/onticdani"
+      # url: "https://instagram.com/"
 
 # Site Footer
 footer:
