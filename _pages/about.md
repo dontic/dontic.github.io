@@ -17,26 +17,23 @@ toc: true
 ---
 
 Hey! I'm Daniel, nice to meet you!   
-___
 
 ## Who am I?
 
-I'm an Electro-Mechanical engineer based in Madrid, Spain with a passion for electronics, coding and all things computer engineering.
-___
+I'm an Electro-Mechanical engineer based in Madrid, Spain with a passion for electronics, coding and all things computer engineering.   
 
 ## My professional carreer
-
-### **Correos**
-#### 2020
+### **Correos** - 2020
 
 While on my last year at uni I landed an internship at Correos, the national logistics company in Spain. I quickly became the "data guy" after someone asked me to manually update daily an excell with what felt a thousand columns (classic intern job!). I automated the whole process in Python, VBR and Power BI, and what previously took them a full day my computer did in 5 minutes.
 
  It was here where I also picked up data analysis with R and SQL (and fell in love with it). After which I discovered the amazing world of Python and Pandas. Since they dindn't have a data engineer, I got suddenly flooded with a lot of responsibility of analysing field logistics data and providing a weekly update to the quality guys.
 
-### **Tesla**
-#### 2020 - Present
+### **Tesla** - 2020 - Present
 
-After lockdown I really wanted to experience the world, this is where I landed a job at Tesla as a Field Support Engineering Intern in Oslo, Norway. Holy c**p that was an adventure. This is the fastest environment I've ever worked in. We worked closely with the design and service teams to improve the fleet, this is where my data skills came in handy, I started doing some cool research with the global field data, using Python and SQL (Spark and Caspian), to improve the products. I've never seen so much organized data, it was heaven to me! You wanted to see the average time users pressed the brakes during a drive in... lithuania, well go ahead! Data is king at Tesla, everything is to be justified with it.
+After lockdown I really wanted to experience the world, this is where I landed a job at Tesla as a Field Support Engineering Intern in Oslo, Norway. Holy c**p that was an adventure. This is the fastest environment I've ever worked in.   
+
+We worked closely with the design and service teams to improve the fleet, this is where my data skills came in handy, I started doing some cool research with the global field data, using Python and SQL (Spark and Caspian), to improve the products. I've never seen so much organized data, it was heaven to me! You wanted to see the average time users pressed the brakes during a drive in... lithuania, well go ahead! Data is king at Tesla, everything is to be justified with it.
 
 When I wasn't analysing stuff in my laptop I was out in the field testing and collecting data myself. We did some nice cold weather tests in the arctic circle with the then-brand new Model Y to fix everything before it entered the market.
 
@@ -51,8 +48,6 @@ Finally I arrived at my full time possition in my home city of Madrid. Here our 
 By now I picked up a lot of backend processing with flask and front end developement with Javascript and HTML This landed me the oportunity to build a really useful app inside the company in a production environment.
 
 Continuing with extreme tests we continued to actively test and collect telemetry of new products in the Arctic and Dubai.
-
-___
 
 ## My love for engineering and coding
 
@@ -72,8 +67,6 @@ I have a big cool project going on called [Wayfinder](https://github.com/dontic/
 
 I also started building my own homelab to host my services and store all my data. It's a really fun experience using hypervisors, learning networking and coding your own services!
 
-___
-
 ## Studies
 
 I started my studies in Nebrija University in Madrid. Studied Electromechanical engineering and, most importantly, learned problem solving skills. Had some amazing proffesors here.
@@ -87,8 +80,6 @@ Right into my masters degree in Engineering as well as an MBA, I continued with 
 This culminated in my Master Thesis on Electric Micromobility. Where I developed a super cool, maybe a bit dangerous, electric mountainboard. The dangerous part comes mainly from welding the batteries myself and the thing doing 60+ km/h.
 
 ![Eskateboard](/assets/images/about/eskate.jpg)
-
-___
 
 ## Want to reach out?
 
