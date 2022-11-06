@@ -1,3 +1,4 @@
+# dockerfile to test the website localy on a docker container
 # Create a Jekyll container from a Ruby Alpine image
 
 # At a minimum, use Ruby 2.5 or later
