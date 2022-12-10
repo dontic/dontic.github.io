@@ -64,5 +64,5 @@ Theses:
 - CAD design and 3D printing.
 
 ## Read more & reach out
-Get to know me better [here](daniel.es/hireme_extended).  
+Get to know me better [here](/hireme_extended).  
 Get in touch -> hireme@daniel.es
