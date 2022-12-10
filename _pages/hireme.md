@@ -16,7 +16,8 @@ If you're reading this you're probably looking for a person with my skills to jo
 ### Field Quality Engineer @ **Tesla**
 _Sep '20 to Present_
 
-- **Root cause investigation** of fleet-wise technical issues using CAN telemetry and physical tests(bumper to bumper knowledge). Resolution with design and factory teams.
+- **Root cause investigation** of fleet-wise technical issues. Resolution with **design and factory teams**.
+- "Bumper to bumper" knowledge of the vehicles. Strong diagnosing skills using different tools and processes. Mainly  **CAN telemetry** and **physical tests**.
 - Global field data analytics using **SQL, Caspian, Python** (Pandas, Pyspark) and other BI tools (Tableau, Power BI).
 - **Extreme regional tests**, Arctic in the winter & Emirates in the summer, of new products before they hit the market. **Failure mode analysis**.
 - Design of service and factory processes towards increasing efficiency and output. 
@@ -34,6 +35,7 @@ _Feb '20 to Sep '20_
 ### Engineering
 - Expertise knowledge on all **powertrain components** of an EV, as well as low voltage controllers, sensors and actuators.
 - Strong electrical and mechanical **root cause failure diagnosis** skills - High Voltage battery  and CAN system diagnosis.
+- Great knowledge of CAN networks. DBC design.
 - CAD design, finite element & materials analysis.
 
 ### Coding
