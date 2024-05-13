@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
+import BlogHeader from "@components/BlogHeader.astro";
 import Footer from "@components/Footer.astro";
 import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
@@ -13,21 +13,17 @@ import { SOCIALS } from "@config";
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
 
 <Layout>
-  <Header />
+  <BlogHeader />
   <main id="main-content">
-    <section id="hero">
-      <img
-        src="src/assets/images/avatar.jpeg"
-        alt="Daniel Garcia"
-        class="h-24 w-24 rounded-full sm:h-32 sm:w-32"
-      />
-      <h1>Daniel Garcia</h1>
+    <!-- <section id="hero">
+      <h1>Mingalaba</h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -44,22 +40,21 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </svg>
         <span class="sr-only">RSS Feed</span>
       </a>
-      <p>
-        Hey! I'm Daniel. I'm an industrial engineer turned software engineer.
-      </p>
 
       <p>
-        Building useful tools is what I enjoy most. Embark with me on my
-        personal and professional journey.
+        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
+        blog theme. This theme follows best practices and provides accessibility
+        out of the box. Light and dark mode are supported by default. Moreover,
+        additional color schemes can also be configured.
       </p>
       <p>
-        You can check my
+        Read the blog posts or check
         <LinkButton
           className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="/blog/"
+          href="https://github.com/satnaing/astro-paper#readme"
         >
-          blog
-        </LinkButton> or find more about me bellow.
+          README
+        </LinkButton> for more info.
       </p>
       {
         // only display if at least one social link is enabled
@@ -70,11 +65,11 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         )
       }
-    </section>
+    </section> -->
 
     <Hr />
 
-    <!-- {
+    {
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
@@ -92,12 +87,12 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           {recentPosts.length > 0 && <Hr />}
         </>
       )
-    } -->
+    }
 
     {
       recentPosts.length > 0 && (
         <section id="recent-posts">
-          <h2>Recent Blog Posts</h2>
+          <h2>Recent Posts</h2>
           <ul>
             {recentPosts.map(
               ({ data, slug }, index) =>
