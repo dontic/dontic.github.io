@@ -1,26 +1,69 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/docker-existing-dockerfile
+// devcontainer.json
+
 {
-	"name": "Existing Dockerfile",
+    "name": "Node Devcontainer",  // Name of the development container
+    "shutdownAction": "none",  // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "node",   
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    
+    // Extensions and settings
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                // Comment or uncomment the extensions you want to use
+                "esbenp.prettier-vscode",
+                "mhutchie.git-graph",
+                "GitHub.copilot",
+                "stackbreak.comment-divider",
+                "stuart.unique-window-colors",
+                "astro-build.astro-vscode"
+            ],
+            "settings": {
 
-	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": "..",
+                // Prettier settings
+                "prettier.enable": true,
+                "editor.formatOnSave": true,  // Format files on save
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "[typescript]": { // TypeScript settings
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[typescriptreact]": { // TypeScript React settings
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[json]": { // JSON settings
+                    "editor.defaultFormatter": "esbenp.prettier-vscode",
+                    "editor.quickSuggestions": {
+                        "strings": true
+                    },
+                    "editor.suggest.insertMode": "replace"
+                },
+                "prettier.semi": true,
+                "prettier.trailingComma": "none",
+                "prettier.singleQuote": false,
+                "prettier.printWidth": 80,
 
-	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../dockerfile"
+                // Window colors
+                "workbench.colorCustomizations": {
+                    "activityBar.background": "#298dff",
+                    "titleBar.activeBackground": "#298dff",
+                    "titleBar.activeForeground": "#FBFBF6"
+                },
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": "apt-get update && apt-get install -y curl",
-
-	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
-	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
-
-	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
-	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
-
-	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+                // Prevent json schema warnings
+                "json.schemas": [
+                    {
+                        "fileMatch": [
+                            "/package.json"
+                        ],
+                        "url": "https://json.schemastore.org/package",
+                        "schema": true
+                    }
+                ]
+            }
+        }
+    },
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
+    ]
 }
