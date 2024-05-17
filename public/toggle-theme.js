@@ -44,12 +44,11 @@ function reflectPreference() {
       .querySelector("meta[name='theme-color']")
       ?.setAttribute("content", bgColor);
 
-    // Change the logo based on the theme
-    // The logo is an img tag with the id "header-logo" and the src is set to "/assets/logo.svg" or "/assets/logo-dark.svg"
+    // Change the fill of the logo based on the theme
+    // The logo is an svg tag with an id of header-logo
     const logo = document.querySelector("#header-logo");
     if (logo) {
-      logo.src =
-        themeValue === "dark" ? "/assets/logo-dark.svg" : "/assets/logo.svg";
+      logo.style.fill = themeValue === "dark" ? "#fff" : "#000";
     }
   }
 }
