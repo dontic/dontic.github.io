@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "Daniel Garcia",
   desc: "Daniel's Internet Home",
   title: "Daniel's Site",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "og-image.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
@@ -17,7 +17,7 @@ export const LOCALE = {
 } as const;
 
 export const LOGO_IMAGE = {
-  enable: false,
+  enable: true,
   svg: true,
   width: 216,
   height: 46,
