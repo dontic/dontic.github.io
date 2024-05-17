@@ -30,21 +30,27 @@ description: My ultimate guide to Madrid, Spain as a local.
 
 ### Madrid City Center
 
-1. Start in Puerta de Alcala (That was the entrance to the old city when it was walled a long, long time ago).
+> Google Maps link: [Madrid City Center](https://maps.app.goo.gl/kCcupJASHkv7BFh4A)
+
+1. Start in "Puerta de Alcala" (That was the entrance to the old city when it was walled a long, long time ago).
+
+   > _Optional_: Go to the “Retiro” park, it’s a really nice park with a lot of things to see. I recommend the “Palacio de Cristal” and the “Estanque” (pond). I say optional because I would leave this for a lazy afternoon, it’s a big park and you can spend a lot of time here.
+
 2. Head west to “Plaza de Cibeles” where you can see the City Hall and the national bank.
-3. Continue west and you will see my favorite building of all of Madrid, the “Metropolis” building.
+3. Continue west and you will see my favorite building of all of Madrid, the “Metropolis” building. You can identify it by the golden statue on top.
 4. To your left you can find “Circulo de Bellas artes”, it has a nice rooftop and have a drink while admiring the views of the city. I recommend coming here at sunset.
-5. Continue west and up, towards “Gan Via”, this is the main street that crosses Madrid from East to West. Pretty cool buildings around. Don’t, I repeat, do not eat at any place of this street, you’ll get ripped off and the food is probably crap. Otherwise there’s a lot of big stores like Uniqlo or Primark which are nice if you need to get any clothes.
-6. Continue to “Callao”. Here you will find the famous “Schwepes” building. If you head into the mall “El Corte Ingles” and go up, they have a nice rooftop bar as well.
+5. Continue west and up, towards “Gan Via”, this is the main street that crosses Madrid from East to West. Pretty cool buildings around. Don’t, I repeat, do not eat at any place of this street, you’ll get ripped off and the food is probably crap. Otherwise there’s a lot of big stores like Uniqlo or Primark in case you need to get any clothes.
+6. Continue to “Callao”. Here you will find the famous “Schwepes” building. If you head into the mall “El Corte Ingles” and go up, they have a nice rooftop bar as well. Ask for the “Gourmet Experience”.
 7. Now from Callao head south to “Puerta del Sol”. This is KM0 (kilometer 0) of Spain. Where all the roads are measured from. There are some historic buildings here but Google will tell you more about them. Here’s also the building with the big bell that we all watch in new years eve and eat grapes to the rhythm of it’s ringing (not kidding, look it up).
-8. Now go a bit south to “Plaza Mayor”, this place is really really nice in Christmas time with the Christmas markets. You can get lost around its streets and find a nice place to have a beer. Here’s also the typical place to have a “Bocata de Calamares” (calamari sandwich) not the best thing in the world but it’s weird enough to try it.
+8. Now go a bit south to “Plaza Mayor”, this place is really really nice in Christmas time with the Christmas markets. You can get lost around its streets and find a nice place to have a beer. Here’s also the typical place to have a “Bocata de Calamares” (calamari sandwich) not the best thing in the world but it’s weird enough to try it. I recommend to get lost on the streets around here, they’re really nice.
 9. Continue North towards “Opera” there are some nice streets around, feel free to get lost a bit. Once you reach Opera you’ll find the Real Opera House, you know, in case you fancy watching opera.
 10. Now border the Opera House towards the real palace. There’s a nice (it’s not that nice) park here but I recommend the “Jardines de Sabatini” which are better maintained.
-11. If you have the chance, visit the Real Palace (this is where the kings lived years ago, and where all the republic thing came down), but specially the Almudena Cathedral, that thing’s beautiful inside. There are also some nice views West around the palace.
+11. If you have the chance, visit the interior of the Real Palace (this is where the kings lived years ago, and where all the republic thing came down), but specially the Almudena Cathedral, that thing’s beautiful inside. There are also some nice views West around the palace.
 12. Head north to “Plaza de España”, they recently renovated it and it’s a cool place to sit down and chill for a bit.
-13. Here I recommend two things:
-    1. Go up to the Riu Hotel rooftop which is awesome but there might be crazy amounts of people.
-    2. Go to the Debod Temple, some Egyptian relics that they gift Spain as a thank you for doing something I can’t remember. The thing is that the park around it is super nice and it’s an awesome place to watch the sunset, you can see the palace and the cathedral from here.
+
+    Do go up to the Riu Hotel rooftop which is awesome, there are some _fantastic_ views of Madrid from here. I believe they charge something like 5€ or 10€ to go up but it’s worth it.
+
+13. Go to the Debod Temple, real Egyptian ruins. The park around it is super nice and it has nice views of "Casa de Campo", you can see the palace and the cathedral from here.
 14. That’s it, now you’re super tired and might want to kill me but I’m pretty sure it was worth it.
 
 ---
