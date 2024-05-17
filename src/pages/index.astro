@@ -16,16 +16,19 @@ const sortedPosts = getSortedPosts(posts);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
+
+import { Image } from "astro:assets";
+import avatarImage from "@assets/images/avatar.jpeg";
 ---
 
 <Layout>
   <Header />
   <main id="main-content">
     <section id="hero">
-      <img
-        src="src/assets/images/avatar.jpeg"
+      <Image
+        src={avatarImage}
         alt="Daniel Garcia"
-        class="h-24 w-24 rounded-full sm:h-32 sm:w-32"
+        class="h-24 w-24 rounded-full border-2 border-gray-200/30 shadow-lg sm:h-32 sm:w-32"
       />
       <h1>Daniel Garcia</h1>
       <a
