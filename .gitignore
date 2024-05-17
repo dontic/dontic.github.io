@@ -34,5 +34,4 @@ pnpm-debug.log*
 !.yarn/versions
 .pnp.*
 
-.vscode
 

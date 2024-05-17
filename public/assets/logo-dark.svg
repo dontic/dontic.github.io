@@ -1,0 +1,65 @@
+<svg data-v-0dd9719b="" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="100%" height="100%" viewBox="0 0 160.000000 51.000000" preserveAspectRatio="xMidYMid meet"
+    color-interpolation-filters="sRGB" style="margin: auto;">
+    <g data-v-0dd9719b="" fill="#EAEDF3" class="iconlinesvg-g iconlinesvg">
+        <g class="tp-name" transform="matrix(1,0,0,1,0,0)" opacity="1">
+            <g transform="translate(0, 0)">
+                <g>
+                    <g class="imagesvg">
+                        <g>
+                            <rect fill="#1A1A1A" fill-opacity="0" stroke-width="2" x="0" y="0" width="47.66815415821502"
+                                height="50.38331077592988" class="image-rect"></rect> <svg x="0" y="0"
+                                width="47.66815415821502" height="50.38331077592988" filtersec="colorsb8448818291"
+                                class="image-svg-svg primary" style="overflow: visible;"><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -0.0016610160237178206 83.97000122070312 88.75260162353516">
+                                    <title>d6</title>
+                                    <g data-name="图层 2">
+                                        <path
+                                            d="M72.37 9.49C65 3.12 54.05 0 40.41 0a142.25 142.25 0 0 0-24.17 1.95V2a14 14 0 1 0 16.87 13.7v-.22a48.91 48.91 0 0 1 7.31-.41c15.46 0 23.13 8.19 23.13 22 0 10.53-3.12 19.62-9.1 26.38C48.72 70 39.76 73.67 29.62 73.67a49 49 0 0 1-8.18-.52l3.36-17.52 4.83-25.18A15.54 15.54 0 0 1 10.51 32L6.68 52.11 0 87.18a155.73 155.73 0 0 0 23.91 1.56c19 0 31.83-3.51 42-11.56 10.91-8.7 18.06-23.39 18.06-40.28-.17-12.9-4.58-21.57-11.6-27.41z"
+                                            fill="#f7931e" data-name="Layer 1"></path>
+                                    </g>
+                                </svg></svg>
+                            <!---->
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g transform="translate(51, 3.9516553879649408)">
+                <g data-gra="path-name" fill="#EAEDF3" transform="scale(1)">
+                    <path
+                        d="M28.86-29.64L28.86-23.16C26.40-27.78 21.54-30 16.74-30C8.46-30 1.68-23.88 1.68-14.82C1.68-5.76 8.46 0.48 16.74 0.48C21.54 0.48 25.98-1.68 28.86-6.30L28.86 0L31.80 0C31.80-9.90 31.80-19.74 31.80-29.64ZM16.74-27.18C33.24-27.18 33.24-2.40 16.74-2.40C10.02-2.40 4.62-7.38 4.62-14.82C4.62-22.26 10.02-27.18 16.74-27.18Z"
+                        transform="translate(-1.68, 42)"></path>
+                </g>
+            </g>
+            <g transform="translate(85, 3.9516553879649408)">
+                <g data-gra="path-name" fill="#EAEDF3" transform="scale(1)">
+                    <path
+                        d="M3.30-29.64L3.30 0L6.24 0L6.24-16.50C6.24-22.62 10.50-27.24 16.62-27.30C23.04-27.36 27.18-23.76 27.18-17.04L27.18 0L30.12 0L30.12-17.10C30.12-25.32 24.66-30.18 16.74-30.18C12.60-30.12 8.46-28.44 6.18-24.36L6.18-29.64Z"
+                        transform="translate(-3.3, 42)"></path>
+                </g>
+            </g>
+            <g transform="translate(115, 3.9516553879649408)">
+                <g data-gra="path-name" fill="#EAEDF3" transform="scale(1)">
+                    <path
+                        d="M6.24-29.76L6.24 0L3.30 0L3.30-29.76ZM2.46-39.30C2.46-36.18 7.20-36.18 7.20-39.30C7.20-42.42 2.46-42.42 2.46-39.30Z"
+                        transform="translate(-2.46, 42)"></path>
+                </g>
+            </g>
+            <g transform="translate(123, 3.9516553879649408)">
+                <g data-gra="path-name" fill="#EAEDF3" transform="scale(1)">
+                    <path
+                        d="M16.68 0.42C21.42 0.42 26.58-1.50 29.46-5.28L27.36-6.96C25.14-4.02 20.58-2.46 16.68-2.46C10.56-2.46 5.22-6.48 4.62-13.44L31.32-13.44C32.46-25.02 25.02-30.12 16.68-30.12C8.34-30.12 1.62-23.70 1.62-14.82C1.62-5.40 8.34 0.42 16.68 0.42ZM4.62-16.02C5.28-23.28 10.56-27.42 16.68-27.42C23.82-27.42 28.62-23.34 28.68-16.02Z"
+                        transform="translate(-1.6199999999999999, 42)"></path>
+                </g>
+            </g>
+            <g transform="translate(156, 3.9516553879649408)">
+                <g data-gra="path-name" fill="#EAEDF3" transform="scale(1)">
+                    <path d="M3.30-42L3.30 0L6.24 0L6.24-42Z" transform="translate(-3.3, 42)"></path>
+                </g>
+            </g>
+        </g>
+        <!---->
+    </g>
+    <defs v-gra="od"></defs>
+</svg>

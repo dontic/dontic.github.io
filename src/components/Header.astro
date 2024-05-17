@@ -2,6 +2,9 @@
 import { LOGO_IMAGE, SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import { Icon } from "astro-icon/components";
+
+import Logo from "../../public/assets/logo.svg?raw";
 
 export interface Props {
   activeNav?: "blog" | "projects" | "about" | "search" | "tags";
@@ -18,12 +21,16 @@ const { activeNav, search } = Astro.props;
       <a href="/" class="logo whitespace-nowrap">
         {
           LOGO_IMAGE.enable ? (
-            <img
-              src={`/assets/${LOGO_IMAGE.svg ? "logo.svg" : "logo.png"}`}
-              alt={SITE.title}
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
+            <>
+              <img
+                id="header-logo"
+                src={`/assets/${LOGO_IMAGE.svg ? "logo.svg" : "logo.png"}`}
+                class="fill-white	"
+                alt={SITE.title}
+                width={LOGO_IMAGE.width}
+                height={LOGO_IMAGE.height}
+              />
+            </>
           ) : (
             SITE.title
           )
