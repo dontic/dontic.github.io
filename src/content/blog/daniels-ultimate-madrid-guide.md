@@ -1,6 +1,7 @@
 ---
 author: Daniel Garcia
-pubDatetime: 2024-05-17T12:10:56Z
+pubDatetime: 2023-05-10T09:10:56Z
+modDatetime: 2024-05-17T09:10:56Z
 title: Dabiel's Ultimate Madrid Guide
 slug: daniels-ultimate-madrid-guide
 featured: false
