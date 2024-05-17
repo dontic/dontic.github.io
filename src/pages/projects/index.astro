@@ -1,0 +1,122 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Hr from "@components/Hr.astro";
+import ProjectCard from "@components/ProjectCard";
+import getSortedPosts from "@utils/getSortedPosts";
+import { SOCIALS } from "@config";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const socialCount = SOCIALS.filter(social => social.active).length;
+---
+
+<Layout>
+  <Header activeNav="projects" />
+  <main id="main-content">
+    <section id="hero">
+      <h1>Daniel's Projects</h1>
+      <!-- <a
+        target="_blank"
+        href="/rss.xml"
+        class="rss-link"
+        aria-label="rss feed"
+        title="RSS Feed"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="rss-icon"
+          ><path
+            d="M19 20.001C19 11.729 12.271 5 4 5v2c7.168 0 13 5.832 13 13.001h2z"
+          ></path><path
+            d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
+          ></path><circle cx="6" cy="18" r="2"></circle>
+        </svg>
+        <span class="sr-only">RSS Feed</span>
+      </a> -->
+
+      <p>
+        Here's a list of projects I've worked on. Some are open-source, some are
+        just for fun. I hope you find something interesting! 🚀
+      </p>
+
+      <>
+        <section id="featured">
+          <!-- <h2>Featured</h2> -->
+          <ul>
+            <ProjectCard
+              href={`https://github.com/dontic/wayfinder`}
+              title="Wayfinder"
+              description="Track your location and share it with friends."
+              initDate={new Date("2021-05-01")}
+            />
+          </ul>
+          <ul>
+            <ProjectCard
+              href={`https://fisy.es`}
+              title="Fisy"
+              description="A full featured CRM for clinics in Spain."
+              initDate={new Date("2023-05-01")}
+              endDate={new Date("2023-12-01")}
+            />
+          </ul>
+          <ul>
+            <ProjectCard
+              href={`https://getemil.io`}
+              title="Emilio"
+              description="AI assistant for your Gmail inbox."
+              initDate={new Date("2023-12-01")}
+            />
+          </ul>
+        </section>
+        {recentPosts.length > 0 && <Hr />}
+      </>
+    </section>
+
+    <Hr />
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== Hero Section ===== */
+  #hero {
+    @apply pb-6 pt-8;
+  }
+  #hero h1 {
+    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+  }
+  #hero .rss-link {
+    @apply mb-6;
+  }
+  #hero .rss-icon {
+    @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
+  }
+  #hero p {
+    @apply my-2;
+  }
+  .social-wrapper {
+    @apply mt-4 flex flex-col sm:flex-row sm:items-center;
+  }
+  .social-links {
+    @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
+  }
+
+  /* ===== Featured & Recent Posts Sections ===== */
+  #featured,
+  #recent-posts {
+    @apply pb-6 pt-12;
+  }
+  #featured h2,
+  #recent-posts h2 {
+    @apply text-2xl font-semibold tracking-wide;
+  }
+  .all-posts-btn-wrapper {
+    @apply my-8 text-center;
+  }
+</style>
