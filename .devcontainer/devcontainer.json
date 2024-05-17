@@ -11,13 +11,13 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                // Comment or uncomment the extensions you want to use
                 "esbenp.prettier-vscode",
                 "mhutchie.git-graph",
                 "GitHub.copilot",
                 "stackbreak.comment-divider",
                 "stuart.unique-window-colors",
-                "astro-build.astro-vscode"
+                "astro-build.astro-vscode",
+                "jock.svg"
             ],
             "settings": {
 
