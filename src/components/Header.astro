@@ -162,7 +162,7 @@ const { activeNav, search } = Astro.props;
             <line x1="6" y1="6" x2="18" y2="18" class="close"></line>
           </svg>
         </button>
-        <ul id="menu-items" class="display-none flex-col sm:flex">
+        <ul id="menu-items" class="display-none flex-col sm:flex sm:flex-row">
           <li>
             <a href="/blog/" class={activeNav === "blog" ? "active" : ""}>
               Blog
