@@ -1,6 +1,6 @@
 ---
 author: Daniel Garcia
-pubDatetime: 2023-03-18T09:10:56Z
+pubDatetime: 2024-03-18T09:10:56Z
 title: How the **** do I actually spin up an Ubuntu AWS EC2 instance?
 slug: how-the-do-i-actually-spin-up-an-ubuntu-aws-ec2-instance
 featured: false
