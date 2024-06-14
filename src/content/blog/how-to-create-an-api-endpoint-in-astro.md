@@ -1,7 +1,7 @@
 ---
 author: Daniel Garcia
-pubDatetime: 2024-06-14 14:56:35
-modDatetime: 2024-06-14 14:56:35
+pubDatetime: 2024-06-14T14:56:35Z
+modDatetime: 2024-06-14T14:56:35Z
 title: How to create an API endpoint in astro
 slug: how-to-create-an-api-endpoint-in-astro
 featured: false
