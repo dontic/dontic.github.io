@@ -12,6 +12,8 @@ tags:
 description: My ultimate guide to Madrid, Spain as a local.
 ---
 
+## Table of contents
+
 ## THINGS TO DO
 
 - Stroll around “El Retiro” in the afternoon. Specially the pond and the “Palacio de Cristal”.

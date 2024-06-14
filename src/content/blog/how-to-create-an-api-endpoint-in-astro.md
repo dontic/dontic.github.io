@@ -12,19 +12,7 @@ tags:
 description: Learn how to create API endpoints directly in your Astro app and create a contact in Brevo with it.
 ---
 
-- [Introduction](#introduction)
-- [What's the setup?](#whats-the-setup)
-  - [1. Ready your Astro project](#1-ready-your-astro-project)
-  - [2. SSR](#2-ssr)
-    - [2.1 Adapter](#21-adapter)
-    - [2.2 `server` or `hybrid`](#22-server-or-hybrid)
-    - [2.3 A note on environment variables](#23-a-note-on-environment-variables)
-    - [2.4 A note on `console.log`](#24-a-note-on-consolelog)
-  - [3. File structure](#3-file-structure)
-- [The API endpoint](#the-api-endpoint)
-  - [1. Create the file](#1-create-the-file)
-  - [2. The code](#2-the-code)
-- [The form](#the-form)
+## Table of contents
 
 ## Introduction
 
