@@ -9,7 +9,7 @@ draft: false
 tags:
   - dev
   - astro
-description: Learn how to create API endpoints directly in your Astro app.
+description: Learn how to create API endpoints directly in your Astro app and create a contact in Brevo with it.
 ---
 
 - [Introduction](#introduction)
@@ -359,7 +359,7 @@ const WaitlistForm = () => {
   return (
     <>
       {isSuccess && (
-        <Alert className="mb-3 md:mb-8 bg-green-100 border-green-300">
+        <Alert className="mb-3 border-green-300 bg-green-100 md:mb-8">
           <AlertTitle>Thanks!</AlertTitle>
           <AlertDescription>
             We've added you to the waitlist!
@@ -369,7 +369,7 @@ const WaitlistForm = () => {
       )}
 
       {!isSuccess && error && (
-        <Alert className="mb-8 bg-red-100 border-red-300">
+        <Alert className="mb-8 border-red-300 bg-red-100">
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
@@ -400,7 +400,7 @@ const WaitlistForm = () => {
 
           <Button type="submit" disabled={isSubmitting}>
             <Loader2
-              className={`w-6 h-6 mr-2 animate-spin ${
+              className={`mr-2 h-6 w-6 animate-spin ${
                 isSubmitting ? "block" : "hidden"
               }`}
             />

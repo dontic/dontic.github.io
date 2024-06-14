@@ -4,7 +4,7 @@ pubDatetime: 2023-05-10T09:10:56Z
 modDatetime: 2024-05-17T09:10:56Z
 title: Daniel's Ultimate Madrid Guide
 slug: daniels-ultimate-madrid-guide
-featured: false
+featured: true
 draft: false
 tags:
   - personal
