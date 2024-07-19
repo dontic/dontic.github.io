@@ -180,17 +180,24 @@ No he encontrado ninguna fuente buena aclarando cómo se hace esto, así que te 
 
 > Este trámite sólo lo podrás hacer online si tienes un certificado digital o DNI electrónico. Si no, tendrás que ir a la oficina de la Agencia Tributaria.
 
+> Para poder hacer este trámite online tendrás que esperar un par de días desde que recojas la documentación del Registro Mercantil, ya que la inscripción en el Registro Mercantil tarda un poco en aparecer en la base de datos de la Agencia Tributaria.
+
 1. Ve a la página de la [Agencia Tributaria para la presentación del 036](https://sede.agenciatributaria.gob.es/Sede/procedimientoini/G322.shtml) y selecciona "Solicitud de NIF provisional y NIF definitivo".
 
 2. Haz click en "Modelo 036. Cumplimentación y presentación telemática".
 
 3. Selecciona tu certificado digital personal y selecciona "Actuar en nombre propio".
 
-4. En la página 1 rellenar lo siguiente:  
-   a. `[101] NIF`: El NIF provisional que te dieron en la notaría  
-   b. `[102] Razón social`: El nombre de la empresa  
-   c. `[120] Solicitud de N.I.F. definitivo, disponiendo de N.I.F. provisional`: Marcar  
-   d. `Modificación datos relativos al Impuesto sobre Sociedades. (página 6)`: Marcar  
+4. En la página 1 rellenar lo siguiente:
+
+   a. `[101] NIF`: El NIF provisional que te dieron en la notaría
+
+   b. `[102] Razón social`: El nombre de la empresa
+
+   c. `[120] Solicitud de N.I.F. definitivo, disponiendo de N.I.F. provisional`: Marcar
+
+   d. `Modificación datos relativos al Impuesto sobre Sociedades. (página 6)`: Marcar
+
    e. En `LUGAR, FECHA Y FIRMA` rellenar el Lugar y la Fecha, tus datos personales y firmar en calidad de "Representante".
 
 5. En la página 2B rellenar lo siguiente:
