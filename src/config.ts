@@ -3,8 +3,8 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://daniel.es/", // replace this with your deployed domain
   author: "Daniel Garcia",
-  desc: "Daniel's Internet Home",
-  title: "Daniel Garcia",
+  desc: "Welcome to my personal website. I write about web development, tech and business stuff.",
+  title: "Daniel's Internet Home",
   ogImage: "og-image.jpg",
   lightAndDarkMode: true,
   postPerPage: 8,
