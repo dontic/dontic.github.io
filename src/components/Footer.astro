@@ -9,6 +9,11 @@ export interface Props {
 }
 
 const { noMarginTop = false } = Astro.props;
+
+// i18n
+import { useTranslations, defaultLang, type languages } from "i18n/utils";
+const currentLang = (Astro.currentLocale as languages) || defaultLang;
+const t = useTranslations(currentLang);
 ---
 
 <footer class={`${noMarginTop ? "" : "mt-auto"}`}>
@@ -18,7 +23,7 @@ const { noMarginTop = false } = Astro.props;
     <div class="copyright-wrapper">
       <span>Copyright &#169; {currentYear}</span>
       <span class="separator">&nbsp;|&nbsp;</span>
-      <span>All rights reserved.</span>
+      <span>{t("footer.rights")}</span>
     </div>
   </div>
 </footer>
