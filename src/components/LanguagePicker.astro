@@ -5,10 +5,6 @@ import { type Languages } from "i18n/utils";
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
 const { dropdownEnabled = false } = Astro.props;
-
-Object.entries(languages).map(([key, language]) =>
-  console.log(key, defaultLang, key === defaultLang)
-);
 ---
 
 {
