@@ -2,24 +2,13 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@layouts/PostDetails.astro";
 
-// i18n
-import { useTranslations, defaultLang, type Languages } from "i18n/utils";
-import { getRelativeLocaleUrl } from "astro:i18n";
-const currentLang: Languages =
-  (Astro.currentLocale as Languages) || defaultLang;
-// const currentLang = "en";
-// const t = useTranslations(currentLang);
-
 // Content
 export interface Props {
   post: CollectionEntry<"blog">;
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "blog",
-    ({ id, data }) => id.startsWith(currentLang) && !data.draft
-  );
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
 
   const postResults = posts.map(post => {
     // Split the locale and the slug
