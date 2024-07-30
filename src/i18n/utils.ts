@@ -9,3 +9,8 @@ export function useTranslations(lang: keyof typeof ui) {
     return ui[lang][key] || ui[defaultLang][key];
   };
 }
+
+// Utility function to strip locale prefix
+export function stripLocalePrefix(slug: string): string {
+  return slug.replace(/^[a-z]{2}\/(.+)$/, "$1");
+}

@@ -8,17 +8,25 @@ import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import getSortedPosts from "@utils/getSortedPosts";
 
-const posts = await getCollection("blog");
+// i18n
+import {
+  useTranslations,
+  defaultLang,
+  stripLocalePrefix,
+  type Languages,
+} from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
+
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-
-// i18n
-import { useTranslations, defaultLang, type Languages } from "i18n/utils";
-import { getRelativeLocaleUrl } from "astro:i18n";
-const currentLang = (Astro.currentLocale as Languages) || defaultLang;
-const t = useTranslations(currentLang);
 ---
 
 <Layout>
@@ -79,7 +87,7 @@ const t = useTranslations(currentLang);
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
-                  href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+                  href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                   frontmatter={data}
                   secHeading={false}
                 />
@@ -100,7 +108,7 @@ const t = useTranslations(currentLang);
               ({ data, slug }, index) =>
                 index < 4 && (
                   <Card
-                    href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+                    href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                     frontmatter={data}
                     secHeading={false}
                   />
