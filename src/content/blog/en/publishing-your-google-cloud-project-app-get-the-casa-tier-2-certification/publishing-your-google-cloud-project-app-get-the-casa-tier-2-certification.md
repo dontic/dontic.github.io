@@ -15,7 +15,7 @@ tags:
   - django
   - oauth
 
-ogImage: ../../assets/images/blog/publishing-your-google-cloud-project-app-get-the-casa-tier-2-certification/cover.png
+ogImage: ./cover.png
 # canonicalURL:
 ---
 
@@ -58,7 +58,7 @@ That’s why it's really important you use these tools on an isolated environmen
 
 There are tons of app types out there, select the app type that most closely resembles yours:
 
-![App types](../../assets/images/blog/publishing-your-google-cloud-project-app-get-the-casa-tier-2-certification/app-types.png)
+![App types](./app-types.png)
 
 In our case it was an API.
 
@@ -68,7 +68,7 @@ You have yours? Good!
 
 Now check which one of the two approved scanning procedures(which are easier to use) can be applied to your app type:
 
-![Scan tool selection](../../assets/images/blog/publishing-your-google-cloud-project-app-get-the-casa-tier-2-certification/scan-tool-selection.png)
+![Scan tool selection](./scan-tool-selection.png)
 
 Because our app is just an API, I used the OWASP ZAP scan tool.
 

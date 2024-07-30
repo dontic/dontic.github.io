@@ -14,7 +14,7 @@ tags:
   - react
   - django
 
-ogImage: ../../assets/images/blog/publishing-your-google-cloud-project-app/cover.png
+ogImage: ./cover.png
 # canonicalURL:
 ---
 
@@ -62,15 +62,15 @@ I know it seems like a lot, but just take it step by step and you’ll eventuall
 
 1. Go to [https://console\.cloud\.google\.com/apis/credentials/consent](https://console.cloud.google.com/apis/credentials/consent), which should take you to your project’s OAuth page. If you have multiple projects, make sure you’re in the right one by clicking it at the top.
 
-![OAuth screen](../../assets/images/blog/publishing-your-google-cloud-project-app-ask-for-your-google-app-to-be-published/oauth-screen.png)
+![OAuth screen](./oauth-screen.png)
 
 2. Hit **Publish App** under the Testing section
 
-![Publish App button](../../assets/images/blog/publishing-your-google-cloud-project-app-ask-for-your-google-app-to-be-published/publish-app-button.png)
+![Publish App button](./publish-app-button.png)
 
 3. Confirm the push to production
 
-![Confirm Push to Production](../../assets/images/blog/publishing-your-google-cloud-project-app-ask-for-your-google-app-to-be-published/confirm.png)
+![Confirm Push to Production](./confirm.png)
 
 4. Google will take you to a page where you need to fill in all the details they asked in the confirmation window (which you should have ready with the prerequisites in this article).
 
