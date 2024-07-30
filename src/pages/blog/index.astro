@@ -13,6 +13,12 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+// i18n
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 ---
 
 <Layout>
@@ -69,11 +75,11 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Featured</h2>
+            <h2>{t("landing.featuredBlogPosts")}</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
-                  href={`/blog/${slug}/`}
+                  href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
                   frontmatter={data}
                   secHeading={false}
                 />
@@ -88,13 +94,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       recentPosts.length > 0 && (
         <section id="recent-posts">
-          <h2>Recent Posts</h2>
+          <h2>{t("landing.recentBlogPosts")}</h2>
           <ul>
             {recentPosts.map(
               ({ data, slug }, index) =>
                 index < 4 && (
                   <Card
-                    href={`/blog/${slug}/`}
+                    href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
                     frontmatter={data}
                     secHeading={false}
                   />
@@ -106,8 +112,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     }
 
     <div class="all-posts-btn-wrapper">
-      <LinkButton href="/blog/all/">
-        All Posts
+      <LinkButton href=`${getRelativeLocaleUrl(currentLang, "blog")}all/`>
+        {t("landing.allBlogPosts")}
         <svg xmlns="http://www.w3.org/2000/svg"
           ><path
             d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"

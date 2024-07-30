@@ -2,22 +2,45 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@layouts/PostDetails.astro";
 
+// i18n
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const currentLang: Languages =
+  (Astro.currentLocale as Languages) || defaultLang;
+// const currentLang = "en";
+// const t = useTranslations(currentLang);
+
+// Content
 export interface Props {
   post: CollectionEntry<"blog">;
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  const posts = await getCollection(
+    "blog",
+    ({ id, data }) => id.startsWith(currentLang) && !data.draft
+  );
 
-  const postResult = posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const postResults = posts.map(post => {
+    // Split the locale and the slug
+    let [lang, slug] = post.slug.split("/");
 
-  return [...postResult];
+    // If slug is undefined it means that there is a custom slug in the markdown file
+    // We need to get the locale from the id instead
+    if (!slug) {
+      const [locale, filename] = post.id.split("/");
+      lang = locale;
+      slug = post.slug;
+    }
+
+    return { params: { lang: lang, slug: slug }, props: { post } };
+  });
+
+  return [...postResults];
 }
 
 const { post } = Astro.props;
+// const { lang, slug } = Astro.params;
 ---
 
 <PostDetails post={post} />
