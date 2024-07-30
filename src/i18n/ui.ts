@@ -15,6 +15,11 @@ export const defaultLang = "en";
 
 export const ui = {
   en: {
+    // Layout
+    "layout.title": "Daniel's Internet Home",
+    "layout.desc":
+      "Welcome to my personal website. I write about web development, tech and business stuff.",
+
     // Landing
     "landing.title": "Daniel Garcia",
     "landing.rss": "RSS Feed",
@@ -43,7 +48,12 @@ export const ui = {
     "footer.rights": "All rights reserved.",
   },
   es: {
-    // Landing
+    // Layout
+    "layout.title": "Casa en Internet de Daniel",
+    "layout.desc":
+      "Bienvenido a mi sitio web personal. Escribo sobre desarrollo web, tecnología y negocios.",
+
+    // Landings
     "landing.title": "Daniel García",
     "landing.rss": "RSS Feed",
     "landing.intro.p1":

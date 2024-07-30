@@ -2,6 +2,11 @@
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -17,9 +22,9 @@ export interface Props {
 }
 
 const {
-  title = SITE.title,
+  title = t("layout.title"),
   author = SITE.author,
-  description = SITE.desc,
+  description = t("layout.desc"),
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   pubDatetime,
