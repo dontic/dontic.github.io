@@ -11,9 +11,9 @@ export interface Props {
 const { activeNav, search } = Astro.props;
 
 // i18n
-import { useTranslations, defaultLang, type languages } from "i18n/utils";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
-const currentLang = (Astro.currentLocale as languages) || defaultLang;
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const t = useTranslations(currentLang);
 ---
 

@@ -11,8 +11,8 @@ export interface Props {
 const { noMarginTop = false } = Astro.props;
 
 // i18n
-import { useTranslations, defaultLang, type languages } from "i18n/utils";
-const currentLang = (Astro.currentLocale as languages) || defaultLang;
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const t = useTranslations(currentLang);
 ---
 
