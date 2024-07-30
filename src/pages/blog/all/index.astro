@@ -4,8 +4,21 @@ import Posts from "@layouts/Posts.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import getPagination from "@utils/getPagination";
 
-const posts = await getCollection("blog");
+// i18n
+import {
+  useTranslations,
+  defaultLang,
+  stripLocalePrefix,
+  type Languages,
+} from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
 const sortedPosts = getSortedPosts(posts);
 
 const pagination = getPagination({
