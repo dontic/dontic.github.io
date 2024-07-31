@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/AboutLayout.astro
+layout: /src/layouts/AboutLayout.astro
 title: "About"
 ---
 
@@ -21,7 +21,7 @@ While on my last year at uni I landed an internship at Correos, the national log
 
 It was here where I also picked up data analysis with R and SQL (and fell in love with it). After which I discovered the amazing world of Python and Pandas. Since they dindn't have a data engineer, I got suddenly flooded with a lot of responsibility of analysing field logistics data and providing a weekly update to the quality guys.
 
-### **Tesla** - 2020 - Present
+### **Tesla** - 2020 - 2023
 
 After lockdown I really wanted to experience the world, this is where I landed a job at Tesla as a Field Support Engineering Intern in Oslo, Norway. Holy c\*\*p that was an adventure. This is the fastest environment I've ever worked in.
 
@@ -31,7 +31,7 @@ When I wasn't analysing stuff in my laptop I was out in the field testing and co
 
 I also took advantage of my photography and video skills!
 
-![Model Y testing Norway](../assets/images/about/TeslaTesting.jpg)
+![Model Y testing Norway](./_TeslaTesting.jpg)
 
 In early 2021 I got moved to France to do the same, but this time to help a colleage cover the Southern region of Europe which was begining to experience the Tesla Boom (as I like to call it). We also began testing new products in the South with hot climates.
 
@@ -40,6 +40,12 @@ Finally I arrived at my full time possition in my home city of Madrid. Here our 
 By now I picked up a lot of backend processing with flask and front end developement with Javascript and HTML This landed me the oportunity to build a really useful app inside the company in a production environment.
 
 Continuing with extreme tests we continued to actively test and collect telemetry of new products in the Arctic and Dubai.
+
+**Entrepreneurship** - 2023 - Present
+
+After my time at Tesla, I decided to go my own way. I am currently working on several projects, from the creation of a software and data consulting company to the development of web and mobile applications, as well as software services (SaaS).
+
+You can check a list of my projects at [projects](/projects).
 
 ---
 
@@ -75,7 +81,7 @@ Right into my masters degree in Engineering as well as an MBA, I continued with 
 
 This culminated in my Master Thesis on Electric Micromobility. Where I developed a super cool, maybe a bit dangerous, electric mountainboard. The dangerous part comes mainly from welding the batteries myself and the thing doing 60+ km/h.
 
-![Eskateboard](../assets/images/about/eskate.jpg)
+![Eskateboard](./_eskate.jpg)
 
 ---
 
