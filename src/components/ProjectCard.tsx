@@ -1,4 +1,5 @@
 import { slugifyStr } from "@utils/slugify";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
 
 export interface Props {
   href: string;
@@ -6,6 +7,7 @@ export interface Props {
   initDate?: Date;
   endDate?: Date;
   description?: string;
+  locale?: Languages;
 }
 
 export default function Card({
@@ -14,7 +16,10 @@ export default function Card({
   description,
   initDate,
   endDate,
+  locale = defaultLang,
 }: Props) {
+  const t = useTranslations(locale);
+
   const headerProps = {
     style: { viewTransitionName: slugifyStr(title) },
     className: "text-lg font-medium decoration-dashed hover:underline",
@@ -25,7 +30,7 @@ export default function Card({
       month: "short",
       year: "numeric",
     };
-    const formattedDate = date.toLocaleString("en-US", options);
+    const formattedDate = date.toLocaleString(locale, options);
     // formattedDate.replace(",", "");
     return formattedDate;
   }
@@ -54,7 +59,9 @@ export default function Card({
               {/* Format initDate to the format Jul - 2023 */}
               {formatDate(initDate)}
 
-              {endDate ? ` - ${formatDate(endDate)}` : " - Present"}
+              {endDate
+                ? ` - ${formatDate(endDate)}`
+                : ` - ${t("projectCard.present")}`}
             </span>
           )}
         </div>

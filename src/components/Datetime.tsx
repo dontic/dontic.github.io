@@ -1,4 +1,5 @@
 import { LOCALE } from "@config";
+import { useTranslations, type Languages } from "i18n/utils";
 
 interface DatetimesProps {
   pubDatetime: string | Date;
@@ -8,6 +9,7 @@ interface DatetimesProps {
 interface Props extends DatetimesProps {
   size?: "sm" | "lg";
   className?: string;
+  locale: Languages;
 }
 
 export default function Datetime({
@@ -15,7 +17,11 @@ export default function Datetime({
   modDatetime,
   size = "sm",
   className,
+  locale,
 }: Props) {
+  // i18n
+  const t = useTranslations(locale);
+
   return (
     <div className={`flex items-center space-x-2 opacity-80 ${className}`}>
       <svg
@@ -30,10 +36,10 @@ export default function Datetime({
       </svg>
       {modDatetime && modDatetime > pubDatetime ? (
         <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
-          Updated:
+          {t("datetime.updated")}:
         </span>
       ) : (
-        <span className="sr-only">Published:</span>
+        <span className="sr-only">{t("datetime.published")}:</span>
       )}
       <span className={`italic ${size === "sm" ? "text-sm" : "text-base"}`}>
         <FormattedDatetime

@@ -2,6 +2,11 @@
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
 import { ViewTransitions } from "astro:transitions";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -17,9 +22,9 @@ export interface Props {
 }
 
 const {
-  title = SITE.title,
+  title = t("site.title"),
   author = SITE.author,
-  description = SITE.desc,
+  description = t("site.desc"),
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   pubDatetime,
@@ -107,6 +112,11 @@ const socialImageURL = new URL(
     />
 
     <meta name="theme-color" content="" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"
+    />
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
