@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@layouts/PostDetails.astro";
+import { getBlogPostLangAndSlug } from "i18n/utils";
 
 // Content
 export interface Props {
@@ -8,28 +9,24 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  // Current locale definition
+  const CURRENT_LOCALE = "en";
 
-  const postResults = posts.map(post => {
-    // Split the locale and the slug
-    let [lang, slug] = post.slug.split("/");
+  // Get all blog posts
+  const posts = await getCollection(
+    "blog",
+    ({ data, id }) => !data.draft && id.startsWith(CURRENT_LOCALE)
+  );
 
-    // If slug is undefined it means that there is a custom slug in the markdown file
-    // We need to get the locale from the id instead
-    if (!slug) {
-      const [locale, filename] = post.id.split("/");
-      lang = locale;
-      slug = post.slug;
-    }
-
-    return { params: { lang: lang, slug: slug }, props: { post } };
+  const paths = posts.map(post => {
+    const { slug } = getBlogPostLangAndSlug(post);
+    return { params: { slug: slug }, props: { post } };
   });
 
-  return [...postResults];
+  return paths;
 }
 
 const { post } = Astro.props;
-// const { lang, slug } = Astro.params;
 ---
 
 <PostDetails post={post} />

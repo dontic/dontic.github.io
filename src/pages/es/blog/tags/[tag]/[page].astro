@@ -5,9 +5,7 @@ import getUniqueTags from "@utils/getUniqueTags";
 import getPostsByTag from "@utils/getPostsByTag";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
-import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
-
-const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+import { defaultLang, type Languages } from "i18n/utils";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -16,18 +14,24 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+  // Current locale definition
+  const CURRENT_LOCALE = "es";
 
-  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  // Get all blog posts
+  const posts = await getCollection(
+    "blog",
+    ({ data, id }) => !data.draft && id.startsWith(CURRENT_LOCALE)
+  );
 
-  const localePosts = getLocalePosts(posts, currentLang);
-  console.log(localePosts);
-
-  const tags = getUniqueTags(localePosts);
+  const tags = getUniqueTags(posts);
 
   return tags.flatMap(({ tag, tagName }) => {
-    const tagPosts = getPostsByTag(localePosts, tag);
+    const tagPosts = getPostsByTag(posts, tag);
     const totalPages = getPageNumbers(tagPosts.length);
+
+    // Remove number 1 from the array
+    // this is because the first page is the index page
+    totalPages.shift();
 
     return totalPages.map(page => ({
       params: { tag, page: page.toString() },
@@ -39,9 +43,11 @@ export async function getStaticPaths() {
 const { page } = Astro.params;
 const { tag, tagName } = Astro.props;
 
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+
 const posts = await getCollection(
   "blog",
-  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+  ({ id, data }) => !data.draft && id.startsWith(currentLang)
 );
 
 const postsByTag = getPostsByTag(posts, tag);
@@ -50,13 +56,6 @@ const pagination = getPagination({
   posts: postsByTag,
   page,
 });
-
-// If the page is number 1, redirect to the tag page
-if (page === "1") {
-  return Astro.redirect(
-    `${getRelativeLocaleUrl(currentLang, "blog")}/tags/${tag}`
-  );
-}
 ---
 
 <TagPosts {...pagination} {tag} {tagName} />

@@ -26,17 +26,12 @@ const searchList = sortedPosts.map(({ data, slug }) => ({
   data,
   slug,
 }));
-console.log(searchList);
 ---
 
 <Layout title={`${t("search.title")} | ${t("site.title")}`}>
   <Header activeNav="search" />
   <Main pageTitle={t("search.title")} pageDesc={t("search.desc")}>
-    <SearchBar
-      client:load
-      searchList={searchList}
-      currentLocale={currentLang}
-    />
+    <SearchBar client:load searchList={searchList} locale={currentLang} />
   </Main>
   <Footer />
 </Layout>

@@ -139,7 +139,7 @@ export const ui = {
     "search.for": "para",
 
     // Tags
-    "tags.title": "Etiqueas",
+    "tags.title": "Etiquetas",
     "tags.desc": "Todas las etiquetas que he usado en mis artículos.",
 
     // Datetime
