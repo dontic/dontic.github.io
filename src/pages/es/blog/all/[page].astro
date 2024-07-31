@@ -7,7 +7,7 @@ import Posts from "@layouts/Posts.astro";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
 import getSortedPosts from "@utils/getSortedPosts";
-import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
+import { defaultLang, type Languages } from "i18n/utils";
 
 export interface Props {
   post: CollectionEntry<"blog">;
