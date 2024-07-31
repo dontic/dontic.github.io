@@ -55,6 +55,7 @@ export const ui = {
 
     // Footer
     "footer.rights": "All rights reserved.",
+
     // 404
     "404.title": "404 Not Found",
     "404.pageNotFound": "Page not found",
@@ -76,9 +77,18 @@ export const ui = {
     "site.desc":
       "Bienvenido a mi sitio web personal. Escribo sobre desarrollo web, tecnología y negocios.",
 
+    "postDetails.goBack": "Volver",
+    "postDetails.backToTop": "Volver arriba",
+
+    "posts.posts": "Publicaciones",
+    "posts.pageDesc": "Todos los artículos que he publicado.",
+
+    "tagPosts.tag": "Etiqueta",
+    "tagPosts.desc": "Todos los artículos con la etiqueta",
+
     // Landings
     "landing.title": "Daniel García",
-    "landing.rss": "RSS Feed",
+    "landing.rss": "Fuente RSS",
     "landing.intro.p1":
       "¡Hola! Soy Daniel. Soy un ingeniero industrial convertido en ingeniero de software / creador.",
     "landing.intro.p2":
@@ -102,5 +112,20 @@ export const ui = {
 
     // Footer
     "footer.rights": "Todos los derechos reservados.",
+
+    // 404
+    "404.title": "404 No Encontrado",
+    "404.pageNotFound": "Página no encontrada",
+    "404.backHome": "Volver al inicio",
+
+    // Search
+    "search.title": "Buscar",
+    "search.desc": "Busca cualquier artículo...",
+    "search.found": "Encontrados",
+    "search.for": "para",
+
+    // Tags
+    "tags.title": "Etiqueas",
+    "tags.desc": "Todas las etiquetas que he usado en mis artículos.",
   },
 } as const;
