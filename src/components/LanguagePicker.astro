@@ -5,6 +5,25 @@ import { type Languages } from "i18n/utils";
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
 const { dropdownEnabled = false } = Astro.props;
+
+const currentUrl = Astro.url.pathname;
+
+const getLocaleUrl = (lang: string) => {
+  // Strip the locale from the current URL if it's there
+  if (currentUrl.startsWith(`/${currentLang}`)) {
+    if (lang === defaultLang) {
+      return currentUrl.replace(`/${currentLang}`, "");
+    } else {
+      return currentUrl.replace(`/${currentLang}`, `/${lang}`);
+    }
+  } else {
+    if (lang === defaultLang) {
+      return currentUrl;
+    } else {
+      return `/${lang}${currentUrl}`;
+    }
+  }
+};
 ---
 
 {
@@ -38,7 +57,7 @@ const { dropdownEnabled = false } = Astro.props;
             {Object.entries(languages).map(([key, language]) => (
               <li class="">
                 <a
-                  href={key === defaultLang ? "#" : `/${key}/`}
+                  href={key === currentLang ? "#" : `${getLocaleUrl(key)}`}
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-400"
                   role="menuitem"
                   tabindex="-1"
@@ -56,7 +75,7 @@ const { dropdownEnabled = false } = Astro.props;
       <a>|</a>
       {Object.entries(languages).map(([key, language]) => (
         <a
-          href={key === defaultLang ? "/" : `/${key}/`}
+          href={key === currentLang ? "#" : `${getLocaleUrl(key)}`}
           class="text-gray-700 hover:text-gray-900"
         >
           <span class={`fi fi-${language.countryCode}`} /> |
