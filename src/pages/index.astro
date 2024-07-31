@@ -19,9 +19,11 @@ const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const t = useTranslations(currentLang);
 
 // Content
-const posts = await getCollection("blog");
-const localePosts = posts.filter(({ id }) => id.startsWith(currentLang));
-const sortedPosts = getSortedPosts(localePosts);
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
+const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
