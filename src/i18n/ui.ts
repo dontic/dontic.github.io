@@ -55,6 +55,16 @@ export const ui = {
 
     // Footer
     "footer.rights": "All rights reserved.",
+    // 404
+    "404.title": "404 Not Found",
+    "404.pageNotFound": "Page not found",
+    "404.backHome": "Back to home",
+
+    // Search
+    "search.title": "Search",
+    "search.desc": "Search any article...",
+    "search.found": "Found",
+    "search.for": "for",
   },
   es: {
     // Layouts

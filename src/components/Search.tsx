@@ -2,6 +2,8 @@ import Fuse from "fuse.js";
 import { useEffect, useRef, useState, useMemo } from "react";
 import Card from "@components/Card";
 import type { CollectionEntry } from "astro:content";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
 
 export type SearchItem = {
   title: string;
@@ -12,6 +14,7 @@ export type SearchItem = {
 
 interface Props {
   searchList: SearchItem[];
+  currentLocale: string;
 }
 
 interface SearchResult {
@@ -19,7 +22,11 @@ interface SearchResult {
   refIndex: number;
 }
 
-export default function SearchBar({ searchList }: Props) {
+export default function SearchBar({ searchList, currentLocale }: Props) {
+  // i18n
+  const currentLang = (currentLocale as Languages) || defaultLang;
+  const t = useTranslations(currentLang);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputVal, setInputVal] = useState("");
   const [searchResults, setSearchResults] = useState<SearchResult[] | null>(
@@ -80,7 +87,7 @@ export default function SearchBar({ searchList }: Props) {
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"></path>
           </svg>
-          <span className="sr-only">Search</span>
+          <span className="sr-only">{t("search.title")}</span>
         </span>
         <input
           className="block w-full rounded border border-skin-fill 
@@ -100,11 +107,11 @@ export default function SearchBar({ searchList }: Props) {
 
       {inputVal.length > 1 && (
         <div className="mt-8">
-          Found {searchResults?.length}
+          {t("search.found")} {searchResults?.length}
           {searchResults?.length && searchResults?.length === 1
             ? " result"
             : " results"}{" "}
-          for '{inputVal}'
+          {t("search.for")} '{inputVal}'
         </div>
       )}
 
@@ -112,7 +119,7 @@ export default function SearchBar({ searchList }: Props) {
         {searchResults &&
           searchResults.map(({ item, refIndex }) => (
             <Card
-              href={`/blog/${item.slug}/`}
+              href={`${getRelativeLocaleUrl(currentLang, "blog")}${item.slug}/`}
               frontmatter={item.data}
               key={`${refIndex}-${item.slug}`}
             />
