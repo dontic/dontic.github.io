@@ -8,11 +8,43 @@ featured: true
 draft: false
 tags:
   - personal
-  - business
+  - empresa
 description: Aprende a montar tu sociedad limitada en España paso a paso.
 ---
 
-## Table of contents
+<details>
+  <summary><b><font size="+5">Índice</font></b></summary>
+
+- [Introducción](#introducción)
+- [Pre-requisitos](#pre-requisitos)
+- [Pasos a seguir para constituir una Sociedad Limitada](#pasos-a-seguir-para-constituir-una-sociedad-limitada)
+  - [1. Certificado Negativo de Denominación Social](#1-certificado-negativo-de-denominación-social)
+  - [2. Certificado de Depósito de Capital](#2-certificado-de-depósito-de-capital)
+  - [3. Códigos de actividad (CNAE)](#3-códigos-de-actividad-cnae)
+  - [4. Estatutos y pacto de socios](#4-estatutos-y-pacto-de-socios)
+  - [5. Escritura de constitución](#5-escritura-de-constitución)
+  - [6. Inscripción en el Registro mercantil y modelo 600](#6-inscripción-en-el-registro-mercantil-y-modelo-600)
+    - [¿Qué es el modelo 600?](#qué-es-el-modelo-600)
+  - [8. Obtención del CIF definitivo y alta en hacienda](#8-obtención-del-cif-definitivo-y-alta-en-hacienda)
+    - [8.1. Descargar el certificado digital](#81-descargar-el-certificado-digital)
+    - [8.2. Presentación del 036](#82-presentación-del-036)
+  - [9. Activación de la cuenta bancaria](#9-activación-de-la-cuenta-bancaria)
+  - [10. ¡Empieza a operar!](#10-empieza-a-operar)
+- [Preguntas frecuentes](#preguntas-frecuentes)
+
+  - [¿Cuánto cuesta montar una empresa?](#cuánto-cuesta-montar-una-empresa)
+  - [¿Cuánto tiempo se tarda en montar una empresa?](#cuánto-tiempo-se-tarda-en-montar-una-empresa)
+  - [¿Qué es mejor, una SL o una autónomo?](#qué-es-mejor-una-sl-o-una-autónomo)
+  - [¿Puedo montar una empresa sin ser autónomo?](#puedo-montar-una-empresa-sin-ser-autónomo)
+  - [¿Qué es una SL unipersonal?](#qué-es-una-sl-unipersonal)
+  - [¿Puedo montar una empresa yo solo sin tener trabajadores?](#puedo-montar-una-empresa-yo-solo-sin-tener-trabajadores)
+  - [¿Qué es una empresa pantalla?](#qué-es-una-empresa-pantalla)
+  - [¿Qué es el impuesto de sociedades?](#qué-es-el-impuesto-de-sociedades)
+  - [¿Puedo usar mi CIF provisional para facturar?](#puedo-usar-mi-cif-provisional-para-facturar)
+  - [¿Puédo hacer los trámites para montar una empresa yo solo?](#puédo-hacer-los-trámites-para-montar-una-empresa-yo-solo)
+  - [¿Puédo hacer los trámites para montar una empresa online?](#puédo-hacer-los-trámites-para-montar-una-empresa-online)
+
+</details>
 
 ## Introducción
 
