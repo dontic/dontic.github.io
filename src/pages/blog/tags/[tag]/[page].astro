@@ -29,6 +29,10 @@ export async function getStaticPaths() {
     const tagPosts = getPostsByTag(posts, tag);
     const totalPages = getPageNumbers(tagPosts.length);
 
+    // Remove number 1 from the array
+    // this is because the first page is the index page
+    totalPages.shift();
+
     return totalPages.map(page => ({
       params: { tag, page: page.toString() },
       props: { tag, tagName },
@@ -52,13 +56,6 @@ const pagination = getPagination({
   posts: postsByTag,
   page,
 });
-
-// If the page is number 1, redirect to the tag page
-if (page === "1") {
-  return Astro.redirect(
-    `${getRelativeLocaleUrl(currentLang, "blog")}/tags/${tag}`
-  );
-}
 ---
 
 <TagPosts {...pagination} {tag} {tagName} />
