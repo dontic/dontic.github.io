@@ -49,3 +49,9 @@ export function getBlogPostLangAndSlug(post: CollectionEntry<"blog">) {
 
   return { lang, slug };
 }
+
+export function getLangFromUrl(url: URL) {
+  const [, lang] = url.pathname.split("/");
+  if (lang in ui) return lang as keyof typeof ui;
+  return defaultLang;
+}
