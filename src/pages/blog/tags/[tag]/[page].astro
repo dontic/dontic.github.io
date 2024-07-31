@@ -16,7 +16,10 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts = await getCollection(
+    "blog",
+    ({ id, data }) => id.startsWith(currentLang) && !data.draft
+  );
 
   const tags = getUniqueTags(posts);
 
