@@ -70,6 +70,10 @@ export const ui = {
     // Tags
     "tags.title": "Tags",
     "tags.desc": "All the tags I've used in my articles.",
+
+    // Datetime
+    "datetime.published": "Published",
+    "datetime.updated": "Updated",
   },
   es: {
     // Layouts
@@ -127,5 +131,9 @@ export const ui = {
     // Tags
     "tags.title": "Etiqueas",
     "tags.desc": "Todas las etiquetas que he usado en mis artículos.",
+
+    // Datetime
+    "datetime.published": "Publicado",
+    "datetime.updated": "Actualizado",
   },
 } as const;

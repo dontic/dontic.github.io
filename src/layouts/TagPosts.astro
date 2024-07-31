@@ -38,6 +38,7 @@ const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
           <Card
             href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
             frontmatter={data}
+            locale={currentLang}
           />
         ))
       }

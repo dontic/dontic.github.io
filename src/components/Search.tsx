@@ -14,7 +14,7 @@ export type SearchItem = {
 
 interface Props {
   searchList: SearchItem[];
-  currentLocale: string;
+  locale: string;
 }
 
 interface SearchResult {
@@ -22,9 +22,9 @@ interface SearchResult {
   refIndex: number;
 }
 
-export default function SearchBar({ searchList, currentLocale }: Props) {
+export default function SearchBar({ searchList, locale }: Props) {
   // i18n
-  const currentLang = (currentLocale as Languages) || defaultLang;
+  const currentLang = (locale as Languages) || defaultLang;
   const t = useTranslations(currentLang);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -122,6 +122,7 @@ export default function SearchBar({ searchList, currentLocale }: Props) {
               href={`${getRelativeLocaleUrl(currentLang, "blog")}${item.slug}/`}
               frontmatter={item.data}
               key={`${refIndex}-${item.slug}`}
+              locale={currentLang}
             />
           ))}
       </ul>

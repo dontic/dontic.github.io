@@ -90,6 +90,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
                   href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                   frontmatter={data}
                   secHeading={false}
+                  locale={currentLang}
                 />
               ))}
             </ul>
@@ -111,6 +112,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
                     href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                     frontmatter={data}
                     secHeading={false}
+                    locale={currentLang}
                   />
                 )
             )}
