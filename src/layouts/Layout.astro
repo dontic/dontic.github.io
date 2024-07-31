@@ -22,9 +22,9 @@ export interface Props {
 }
 
 const {
-  title = t("layout.title"),
+  title = t("site.title"),
   author = SITE.author,
-  description = t("layout.desc"),
+  description = t("site.desc"),
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   pubDatetime,

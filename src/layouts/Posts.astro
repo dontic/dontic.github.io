@@ -5,7 +5,6 @@ import Main from "@layouts/Main.astro";
 import Footer from "@components/Footer.astro";
 import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
-import { SITE } from "@config";
 import Header from "@components/Header.astro";
 
 // i18n
@@ -28,9 +27,9 @@ export interface Props {
 const { currentPage, totalPages, paginatedPosts } = Astro.props;
 ---
 
-<Layout title={`Posts | ${SITE.title}`}>
+<Layout title={`${t("posts.posts")} | ${t("site.title")}`}>
   <Header activeNav="blog" search />
-  <Main pageTitle="Posts" pageDesc="All the articles I've posted.">
+  <Main pageTitle={t("posts.posts")} pageDesc={t("posts.pageDesc")}>
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (

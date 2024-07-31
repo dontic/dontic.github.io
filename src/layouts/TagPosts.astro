@@ -6,7 +6,12 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Card from "@components/Card";
 import Pagination from "@components/Pagination.astro";
-import { SITE } from "@config";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
 export interface Props {
   currentPage: number;
@@ -19,18 +24,21 @@ export interface Props {
 const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
 ---
 
-<Layout title={`Tag: ${tagName} | ${SITE.title}`}>
+<Layout title={`${t("tagPosts.tag")}: ${tagName} | ${t("site.title")}`}>
   <Header activeNav="tags" />
   <Main
-    pageTitle={[`Tag:`, `${tagName}`]}
+    pageTitle={[`${t("tagPosts.tag")}:`, `${tagName}`]}
     titleTransition={tag}
-    pageDesc={`All the articles with the tag "${tagName}".`}
+    pageDesc={`${t("tagPosts.desc")} "${tagName}".`}
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
+    <h1 slot="title" transition:name={tag}>{`${t("tagPosts.tag")}:${tag}`}</h1>
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/blog/${slug}/`} frontmatter={data} />
+          <Card
+            href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+            frontmatter={data}
+          />
         ))
       }
     </ul>
@@ -39,10 +47,10 @@ const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
   <Pagination
     {currentPage}
     {totalPages}
-    prevUrl={`/blog/tags/${tag}${
+    prevUrl={`${getRelativeLocaleUrl(currentLang, "blog")}tags/${tag}${
       currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""
     }/`}
-    nextUrl={`/blog/tags/${tag}/${currentPage + 1}/`}
+    nextUrl={`${getRelativeLocaleUrl(currentLang, "blog")}tags/${tag}/${currentPage + 1}/`}
   />
 
   <Footer noMarginTop={totalPages > 1} />

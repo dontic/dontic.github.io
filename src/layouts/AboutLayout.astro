@@ -4,6 +4,11 @@ import Breadcrumbs from "@components/Breadcrumbs.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Layout from "./Layout.astro";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
 export interface Props {
   frontmatter: {
@@ -15,7 +20,7 @@ export interface Props {
 const { frontmatter } = Astro.props;
 ---
 
-<Layout title={`${frontmatter.title} | ${SITE.title}`}>
+<Layout title={`${frontmatter.title} | ${t("site.title")}`}>
   <Header activeNav="about" />
   <Breadcrumbs />
   <main id="main-content">

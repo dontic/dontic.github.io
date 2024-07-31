@@ -7,7 +7,12 @@ import Datetime from "@components/Datetime";
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
-import { SITE } from "@config";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -30,12 +35,13 @@ const { Content } = await post.render();
 
 const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const ogUrl = new URL(
-  ogImageUrl ?? `/blog/${slugifyStr(title)}.png`,
+  ogImageUrl ??
+    `${getRelativeLocaleUrl(currentLang, "blog")}${slugifyStr(title)}.png`,
   Astro.url.origin
 ).href;
 
 const layoutProps = {
-  title: `${title} | ${SITE.title}`,
+  title: `${title} | ${t("site.title")}`,
   author,
   description,
   pubDatetime,
@@ -62,7 +68,7 @@ const layoutProps = {
         ><path
           d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
         ></path>
-      </svg><span>Go back</span>
+      </svg><span>{t("postDetails.goBack")}</span>
     </button>
   </div>
   <main id="main-content">
@@ -93,7 +99,7 @@ const layoutProps = {
             d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"
           ></path>
         </svg>
-        <span>Back to Top</span>
+        <span>{t("postDetails.backToTop")}</span>
       </button>
 
       <ShareLinks />

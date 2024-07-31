@@ -15,10 +15,19 @@ export const defaultLang = "en";
 
 export const ui = {
   en: {
-    // Layout
-    "layout.title": "Daniel's Internet Home",
-    "layout.desc":
+    // Layouts
+    "site.title": "Daniel's Internet Home",
+    "site.desc":
       "Welcome to my personal website. I write about web development, tech and business stuff.",
+
+    "postDetails.goBack": "Go back",
+    "postDetails.backToTop": "Back to top",
+
+    "posts.posts": "Posts",
+    "posts.pageDesc": "All the articles I've posted.",
+
+    "tagPosts.tag": "Tag",
+    "tagPosts.desc": "All the articles with the tag",
 
     // Landing
     "landing.title": "Daniel Garcia",
@@ -48,9 +57,9 @@ export const ui = {
     "footer.rights": "All rights reserved.",
   },
   es: {
-    // Layout
-    "layout.title": "Casa en Internet de Daniel",
-    "layout.desc":
+    // Layouts
+    "site.title": "La Casa de Internet de Daniel",
+    "site.desc":
       "Bienvenido a mi sitio web personal. Escribo sobre desarrollo web, tecnología y negocios.",
 
     // Landings
