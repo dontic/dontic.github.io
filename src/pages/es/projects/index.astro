@@ -36,40 +36,50 @@ const t = useTranslations(currentLang);
       <p>
         {t("projects.intro")}
       </p>
+    </section>
 
-      <>
-        <section id="featured">
-          <!-- <h2>Featured</h2> -->
-          <ul>
-            <ProjectCard
-              href={`https://github.com/dontic/wayfinder`}
-              title="Wayfinder"
-              description="Rastrea tu ubicación y compártela con amigos."
-              initDate={new Date("2021-05-01")}
-              locale={currentLang}
-            />
-          </ul>
-          <ul>
-            <ProjectCard
-              href={`https://fisy.es`}
-              title="Fisy"
-              description="Un CRM completo para clínicas en España."
-              initDate={new Date("2023-05-01")}
-              endDate={new Date("2023-12-01")}
-              locale={currentLang}
-            />
-          </ul>
-          <ul>
-            <ProjectCard
-              href={`https://getemil.io`}
-              title="Emilio"
-              description="Asistente de IA para tu bandeja de entrada de Gmail."
-              initDate={new Date("2023-12-01")}
-              locale={currentLang}
-            />
-          </ul>
-        </section>
-      </>
+    <Hr />
+
+    <section id="open-source">
+      <h2 class="text-2xl font-semibold tracking-wide">
+        {t("projects.openSource")}
+      </h2>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://github.com/dontic/wayfinder`}
+          title="Wayfinder"
+          description="Rastrea tu ubicación y compártela con amigos."
+          initDate={new Date("2021-05-01")}
+          locale={currentLang}
+        />
+      </ul>
+    </section>
+
+    <Hr />
+
+    <section id="monetized">
+      <h2 class="text-2xl font-semibold tracking-wide">
+        {t("projects.monetized")}
+      </h2>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://fisy.es`}
+          title="Fisy"
+          description="Un CRM completo para clínicas en España."
+          initDate={new Date("2023-05-01")}
+          endDate={new Date("2023-12-01")}
+          locale={currentLang}
+        />
+      </ul>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://getemil.io`}
+          title="Emilio"
+          description="Asistente de IA para tu bandeja de entrada de Gmail."
+          initDate={new Date("2023-12-01")}
+          locale={currentLang}
+        />
+      </ul>
     </section>
 
     <Hr />

@@ -79,6 +79,8 @@ export const ui = {
     "projects.heading": "My Projects",
     "projects.intro":
       "This is a list of projects I've worked on. Some are open-source, others are just for fun. Hope you find something interesting! 🚀",
+    "projects.openSource": "Open Source",
+    "projects.monetized": "Monetized",
 
     // Project card
     "projectCard.present": "Present",
@@ -148,6 +150,8 @@ export const ui = {
     "projects.heading": "Mis Proyectos",
     "projects.intro":
       "Esta es una lista de proyectos en los que he trabajado. Algunos son de código abierto, otros son solo por diversión. ¡Espero que encuentres algo interesante! 🚀",
+    "projects.openSource": "Código Abierto",
+    "projects.monetized": "Monetizados",
 
     // Project card
     "projectCard.present": "Presente",
