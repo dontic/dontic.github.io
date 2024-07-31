@@ -1,4 +1,9 @@
 ---
+import { defaultLang, type Languages } from "i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+
 export interface Props {
   tag: string;
   size?: "sm" | "lg";
@@ -13,7 +18,7 @@ const { tag, size = "sm" } = Astro.props;
   }`}
 >
   <a
-    href={`/blog/tags/${tag}/`}
+    href={`${getRelativeLocaleUrl(currentLang, "blog")}tags/${tag}/`}
     transition:name={tag}
     class={`${size === "sm" ? "text-sm" : "text-lg"} pr-2 group`}
   >

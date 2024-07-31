@@ -5,6 +5,9 @@ import getUniqueTags from "@utils/getUniqueTags";
 import getPostsByTag from "@utils/getPostsByTag";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
+import { defaultLang, type Languages } from "i18n/utils";
+
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -31,7 +34,10 @@ export async function getStaticPaths() {
 const { page } = Astro.params;
 const { tag, tagName } = Astro.props;
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
 
 const postsByTag = getPostsByTag(posts, tag);
 
@@ -42,7 +48,9 @@ const pagination = getPagination({
 
 // If the page is number 1, redirect to the tag page
 if (page === "1") {
-  return Astro.redirect(`/blog/tags/${tag}`);
+  return Astro.redirect(
+    `${getRelativeLocaleUrl(currentLang, "blog")}/tags/${tag}`
+  );
 }
 ---
 

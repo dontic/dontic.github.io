@@ -1,12 +1,15 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import TagPosts from "@layouts/TagPosts.astro";
+// import TagPosts from "@layouts/TagPosts.astro";
 import Posts from "@layouts/Posts.astro";
-import getUniqueTags from "@utils/getUniqueTags";
-import getPostsByTag from "@utils/getPostsByTag";
+// import getUniqueTags from "@utils/getUniqueTags";
+// import getPostsByTag from "@utils/getPostsByTag";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
 import getSortedPosts from "@utils/getSortedPosts";
+import { defaultLang, type Languages } from "i18n/utils";
+
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -24,7 +27,10 @@ export async function getStaticPaths() {
 
 const { page } = Astro.params;
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
 
 const sortedPosts = getSortedPosts(posts);
 

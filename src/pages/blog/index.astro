@@ -7,8 +7,6 @@ import LinkButton from "@components/LinkButton.astro";
 import Hr from "@components/Hr.astro";
 import Card from "@components/Card";
 import getSortedPosts from "@utils/getSortedPosts";
-
-// i18n
 import {
   useTranslations,
   defaultLang,
@@ -16,6 +14,8 @@ import {
   type Languages,
 } from "i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
+
+// i18n
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const t = useTranslations(currentLang);
 

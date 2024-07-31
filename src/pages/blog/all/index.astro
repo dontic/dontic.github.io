@@ -5,15 +5,8 @@ import getSortedPosts from "@utils/getSortedPosts";
 import getPagination from "@utils/getPagination";
 
 // i18n
-import {
-  useTranslations,
-  defaultLang,
-  stripLocalePrefix,
-  type Languages,
-} from "i18n/utils";
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { defaultLang, type Languages } from "i18n/utils";
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
-const t = useTranslations(currentLang);
 
 const posts = await getCollection(
   "blog",

@@ -65,6 +65,10 @@ export const ui = {
     "search.desc": "Search any article...",
     "search.found": "Found",
     "search.for": "for",
+
+    // Tags
+    "tags.title": "Tags",
+    "tags.desc": "All the tags I've used in my articles.",
   },
   es: {
     // Layouts
