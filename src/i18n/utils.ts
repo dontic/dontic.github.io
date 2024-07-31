@@ -22,11 +22,30 @@ export function getLocalePosts(
 ): any[] {
   const localePosts = posts.filter(post => {
     // Split the id
-    let [locale, postId] = post.id.split("/");
+    let [locale] = post.id.split("/");
 
     // Return true if the post matches the current locale
     return locale === currentLocale;
   });
 
   return localePosts;
+}
+
+export function getBlogPostLangAndSlug(post: CollectionEntry<"blog">) {
+  // Slug must be in the format /en/slug
+
+  // Try to get the land and slug from the slug
+  // Note that if the slug was declared in the file without a locale
+  // it will return undefined
+  let [lang, slug] = post.slug.split("/");
+
+  // If slug is undefined it means that there is a custom slug in the markdown file
+  // We need to get the locale from the id instead
+  if (!slug) {
+    const [locale] = post.id.split("/");
+    lang = locale;
+    slug = post.slug;
+  }
+
+  return { lang, slug };
 }
