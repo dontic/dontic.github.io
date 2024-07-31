@@ -1,0 +1,47 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+// import TagPosts from "@layouts/TagPosts.astro";
+import Posts from "@layouts/Posts.astro";
+// import getUniqueTags from "@utils/getUniqueTags";
+// import getPostsByTag from "@utils/getPostsByTag";
+import getPageNumbers from "@utils/getPageNumbers";
+import getPagination from "@utils/getPagination";
+import getSortedPosts from "@utils/getSortedPosts";
+import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
+
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+
+export interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+export async function getStaticPaths() {
+  const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+  const localePosts = getLocalePosts(posts, currentLang);
+
+  const pagePaths = getPageNumbers(localePosts.length).map(pageNum => ({
+    params: { page: pageNum },
+  }));
+
+  return [...pagePaths];
+}
+
+const { page } = Astro.params;
+
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
+
+const sortedPosts = getSortedPosts(posts);
+
+const pagination = getPagination({
+  posts: sortedPosts,
+  page,
+});
+---
+
+<Posts {...pagination} />

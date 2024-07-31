@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Tag from "@components/Tag.astro";
+import getUniqueTags from "@utils/getUniqueTags";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
+
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
+
+let tags = getUniqueTags(posts);
+---
+
+<Layout title={`${t("tags.title")} | ${t("site.title")}`}>
+  <Header activeNav="blog" />
+  <Main pageTitle={t("tags.title")} pageDesc={t("tags.desc")}>
+    <ul>
+      {tags.map(({ tag }) => <Tag {tag} size="lg" />)}
+    </ul>
+  </Main>
+  <Footer />
+</Layout>

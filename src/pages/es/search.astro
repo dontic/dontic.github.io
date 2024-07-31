@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import Main from "@layouts/Main.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import SearchBar from "@components/Search";
+import getSortedPosts from "@utils/getSortedPosts";
+import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+
+// i18n
+const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+const t = useTranslations(currentLang);
+
+// Retrieve all published articles
+const posts = await getCollection(
+  "blog",
+  ({ id, data }) => id.startsWith(currentLang) && !data.draft
+);
+const sortedPosts = getSortedPosts(posts);
+
+// List of items to search in
+const searchList = sortedPosts.map(({ data, slug }) => ({
+  title: data.title,
+  description: data.description,
+  data,
+  slug,
+}));
+console.log(searchList);
+---
+
+<Layout title={`${t("search.title")} | ${t("site.title")}`}>
+  <Header activeNav="search" />
+  <Main pageTitle={t("search.title")} pageDesc={t("search.desc")}>
+    <SearchBar
+      client:load
+      searchList={searchList}
+      currentLocale={currentLang}
+    />
+  </Main>
+  <Footer />
+</Layout>
