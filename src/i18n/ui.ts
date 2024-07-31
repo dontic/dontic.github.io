@@ -74,6 +74,14 @@ export const ui = {
     // Datetime
     "datetime.published": "Published",
     "datetime.updated": "Updated",
+
+    // Projects
+    "projects.heading": "My Projects",
+    "projects.intro":
+      "This is a list of projects I've worked on. Some are open-source, others are just for fun. Hope you find something interesting! 🚀",
+
+    // Project card
+    "projectCard.present": "Present",
   },
   es: {
     // Layouts
@@ -135,5 +143,13 @@ export const ui = {
     // Datetime
     "datetime.published": "Publicado",
     "datetime.updated": "Actualizado",
+
+    // Projects
+    "projects.heading": "Mis Proyectos",
+    "projects.intro":
+      "Esta es una lista de proyectos en los que he trabajado. Algunos son de código abierto, otros son solo por diversión. ¡Espero que encuentres algo interesante! 🚀",
+
+    // Project card
+    "projectCard.present": "Presente",
   },
 } as const;
