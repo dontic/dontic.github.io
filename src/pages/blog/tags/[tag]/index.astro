@@ -4,30 +4,31 @@ import TagPosts from "@layouts/TagPosts.astro";
 import getPostsByTag from "@utils/getPostsByTag";
 import getPagination from "@utils/getPagination";
 import getUniqueTags from "@utils/getUniqueTags";
-import { defaultLang, type Languages } from "i18n/utils";
-
-const currentLang: Languages =
-  (Astro.currentLocale as Languages) || defaultLang;
+import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
 
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "blog",
-    ({ id, data }) => id.startsWith(currentLang) && !data.draft
-  );
+  const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
-  const tags = getUniqueTags(posts);
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  posts.map(({ id }) => console.log(id));
+
+  const localePosts = getLocalePosts(posts, currentLang);
+
+  localePosts.map(({ id }) => console.log(id));
+
+  const tags = getUniqueTags(localePosts);
 
   return tags.map(({ tag, tagName }) => {
     return {
       params: { tag },
-      props: { tag, tagName, posts },
+      props: { tag, tagName, localePosts },
     };
   });
 }
 
-const { tag, tagName, posts } = Astro.props;
+const { tag, tagName, localePosts } = Astro.props;
 
-const postsByTag = getPostsByTag(posts, tag);
+const postsByTag = getPostsByTag(localePosts, tag);
 
 const pagination = getPagination({
   posts: postsByTag,

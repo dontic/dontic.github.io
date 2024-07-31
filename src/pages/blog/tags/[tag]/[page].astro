@@ -5,7 +5,7 @@ import getUniqueTags from "@utils/getUniqueTags";
 import getPostsByTag from "@utils/getPostsByTag";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
-import { defaultLang, type Languages } from "i18n/utils";
+import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
 
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
@@ -16,15 +16,17 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "blog",
-    ({ id, data }) => id.startsWith(currentLang) && !data.draft
-  );
+  const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
-  const tags = getUniqueTags(posts);
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+  const localePosts = getLocalePosts(posts, currentLang);
+  console.log(localePosts);
+
+  const tags = getUniqueTags(localePosts);
 
   return tags.flatMap(({ tag, tagName }) => {
-    const tagPosts = getPostsByTag(posts, tag);
+    const tagPosts = getPostsByTag(localePosts, tag);
     const totalPages = getPageNumbers(tagPosts.length);
 
     return totalPages.map(page => ({

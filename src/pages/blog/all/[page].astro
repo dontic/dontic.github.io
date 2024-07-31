@@ -7,7 +7,7 @@ import Posts from "@layouts/Posts.astro";
 import getPageNumbers from "@utils/getPageNumbers";
 import getPagination from "@utils/getPagination";
 import getSortedPosts from "@utils/getSortedPosts";
-import { defaultLang, type Languages } from "i18n/utils";
+import { defaultLang, getLocalePosts, type Languages } from "i18n/utils";
 
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
@@ -16,9 +16,13 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
+  const currentLang = (Astro.currentLocale as Languages) || defaultLang;
+
   const posts = await getCollection("blog", ({ data }) => !data.draft);
 
-  const pagePaths = getPageNumbers(posts.length).map(pageNum => ({
+  const localePosts = getLocalePosts(posts, currentLang);
+
+  const pagePaths = getPageNumbers(localePosts.length).map(pageNum => ({
     params: { page: pageNum },
   }));
 
