@@ -7,19 +7,10 @@ const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const currentUrl = Astro.url.pathname;
 
 const getLocaleUrl = (lang: string) => {
-  // Strip the locale from the current URL if it's there
-  if (currentUrl.startsWith(`/${currentLang}`)) {
-    if (lang === defaultLang) {
-      return currentUrl.replace(`/${currentLang}`, "");
-    } else {
-      return currentUrl.replace(`/${currentLang}`, `/${lang}`);
-    }
+  if (lang === defaultLang) {
+    return `/`;
   } else {
-    if (lang === defaultLang) {
-      return currentUrl;
-    } else {
-      return `/${lang}${currentUrl}`;
-    }
+    return `/${lang}`;
   }
 };
 ---
