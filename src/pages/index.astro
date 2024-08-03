@@ -13,7 +13,12 @@ import { Image } from "astro:assets";
 import avatarImage from "@assets/images/avatar.jpeg";
 
 // i18n
-import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import {
+  useTranslations,
+  defaultLang,
+  type Languages,
+  stripLocalePrefix,
+} from "i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 const t = useTranslations(currentLang);
@@ -97,7 +102,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
-                  href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+                  href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                   frontmatter={data}
                   secHeading={false}
                   locale={currentLang}
@@ -119,7 +124,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
               ({ data, slug }, index) =>
                 index < 4 && (
                   <Card
-                    href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+                    href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
                     frontmatter={data}
                     secHeading={false}
                     locale={currentLang}

@@ -13,6 +13,8 @@ export function useTranslations(lang: keyof typeof ui) {
 
 // Utility function to strip locale prefix
 export function stripLocalePrefix(slug: string): string {
+  const strippedSlug = slug.replace(/^[a-z]{2}\/(.+)$/, "$1");
+  console.log(strippedSlug);
   return slug.replace(/^[a-z]{2}\/(.+)$/, "$1");
 }
 

@@ -6,7 +6,12 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Card from "@components/Card";
 import Pagination from "@components/Pagination.astro";
-import { useTranslations, defaultLang, type Languages } from "i18n/utils";
+import {
+  useTranslations,
+  defaultLang,
+  type Languages,
+  stripLocalePrefix,
+} from "i18n/utils";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 // i18n
@@ -36,7 +41,7 @@ const { currentPage, totalPages, paginatedPosts, tag, tagName } = Astro.props;
       {
         paginatedPosts.map(({ data, slug }) => (
           <Card
-            href={`${getRelativeLocaleUrl(currentLang, "blog")}${slug}/`}
+            href={`${getRelativeLocaleUrl(currentLang, "blog")}${stripLocalePrefix(slug)}/`}
             frontmatter={data}
             locale={currentLang}
           />
