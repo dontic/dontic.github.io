@@ -84,6 +84,16 @@ export const ui = {
 
     // Project card
     "projectCard.present": "Present",
+
+    // Share Links
+    "shareLinks.shareThisPostOn": "Share this post on:",
+    "shareLinks.whatsapp": "Share this post via WhatsApp",
+    "shareLinks.facebook": "Share this post on Facebook",
+    "shareLinks.twitter": "Share this post on Twitter",
+    "shareLinks.telegram": "Share this post via Telegram",
+    "shareLinks.pinterest": "Share this post on Pinterest",
+    "shareLinks.linkedin": "Share this post on LinkedIn",
+    "shareLinks.email": "Share this post via Email",
   },
   es: {
     // Layouts
@@ -155,5 +165,15 @@ export const ui = {
 
     // Project card
     "projectCard.present": "Presente",
+
+    // Share Links
+    "shareLinks.shareThisPostOn": "Comparte este artículo:",
+    "shareLinks.whatsapp": "Comparte este artículo por WhatsApp",
+    "shareLinks.facebook": "Comparte este artículo en Facebook",
+    "shareLinks.twitter": "Comparte este artículo en Twitter",
+    "shareLinks.telegram": "Comparte este artículo por Telegram",
+    "shareLinks.pinterest": "Comparte este artículo en Pinterest",
+    "shareLinks.linkedin": "Comparte este artículo en LinkedIn",
+    "shareLinks.email": "Comparte este artículo por Email",
   },
 } as const;
