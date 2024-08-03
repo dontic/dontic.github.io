@@ -27,16 +27,22 @@ const getLocaleUrl = (lang: string) => {
 <div class="flex gap-x-2">
   <a>|</a>
   {
-    Object.entries(languages).map(([key, language]) => (
-      <>
-        <a
-          href={key === currentLang ? "#" : `${getLocaleUrl(key)}`}
-          class="text-gray-700 hover:text-gray-900"
-        >
-          <span class={`fi fi-${language.countryCode}`} />
-        </a>
-        <a>|</a>
-      </>
-    ))
+    Object.entries(languages).map(([key, language]) =>
+      key === currentLang ? (
+        <>
+          <a class="text-gray-700 hover:text-gray-900">
+            <span class={`fi fi-${language.countryCode}`} />
+          </a>
+          <a>|</a>
+        </>
+      ) : (
+        <>
+          <a href={getLocaleUrl(key)} class="text-gray-700 hover:text-gray-900">
+            <span class={`fi fi-${language.countryCode}`} />
+          </a>
+          <a>|</a>
+        </>
+      )
+    )
   }
 </div>
