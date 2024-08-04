@@ -45,7 +45,7 @@ Continuing with extreme tests we continued to actively test and collect telemetr
 
 After my time at Tesla, I decided to go my own way. I am currently working on several projects, from the creation of a software and data consulting company to the development of web and mobile applications, as well as software services (SaaS).
 
-You can check a list of my projects at [projects](/projects).
+You can check a list of my projects at [projects](/projects/).
 
 ---
 

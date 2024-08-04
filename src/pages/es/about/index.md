@@ -45,7 +45,7 @@ Siguiendo con las pruebas extremas continuamos probando activamente y recogiendo
 
 Después de mi paso por Tesla, decidí emprender mi propio camino. Actualmente estoy trabajando en varios proyectos, desde la creación de una empresa de consultoría de software y datos hasta el desarrollo de aplicaciones web y móviles, así como servicios de software (SaaS).
 
-Puedes consultar una lista de mis proyectos en [proyectos](/es/projects).
+Puedes consultar una lista de mis proyectos en [proyectos](/es/projects/).
 
 ---
 
