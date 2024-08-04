@@ -27,6 +27,10 @@ export async function getStaticPaths() {
     params: { page: pageNum },
   }));
 
+  // Remove number 1 from the array
+  // this is because the first page is the index page
+  paths.shift();
+
   return paths;
 }
 
