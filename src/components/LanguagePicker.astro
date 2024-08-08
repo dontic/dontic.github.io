@@ -4,8 +4,6 @@ import { type Languages } from "i18n/utils";
 
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
 
-const currentUrl = Astro.url.pathname;
-
 const getLocaleUrl = (lang: string) => {
   if (lang === defaultLang) {
     return `/`;
