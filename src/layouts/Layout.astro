@@ -56,8 +56,35 @@ const socialImageURL = new URL(
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-EB37Q75SSP");
+
+      // Set default consent to 'denied' as a placeholder
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+
+      // Set a flag when gtag is ready
+      window.gtagReady = true;
+    </script>
+
+    <!-- User consenting to analytics cookie -->
+    <script is:inline type="text/plain" data-category="analytics">
+      // Executed when the "analytics" category is enabled
+      if (window.gtagReady) {
+        gtag("consent", "update", {
+          analytics_storage: "granted",
+        });
+      } else {
+        // Wait for Partytown to signal that gtag is ready
+        window.addEventListener("gtagReady", function () {
+          gtag("consent", "update", {
+            analytics_storage: "granted",
+          });
+        });
+      }
     </script>
 
     <meta charset="UTF-8" />
@@ -65,6 +92,11 @@ const socialImageURL = new URL(
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"
+    />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -136,6 +168,9 @@ const socialImageURL = new URL(
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
+    <script>
+      import "../scripts/cookieconsent-config.js";
+    </script>
     <slot />
   </body>
 </html>
