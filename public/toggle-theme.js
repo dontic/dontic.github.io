@@ -50,6 +50,13 @@ function reflectPreference() {
     if (logo) {
       logo.style.fill = themeValue === "dark" ? "#fff" : "#000";
     }
+
+    // Change the cookie consent theme
+    if (themeValue === "dark") {
+      document.documentElement.classList.add("cc--darkmode");
+    } else {
+      document.documentElement.classList.remove("cc--darkmode");
+    }
   }
 }
 
