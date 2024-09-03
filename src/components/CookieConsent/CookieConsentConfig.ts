@@ -1,27 +1,21 @@
 import type { CookieConsentConfig } from "vanilla-cookieconsent";
 
-// Declare gtag as a global function
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void;
-  }
-}
-
-// Helper function to safely call gtag
-const safeGtag = (...args: any[]) => {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag(...args);
-  }
-};
+// Extend the Window interface to include the dataLayer object
+// declare global {
+//   interface Window {
+//     dataLayer: Record<string, any>[];
+//     gtag: (...args: any[]) => void;
+//     gtagReady: boolean;
+//   }
+// }
 
 export const config: CookieConsentConfig = {
-  // Set the root element where the cookie consent will be injected
-  // This is done so it works with view transitions
   root: "#cc-container",
+  disablePageInteraction: false,
   guiOptions: {
     consentModal: {
       layout: "bar inline",
-      position: "bottom",
+      position: "bottom center",
       equalWeightButtons: false,
       flipButtons: false,
     },
@@ -42,18 +36,23 @@ export const config: CookieConsentConfig = {
         ga: {
           label: "Google Analytics",
           onAccept: () => {
-            // Enable Google Analytics
-            console.log("Google Analytics enabled");
-            safeGtag("consent", "update", {
-              analytics_storage: "granted",
-            });
+            console.log("ga4 granted");
+
+            // // Add an event listener on page-load for view transitions
+            // document.addEventListener("astro:page-load", () => {
+            //   console.log("page loaded");
+            //   window.dataLayer = window.dataLayer || [];
+            //   window.gtag = function gtag(...args: any[]) {
+            //     console.log("gtag called");
+            //     window.dataLayer.push(arguments);
+            //   };
+            //   window.gtag("js", new Date());
+            //   window.gtag("config", "G-EB37Q75SSP");
+            // });
           },
           onReject: () => {
-            // Disable Google Analytics
-            console.log("Google Analytics disabled");
-            safeGtag("consent", "update", {
-              analytics_storage: "denied",
-            });
+            // Don't enable Google Analytics
+            console.log("ga4 rejected");
           },
           // Array of cookies to erase when the service is disabled/rejected
           cookies: [
