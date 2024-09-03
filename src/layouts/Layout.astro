@@ -45,7 +45,7 @@ const socialImageURL = new URL(
   class={`${scrollSmooth && "scroll-smooth"}`}
 >
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- GA4 -->
     <script
       is:inline
       src="https://www.googletagmanager.com/gtag/js?id=G-EB37Q75SSP"></script>
@@ -60,10 +60,15 @@ const socialImageURL = new URL(
       document.addEventListener("astro:page-load", () => {
         window.dataLayer = window.dataLayer || [];
         window.gtag = function gtag(...args: any[]) {
-          console.log("gtag called with", args);
           window.dataLayer.push(arguments);
         };
         window.gtag("js", new Date());
+        window.gtag("consent", "default", {
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          analytics_storage: "denied",
+        });
         window.gtag("config", "G-EB37Q75SSP");
       });
     </script>

@@ -1,13 +1,12 @@
 import type { CookieConsentConfig } from "vanilla-cookieconsent";
 
 // Extend the Window interface to include the dataLayer object
-// declare global {
-//   interface Window {
-//     dataLayer: Record<string, any>[];
-//     gtag: (...args: any[]) => void;
-//     gtagReady: boolean;
-//   }
-// }
+declare global {
+  interface Window {
+    dataLayer: Record<string, any>[];
+    gtag: (...args: any[]) => void;
+  }
+}
 
 export const config: CookieConsentConfig = {
   root: "#cc-container",
@@ -38,17 +37,13 @@ export const config: CookieConsentConfig = {
           onAccept: () => {
             console.log("ga4 granted");
 
-            // // Add an event listener on page-load for view transitions
-            // document.addEventListener("astro:page-load", () => {
-            //   console.log("page loaded");
-            //   window.dataLayer = window.dataLayer || [];
-            //   window.gtag = function gtag(...args: any[]) {
-            //     console.log("gtag called");
-            //     window.dataLayer.push(arguments);
-            //   };
-            //   window.gtag("js", new Date());
-            //   window.gtag("config", "G-EB37Q75SSP");
-            // });
+            // Grant consent to the Google Analytics service
+            window.gtag("consent", "update", {
+              ad_storage: "granted",
+              ad_user_data: "granted",
+              ad_personalization: "granted",
+              analytics_storage: "granted",
+            });
           },
           onReject: () => {
             // Don't enable Google Analytics
