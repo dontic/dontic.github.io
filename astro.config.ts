@@ -7,8 +7,6 @@ import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
 import icon from "astro-icon";
 
-import partytown from "@astrojs/partytown";
-
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
@@ -29,11 +27,6 @@ export default defineConfig({
     react(),
     sitemap(),
     icon(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
   ],
   markdown: {
     remarkPlugins: [
