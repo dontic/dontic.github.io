@@ -1,9 +1,9 @@
 ---
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
-// import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 import { useTranslations, defaultLang, type Languages } from "i18n/utils";
-import CookieConsent from "scripts/CookieConsent.astro";
+import CookieConsent from "@components/CookieConsent/CookieConsent.astro";
 
 // i18n
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
@@ -45,59 +45,62 @@ const socialImageURL = new URL(
   class={`${scrollSmooth && "scroll-smooth"}`}
 >
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- GA4 -->
     <script
-      type="text/partytown"
       is:inline
-      async
       src="https://www.googletagmanager.com/gtag/js?id=G-EB37Q75SSP"></script>
-    <script type="text/partytown" is:inline>
+
+    <script>
+      declare global {
+        interface Window {
+          dataLayer: Record<string, any>[];
+          gtag: (...args: any[]) => void;
+        }
+      }
+      document.addEventListener("astro:page-load", () => {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function gtag(...args: any[]) {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("consent", "default", {
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          analytics_storage: "denied",
+        });
+        window.gtag("config", "G-EB37Q75SSP");
+      });
+    </script>
+
+    <!-- <script type="text/partytown" is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
+
+      // default all to 'denied'.
+      console.log("Default consent set to denied");
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "denied",
+        personalization_storage: "denied",
+        security_storage: "denied",
+      });
+
       gtag("js", new Date());
       gtag("config", "G-EB37Q75SSP");
 
-      // Set default consent to 'denied' as a placeholder
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        analytics_storage: "denied",
-      });
-
-      // Set a flag when gtag is ready
+      // Set the window.gtagReady to true
       window.gtagReady = true;
-    </script>
-
-    <!-- User consenting to analytics cookie -->
-    <script is:inline type="text/plain" data-category="analytics">
-      // Executed when the "analytics" category is enabled
-      if (window.gtagReady) {
-        gtag("consent", "update", {
-          analytics_storage: "granted",
-        });
-      } else {
-        // Wait for Partytown to signal that gtag is ready
-        window.addEventListener("gtagReady", function () {
-          gtag("consent", "update", {
-            analytics_storage: "granted",
-          });
-        });
-      }
-    </script>
+    </script> -->
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"
-    />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -164,12 +167,30 @@ const socialImageURL = new URL(
       )
     }
 
-    <!-- <ViewTransitions /> -->
+    <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
-    <CookieConsent />
     <slot />
+    <div transition:persist="find-me-on-the-other-side" id="cc-container">
+      <CookieConsent />
+
+      <script is:inline>
+        // Restore the `show--consent` class if it was present before the page swap
+        document.addEventListener("astro:before-preparation", event => {
+          const htmlClassName = window.document.documentElement.className;
+          const consentClassPresent = htmlClassName.includes("show--consent")
+            ? true
+            : false;
+          window._showConsentClass = consentClassPresent;
+        });
+
+        document.addEventListener("astro:before-swap", event => {
+          const showConsent = window._showConsentClass ? ` show--consent` : "";
+          event.newDocument.documentElement.className += showConsent;
+        });
+      </script>
+    </div>
   </body>
 </html>

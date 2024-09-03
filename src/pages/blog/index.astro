@@ -27,9 +27,13 @@ const posts = await getCollection(
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
+const layoutProps = {
+  title: `Daniel's Blog`,
+};
 ---
 
-<Layout>
+<Layout {...layoutProps}>
   <Header activeNav="blog" search />
   <main id="main-content">
     <!-- <section id="hero">
