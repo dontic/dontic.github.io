@@ -1,9 +1,9 @@
 ---
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
-// import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 import { useTranslations, defaultLang, type Languages } from "i18n/utils";
-import CookieConsent from "scripts/CookieConsent.astro";
+import CookieConsent from "@components/CookieConsent/CookieConsent.astro";
 
 // i18n
 const currentLang = (Astro.currentLocale as Languages) || defaultLang;
@@ -59,33 +59,13 @@ const socialImageURL = new URL(
       gtag("js", new Date());
       gtag("config", "G-EB37Q75SSP");
 
-      // Set default consent to 'denied' as a placeholder
+      // Set default consent to 'denied'
       gtag("consent", "default", {
         ad_storage: "denied",
         ad_user_data: "denied",
         ad_personalization: "denied",
         analytics_storage: "denied",
       });
-
-      // Set a flag when gtag is ready
-      window.gtagReady = true;
-    </script>
-
-    <!-- User consenting to analytics cookie -->
-    <script is:inline type="text/plain" data-category="analytics">
-      // Executed when the "analytics" category is enabled
-      if (window.gtagReady) {
-        gtag("consent", "update", {
-          analytics_storage: "granted",
-        });
-      } else {
-        // Wait for Partytown to signal that gtag is ready
-        window.addEventListener("gtagReady", function () {
-          gtag("consent", "update", {
-            analytics_storage: "granted",
-          });
-        });
-      }
     </script>
 
     <meta charset="UTF-8" />
@@ -93,11 +73,6 @@ const socialImageURL = new URL(
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"
-    />
 
     <!-- General Meta Tags -->
     <title>{title}</title>
@@ -164,12 +139,26 @@ const socialImageURL = new URL(
       )
     }
 
-    <!-- <ViewTransitions /> -->
+    <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
-    <CookieConsent />
     <slot />
+    <div transition:persist id="cc-container">
+      <CookieConsent />
+
+      <script is:inline>
+        // Important, the cookie consent plugin adds classes to the html tag,
+        // so we need keep track of the className attribute.
+        document.addEventListener("astro:before-preparation", event => {
+          window._htmlClassName = window.document.documentElement.className;
+        });
+
+        document.addEventListener("astro:before-swap", event => {
+          event.newDocument.documentElement.className = window._htmlClassName;
+        });
+      </script>
+    </div>
   </body>
 </html>
