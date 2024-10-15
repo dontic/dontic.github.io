@@ -14,6 +14,8 @@ description: "Learn how to query logs in Grafana Loki with a easy step by step g
 ogImage: ./cover.png
 ---
 
+![cover](./cover.png)
+
 **In this article:**
 
 - [Introduction](#introduction)

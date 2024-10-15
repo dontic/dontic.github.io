@@ -14,6 +14,8 @@ description: "Learn how to centralize and visualize Docker logs in Grafana with 
 ogImage: ./cover.png
 ---
 
+![Cover](./cover.png)
+
 **In this article:**
 
 - [Introduction](#introduction)
