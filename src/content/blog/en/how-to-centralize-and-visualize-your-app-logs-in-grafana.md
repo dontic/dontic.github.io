@@ -6,13 +6,18 @@ slug: how-to-centralize-and-visualize-your-app-logs-in-grafana
 featured: false
 draft: false
 tags:
-  - dev
   - grafana
   - django
   - loki
   - webdev
 description: Learn how to visualize your web app logs in Grafana using Loki.
 ---
+
+> ⚠️**IMPORTANT**⚠️
+>
+> This guide is for setting up Loki and Promtail in a server where your application generates log files or you want to send syslogs from your server.
+>
+> If you want to set up Loki to centralize Docker logs, check out [this guide](https://daniel.es/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/).
 
 **In this article:**
 
