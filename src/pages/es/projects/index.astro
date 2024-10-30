@@ -46,9 +46,18 @@ const t = useTranslations(currentLang);
       </h2>
       <ul class="ml-5">
         <ProjectCard
+          href={`https://postifyai.com/`}
+          title="postifyAI"
+          description="Automatiza tu contenido SEO con IA."
+          initDate={new Date("2024-07-01")}
+          locale={currentLang}
+        />
+      </ul>
+      <ul class="ml-5">
+        <ProjectCard
           href={`https://github.com/dontic/wayfinder`}
           title="Wayfinder"
-          description="Rastrea tu ubicación y compártela con amigos."
+          description="Rastrea tu historial de ubicaciones, posee tus datos."
           initDate={new Date("2021-05-01")}
           locale={currentLang}
         />
@@ -57,17 +66,34 @@ const t = useTranslations(currentLang);
 
     <Hr />
 
-    <section id="monetized">
+    <section id="business">
       <h2 class="text-2xl font-semibold tracking-wide">
-        {t("projects.monetized")}
+        {t("projects.business")}
       </h2>
       <ul class="ml-5">
         <ProjectCard
-          href={`https://fisy.es`}
-          title="Fisy"
-          description="Un CRM completo para clínicas en España."
-          initDate={new Date("2023-05-01")}
-          endDate={new Date("2023-12-01")}
+          href={`https://autovisita.es`}
+          title="AutoVisita"
+          description="Automatiza tus visitas inmobiliarias."
+          initDate={new Date("2024-09-01")}
+          locale={currentLang}
+        />
+      </ul>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://gearshift.es`}
+          title="GearShift"
+          description="B2B Automatización y empresa de IA."
+          initDate={new Date("2024-07-01")}
+          locale={currentLang}
+        />
+      </ul>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://syncal.app`}
+          title="SynCal"
+          description="Sincroniza tus calendarios de Google y Outlook en un solo lugar."
+          initDate={new Date("2024-07-01")}
           locale={currentLang}
         />
       </ul>
@@ -75,8 +101,19 @@ const t = useTranslations(currentLang);
         <ProjectCard
           href={`https://getemil.io`}
           title="Emilio"
-          description="Asistente de IA para tu bandeja de entrada de Gmail."
+          description="Asistente de IA para tu Gmail."
           initDate={new Date("2023-12-01")}
+          endDate={new Date("2024-07-01")}
+          locale={currentLang}
+        />
+      </ul>
+      <ul class="ml-5">
+        <ProjectCard
+          href={`https://fisy.es`}
+          title="Fisy"
+          description="Un CRM completo para clínicas en España."
+          initDate={new Date("2023-05-01")}
+          endDate={new Date("2023-12-01")}
           locale={currentLang}
         />
       </ul>
