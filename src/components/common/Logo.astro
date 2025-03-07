@@ -1,0 +1,18 @@
+---
+// Logo.astro
+
+import { Icon } from 'astro-icon/components';
+
+import { site } from '~/config';
+
+export interface Props {
+  name?: string;
+}
+const { name = site.logo } = Astro.props;
+---
+
+<span
+  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+>
+  {name && <Icon name={name} class="text-default text-xl" />}
+</span>
