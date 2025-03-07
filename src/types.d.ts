@@ -1,4 +1,4 @@
-// Type for optional metadata in each page
+/* ------------ Types for metadata info used in PageLayout.astro ------------ */
 export interface MetaData {
   title?: string; // Title of the page
   useTitleTemplate?: boolean; // Use the title template -> %s - My Site
@@ -28,4 +28,9 @@ export interface MetaDataTwitter {
   title?: string;
   description?: string;
   image?: string;
+}
+
+export interface Link {
+  href: string;
+  text: string;
 }
