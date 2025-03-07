@@ -1,11 +1,91 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import PageLayout from '~/layouts/PageLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<PageLayout>
+  <div class="max-w-3xl mx-auto p-4 md:p-8">
+    <p class="hover:bg-black">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lectus lorem, pretium nec neque non, iaculis interdum
+      dolor. Cras laoreet placerat ex vel fermentum. Fusce vel interdum erat. Vestibulum vel aliquet ex. Pellentesque
+      nec nunc sit amet elit consequat malesuada non ac risus. Vestibulum et risus nisl. Donec tincidunt, dolor non
+      pretium dignissim, lacus metus hendrerit lorem, a posuere nisl mi non augue. Vestibulum a condimentum libero,
+      condimentum malesuada libero. Nulla consectetur, tortor quis placerat tempor, velit enim imperdiet urna, quis
+      rhoncus nibh augue in nisl. Fusce quis porttitor felis. Quisque condimentum cursus nisl, sed sollicitudin eros
+      dignissim vitae. Nunc sed molestie tortor.
+    </p>
+    <p class="dark:text-pink-500">
+      Quisque interdum, augue sit amet volutpat elementum, metus magna aliquam metus, vel vulputate ex ipsum non tortor.
+      Donec aliquet elit condimentum augue sagittis, nec ornare eros sollicitudin. Proin vulputate nisl magna, quis
+      consequat urna semper et. Duis consectetur pharetra accumsan. Aliquam erat volutpat. In ut erat elit. Proin varius
+      egestas risus sed lobortis.
+    </p>
+    <p>
+      Proin cursus libero aliquet eros condimentum suscipit. Maecenas euismod pulvinar tortor, non consectetur eros
+      commodo eu. Vestibulum cursus tristique rhoncus. Nullam sit amet libero et est elementum feugiat. Fusce id ante
+      fringilla, finibus sapien eget, porttitor sem. Donec tincidunt turpis lorem, non interdum augue sagittis vitae.
+      Aenean tristique nibh ultrices elementum porta. Quisque ac dictum nibh, non imperdiet nulla. Fusce pulvinar
+      aliquet dolor, aliquam interdum neque eleifend id.
+    </p>
+    <p>
+      Proin consectetur, velit et faucibus tincidunt, nulla purus fringilla mauris, faucibus tempus eros felis sit amet
+      nisl. Cras porta vehicula metus. Aenean sagittis felis risus, nec mattis lectus lacinia sed. Etiam vitae consequat
+      velit. Donec nunc arcu, bibendum at est eu, maximus efficitur tellus. Curabitur vel lorem arcu. Mauris egestas
+      interdum faucibus. Duis sagittis sem vitae magna ultrices, ac vulputate lorem lacinia. Aenean bibendum non ipsum
+      vel efficitur. Vestibulum aliquet tellus in erat aliquet blandit. Maecenas elit purus, luctus a nibh ac, aliquam
+      lobortis nibh. Nulla facilisi. Aenean quis nisi sem. Cras volutpat placerat ipsum ut aliquam. Sed iaculis turpis
+      in hendrerit viverra. Donec posuere, ex et lacinia luctus, nisi arcu ullamcorper nisl, nec hendrerit libero ligula
+      ac sapien.
+    </p>
+    <p>
+      Curabitur vel dapibus urna. Phasellus id sollicitudin ex, vel pretium metus. Donec non aliquet turpis. Ut id
+      imperdiet lacus. Nulla ut lacinia tortor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
+      cubilia curae; Aliquam elit purus, pharetra eget ultricies sed, tempus in tellus. Curabitur a ornare dolor, non
+      rhoncus dolor. Aenean id lobortis felis.
+    </p>
+    <p>
+      Etiam venenatis leo a tincidunt ultrices. Phasellus accumsan, dui non fermentum malesuada, purus ipsum porta
+      ligula, quis posuere nunc ipsum a mauris. Vestibulum venenatis accumsan elit a egestas. Integer aliquet nec sapien
+      in pellentesque. Mauris tortor massa, mollis nec posuere in, suscipit in enim. Aenean eu turpis non nulla
+      elementum iaculis ut vel massa. Curabitur malesuada mattis dolor vitae mollis. Pellentesque pulvinar, velit vitae
+      faucibus laoreet, orci lectus ultricies ante, ac pretium arcu ipsum sed ante. Vestibulum ante ipsum primis in
+      faucibus orci luctus et ultrices posuere cubilia curae; Nullam vehicula odio id semper feugiat. Curabitur
+      porttitor consectetur erat, in rhoncus dolor tempus ac. Proin in nisi placerat, interdum enim ut, auctor odio. Sed
+      accumsan nec metus mattis iaculis. Mauris et congue nisi, vitae molestie dui.
+    </p>
+    <p>
+      Vivamus hendrerit sapien in lorem semper, in vestibulum odio commodo. Maecenas non sem efficitur, sollicitudin
+      sapien non, dictum est. Morbi interdum nisl et felis bibendum pulvinar. Aliquam nec porttitor turpis. Interdum et
+      malesuada fames ac ante ipsum primis in faucibus. Donec placerat iaculis lectus, quis semper felis tincidunt at.
+      Duis scelerisque nibh urna, vitae vulputate lacus consectetur id. Vivamus sed ultrices lorem. Nullam ultricies,
+      lorem a posuere rhoncus, mi neque consequat urna, at lacinia neque augue id sapien. Ut hendrerit ipsum ipsum, ut
+      blandit dui mollis at. Vestibulum euismod felis quis felis rhoncus, et mattis arcu imperdiet. Cras posuere, risus
+      non laoreet posuere, ligula augue commodo turpis, et accumsan mauris erat id eros. Proin blandit quam eget felis
+      accumsan semper.
+    </p>
+    <p>
+      Pellentesque accumsan lectus in euismod aliquet. Nulla facilisi. Nullam aliquam, metus vel luctus dapibus, ligula
+      erat sodales metus, a bibendum nibh lacus nec sem. Praesent vestibulum maximus feugiat. Proin molestie, diam at
+      ullamcorper ullamcorper, dolor velit dapibus ex, eget faucibus ipsum sem ac tellus. Curabitur vulputate magna in
+      felis hendrerit, sit amet hendrerit dui pharetra. Vivamus vehicula sem at condimentum convallis. Maecenas semper
+      blandit tellus, vitae ultricies nulla bibendum ut. Nulla facilisi. Nam mollis nec lorem sit amet fermentum.
+    </p>
+    <p>
+      Suspendisse potenti. Donec non sem iaculis, malesuada ante id, dapibus tortor. In mollis risus mi, ut dignissim
+      leo mattis a. Fusce ut diam porta, luctus velit eu, sodales ante. Aliquam vulputate elit ut aliquet porta. Morbi
+      sollicitudin elementum leo vitae hendrerit. Aliquam vel elementum ex. Aliquam malesuada, purus ac iaculis
+      pulvinar, ligula enim egestas lectus, non dapibus enim tortor porta turpis. Suspendisse quis tortor dui. Praesent
+      ultrices felis eget sem eleifend, blandit condimentum lacus ultrices. Proin laoreet augue elit, eget elementum
+      felis euismod eu. Fusce imperdiet leo vitae erat dapibus ornare. Donec eu arcu magna. Curabitur blandit varius
+      ante, id tempor orci tempor at. Praesent tempus odio vel fermentum pulvinar.
+    </p>
+    <p>
+      Quisque sed mauris neque. Suspendisse non purus augue. Cras ac elementum dui, ut efficitur mauris. Curabitur eget
+      quam non diam aliquam rhoncus sed id turpis. Aenean efficitur in tortor sollicitudin malesuada. Maecenas sit amet
+      pharetra felis. Nulla vel massa quis turpis dictum dignissim. Nulla et tellus vel justo lacinia ullamcorper at a
+      diam. Etiam malesuada purus varius elit vehicula, sit amet fermentum purus malesuada. In leo felis, dignissim eu
+      tempor in, accumsan ac enim. Integer ligula dolor, varius non arcu id, facilisis placerat turpis. Maecenas risus
+      lacus, tristique sit amet ligula id, pretium mollis nisl. Ut vel urna nunc. Quisque metus ligula, vehicula quis
+      laoreet eu, consectetur at augue. Donec elementum lorem et eleifend ornare.
+    </p>
+  </div>
+</PageLayout>
