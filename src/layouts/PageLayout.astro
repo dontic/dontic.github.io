@@ -1,0 +1,23 @@
+---
+// PageLayout.astro
+// This layout is used for all pages
+// Includes a header and a footer
+
+import Layout from './Layout.astro';
+import Header from '~/components/common/Header.astro';
+import Footer from '~/components/common/Footer.astro';
+import { navigation } from '~/config';
+---
+
+<Layout>
+  <slot name="header">
+    <Header {...navigation.header} />
+  </slot>
+  <main>
+    <slot />
+  </main>
+
+  <slot name="footer">
+    <Footer {...navigation.footer} />
+  </slot>
+</Layout>
