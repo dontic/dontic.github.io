@@ -16,9 +16,9 @@
   /* Custom colors */
   --color-primary: #ca6be6;
   --color-secondary: #645bc9;
-  --color-accent: #ca6be6;
   --color-default: rgb(229 236 246);
   --color-muted: rgb(229 236 246 / 66%);
+  --color-page: rgb(16 16 16);
 }
 
 
