@@ -4,11 +4,8 @@ import { Icon } from 'astro-icon/components';
 // ThemeToggle.astro
 ---
 
-<button
-  id="themeToggle"
-  class="p-2 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-110 hover:rotate-6"
->
-  <Icon name="tabler:sun" id="sun" class="dark:hidden w-5 h-5" />
+<button id="themeToggle" class="p-2 cursor-pointer hover:scale-110 hover:rotate-6">
+  <Icon name="tabler:sun" id="sun" class="block dark:hidden w-5 h-5" />
   <Icon name="tabler:moon" id="moon" class="hidden dark:block moon w-5 h-5" />
 </button>
 
