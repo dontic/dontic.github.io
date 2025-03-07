@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Replace the tailwind sans font with Inter Variable */
   --font-sans: 'Inter Variable', sans-serif;
@@ -20,5 +22,3 @@
   --color-muted: rgb(229 236 246 / 66%);
   --color-page: rgb(16 16 16);
 }
-
-
