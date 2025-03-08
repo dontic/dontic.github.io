@@ -54,11 +54,11 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
       >
         {
           links.map(({ text, href }) => (
-            <li class={links?.length ? 'dropdown' : ''}>
+            <li>
               <a
                 class:list={[
-                  ' rounded-lg hover:bg-gray-300/20  dark:hover:bg-gray-100/20 px-4 py-3 flex items-center',
-                  { 'text-black dark:text-whilte': href === currentPath },
+                  'px-4 py-3 flex items-center hover:font-bold transition-font duration-200',
+                  { 'text-black dark:text-white': href === currentPath },
                 ]}
                 href={href}
               >
