@@ -1,0 +1,38 @@
+---
+// Socials.astro
+import { Icon } from 'astro-icon/components';
+
+const socials = [
+  {
+    name: 'GitHub',
+    url: 'htps://github.com/dontic',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-github',
+  },
+  {
+    name: 'X',
+    url: 'https://x.com/onticdani',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-x',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://linkedin.com/in/gsdaniel',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-linkedin',
+  },
+];
+---
+
+<div class="flex items-center gap-4">
+  {
+    socials.map(({ name, url, target, rel, icon }) => (
+      <a href={url} target={target} rel={rel} class="hover:scale-110 hover:rotate-6" aria-label={`${name} Profile`}>
+        <Icon name={icon} class="w-6 h-6" />
+      </a>
+    ))
+  }
+</div>
