@@ -6,6 +6,7 @@ import Logo from '~/components/common/Logo.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import type { Link } from '~/types';
 import ThemeToggle from './ThemeToggle.astro';
+import Search from './Search.astro';
 
 // Optional properties
 export interface Props {
@@ -88,6 +89,7 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
               </a>
             )
           }
+          <Search />
           <ThemeToggle />
         </div>
       </div>
