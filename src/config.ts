@@ -42,7 +42,7 @@ export const SITE: SiteConfig = {
 export const socialLinks = [
   {
     name: 'GitHub',
-    url: 'htps://github.com/dontic',
+    url: 'https://github.com/dontic',
     target: '_blank',
     rel: 'noopener noreferrer',
     icon: 'tabler:brand-github',
