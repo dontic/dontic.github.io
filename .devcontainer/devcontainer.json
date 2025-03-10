@@ -1,55 +1,70 @@
 // devcontainer.json
-
 {
-    "name": "Node Devcontainer",  // Name of the development container
-    "shutdownAction": "none",  // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "node",   
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    
+    "name": "Daniel.es", // Name of the dev container
+    "shutdownAction": "stopContainer", // Container behavior on VSCode close: none, stopContainer (default for image or Dockerfile), and stopCompose (default for Docker Compose)
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    // Port forwarding
+    "appPort": [
+        "4321:4321"
+    ],
     // Extensions and settings
     "customizations": {
         "vscode": {
             "extensions": [
-                "esbenp.prettier-vscode",
-                "mhutchie.git-graph",
-                "GitHub.copilot",
-                "stackbreak.comment-divider",
-                "stuart.unique-window-colors",
-                "astro-build.astro-vscode",
-                "jock.svg"
+                "esbenp.prettier-vscode", // Prettier
+                "mhutchie.git-graph", // Git Graph
+                "GitHub.copilot", // GitHub Copilot
+                "stackbreak.comment-divider", // Comment Divider
+                "stuart.unique-window-colors", // Unique Window Colors
+                "astro-build.astro-vscode", // Astro
+                "dbaeumer.vscode-eslint", // ESLint
+                "bradlc.vscode-tailwindcss", // Tailwind CSS IntelliSense
+                "unifiedjs.vscode-mdx", // MDX
+                "jock.svg" // SVG
             ],
             "settings": {
-
+                "eslint.validate": [
+                    "javascript",
+                    "javascriptreact",
+                    "astro",
+                    "typescript",
+                    "typescriptreact"
+                ],
                 // Prettier settings
                 "prettier.enable": true,
-                "editor.formatOnSave": true,  // Format files on save
+                "editor.formatOnSave": true, // Format files on save
+                "prettier.documentSelectors": [
+                    "**/*.astro"
+                ],
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
-                "[typescript]": { // TypeScript settings
+                "[typescript]": {
+                    // TypeScript settings
                     "editor.defaultFormatter": "esbenp.prettier-vscode"
                 },
-                "[typescriptreact]": { // TypeScript React settings
+                "[typescriptreact]": {
+                    // TypeScript React settings
                     "editor.defaultFormatter": "esbenp.prettier-vscode"
                 },
-                "[json]": { // JSON settings
+                "[json]": {
+                    // JSON settings
                     "editor.defaultFormatter": "esbenp.prettier-vscode",
                     "editor.quickSuggestions": {
                         "strings": true
                     },
                     "editor.suggest.insertMode": "replace"
                 },
-                "prettier.semi": true,
-                "prettier.trailingComma": "none",
-                "prettier.singleQuote": false,
-                "prettier.printWidth": 80,
-
+                "[astro]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
                 // Window colors
                 "workbench.colorCustomizations": {
                     "activityBar.background": "#298dff",
                     "titleBar.activeBackground": "#298dff",
                     "titleBar.activeForeground": "#FBFBF6"
                 },
-
                 // Prevent json schema warnings
                 "json.schemas": [
                     {

@@ -1,1 +1,3 @@
-# Daniel's personal website
+# daniel.es
+
+My Personal Blog

@@ -1,16 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="100%" height="100%"><svg data-v-0dd9719b="" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 250.000000 250.000000" preserveAspectRatio="xMidYMid meet" color-interpolation-filters="sRGB" style="margin: auto;">
-    <g opacity="1">
-        <g>
-            <g>
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -0.0016610160237178206 83.97000122070312 88.75260162353516">
-                    <g>
-                        <path d="M72.37 9.49C65 3.12 54.05 0 40.41 0a142.25 142.25 0 0 0-24.17 1.95V2a14 14 0 1 0 16.87 13.7v-.22a48.91 48.91 0 0 1 7.31-.41c15.46 0 23.13 8.19 23.13 22 0 10.53-3.12 19.62-9.1 26.38C48.72 70 39.76 73.67 29.62 73.67a49 49 0 0 1-8.18-.52l3.36-17.52 4.83-25.18A15.54 15.54 0 0 1 10.51 32L6.68 52.11 0 87.18a155.73 155.73 0 0 0 23.91 1.56c19 0 31.83-3.51 42-11.56 10.91-8.7 18.06-23.39 18.06-40.28-.17-12.9-4.58-21.57-11.6-27.41z" fill="#f7931e" data-name="Layer 1"></path>
-                    </g>
-                </svg>
-            </g>
-        </g>
-    </g>
-    <defs v-gra="od"></defs>
-</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
-</style></svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 128 128">
+    <path d="M50.4 78.5a75.1 75.1 0 0 0-28.5 6.9l24.2-65.7c.7-2 1.9-3.2 3.4-3.2h29c1.5 0 2.7 1.2 3.4 3.2l24.2 65.7s-11.6-7-28.5-7L67 45.5c-.4-1.7-1.6-2.8-2.9-2.8-1.3 0-2.5 1.1-2.9 2.7L50.4 78.5Zm-1.1 28.2Zm-4.2-20.2c-2 6.6-.6 15.8 4.2 20.2a17.5 17.5 0 0 1 .2-.7 5.5 5.5 0 0 1 5.7-4.5c2.8.1 4.3 1.5 4.7 4.7.2 1.1.2 2.3.2 3.5v.4c0 2.7.7 5.2 2.2 7.4a13 13 0 0 0 5.7 4.9v-.3l-.2-.3c-1.8-5.6-.5-9.5 4.4-12.8l1.5-1a73 73 0 0 0 3.2-2.2 16 16 0 0 0 6.8-11.4c.3-2 .1-4-.6-6l-.8.6-1.6 1a37 37 0 0 1-22.4 2.7c-5-.7-9.7-2-13.2-6.2Z" />
+    <style>
+        path { fill: #000; }
+        @media (prefers-color-scheme: dark) {
+            path { fill: #FFF; }
+        }
+    </style>
+</svg>

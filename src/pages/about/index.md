@@ -1,6 +1,11 @@
 ---
-layout: /src/layouts/AboutLayout.astro
-title: "About"
+layout: ~/layouts/MarkdownLayout.astro
+
+title: 'About Daniel Garcia'
+description: 'A brief introduction to who I am'
+author: 'Daniel García'
+pubDatetime: 2025-03-10T12:00:00Z
+# modDatetime: '2025-03-10'
 ---
 
 Hey! I'm Daniel, nice to meet you!
