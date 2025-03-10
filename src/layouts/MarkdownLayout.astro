@@ -1,0 +1,40 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description?: string;
+    author?: string;
+    pubDatetime?: Date;
+    modDatetime?: Date;
+    ogImage?: string;
+    canonicalUrl?: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+const metadata = {
+  title: frontmatter.title,
+  description: frontmatter.description,
+  author: frontmatter.author,
+  pubDatetime: frontmatter.pubDatetime,
+};
+---
+
+<PageLayout metadata={metadata}>
+  <main id="main-content">
+    <h1 class="text-3xl my-8 font-bold">{frontmatter.title}</h1>
+    <div
+      class="prose dark:prose-invert max-w-none
+      prose-h1:font-bold prose-h1:text-xl
+      prose-a:text-blue-700
+      prose-a:dark:text-blue-200
+      prose-p:text-justify prose-img:rounded-xl
+      prose-headings:underline"
+    >
+      <slot />
+    </div>
+  </main>
+</PageLayout>
