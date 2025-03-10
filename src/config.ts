@@ -1,21 +1,27 @@
-type site = {
+type SiteConfig = {
   title: string;
   description: string;
   author: string;
   siteUrl: string;
   logo?: string;
-  showRSS?: boolean;
+  header: {
+    links: { href: string; text: string }[];
+  };
+  footer: {
+    showRSS: boolean;
+  };
+  ogImage: string;
+  locale: string;
+  twitter: {
+    site: string;
+  };
 };
 
-export const site: site = {
+export const SITE: SiteConfig = {
   title: 'Daniel García',
   description: 'Personal Blog',
   author: 'Daniel García',
   siteUrl: 'https://daniel.es',
-  showRSS: true,
-};
-
-export const navigation = {
   header: {
     links: [
       { href: '/blog/', text: 'Blog' },
@@ -23,7 +29,14 @@ export const navigation = {
       { href: '/about/', text: 'About me' },
     ],
   },
-  footer: {},
+  footer: {
+    showRSS: true,
+  },
+  ogImage: '~/assets/images/og_image.png',
+  locale: 'en_US',
+  twitter: {
+    site: '@onticdani',
+  },
 };
 
 export const socialLinks = [

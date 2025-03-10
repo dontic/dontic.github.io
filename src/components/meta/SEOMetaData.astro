@@ -3,38 +3,40 @@ import { SEO } from 'astro-seo';
 
 import type { MetaData } from '~/types';
 
+import { SITE } from '~/config';
+
 // Defaults
 const {
-  title = 'AutoVisita',
+  title = SITE.title,
   useTitleTemplate = false,
-  description = 'Automatiza tu gestión inmobiliaria. Simplifica y optimiza la gestión de clientes y propiedades con nuestra plataforma inteligente.',
+  description = SITE.description,
   canonical = Astro.url.href,
   index = true,
   follow = true,
   openGraph = {
-    title: 'AutoVisita',
-    description:
-      'Automatiza tu gestión inmobiliaria. Simplifica y optimiza la gestión de clientes y propiedades con nuestra plataforma inteligente.',
+    title: SITE.title,
+    description: SITE.description,
     type: 'website',
-    image: '~/assets/images/og_image.png',
+    image: SITE.ogImage,
     url: canonical,
-    siteName: 'AutoVisita',
-    locale: 'es_ES',
+    siteName: SITE.title,
+    locale: SITE.locale,
   },
   twitter = {
     cardType: 'summary_large_image',
-    site: '@AutoVisita',
-    title: 'AutoVisita',
-    description:
-      'Automatiza tu gestión inmobiliaria. Simplifica y optimiza la gestión de clientes y propiedades con nuestra plataforma inteligente.',
-    image: '~/assets/images/og_image.png',
+    site: SITE.twitter.site,
+    title: SITE.title,
+    description: SITE.description,
+    image: SITE.ogImage,
   },
 }: MetaData = Astro.props;
+
+console.log('SITE', SITE);
 ---
 
 <SEO
   title={title}
-  titleTemplate={useTitleTemplate ? '%s - AutoVisita' : undefined}
+  titleTemplate={useTitleTemplate ? `%s - ${SITE.title}` : undefined}
   description={description}
   canonical={canonical}
   noindex={!index}

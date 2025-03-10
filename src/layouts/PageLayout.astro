@@ -6,7 +6,7 @@
 import Layout from './Layout.astro';
 import Header from '~/components/common/Header.astro';
 import Footer from '~/components/common/Footer.astro';
-import { navigation } from '~/config';
+import { SITE } from '~/config';
 ---
 
 <Layout>
@@ -23,7 +23,7 @@ import { navigation } from '~/config';
 
     <div class="mt-20 flex-grow flex flex-col max-w-3xl mx-auto w-full">
       <slot name="header">
-        <Header {...navigation.header} />
+        <Header {...SITE.header} />
       </slot>
 
       <main class="flex-grow">
@@ -31,7 +31,7 @@ import { navigation } from '~/config';
       </main>
 
       <slot name="footer" class="mt-auto">
-        <Footer {...navigation.footer} />
+        <Footer {...SITE.footer} />
       </slot>
     </div>
   </div>
