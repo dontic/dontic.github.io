@@ -2,10 +2,21 @@
 // Footer.astro
 
 import { site } from '~/config';
+import { Icon } from 'astro-icon/components';
 ---
 
 <footer class="my-10">
   <div class="container mx-auto max-w-3xl">
-    <p>Copyright &copy; {new Date().getFullYear()} | {site.title}</p>
+    <div class="flex justify-between items-center">
+      <p>Copyright &copy; {new Date().getFullYear()} | {site.title}</p>
+
+      {
+        site.showRSS && (
+          <a href="/rss.xml" class="hover-scale hover-rotate" aria-label="RSS Feed">
+            <Icon name="tabler:rss" class="w-5 h-5" />
+          </a>
+        )
+      }
+    </div>
   </div>
 </footer>

@@ -58,7 +58,7 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
             <li>
               <a
                 class:list={[
-                  'px-4 py-3 flex items-center hover:font-bold transition-font duration-200',
+                  'px-4 py-3 flex items-center hover-bold',
                   { 'text-black dark:text-white': href === currentPath },
                 ]}
                 href={href}

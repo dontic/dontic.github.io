@@ -4,6 +4,7 @@ type site = {
   author: string;
   siteUrl: string;
   logo?: string;
+  showRSS?: boolean;
 };
 
 export const site: site = {
@@ -11,6 +12,7 @@ export const site: site = {
   description: 'Personal Blog',
   author: 'Daniel García',
   siteUrl: 'https://daniel.es',
+  showRSS: true,
 };
 
 export const navigation = {
@@ -21,11 +23,7 @@ export const navigation = {
       { href: '/projects', text: 'Projects' },
     ],
   },
-  footer: {
-    title: 'My App',
-    description: 'My App Description',
-    keywords: 'my, app, keywords',
-  },
+  footer: {},
 };
 
 export const socialLinks = [
