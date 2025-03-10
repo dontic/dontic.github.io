@@ -18,9 +18,9 @@ export const site: site = {
 export const navigation = {
   header: {
     links: [
-      { href: '/tech', text: 'Tech' },
-      { href: '/business', text: 'Business' },
+      { href: '/blog', text: 'Blog' },
       { href: '/projects', text: 'Projects' },
+      { href: '/about', text: 'About me' },
     ],
   },
   footer: {},
