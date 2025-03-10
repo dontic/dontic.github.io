@@ -38,7 +38,7 @@ const years = Object.keys(postsByYear)
           return (
             <li class="flex items-start">
               <span class="text-gray-500 w-12 flex-shrink-0 text-right mr-4">{formattedDate}</span>
-              <a href={`/blog/${post.id}`} class="hover:underline">
+              <a href={`/blog/${post.id}/`} class="hover:underline">
                 {post.data.title}
               </a>
             </li>
