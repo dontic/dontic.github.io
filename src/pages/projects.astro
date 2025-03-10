@@ -1,0 +1,117 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Project {
+  title: string;
+  description: string;
+  href: string;
+  initDate: Date;
+  endDate?: Date;
+  openSource?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: 'postifyAI',
+    description: 'Automate your SEO content with AI.',
+    href: 'https://postifyai.com/',
+    initDate: new Date('2024-07-01'),
+    openSource: true,
+  },
+  {
+    title: 'Wayfinder',
+    description: 'Keep track of your location history, own your data.',
+    href: 'https://github.com/dontic/wayfinder',
+    initDate: new Date('2021-05-01'),
+    openSource: true,
+  },
+  {
+    title: 'AutoVisita',
+    description: 'Automating real estate leads in Spain.',
+    href: 'https://autovisita.es/',
+    initDate: new Date('2024-09-01'),
+    openSource: false,
+  },
+  {
+    title: 'SynCal',
+    description: 'Sync your Google and Outlook calendars with ease.',
+    href: 'https://syncal.app/',
+    initDate: new Date('2024-07-01'),
+    openSource: false,
+  },
+  {
+    title: 'Emilio',
+    description: 'AI Assistant for your Gmail inbox.',
+    href: 'https://getemil.io/',
+    initDate: new Date('2023-12-01'),
+    endDate: new Date('2024-07-01'),
+    openSource: false,
+  },
+  {
+    title: 'Fisy',
+    description: 'CRM for chiropractors in Spain.',
+    href: 'https://fisy.es/',
+    initDate: new Date('2023-05-01'),
+    endDate: new Date('2023-12-01'),
+    openSource: false,
+  },
+];
+---
+
+<PageLayout>
+  <section id="hero">
+    <h1 class="text-2xl font-bold">My Projects</h1>
+    <p class="my-4">
+      This is a list of projects I'm either working on or have worked on in the past. Some are open source, most are
+      entrepreneurial projects.
+    </p>
+  </section>
+
+  <section id="projects" class="my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      projects.map((project) => (
+        <div class="card border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow relative">
+          {project.openSource && (
+            <div class="absolute top-2 right-2 group">
+              <Icon name="tabler:brand-open-source" class="w-6 h-6 text-muted" />
+              <span
+                class="absolute -top-2 right-8 w-auto p-2 min-w-max rounded-md shadow-md
+                text-xs bg-gray-900 text-white
+                opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                Open Source Project
+              </span>
+            </div>
+          )}
+          <div class="p-6 h-full flex flex-col">
+            <div class="flex items-center justify-between mb-2">
+              <h2 class="text-xl font-bold">{project.title}</h2>
+            </div>
+            <p class="text-default mb-4">{project.description}</p>
+
+            <div class="text-sm text-muted mb-4 mt-auto">
+              <div class="flex items-center">
+                <Icon name="tabler:calendar-week" class="h-4 w-4 mr-1" />
+                {project.initDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                {project.endDate
+                  ? ` - ${project.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}`
+                  : ' - Present'}
+              </div>
+            </div>
+
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-blue-600 dark:text-blue-200 hover:dark:text-blue-100 hover:text-blue-800"
+            >
+              Visit Project
+              <Icon name="tabler:external-link" class="h-4 w-4 ml-1" />
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+</PageLayout>
