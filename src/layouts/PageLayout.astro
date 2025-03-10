@@ -7,9 +7,24 @@ import Layout from './Layout.astro';
 import Header from '~/components/common/Header.astro';
 import Footer from '~/components/common/Footer.astro';
 import { SITE } from '~/config';
+
+// Accept metadata props
+export interface Props {
+  metadata?: {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    canonicalUrl?: string;
+    pubDatetime?: Date;
+    modDatetime?: Date;
+    author?: string;
+  };
+}
+
+const { metadata } = Astro.props;
 ---
 
-<Layout>
+<Layout metadata={metadata}>
   <div id="maindiv" class="flex flex-col min-h-svh">
     <!-- Blurred gradient background at the top -->
     <div class="h-20 w-full fixed top-0 left-0 z-10 overflow-hidden">

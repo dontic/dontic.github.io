@@ -1,8 +1,39 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+
+// Accept post data as a prop
+export interface Props {
+  post?: {
+    data: {
+      title: string;
+      description: string;
+      author: string;
+      pubDatetime: Date;
+      modDatetime?: Date;
+      ogImage?: string;
+      canonicalUrl?: string;
+    };
+    id: string;
+  };
+}
+
+const { post } = Astro.props;
+
+// Create metadata object to pass to PageLayout
+const metadata = post
+  ? {
+      title: post.data.title,
+      description: post.data.description,
+      author: post.data.author,
+      pubDatetime: post.data.pubDatetime,
+      modDatetime: post.data.modDatetime,
+      ogImage: post.data.ogImage,
+      canonicalUrl: post.data.canonicalUrl,
+    }
+  : undefined;
 ---
 
-<PageLayout>
+<PageLayout metadata={metadata}>
   <div class="relative">
     <!-- Table of Contents - Only visible on xl screens and above (1340px+) -->
     <div

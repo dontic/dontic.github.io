@@ -4,6 +4,22 @@ import SEOMetaData from '~/components/meta/SEOMetaData.astro';
 import SiteVerification from '~/components/meta/SiteVerification.astro';
 import '~/styles/global.css';
 import '@fontsource-variable/inter';
+import { SITE } from '~/config';
+
+// Accept metadata props that can be passed from blog posts
+export interface Props {
+  metadata?: {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    canonicalUrl?: string;
+    pubDatetime?: Date;
+    modDatetime?: Date;
+    author?: string;
+  };
+}
+
+const { metadata } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +34,27 @@ import '@fontsource-variable/inter';
     <Favicons />
 
     <!-- SEO stuff -->
-    <SEOMetaData />
+    <SEOMetaData
+      title={metadata?.title || SITE.title}
+      description={metadata?.description || SITE.description}
+      canonical={metadata?.canonicalUrl}
+      openGraph={{
+        title: metadata?.title || SITE.title,
+        description: metadata?.description || SITE.description,
+        image: metadata?.ogImage || SITE.ogImage,
+        url: metadata?.canonicalUrl || Astro.url.href,
+        type: 'website',
+        siteName: SITE.title,
+        locale: SITE.locale,
+      }}
+      twitter={{
+        title: metadata?.title || SITE.title,
+        description: metadata?.description || SITE.description,
+        image: metadata?.ogImage || SITE.ogImage,
+        site: SITE.twitter.site,
+        cardType: 'summary_large_image',
+      }}
+    />
 
     <!-- Google Site Verification -->
     <SiteVerification />
