@@ -4,6 +4,7 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 
 import Image from 'astro/components/Image.astro';
+import { Icon } from 'astro-icon/components';
 
 import avatarImage from '~/assets/images/avatar.jpeg';
 import Socials from '~/components/common/Socials.astro';
@@ -38,21 +39,41 @@ import Socials from '~/components/common/Socials.astro';
 
     <!-- Blogs -->
     <div class="mt-8">
-      <h2>I write about:</h2>
-      <ul class="list-disc list-inside mt-2">
-        <li>
-          <a href="/tech/" class="font-bold underline hover:cursor-pointer">Tech</a>: Coding guides, new trends and
-          more.
-        </li>
-        <li class="mt-2">
-          <a href="/business/" class="font-bold underline hover:cursor-pointer">Business</a>: My experience in business
-          and entrepreneurship.
-        </li>
-        <li class="mt-2">
-          <a href="/personal/" class="font-bold underline hover:cursor-pointer">Personal</a>: Learnings about
-          productivity, life and mental health.
-        </li>
-      </ul>
+      <h2 class="text-xl font-bold mb-4">I write about:</h2>
+      <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+        <a
+          href="/tech/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Tech</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">Coding guides, new trends and more.</p>
+        </a>
+
+        <a
+          href="/business/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Business</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">My experience in business and entrepreneurship.</p>
+        </a>
+
+        <a
+          href="/personal/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Personal</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">Learnings about productivity, life and mental health.</p>
+        </a>
+      </div>
     </div>
   </div>
 </PageLayout>

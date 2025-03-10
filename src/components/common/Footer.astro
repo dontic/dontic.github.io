@@ -14,7 +14,11 @@ const { showRSS: boolean = showRSS } = Astro.props;
   <div class="border-t border-gray-200 dark:border-gray-800 mx-10 my-8"></div>
   <div class="container mx-auto max-w-3xl">
     <div class="flex justify-between items-center">
-      <p>Copyright &copy; {new Date().getFullYear()} | {SITE.title}</p>
+      <p class="flex flex-col md:flex-row">
+        <span>Copyright &copy; {new Date().getFullYear()}</span>
+        <span class="hidden md:block mx-2">|</span>
+        <span>{SITE.title}</span>
+      </p>
 
       <div class="flex items-center gap-4">
         <Socials />
