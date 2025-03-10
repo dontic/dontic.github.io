@@ -6,8 +6,11 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
+// Filter posts by those that have the tag or 'tech  '
+const techPosts = publishedPosts.filter((post) => post.data.tags.includes('tech'));
+
 // Sort posts by date (newest first) and group by year
-const postsByYear = publishedPosts
+const postsByYear = techPosts
   .sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
   .reduce(
     (acc, post) => {
