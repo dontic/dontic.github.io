@@ -27,6 +27,25 @@ export const navigation = {
 };
 
 export const socialLinks = [
-  { name: 'X', url: 'https://x.com/onticdani' },
-  { name: 'GitHub', url: 'https://github.com/dontic' },
+  {
+    name: 'GitHub',
+    url: 'htps://github.com/dontic',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-github',
+  },
+  {
+    name: 'X',
+    url: 'https://x.com/onticdani',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-x',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://linkedin.com/in/gsdaniel',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    icon: 'tabler:brand-linkedin',
+  },
 ];
