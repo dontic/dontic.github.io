@@ -3,6 +3,7 @@
 
 import { SITE } from '~/config';
 import { Icon } from 'astro-icon/components';
+import Socials from '~/components/common/Socials.astro';
 
 const { showRSS } = SITE.footer;
 
@@ -15,13 +16,16 @@ const { showRSS: boolean = showRSS } = Astro.props;
     <div class="flex justify-between items-center">
       <p>Copyright &copy; {new Date().getFullYear()} | {SITE.title}</p>
 
-      {
-        SITE.footer.showRSS && (
-          <a href="/rss.xml" class="hover-scale hover-rotate" aria-label="RSS Feed">
-            <Icon name="tabler:rss" class="w-5 h-5" />
-          </a>
-        )
-      }
+      <div class="flex items-center gap-4">
+        <Socials />
+        {
+          SITE.footer.showRSS && (
+            <a href="/rss.xml" class="hover-scale hover-rotate" aria-label="RSS Feed">
+              <Icon name="tabler:rss" class="w-5 h-5" />
+            </a>
+          )
+        }
+      </div>
     </div>
   </div>
 </footer>
