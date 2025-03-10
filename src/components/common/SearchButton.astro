@@ -1,0 +1,120 @@
+---
+// SearchButton.astro
+
+import { Icon } from 'astro-icon/components';
+import Search from 'astro-pagefind/components/Search';
+---
+
+<button id="searchButton" class="p-2 cursor-pointer hover-scale hover-rotate" aria-label="Open search">
+  <Icon name="tabler:search" class="w-5 h-5" />
+</button>
+
+<!-- Search Modal -->
+<div
+  id="searchModal"
+  class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden overflow-y-auto py-8"
+>
+  <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 relative my-auto max-h-[90vh] overflow-y-auto">
+    <button id="closeSearchModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 z-10">
+      <Icon name="tabler:x" class="w-5 h-5" />
+    </button>
+    <h2 class="text-xl text-black font-bold mb-4">Search</h2>
+    <div class="w-full">
+      <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false, pageSize: 5, autofocus: true }} />
+    </div>
+  </div>
+</div>
+
+<script>
+  // Wait for the DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.getElementById('searchButton');
+    const searchModal = document.getElementById('searchModal');
+    const closeSearchModal = document.getElementById('closeSearchModal');
+
+    // Only proceed if all elements are found
+    if (!searchButton || !searchModal || !closeSearchModal) {
+      console.error('Search modal elements not found');
+      return;
+    }
+
+    // Function to open the modal
+    const openModal = () => {
+      searchModal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden'); // Prevent scrolling when modal is open
+    };
+
+    // Function to close the modal
+    const closeModal = () => {
+      searchModal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    };
+
+    // Event listeners
+    searchButton.addEventListener('click', openModal);
+    closeSearchModal.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside the modal content
+    searchModal.addEventListener('click', (e) => {
+      if (e.target === searchModal) {
+        closeModal();
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  .pagefind-ui {
+    --pagefind-ui-scale: 0.75;
+    --pagefind-ui-primary: navy;
+    --pagefind-ui-text: black;
+    --pagefind-ui-border: slategrey;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.25rem;
+    --pagefind-ui-font: sans-serif;
+
+    width: 100%;
+  }
+
+  .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
+    position: relative; /* Changed from absolute to work better in modal */
+    left: 0;
+    right: 0;
+    margin-top: 0px;
+    z-index: 1;
+    padding: 0 1em 1em;
+    overflow-y: visible; /* Allow content to flow naturally */
+    box-shadow:
+      0 10px 10px -5px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    border-bottom-right-radius: var(--pagefind-ui-border-radius);
+    border-bottom-left-radius: var(--pagefind-ui-border-radius);
+    background-color: var(--pagefind-ui-background);
+  }
+
+  /* Ensure search results can scroll within the modal */
+  .pagefind-ui .pagefind-ui__results {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .pagefind-ui .pagefind-ui__result-link {
+    color: var(--pagefind-ui-primary);
+  }
+
+  .pagefind-ui .pagefind-ui__result-excerpt {
+    color: var(--pagefind-ui-text);
+  }
+
+  /* Additional styles for modal */
+  body.overflow-hidden {
+    overflow: hidden;
+  }
+</style>

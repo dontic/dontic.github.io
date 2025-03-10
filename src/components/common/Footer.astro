@@ -1,0 +1,35 @@
+---
+// Footer.astro
+
+import { SITE } from '~/config';
+import { Icon } from 'astro-icon/components';
+import Socials from '~/components/common/Socials.astro';
+
+const { showRSS } = SITE.footer;
+
+const { showRSS: boolean = showRSS } = Astro.props;
+---
+
+<footer class="my-10">
+  <div class="border-t border-gray-200 dark:border-gray-800 mx-10 my-8"></div>
+  <div class="container mx-auto max-w-3xl">
+    <div class="flex justify-between items-center">
+      <p class="flex flex-col md:flex-row">
+        <span>Copyright &copy; {new Date().getFullYear()}</span>
+        <span class="hidden md:block mx-2">|</span>
+        <span>{SITE.title}</span>
+      </p>
+
+      <div class="flex items-center gap-4">
+        <Socials />
+        {
+          SITE.footer.showRSS && (
+            <a href="/rss.xml" class="hover-scale hover-rotate" aria-label="RSS Feed">
+              <Icon name="tabler:rss" class="w-5 h-5" />
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</footer>

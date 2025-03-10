@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import PostsByYear from '~/components/blog/PostsByYear.astro';
+
+const publishedPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Filter posts by those that have the tag 'business'
+const businessPosts = publishedPosts.filter((post) => post.data.tags.includes('business'));
+---
+
+<PageLayout>
+  <PostsByYear posts={businessPosts} />
+</PageLayout>

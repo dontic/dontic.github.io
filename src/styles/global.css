@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Replace the tailwind sans font with Inter Variable */
+  --font-sans: 'Inter Variable', sans-serif;
+
+  /* Custom colors */
+  --color-primary: #01a9f0;
+  --color-secondary: #4173dd;
+  --color-default: rgb(16 16 16);
+  --color-muted: rgb(16 16 16 / 66%);
+  --color-page: rgb(255 255 255);
+}
+
+.dark {
+  /* Custom colors */
+  --color-primary: #ca6be6;
+  --color-secondary: #645bc9;
+  --color-default: rgb(229 236 246);
+  --color-muted: rgb(229 236 246 / 66%);
+  --color-page: rgb(16 16 16);
+}
+
+@layer components {
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-110;
+  }
+
+  .hover-bold {
+    @apply transition-all duration-200 hover:font-bold;
+  }
+
+  .hover-rotate {
+    @apply transition-transform duration-200 hover:rotate-6;
+  }
+}

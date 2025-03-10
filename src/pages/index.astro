@@ -1,0 +1,79 @@
+---
+// index.astro
+
+import PageLayout from '~/layouts/PageLayout.astro';
+
+import Image from 'astro/components/Image.astro';
+import { Icon } from 'astro-icon/components';
+
+import avatarImage from '~/assets/images/avatar.jpeg';
+import Socials from '~/components/common/Socials.astro';
+---
+
+<PageLayout>
+  <div class="text-justify">
+    <!-- Hero Section -->
+    <div class="mb-4">
+      <Image src={avatarImage} alt="Daniel Garcia" class="size-24 rounded-full border-2 border-gray-200/30 shadow-lg" />
+    </div>
+    <p>I'm a wearer of many hats but I mainly into software development and engineering.</p>
+    <p class="mt-4">
+      Pasionate about automating processes, I dedicate my personal and professional life into projects that use data and
+      automate mundane things.
+    </p>
+    <p class="mt-4">
+      I like to write about technology, code, business, productivity and life. You can catch some of my articles below.
+    </p>
+    <p class="mt-4">
+      Currently working on <a
+        href="https://autovisita.es"
+        target="_blank"
+        class="font-bold underline underline-offset-1">AutoVisita</a
+      >.
+    </p>
+
+    <!-- Socials -->
+    <div class="mt-8">
+      <Socials />
+    </div>
+
+    <!-- Blogs -->
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-4">I write about:</h2>
+      <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+        <a
+          href="/tech/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Tech</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">Coding guides, new trends and more.</p>
+        </a>
+
+        <a
+          href="/business/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Business</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">My experience in business and entrepreneurship.</p>
+        </a>
+
+        <a
+          href="/personal/"
+          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+        >
+          <h3 class="font-bold text-lg flex items-center">
+            <span class="underline underline-offset-2">Personal</span>
+            <Icon name="tabler:external-link" class="ml-1 size-4" />
+          </h3>
+          <p class="mt-2 text-sm">Learnings about productivity, life and mental health.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</PageLayout>

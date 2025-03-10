@@ -1,0 +1,16 @@
+---
+// Logo.astro
+
+import { Icon } from 'astro-icon/components';
+
+import { SITE } from '~/config';
+
+const logo = SITE.logo;
+const title = SITE.title;
+---
+
+<span
+  class="self-center rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+>
+  {logo ? <Icon name={logo} class="text-default text-xl" /> : title}
+</span>

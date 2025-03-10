@@ -1,0 +1,17 @@
+---
+// Socials.astro
+import { Icon } from 'astro-icon/components';
+import { socialLinks } from '~/config';
+
+const socials = socialLinks;
+---
+
+<div class="flex items-center gap-4">
+  {
+    socials.map(({ name, url, target, rel, icon }) => (
+      <a href={url} target={target} rel={rel} class="hover-scale hover-rotate" aria-label={`${name} Profile`}>
+        <Icon name={icon} class="w-6 h-6" />
+      </a>
+    ))
+  }
+</div>
