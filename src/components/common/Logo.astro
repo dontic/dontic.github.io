@@ -5,15 +5,12 @@ import { Icon } from 'astro-icon/components';
 
 import { site } from '~/config';
 
-export interface Props {
-  name?: string;
-}
-const { name = site.logo } = Astro.props;
+const logo = site.logo;
+const title = site.title;
 ---
 
 <span
   class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
 >
-  <!-- {name && <Icon name={name} class="text-default text-xl" />} -->
-  Daniel García
+  {logo ? <Icon name={logo} class="text-default text-xl" /> : title}
 </span>

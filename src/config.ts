@@ -1,9 +1,16 @@
-export const site = {
-  title: 'The Camel',
+type site = {
+  title: string;
+  description: string;
+  author: string;
+  siteUrl: string;
+  logo?: string;
+};
+
+export const site: site = {
+  title: 'Daniel García',
   description: 'Personal Blog',
   author: 'Daniel García',
   siteUrl: 'https://daniel.es',
-  logo: 'thecamel-text',
 };
 
 export const navigation = {
