@@ -7,10 +7,10 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-// Filter posts by those that have the tag 'tech'
-const techPosts = publishedPosts.filter((post) => post.data.tags.includes('tech'));
+// Filter posts by those that have the tag 'business'
+const businessPosts = publishedPosts.filter((post) => post.data.tags.includes('business'));
 ---
 
 <PageLayout>
-  <PostsByYear posts={techPosts} />
+  <PostsByYear posts={businessPosts} />
 </PageLayout>
