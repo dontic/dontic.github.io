@@ -6,6 +6,7 @@ slug: how-to-centralize-and-visualize-your-app-logs-in-grafana
 featured: false
 draft: false
 tags:
+  - tech
   - grafana
   - django
   - loki
@@ -151,7 +152,7 @@ Strategies to log files:
 scrape_configs:
   - job_name: my_app
     static_configs:
-      - targets: ["localhost"]
+      - targets: ['localhost']
         labels:
           job: my_logs
           __path__: /path/to/logs/{log1,log2}.log
@@ -163,14 +164,14 @@ scrape_configs:
 scrape_configs:
   - job_name: django
     static_configs:
-      - targets: ["localhost"]
+      - targets: ['localhost']
         labels:
           job: django_logs
           __path__: /path/to/logs/django.log
 
   - job_name: worker
     static_configs:
-      - targets: ["localhost"]
+      - targets: ['localhost']
         labels:
           job: worker_logs
           __path__: /path/to/logs/worker.log

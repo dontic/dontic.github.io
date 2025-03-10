@@ -1,12 +1,13 @@
 ---
 author: Daniel Garcia
 pubDatetime: 2024-06-14T12:56:35Z
-modDatetime: 2024-06-14T12:56:35Z
-title: How to create an API endpoint in astro
+# modDatetime: 2024-06-14T12:56:35Z
+title: How to create an API endpoint in Astro
 slug: how-to-create-an-api-endpoint-in-astro
 featured: false
 draft: false
 tags:
+  - tech
   - dev
   - astro
 description: Learn how to create API endpoints directly in your Astro app and create a contact in Brevo with it.
@@ -74,13 +75,13 @@ For my usecase where most of my site is static (it's a landing page after all) I
 ```js
 // astro.config.mjs
 
-import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
+import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 
 export default defineConfig({
-  output: "hybrid",
+  output: 'hybrid',
   adapter: node({
-    mode: "standalone",
+    mode: 'standalone',
   }),
 });
 ```
@@ -163,7 +164,7 @@ Your API endpoint code should have a pretty simple structure:
 export const prerender = false;
 
 // Import the APIRoute type from Astro
-import type { APIRoute } from "astro";
+import type { APIRoute } from 'astro';
 
 // This function will be called when the endpoint is hit with a GET request
 export const GET: APIRoute = async ({ request }) => {
@@ -172,7 +173,7 @@ export const GET: APIRoute = async ({ request }) => {
   // Return a 200 status and a response to the frontend
   return new Response(
     JSON.stringify({
-      message: "Operation successful",
+      message: 'Operation successful',
     }),
     {
       status: 200,
@@ -190,12 +191,12 @@ Following the template above, this is a simple POST API endpoint to create a con
 export const prerender = false;
 
 // Import the APIRoute type from Astro
-import type { APIRoute } from "astro";
+import type { APIRoute } from 'astro';
 
 // This is the function that will be called when the endpoint is hit
 export const POST: APIRoute = async ({ request }) => {
   // Check if the request is a JSON request
-  if (request.headers.get("content-type") === "application/json") {
+  if (request.headers.get('content-type') === 'application/json') {
     // Get the body of the request
     const body = await request.json();
 
@@ -203,16 +204,15 @@ export const POST: APIRoute = async ({ request }) => {
     const email = body.email;
 
     // Declares the Brevo API URL
-    const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
+    const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
 
     // Gets the Brevo API Key from an environment variable
     // Check the note on environment variables in the SSR section of this article to understand what is going on here
-    const BREVO_API_KEY =
-      import.meta.env.BREVO_API_KEY ?? process.env.BREVO_API_KEY;
+    const BREVO_API_KEY = import.meta.env.BREVO_API_KEY ?? process.env.BREVO_API_KEY;
 
     // Just a simple check to make sure the API key is defined in an environment variable
     if (!BREVO_API_KEY) {
-      console.error("No BREVO_API_KEY defined");
+      console.error('No BREVO_API_KEY defined');
       return new Response(null, { status: 400 });
     }
 
@@ -229,11 +229,11 @@ export const POST: APIRoute = async ({ request }) => {
     try {
       // Make a POST request to Brevo
       const response = await fetch(BREVO_API_URL, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          accept: "application/json",
-          "api-key": BREVO_API_KEY,
-          "content-type": "application/json",
+          accept: 'application/json',
+          'api-key': BREVO_API_KEY,
+          'content-type': 'application/json',
         },
         body: JSON.stringify(payload),
       });
@@ -241,12 +241,12 @@ export const POST: APIRoute = async ({ request }) => {
       // Check if the request was successful
       if (response.ok) {
         // Request succeeded
-        console.log("Contact added successfully");
+        console.log('Contact added successfully');
 
         // Return a 200 status and the response to our frontend
         return new Response(
           JSON.stringify({
-            message: "Contact added successfully",
+            message: 'Contact added successfully',
           }),
           {
             status: 200,
@@ -254,17 +254,14 @@ export const POST: APIRoute = async ({ request }) => {
         );
       } else {
         // Request failed
-        console.error("Failed to add contact to Brevo");
+        console.error('Failed to add contact to Brevo');
 
         // Return a 400 status to our frontend
         return new Response(null, { status: 400 });
       }
     } catch (error) {
       // An error occurred while doing our API operation
-      console.error(
-        "An unexpected error occurred while adding contact:",
-        error
-      );
+      console.error('An unexpected error occurred while adding contact:', error);
 
       // Return a 400 status to our frontend
       return new Response(null, { status: 400 });
@@ -295,10 +292,7 @@ Here's the code:
 
 // Zod validation stuff
 const WaitlistFormSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Please enter a valid email")
-    .email("Please enter a valid email"),
+  email: z.string().min(1, 'Please enter a valid email').email('Please enter a valid email'),
 });
 
 type WaitlistFormValues = z.infer<typeof WaitlistFormSchema>;
@@ -307,13 +301,13 @@ const WaitlistForm = () => {
   // Hooks to check the status of the form
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   // React Hook Form stuff
   const form = useForm<WaitlistFormValues>({
     resolver: zodResolver(WaitlistFormSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
   });
 
@@ -322,10 +316,10 @@ const WaitlistForm = () => {
     setIsSubmitting(true);
 
     // Ping out API endpoint
-    const response = await fetch("/api/create-brevo-contact", {
-      method: "POST",
+    const response = await fetch('/api/create-brevo-contact', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -336,7 +330,7 @@ const WaitlistForm = () => {
       setIsSuccess(true);
     } else {
       // If failed, show error message
-      console.error("Failed to add contact");
+      console.error('Failed to add contact');
       setIsSuccess(false);
       setError("There's been an error. Please try again.");
     }
@@ -364,10 +358,7 @@ const WaitlistForm = () => {
       )}
 
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 md:space-y-8"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-8">
           <FormField
             control={form.control}
             name="email"
@@ -375,11 +366,7 @@ const WaitlistForm = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    className="bg-transparent"
-                    placeholder="email@gmail.com"
-                    {...field}
-                  />
+                  <Input className="bg-transparent" placeholder="email@gmail.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -387,11 +374,7 @@ const WaitlistForm = () => {
           />
 
           <Button type="submit" disabled={isSubmitting}>
-            <Loader2
-              className={`mr-2 h-6 w-6 animate-spin ${
-                isSubmitting ? "block" : "hidden"
-              }`}
-            />
+            <Loader2 className={`mr-2 h-6 w-6 animate-spin ${isSubmitting ? 'block' : 'hidden'}`} />
             Submit
           </Button>
         </form>

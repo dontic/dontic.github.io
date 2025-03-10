@@ -2,15 +2,16 @@
 author: Daniel Garcia
 pubDatetime: 2024-03-22T15:07:17Z
 # modDatetime:
-title: "How to query logs in Grafana Loki"
+title: 'How to query logs in Grafana Loki'
 featured: false
 draft: false
 tags:
+  - tech
   - WebDev
   - Logging
   - Grafana
   - Loki
-description: "Learn how to query logs in Grafana Loki with a easy step by step guide"
+description: 'Learn how to query logs in Grafana Loki with a easy step by step guide'
 ogImage: ./cover.png
 ---
 

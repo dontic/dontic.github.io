@@ -1,5 +1,5 @@
 ---
-title: "Publishing your Google Cloud Project App: Ask Google to publish your app"
+title: 'Publishing your Google Cloud Project App: Ask Google to publish your app'
 description: Learn how to publish and certify your Google Cloud Project App.
 pubDatetime: 2023-03-19T00:00:00Z
 modDatetime: 2024-05-24T00:00:00Z
@@ -8,6 +8,7 @@ author: Daniel Garcia
 featured: false
 draft: false
 tags:
+  - tech
   - dev
   - webdev
   - googlecloud
@@ -56,11 +57,11 @@ These are the mandatory things you need to have in place in order to start the p
 
 5. All the domains you use for your tool have to be verified in the Google Search Console.
 
-I know it seems like a lot, but just take it step by step and you’ll eventually have everything you need in no time.
+I know it seems like a lot, but just take it step by step and you'll eventually have everything you need in no time.
 
 ## The publishing process
 
-1. Go to [https://console\.cloud\.google\.com/apis/credentials/consent](https://console.cloud.google.com/apis/credentials/consent), which should take you to your project’s OAuth page. If you have multiple projects, make sure you’re in the right one by clicking it at the top.
+1. Go to [https://console\.cloud\.google\.com/apis/credentials/consent](https://console.cloud.google.com/apis/credentials/consent), which should take you to your project's OAuth page. If you have multiple projects, make sure you're in the right one by clicking it at the top.
 
 ![OAuth screen](./oauth-screen.png)
 

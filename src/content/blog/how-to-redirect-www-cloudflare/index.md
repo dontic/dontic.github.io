@@ -2,15 +2,16 @@
 author: Daniel Garcia
 pubDatetime: 2024-10-15T13:45:03Z
 modDatetime: 2024-10-15T14:57:03Z
-title: "How to properly redirect www to non-www with Cloudflare"
+title: 'How to properly redirect www to non-www with Cloudflare'
 featured: false
 draft: false
 tags:
+  - tech
   - webtech
   - domains
   - webdevelopment
   - SEO
-description: "Learn how to properly redirect www to non-www with Cloudflare"
+description: 'Learn how to properly redirect www to non-www with Cloudflare'
 ogImage: ./cover.png
 ---
 

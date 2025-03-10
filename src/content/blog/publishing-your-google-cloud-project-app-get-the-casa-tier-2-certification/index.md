@@ -1,6 +1,6 @@
 ---
-title: "Publishing your Google Cloud Project App: Get the CASA Tier 2 Certification"
-description: Learn how to publish and certify your Google Cloud Project App.
+title: 'Publishing your Google Cloud Project App: Get the CASA Tier 2 certification'
+description: Learn how to get the CASA Tier 2 certification for your Google Cloud Project App.
 pubDatetime: 2023-03-21T00:00:00Z
 modDatetime: 2024-05-24T00:00:00Z
 author: Daniel Garcia
@@ -8,6 +8,7 @@ author: Daniel Garcia
 featured: false
 draft: false
 tags:
+  - tech
   - dev
   - webdev
   - googlecloud
@@ -48,9 +49,9 @@ This process can take from 3 to 6 weeks depending on your app complexity and how
 
 ### What are these tools?
 
-These are scanning tools that will try to hack their way into security loop wholes in your app, to essentially check if it can be hacked. Essentially, they’re just hacking tools really that expose security flaws in your application.
+These are scanning tools that will try to hack their way into security loop wholes in your app, to essentially check if it can be hacked. Essentially, they're just hacking tools really that expose security flaws in your application.
 
-That’s why it's really important you use these tools on an isolated environment.
+That's why it's really important you use these tools on an isolated environment.
 
 **DO NOT USE THEM ON PRODUCTION!**
 
@@ -72,7 +73,7 @@ Now check which one of the two approved scanning procedures(which are easier to 
 
 Because our app is just an API, I used the OWASP ZAP scan tool.
 
-> If your app allows for both, I recommend using OWASP as it’s just a matter of running a docker container on your computer\.
+> If your app allows for both, I recommend using OWASP as it's just a matter of running a docker container on your computer\.
 
 ## Step 2: Scan your application
 
@@ -86,13 +87,13 @@ If you need a more detailed explanation just go here: [https://appdefenseallianc
 
 For us, having only an API without authentication was quite a blessing, the configuration file for OWASP is already done for you and can be downloaded [here](https://appdefensealliance.dev/casa/tier-2/ast-guide/dynamic-scan).
 
-If you have a full fledged web app, with frontend and backend, you will need to create your own config file and set up authentication, it’s a bit more complicated but all the details are explained [here](https://appdefensealliance.dev/casa/tier-2/ast-guide/dynamic-scan).
+If you have a full fledged web app, with frontend and backend, you will need to create your own config file and set up authentication, it's a bit more complicated but all the details are explained [here](https://appdefensealliance.dev/casa/tier-2/ast-guide/dynamic-scan).
 
 ### 2.2. Deploy a test app
 
 You can't just scan your local environment but it will give a bunch of errors. For instance, you probably won't have HTTPS configured locally.
 
-That’s why it's better to deploy your app in a test domain: **owasptestapi.domain.com** and set up everything as you would in production.
+That's why it's better to deploy your app in a test domain: **owasptestapi.domain.com** and set up everything as you would in production.
 
 ### 2.3. Set up Docker
 
@@ -140,13 +141,13 @@ In the console, you should see if everything passed, if not, you will need to st
 
 You will now also have a file called `results-full.xml`, this file contains even more info on what happened during the attack.
 
-Get the ID of the stuff that didn’t pass, then open the XML with your favorite text editor and search for those ID’s to get more info.
+Get the ID of the stuff that didn't pass, then open the XML with your favorite text editor and search for those ID's to get more info.
 
 > I seriously recommend pasting the XML output of the failed cases to ChatGPT to get more context. It helped me quite a bit.
 
 I had a couple of failures but it was just a matter of setting a specific header and enabling HSTS in our Cloudflare certificates.
 
-Repeat this until everything passes, once it does, you’re ready for the next step!
+Repeat this until everything passes, once it does, you're ready for the next step!
 
 ## Step 3: Submitting the form
 
@@ -158,13 +159,13 @@ Beware that there are many people complaining, specially on Reddit, that this pr
 
 ### Tips
 
-- On the stuff that you did not answer “Yes” to, to explain it as if you were trying to explain it to a 10 year old.
+- On the stuff that you did not answer "Yes" to, to explain it as if you were trying to explain it to a 10 year old.
 
   Otherwise they will keep asking for clarification.
 
 - Be as transparent as possible.
 
-- There are people out there saying to just reply “Yes” to everything to get it over with, since they don't seem to ask questions about the stuff you replied yes to, but I don’t recommend it, so please use it at your own discretion.
+- There are people out there saying to just reply "Yes" to everything to get it over with, since they don't seem to ask questions about the stuff you replied yes to, but I don't recommend it, so please use it at your own discretion.
 
 ## Step 4: Resolving issues
 

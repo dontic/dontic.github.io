@@ -2,14 +2,15 @@
 author: Daniel Garcia
 pubDatetime: 2024-09-21T09:04:16Z
 # modDatetime:
-title: "How to deploy Django in a subdirectory with Docker, NGINX and Whitenoise"
+title: 'How to deploy Django in a subdirectory with Docker, NGINX and Whitenoise'
 featured: false
 draft: false
 tags:
+  - tech
   - webdev
   - django
   - docker
-description: "Deploying a Django application in a subdirectory with Docker and Whitenoise"
+description: 'Deploying a Django application in a subdirectory with Docker and Whitenoise'
 ogImage: ./cover.png
 ---
 
@@ -71,14 +72,14 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - '8000:8000'
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - '8080:80'
     depends_on:
       - backend
 ```

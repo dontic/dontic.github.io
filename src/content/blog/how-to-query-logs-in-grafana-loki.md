@@ -6,6 +6,7 @@ slug: how-to-query-logs-in-grafana-loki
 featured: false
 draft: false
 tags:
+  - tech
   - dev
   - grafana
   - loki
