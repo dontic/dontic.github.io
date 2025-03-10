@@ -32,7 +32,7 @@ export const SITE: SiteConfig = {
   footer: {
     showRSS: true,
   },
-  ogImage: '~/assets/images/og_image.png',
+  ogImage: '~/assets/images/og-image.png',
   locale: 'en_US',
   twitter: {
     site: '@onticdani',
