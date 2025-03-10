@@ -1,9 +1,7 @@
 ---
 // Header.astro
 
-import { Icon } from 'astro-icon/components';
 import Logo from '~/components/common/Logo.astro';
-import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import type { Link } from '~/types';
 import ThemeToggle from './ThemeToggle.astro';
 import Search from './Search.astro';
@@ -24,7 +22,7 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
 <header id="header" class="flex-none">
   <div
     class:list={[
-      'relative text-default py-3 px-3 md:px-6 mx-auto w-full',
+      'relative text-default py-3 mx-auto w-full mb-4',
       {
         'flex justify-between items-center': true,
       },
