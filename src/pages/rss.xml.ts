@@ -1,5 +1,5 @@
 import rss from '@astrojs/rss';
-import { site } from '~/config';
+import { SITE } from '~/config';
 import { getCollection } from 'astro:content';
 import getSortedPosts from '~/utils/getSortedPosts';
 
@@ -8,12 +8,12 @@ export async function GET(context: any) {
   const posts = getSortedPosts(unsortedPosts);
   return rss({
     // `<title>` field in output xml
-    title: site.title,
+    title: SITE.title,
     // `<description>` field in output xml
-    description: site.description,
+    description: SITE.description,
     // Pull in your project "site" from the endpoint context
     // https://docs.astro.build/en/reference/api-reference/#site
-    site: site.siteUrl,
+    site: SITE.siteUrl,
     // Array of `<item>`s in output xml
     // See "Generating items" section for examples using content collections and glob imports
     items: posts.map(({ data, id }) => ({
