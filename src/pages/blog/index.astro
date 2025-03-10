@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+
+const publishedPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sort posts by date (newest first) and group by year
+const postsByYear = publishedPosts
+  .sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
+  .reduce(
+    (acc, post) => {
+      const year = post.data.pubDatetime.getFullYear();
+      if (!acc[year]) {
+        acc[year] = [];
+      }
+      acc[year].push(post);
+      return acc;
+    },
+    {} as Record<number, typeof publishedPosts>
+  );
+
+// Get years in descending order
+const years = Object.keys(postsByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<PageLayout>
+  {
+    years.map((year) => (
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-4">{year}</h2>
+        <ul class="space-y-4">
+          {postsByYear[year].map((post) => {
+            const formattedDate = `${post.data.pubDatetime.getDate().toString().padStart(2, '0')}.${(post.data.pubDatetime.getMonth() + 1).toString().padStart(2, '0')}`;
+            return (
+              <li class="flex items-center gap-4">
+                <span class="text-gray-500">{formattedDate}</span>
+                <a href={`/blog/${post.id}`} class="hover:underline">
+                  {post.data.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
+</PageLayout>
