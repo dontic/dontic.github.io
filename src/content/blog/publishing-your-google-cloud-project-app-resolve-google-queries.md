@@ -14,8 +14,6 @@ tags:
   - googlecloud
   - react
   - django
-
-ogImage: ../../assets/images/blog/publishing-your-google-cloud-project-app/cover.png
 # canonicalURL:
 ---
 
