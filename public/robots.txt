@@ -1,0 +1,7 @@
+# robots.txt for https://daniel.es
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://daniel.es/sitemap-index.xml 
