@@ -1,38 +1,29 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
+import type { CollectionEntry } from 'astro:content';
 
-// Accept post data as a prop
+// Define the props type
 export interface Props {
-  post?: {
-    data: {
-      title: string;
-      description: string;
-      author: string;
-      pubDatetime: Date;
-      modDatetime?: Date;
-      ogImage?: string;
-      canonicalUrl?: string;
-      category: string;
-    };
-    id: string;
-  };
+  post: CollectionEntry<'blog'>;
 }
 
+// Accept post data as a prop
 const { post } = Astro.props;
 
+// Extract the post data
+const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl, category } = post?.data;
+
 // Create metadata object to pass to PageLayout
-const metadata = post
-  ? {
-      title: post.data.title,
-      description: post.data.description,
-      author: post.data.author,
-      pubDatetime: post.data.pubDatetime,
-      modDatetime: post.data.modDatetime,
-      ogImage: post.data.ogImage,
-      canonicalUrl: post.data.canonicalUrl,
-    }
-  : undefined;
+const metadata = {
+  title: title,
+  description: description,
+  author: author,
+  pubDatetime: pubDatetime,
+  modDatetime: modDatetime,
+  ogImage: ogImage,
+  canonicalUrl: canonicalUrl,
+};
 
 // Format dates
 const formatDate = (date: Date) => {
@@ -60,38 +51,39 @@ const formatDate = (date: Date) => {
     <!-- Main content -->
     <div class="mb-8">
       <h1 class="text-3xl font-bold"><slot name="title" /></h1>
-      
-      {post && (
-        <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-600 dark:text-gray-400">
-          <!-- Author -->
-          <div class="flex items-center">
-            <Icon name="tabler:user" class="w-5 h-5 mr-1" />
-            <span>{post.data.author}</span>
-          </div>
-          
-          <!-- Category -->
-          <div class="flex items-center">
-            <Icon name="tabler:folder" class="w-5 h-5 mr-1" />
-            <a href={`/${post.data.category.toLowerCase()}/`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              {post.data.category}
-            </a>
-          </div>
-          
-          <!-- Published date -->
-          <div class="flex items-center">
-            <Icon name="tabler:calendar" class="w-5 h-5 mr-1" />
-            <span>{formatDate(post.data.pubDatetime)}</span>
-          </div>
-          
-          <!-- Updated date (if available) -->
-          {post.data.modDatetime && (
+
+      {
+        post && (
+          <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-600 dark:text-gray-400">
             <div class="flex items-center">
-              <Icon name="tabler:refresh" class="w-5 h-5 mr-1" />
-              <span>Updated: {formatDate(post.data.modDatetime)}</span>
+              <Icon name="tabler:user" class="w-5 h-5 mr-1" />
+              <span>{author}</span>
             </div>
-          )}
-        </div>
-      )}
+
+            <div class="flex items-center">
+              <Icon name="tabler:folder" class="w-5 h-5 mr-1" />
+              <a
+                href={`/${category.toLowerCase()}/`}
+                class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {category}
+              </a>
+            </div>
+
+            <div class="flex items-center">
+              <Icon name="tabler:calendar" class="w-5 h-5 mr-1" />
+              <span>{formatDate(pubDatetime)}</span>
+            </div>
+
+            {modDatetime && (
+              <div class="flex items-center">
+                <Icon name="tabler:refresh" class="w-5 h-5 mr-1" />
+                <span>Updated: {formatDate(modDatetime)}</span>
+              </div>
+            )}
+          </div>
+        )
+      }
     </div>
 
     <div
