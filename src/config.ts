@@ -17,6 +17,8 @@ type SiteConfig = {
   };
 };
 
+import ogImage from '~/assets/images/og-image.png';
+
 export const SITE: SiteConfig = {
   title: 'Daniel García',
   description: 'Personal Blog',
@@ -32,7 +34,7 @@ export const SITE: SiteConfig = {
   footer: {
     showRSS: true,
   },
-  ogImage: '~/assets/images/og-image.png',
+  ogImage: ogImage.src,
   locale: 'en_US',
   twitter: {
     site: '@onticdani',
