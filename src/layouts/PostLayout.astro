@@ -1,5 +1,6 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
 
 // Accept post data as a prop
 export interface Props {
@@ -12,6 +13,7 @@ export interface Props {
       modDatetime?: Date;
       ogImage?: string;
       canonicalUrl?: string;
+      category: string;
     };
     id: string;
   };
@@ -31,6 +33,15 @@ const metadata = post
       canonicalUrl: post.data.canonicalUrl,
     }
   : undefined;
+
+// Format dates
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
 ---
 
 <PageLayout metadata={metadata}>
@@ -49,6 +60,38 @@ const metadata = post
     <!-- Main content -->
     <div class="mb-8">
       <h1 class="text-3xl font-bold"><slot name="title" /></h1>
+      
+      {post && (
+        <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-600 dark:text-gray-400">
+          <!-- Author -->
+          <div class="flex items-center">
+            <Icon name="tabler:user" class="w-5 h-5 mr-1" />
+            <span>{post.data.author}</span>
+          </div>
+          
+          <!-- Category -->
+          <div class="flex items-center">
+            <Icon name="tabler:folder" class="w-5 h-5 mr-1" />
+            <a href={`/${post.data.category.toLowerCase()}/`} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              {post.data.category}
+            </a>
+          </div>
+          
+          <!-- Published date -->
+          <div class="flex items-center">
+            <Icon name="tabler:calendar" class="w-5 h-5 mr-1" />
+            <span>{formatDate(post.data.pubDatetime)}</span>
+          </div>
+          
+          <!-- Updated date (if available) -->
+          {post.data.modDatetime && (
+            <div class="flex items-center">
+              <Icon name="tabler:refresh" class="w-5 h-5 mr-1" />
+              <span>Updated: {formatDate(post.data.modDatetime)}</span>
+            </div>
+          )}
+        </div>
+      )}
     </div>
 
     <div
