@@ -12,7 +12,7 @@ tags:
   - webdevelopment
   - SEO
 description: 'Learn how to properly redirect www to non-www with Cloudflare'
-ogImage: ./cover.png
+ogImage: /src/content/blog/how-to-redirect-www-cloudflare/cover.png
 ---
 
 ![Cover](./cover.png)

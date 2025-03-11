@@ -11,7 +11,7 @@ tags:
   - django
   - docker
 description: 'Deploying a Django application in a subdirectory with Docker and Whitenoise'
-ogImage: ./cover.png
+ogImage: /src/content/blog/how-to-deploy-django-in-a-subdirectory-with-docker-and-whitenoise/cover.png
 ---
 
 ![Cover](./cover.png)

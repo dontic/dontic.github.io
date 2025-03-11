@@ -15,7 +15,7 @@ tags:
   - react
   - django
 
-ogImage: ./cover.png
+ogImage: /src/content/blog/publishing-your-google-cloud-project-app-ask-for-your-google-app-to-be-published/cover.png
 # canonicalURL:
 ---
 

@@ -16,7 +16,7 @@ tags:
   - django
   - oauth
 
-ogImage: ./cover.png
+ogImage: /src/content/blog/publishing-your-google-cloud-project-app-get-the-casa-tier-2-certification/cover.png
 # canonicalURL:
 ---
 

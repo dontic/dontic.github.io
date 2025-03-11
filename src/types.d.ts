@@ -20,7 +20,7 @@ export interface MetaDataOpenGraph {
   locale?: string;
 }
 
-type TwitterCardType = "summary" | "summary_large_image" | "app" | "player";
+type TwitterCardType = 'summary' | 'summary_large_image' | 'app' | 'player';
 
 export interface MetaDataTwitter {
   cardType: TwitterCardType;

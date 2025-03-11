@@ -12,7 +12,7 @@ tags:
   - Grafana
   - Loki
 description: 'Learn how to query logs in Grafana Loki with a easy step by step guide'
-ogImage: ./cover.png
+ogImage: /src/content/blog/how-to-query-logs-in-grafana-loki/cover.png
 ---
 
 ![cover](./cover.png)

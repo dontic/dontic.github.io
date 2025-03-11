@@ -12,7 +12,7 @@ tags:
   - Grafana
   - Loki
 description: 'Learn how to centralize and visualize Docker logs in Grafana with Loki with a easy step by step guide'
-ogImage: ./cover.png
+ogImage: /src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/cover.png
 ---
 
 ![Cover](./cover.png)

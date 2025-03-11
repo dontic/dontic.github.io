@@ -12,12 +12,15 @@ import { SITE } from '~/config';
 export interface Props {
   metadata?: {
     title?: string;
+    useTitleTemplate?: boolean;
     description?: string;
-    ogImage?: string;
+    ogImagePath?: string;
     canonicalUrl?: string;
     pubDatetime?: Date;
     modDatetime?: Date;
     author?: string;
+    index?: boolean;
+    follow?: boolean;
   };
 }
 
