@@ -10,6 +10,7 @@ const blog = defineCollection({
   // Load all markdown files in the space-probes directory, except for those that start with "voyager-"
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
+    category: z.enum(['tech', 'business', 'personal']),
     title: z.string(),
     description: z.string(),
     author: z.string(),

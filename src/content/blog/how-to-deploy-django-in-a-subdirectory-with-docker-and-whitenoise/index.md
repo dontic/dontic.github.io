@@ -5,8 +5,8 @@ pubDatetime: 2024-09-21T09:04:16Z
 title: 'How to deploy Django in a subdirectory with Docker, NGINX and Whitenoise'
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - webdev
   - django
   - docker

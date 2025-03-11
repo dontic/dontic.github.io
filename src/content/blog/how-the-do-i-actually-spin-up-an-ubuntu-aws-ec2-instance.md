@@ -5,8 +5,8 @@ title: How the **** do I actually spin up an Ubuntu AWS EC2 instance?
 slug: how-the-do-i-actually-spin-up-an-ubuntu-aws-ec2-instance
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - dev
   - webdev
   - aws

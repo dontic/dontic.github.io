@@ -5,8 +5,8 @@ pubDatetime: 2024-03-22T15:07:17Z
 title: 'How to query logs in Grafana Loki'
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - WebDev
   - Logging
   - Grafana

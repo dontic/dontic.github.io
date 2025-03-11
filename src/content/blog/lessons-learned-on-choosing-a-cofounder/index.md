@@ -5,8 +5,10 @@ pubDatetime: 2024-08-28T17:07:18Z
 title: "Red Flags in Startup Co-Founders: Lessons Learned from a Technical Founder's Journey"
 featured: true
 draft: false
+category: business
 tags:
-  - business
+  - startup
+  - cofounder
 description: Here's an list of lessons and tips on things to look out for when choosing a co-founder for your startup or project.
 ---
 

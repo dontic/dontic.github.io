@@ -8,7 +8,7 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
 });
 
 // Filter posts by those that have the tag 'personal'
-const personalPosts = publishedPosts.filter((post) => post.data.tags.includes('personal'));
+const personalPosts = publishedPosts.filter((post) => post.data.category === 'personal');
 ---
 
 <PageLayout>

@@ -5,8 +5,8 @@ title: How to centralize and visualize your app logs in Grafana
 slug: how-to-centralize-and-visualize-your-app-logs-in-grafana
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - grafana
   - django
   - loki

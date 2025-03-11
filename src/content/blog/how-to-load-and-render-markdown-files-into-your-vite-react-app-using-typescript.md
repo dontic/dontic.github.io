@@ -5,8 +5,8 @@ title: How to load and render Markdown files into your Vite React app using Type
 slug: how-to-load-and-render-markdown-files-into-your-vite-react-app-using-typescript
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - dev
   - webdev
   - react

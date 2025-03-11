@@ -7,8 +7,8 @@ author: Daniel Garcia
 # slug:
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - dev
   - webdev
   - googlecloud

@@ -8,7 +8,7 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
 });
 
 // Filter posts by those that have the tag 'business'
-const businessPosts = publishedPosts.filter((post) => post.data.tags.includes('business'));
+const businessPosts = publishedPosts.filter((post) => post.data.category === 'business');
 ---
 
 <PageLayout>

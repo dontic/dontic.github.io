@@ -8,7 +8,7 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
 });
 
 // Filter posts by those that have the tag 'tech'
-const techPosts = publishedPosts.filter((post) => post.data.tags.includes('tech'));
+const techPosts = publishedPosts.filter((post) => post.data.category === 'tech');
 ---
 
 <PageLayout>

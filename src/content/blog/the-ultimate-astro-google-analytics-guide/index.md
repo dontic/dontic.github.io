@@ -2,14 +2,15 @@
 author: Daniel Garcia
 pubDatetime: 2024-09-03T18:34:23Z
 # modDatetime:
-title: "The ultimate Astro + Google Analytics guide"
+title: 'The ultimate Astro + Google Analytics guide'
 featured: false
 draft: false
+category: tech
 tags:
   - dev
   - astro
   - google-analytics
-description: "Learn how to integrate Google Analytics (GA4) with Astro in multiple ways. Using Partytown, View Transitions, CookieConsent V3 and more."
+description: 'Learn how to integrate Google Analytics (GA4) with Astro in multiple ways. Using Partytown, View Transitions, CookieConsent V3 and more.'
 ---
 
 <details>
@@ -73,18 +74,15 @@ You just need to add the GA4 script to your `head` tag.
 
 ```html
 <!-- Google tag (gtag.js) -->
-<script
-  is:inline
-  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-></script>
+<script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script is:inline>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
   }
-  gtag("js", new Date());
+  gtag('js', new Date());
 
-  gtag("config", "G-XXXXXXXXXX");
+  gtag('config', 'G-XXXXXXXXXX');
 </script>
 ```
 
@@ -115,11 +113,11 @@ npm install partytown
 2. Add the following to your `astro.config.mjs`:
 
 ```js
-import { partytown } from "astro/config";
+import { partytown } from 'astro/config';
 
 export default defineConfig({
   // ...
-  integrations: [partytown({ config: { forward: ["dataLayer.push"] } })],
+  integrations: [partytown({ config: { forward: ['dataLayer.push'] } })],
 });
 ```
 
@@ -127,11 +125,7 @@ Then you can add the following code to your `Layout.astro` component:
 
 ```html
 <!-- Google tag (gtag.js) -->
-<script
-  is:inline
-  type="text/partytown"
-  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-></script>
+<script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
 <script is:inline type="text/partytown">
   window.dataLayer = window.dataLayer || [];
@@ -162,11 +156,7 @@ In your GA4 script tags, you can add the following code:
 
 ```html
 <!-- Google tag (gtag.js) -->
-<script
-  is:inline
-  type="text/partytown"
-  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-></script>
+<script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
 <script is:inline type="text/partytown">
   window.dataLayer = window.dataLayer || [];
@@ -216,10 +206,7 @@ Then, in your `Layout.astro` component, add the following code:
 ```html
 <head>
   ... some code ...
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css" />
   ... some more code ...
 </head>
 
@@ -275,11 +262,7 @@ It's easy:
 ````html
 ```html
 <!-- Google tag (gtag.js) -->
-<script
-  is:inline
-  type="text/partytown"
-  src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-></script>
+<script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
 <script is:inline type="text/partytown">
   window.dataLayer = window.dataLayer || [];
@@ -309,11 +292,11 @@ It's easy:
 ```html
 <script is:inline data-category="analytics">
   function updateConsents() {
-    gtag("consent", "update", {
-      ad_storage: "granted",
-      ad_user_data: "granted",
-      ad_personalization: "granted",
-      analytics_storage: "granted",
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted',
     });
   }
 </script>
@@ -346,17 +329,17 @@ Create a `CookieConsentConfig.ts` and a `CookieConsent.astro` in your `src/compo
 #### 2.3.3. In `CookieConsentConfig.ts`:
 
 ```ts
-import type { CookieConsentConfig } from "vanilla-cookieconsent";
+import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
 export const config: CookieConsentConfig = {
   guiOptions: {
     consentModal: {
-      layout: "box inline",
-      position: "bottom left",
+      layout: 'box inline',
+      position: 'bottom left',
     },
     preferencesModal: {
-      layout: "box",
-      position: "right",
+      layout: 'box',
+      position: 'right',
       equalWeightButtons: true,
       flipButtons: false,
     },
@@ -372,11 +355,11 @@ export const config: CookieConsentConfig = {
           label:
             '<a href="https://marketingplatform.google.com/about/analytics/terms/us/" target="_blank">Google Analytics 4 (dummy)</a>',
           onAccept: () => {
-            console.log("ga4 accepted");
+            console.log('ga4 accepted');
             // TODO: load ga4
           },
           onReject: () => {
-            console.log("ga4 rejected");
+            console.log('ga4 rejected');
           },
           cookies: [
             {
@@ -385,60 +368,58 @@ export const config: CookieConsentConfig = {
           ],
         },
         another: {
-          label: "Another one (dummy)",
+          label: 'Another one (dummy)',
         },
       },
     },
   },
   language: {
-    default: "en",
-    autoDetect: "browser",
+    default: 'en',
+    autoDetect: 'browser',
     translations: {
       en: {
         consentModal: {
           title: "Hello traveller, it's cookie time!",
           description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-          acceptAllBtn: "Accept all",
-          acceptNecessaryBtn: "Reject all",
-          showPreferencesBtn: "Manage preferences",
-          footer:
-            '<a href="#link">Privacy Policy</a>\n<a href="#link">Terms and conditions</a>',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.',
+          acceptAllBtn: 'Accept all',
+          acceptNecessaryBtn: 'Reject all',
+          showPreferencesBtn: 'Manage preferences',
+          footer: '<a href="#link">Privacy Policy</a>\n<a href="#link">Terms and conditions</a>',
         },
         preferencesModal: {
-          title: "Consent Preferences Center",
-          acceptAllBtn: "Accept all",
-          acceptNecessaryBtn: "Reject all",
-          savePreferencesBtn: "Save preferences",
-          closeIconLabel: "Close modal",
-          serviceCounterLabel: "Service|Services",
+          title: 'Consent Preferences Center',
+          acceptAllBtn: 'Accept all',
+          acceptNecessaryBtn: 'Reject all',
+          savePreferencesBtn: 'Save preferences',
+          closeIconLabel: 'Close modal',
+          serviceCounterLabel: 'Service|Services',
           sections: [
             {
-              title: "Cookie Usage",
+              title: 'Cookie Usage',
               description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             },
             {
-              title:
-                'Strictly Necessary Cookies <span class="pm__badge">Always Enabled</span>',
+              title: 'Strictly Necessary Cookies <span class="pm__badge">Always Enabled</span>',
               description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-              linkedCategory: "necessary",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+              linkedCategory: 'necessary',
             },
             {
-              title: "Functionality Cookies",
+              title: 'Functionality Cookies',
               description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-              linkedCategory: "functionality",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+              linkedCategory: 'functionality',
             },
             {
-              title: "Analytics Cookies",
+              title: 'Analytics Cookies',
               description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-              linkedCategory: "analytics",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+              linkedCategory: 'analytics',
             },
             {
-              title: "More information",
+              title: 'More information',
               description:
                 'For any query in relation to my policy on cookies and your choices, please <a class="cc__link" href="#yourdomain.com">contact me</a>.',
             },
@@ -458,13 +439,11 @@ import 'vanilla-cookieconsent/dist/cookieconsent.css';
 import '../styles/ccElegantBlack.css';
 ---
 
-<button type="button" data-cc="show-preferencesModal">
-  Show preferences modal
-</button>
+<button type="button" data-cc="show-preferencesModal">Show preferences modal</button>
 
 <script>
-  import { run } from "vanilla-cookieconsent";
-  import { config } from "./CookieConsentConfig";
+  import { run } from 'vanilla-cookieconsent';
+  import { config } from './CookieConsentConfig';
 
   run(config);
 </script>
@@ -475,7 +454,7 @@ import '../styles/ccElegantBlack.css';
 ```astro
 ---
 // ... some code ...
-import CookieConsent from "../components/CookieConsent.astro";
+import CookieConsent from '../components/CookieConsent.astro';
 ---
 
 ...
@@ -495,9 +474,7 @@ Remove the previous GA4 scripts if you had any and add the following:
   <!-- ... some code ... -->
 
   <!-- GA4 -->
-  <script
-    is:inline
-    src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
   <script>
     // We need a global definition to avoid type warnings
@@ -517,14 +494,14 @@ Remove the previous GA4 scripts if you had any and add the following:
     };
 
     // Load GA4 with denied default consents
-    window.gtag("js", new Date());
-    window.gtag("consent", "default", {
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-      analytics_storage: "denied",
+    window.gtag('js', new Date());
+    window.gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
     });
-    window.gtag("config", "G-XXXXXXXXXX");
+    window.gtag('config', 'G-XXXXXXXXXX');
   </script>
 
   <!-- ... some more code ... -->
@@ -595,9 +572,7 @@ In your `Layout.astro`:
 ```astro
 <head>
   <!-- GA4 -->
-  <script
-    is:inline
-    src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
   <script>
     declare global {
@@ -608,19 +583,19 @@ In your `Layout.astro`:
     }
 
     // This is the important part!
-    document.addEventListener("astro:page-load", () => {
+    document.addEventListener('astro:page-load', () => {
       window.dataLayer = window.dataLayer || [];
       window.gtag = function gtag(...args: any[]) {
         window.dataLayer.push(arguments);
       };
-      window.gtag("js", new Date());
-      window.gtag("consent", "default", {
-        ad_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        analytics_storage: "denied",
+      window.gtag('js', new Date());
+      window.gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
       });
-      window.gtag("config", "G-XXXXXXXXXX");
+      window.gtag('config', 'G-XXXXXXXXXX');
     });
   </script></head
 >
@@ -665,16 +640,14 @@ Back in your `Layout.astro`:
 
     <script is:inline>
       // Restore the `show--consent` class if it was present before the page swap
-      document.addEventListener("astro:before-preparation", event => {
+      document.addEventListener('astro:before-preparation', (event) => {
         const htmlClassName = window.document.documentElement.className;
-        const consentClassPresent = htmlClassName.includes("show--consent")
-          ? true
-          : false;
+        const consentClassPresent = htmlClassName.includes('show--consent') ? true : false;
         window._showConsentClass = consentClassPresent;
       });
 
-      document.addEventListener("astro:before-swap", event => {
-        const showConsent = window._showConsentClass ? ` show--consent` : "";
+      document.addEventListener('astro:before-swap', (event) => {
+        const showConsent = window._showConsentClass ? ` show--consent` : '';
         event.newDocument.documentElement.className += showConsent;
       });
     </script>

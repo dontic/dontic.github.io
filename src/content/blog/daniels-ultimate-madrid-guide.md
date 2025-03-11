@@ -6,8 +6,8 @@ title: Daniel's Ultimate Madrid Guide
 slug: daniels-ultimate-madrid-guide
 featured: true
 draft: false
+category: personal
 tags:
-  - personal
   - travel
 description: My ultimate guide to Madrid, Spain as a local.
 ---

@@ -5,8 +5,8 @@ pubDatetime: 2024-10-15T15:07:17Z
 title: 'Centralize and visualize Docker logs in Grafana with Loki'
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - WebDev
   - Docker
   - Grafana

@@ -5,8 +5,8 @@ modDatetime: 2024-10-15T14:57:03Z
 title: 'How to properly redirect www to non-www with Cloudflare'
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - webtech
   - domains
   - webdevelopment

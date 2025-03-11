@@ -6,8 +6,8 @@ title: How to create an API endpoint in Astro
 slug: how-to-create-an-api-endpoint-in-astro
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - dev
   - astro
 description: Learn how to create API endpoints directly in your Astro app and create a contact in Brevo with it.

@@ -5,8 +5,8 @@ title: How to migrate vaultwarden
 slug: how-to-migrate-vaultwarden
 featured: false
 draft: false
+category: tech
 tags:
-  - tech
   - dev
   - opensource
   - ubuntu
