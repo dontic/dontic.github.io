@@ -46,7 +46,7 @@ if (metadata?.ogImagePath) {
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Analytics -->
-    <script defer data-domain="daniel.es" src="https://vince.hlab.es/js/script.js"></script>
+    {import.meta.env.PROD && <script defer data-domain="daniel.es" src="https://vince.hlab.es/js/script.js" />}
 
     <!-- Favicons -->
     <Favicons />
