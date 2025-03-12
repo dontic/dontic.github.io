@@ -7,12 +7,18 @@ interface Props {
 
 const { posts } = Astro.props;
 
+// Helper function to get the most recent date for a post
+const getPostDate = (post: CollectionEntry<'blog'>) => {
+  return post.data.modDatetime || post.data.pubDatetime;
+};
+
 // Sort posts by date (newest first) and group by year
 const postsByYear = posts
-  .sort((a, b) => b.data.pubDatetime.getTime() - a.data.pubDatetime.getTime())
+  .sort((a, b) => getPostDate(b).getTime() - getPostDate(a).getTime())
   .reduce(
     (acc, post) => {
-      const year = post.data.pubDatetime.getFullYear();
+      const date = getPostDate(post);
+      const year = date.getFullYear();
       if (!acc[year]) {
         acc[year] = [];
       }
@@ -34,7 +40,8 @@ const years = Object.keys(postsByYear)
       <h2 class="text-2xl font-bold mb-4">{year}</h2>
       <ul class="space-y-4">
         {postsByYear[year].map((post) => {
-          const formattedDate = `${post.data.pubDatetime.getDate().toString().padStart(2, '0')}.${(post.data.pubDatetime.getMonth() + 1).toString().padStart(2, '0')}`;
+          const date = getPostDate(post);
+          const formattedDate = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}`;
           return (
             <li class="flex items-start">
               <span class="text-gray-500 w-12 flex-shrink-0 text-right mr-4">{formattedDate}</span>
