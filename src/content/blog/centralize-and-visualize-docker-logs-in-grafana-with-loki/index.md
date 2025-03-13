@@ -1,7 +1,7 @@
 ---
 author: Daniel Garcia
 pubDatetime: 2024-10-15T15:07:17Z
-modDatetime: 2025-03-12T12:00:00Z
+modDatetime: 2025-03-13T12:00:00Z
 title: 'Centralize and visualize Docker logs in Grafana with Loki'
 featured: false
 draft: false
