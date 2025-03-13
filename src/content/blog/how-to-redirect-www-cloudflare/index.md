@@ -15,8 +15,6 @@ description: 'Learn how to properly redirect www to non-www with Cloudflare'
 ogImage: /src/content/blog/how-to-redirect-www-cloudflare/cover.png
 ---
 
-![Cover](./cover.png)
-
 - [Introduction](#introduction)
 - [Step by step](#step-by-step)
 - [Why do we need a DNS record for www pointing to a random IP address?](#why-do-we-need-a-dns-record-for-www-pointing-to-a-random-ip-address)

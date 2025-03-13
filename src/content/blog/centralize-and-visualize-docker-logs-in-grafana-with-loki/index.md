@@ -15,8 +15,6 @@ description: 'Learn how to centralize and visualize Docker logs in Grafana with 
 ogImage: /src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/cover.png
 ---
 
-![Cover](./cover.png)
-
 ## Introduction
 
 I've previously written about how to centralize and visualize logs in Grafana with Loki for apps that write logs to files [here](https://daniel.es/blog/how-to-centralize-and-visualize-your-app-logs-in-grafana/).

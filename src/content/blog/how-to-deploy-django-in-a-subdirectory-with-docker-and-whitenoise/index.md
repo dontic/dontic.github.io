@@ -14,19 +14,18 @@ description: 'Deploying a Django application in a subdirectory with Docker and W
 ogImage: /src/content/blog/how-to-deploy-django-in-a-subdirectory-with-docker-and-whitenoise/cover.png
 ---
 
-![Cover](./cover.png)
-
 # How to deploy Django in a subdirectory with Docker, NGINX and Whitenoise
 
-- [Introduction](#introduction)
-- [My setup](#my-setup)
-- [The problem](#the-problem)
-- [The solution](#the-solution)
-  - [1. Configure django](#1-configure-django)
-  - [2. Configure Static Files](#2-configure-static-files)
-  - [3. Admin login](#3-admin-login)
-  - [4. Configure Nginx](#4-configure-nginx)
-- [Conclusion](#conclusion)
+- [How to deploy Django in a subdirectory with Docker, NGINX and Whitenoise](#how-to-deploy-django-in-a-subdirectory-with-docker-nginx-and-whitenoise)
+  - [Introduction](#introduction)
+  - [My setup](#my-setup)
+  - [The problem](#the-problem)
+  - [The solution](#the-solution)
+    - [1. Configure django](#1-configure-django)
+    - [2. Configure Static Files](#2-configure-static-files)
+    - [3. Admin login](#3-admin-login)
+    - [4. Configure Nginx](#4-configure-nginx)
+  - [Conclusion](#conclusion)
 
 ## Introduction
 
