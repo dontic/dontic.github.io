@@ -1,7 +1,7 @@
 ---
 author: Daniel Garcia
 pubDatetime: 2024-10-15T15:07:17Z
-# modDatetime:
+modDatetime: 2025-03-12T12:00:00Z
 title: 'Centralize and visualize Docker logs in Grafana with Loki'
 featured: false
 draft: false
@@ -69,24 +69,25 @@ Paste the following content:
 # You can enable authentication to prevent unauthorized access to your logs
 auth_enabled: false
 
+# Ports
 server:
-  # This is the port where Loki will receive logs from Docker (or Promtail)
-  http_listen_port: 3100
-  # This is the port where Loki will expose its API
-  grpc_listen_port: 9096
+  http_listen_port: 3100 # Port where Loki will receive logs from Docker (or Promtail)
+  grpc_listen_port: 9096 # Port where Loki will expose its API
 
 common:
   instance_addr: 127.0.0.1
-  path_prefix: /tmp/loki
+  path_prefix: /loki/data # Loki will store its data in this directory, you can mount a volume here to persist the data
   storage:
     filesystem:
-      chunks_directory: /tmp/loki/chunks
-      rules_directory: /tmp/loki/rules
-  replication_factor: 1
+      chunks_directory: /loki/data/chunks
+      rules_directory: /loki/data/rules
+  replication_factor: 1 # This means that Loki will store only 1 copy of the data
   ring:
     kvstore:
-      store: inmemory
+      store: inmemory # Uses internal memory to store the ring (Loki's internal component for distributing work)
 
+# This part enables caching of query results to improve performance
+# It will use a max cache size of 100MB, increase as you see fit
 query_range:
   results_cache:
     cache:
@@ -96,16 +97,22 @@ query_range:
 
 schema_config:
   configs:
-    - from: 2020-10-24
-      store: tsdb
+    - from: 2020-10-24 # Schema applies to logs from this date onwards
+      store: tsdb # Use a time series database to store the data
       object_store: filesystem
       schema: v13
       index:
         prefix: index_
         period: 24h
 
+# This configures the ruler to send alerts to the alertmanager
 ruler:
   alertmanager_url: http://localhost:9093
+
+# Log retention to avoid running out of disk space
+# It will retain logs for 30 days (adjust as needed)
+limits_config:
+  retention_period: 720h
 ```
 
 ### 1.3 Create a `docker-compose.yaml` file
@@ -142,76 +149,23 @@ If you have servers in multiple locations (aws, digital ocean, home lab, etc), y
 
 Now you can point all your Docker servers to point to this Loki instance!
 
-## 2. Setting up the Docker Loki Docker plugin
+### 1.5 Exposing Loki to the internet
+
+If all your Docker servers are running in the same network, just note down the IP address of the server running Loki.
+
+If your Docker servers are running in an external server to where you installed Loki (i.e. Loki is in your Home Lab at home and your Docker server is in a cloud provider), you can expose Loki to the internet by running a reverse proxy.
+
+I won't go into detail on how to do this, there are many guides on using NGINX, Traefic, Cloudflare tunnels, etc. Just use what you're comfortable with.
+
+## 2. Setting up the Loki Docker plugin
 
 I'll assume you already have one or multiple Docker containers running in a server somewhere.
 
-You can repeat this step for every server you have running Docker containers.
+You can repeat this step for every server running Docker.
 
-### 2.1 Create the necessary files
+### 2.1 Install the Docker loki plugin
 
-What I like to do in my servers is to set up a directory only for this logging setup, so:
-
-```bash
-cd && mkdir promtail && cd promtail
-```
-
-In this directory you will need 2 files:
-
-- `promtail-config.yaml`
-- `docker-compose.yaml`
-
-### 2.2 `promtail-config.yaml`
-
-This file will tell Promtail where to look for the logs and where to send them.
-
-```yaml
-server:
-  http_listen_port: 9080
-  grpc_listen_port: 0
-
-positions:
-  # Temporary file to store the last read position for each log stream. Useful in case of a crash or restart.
-  filename: /tmp/positions.yaml
-
-clients:
-  # The URL where your Loki instance is running
-  - url: http://localhost:3100/loki/api/v1/push
-
-scrape_configs:
-  - job_name: docker
-    pipeline_stages:
-      - docker: {}
-    static_configs:
-      - labels:
-          job: docker
-          __path__: /var/lib/docker/containers/*/*-json.log
-```
-
-You can directly copy the code above, the only **important thing to change** is the `url` field in the `clients` section.
-
-The code above assumes you will run a Docker container running Loki in the same server as Promtail (thus the `localhost`). I, for instance, have Loki in my home lab running behind a reverse proxy, so I would change this to `https://myloki.mydomain.com/loki/api/v1/push`.
-
-### 2.3 `docker-compose.yaml`
-
-```yaml
-# docker-compose.yml
-
-services:
-  promtail:
-    image: grafana/promtail:latest
-    restart: unless-stopped
-    volumes:
-      - /var/log:/var/log
-      - ./promtail-config.yml:/etc/promtail/promtail-config.yml
-    command: -config.file=/etc/promtail/promtail-config.yml
-```
-
-This docker-compose file will start a Promtail container with the configuration file we just created.
-
-### 2.4 Install the Docker loki plugin
-
-This is the easiest part.
+This is the easiest part. Run the following command:
 
 ```bash
 docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-permissions
@@ -221,7 +175,9 @@ docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-
 
 If the command was successful, you should see the plugin listed when you run `docker plugin ls`.
 
-### 2.5 Configure the Docker daemon
+### 2.2 Configure the Docker daemon
+
+Now we need to tell Docker to use the Loki plugin to send the logs to Loki.
 
 We need to create a `daemon.json` file in `/etc/docker/` with the following content:
 
@@ -239,24 +195,16 @@ This tells Docker that it should use the loki log driver instead of the default 
 
 > Again, change the `loki-url` field to the correct URL for you.
 
-`loki-batch-size` is optional, but I like to set it to 400 to avoid sending too many requests to Loki.
+`loki-batch-size` is optional, but I like to set it to 400, meaning it will send 400 logs at a time to Loki. Not too many, not too few.
 
-### 2.6 Wait, if the Loki plugin sends the logs, why do we need Promtail?
+![Not Great Not Terrible](./not-great-not-terrible.gif)
 
-The Loki plugin will send the logs to Loki, but it won't keep track of the log position. This means that if Loki goes down, you will lose the logs that were sent while it was down.
+### 2.3 Restart Docker
 
-Promtail will keep track of the log position and send the logs to Loki when it's back up.
-
-### 2.7 Restart Docker
+This is the command for Ubuntu/Debian. If you're on a different OS, just Google how to restart the Docker service for your OS.
 
 ```bash
 sudo systemctl restart docker
-```
-
-### 2.8 Start promtail!
-
-```bash
-cd ~/promtail && docker compose up -d
 ```
 
 Great! Now we have all the Docker containers in this machine sending their logs to our Loki instance!
@@ -313,6 +261,6 @@ You can access Grafana at `http://your-server-ip:3000`.
 
 I love this setup, I deploy my stuff mainly with Docker and having all the logs centralized in a single place makes my life so much easier to debug and monitor.
 
-Hope you found this guide useful! If you have any questions or suggestions, feel free to reach out to me on [Twitter](https://twitter.com/onticdani)!
+It's also SUPER simple to query specific logs, if I need to see the logs of a full compose project, or a specific service or container, I can do it with a simple query.
 
-Also, if you want to learn more about how to query Loki logs in Grafana, check out [this article](https://daniel.es/blog/how-to-query-logs-in-grafana-loki/).
+Hope you found this guide useful! If you have any questions or suggestions, feel free to reach out to me on [X](https://x.com/onticdani)!
