@@ -2,7 +2,7 @@
 author: Daniel Garcia
 pubDatetime: 2024-10-15T15:07:17Z
 modDatetime: 2025-03-13T12:00:00Z
-title: 'Centralize and visualize Docker logs in Grafana with Loki'
+title: 'Master Docker logging with Loki and Grafana'
 featured: false
 draft: false
 category: tech
@@ -45,11 +45,11 @@ This has a few advantages:
 
 ## 1. Setting up Loki
 
-> If you already have a Loki instance and are only interested in setting up the Docker Loki plugin, you can skip this section.
+If you already have a Loki instance and are only interested in setting up the Docker Loki plugin, you can skip this section.
 
-As I said in the introduction, I like to set up everything in separate servers, so here's how I set up Loki in a Ubuntu server in my home lab.
+As I said in the introduction, I like to set up everything in separate servers (I use Proxmox LXCs for this), so here's how I set up Loki in a Ubuntu + Docker server in my home lab.
 
-Note that this setup also works if you want to do it all in one machine, it's just that you might want to set up loki and grafana in the same compose file.
+Note that this setup also works just fine if you want to do it all in one machine. Just set up the Loki and Grafana services in the same docker compose file.
 
 ### 1.1 Create a directory for our configuration files
 
@@ -63,31 +63,26 @@ cd && mkdir loki && cd loki
 nano loki-config.yaml
 ```
 
-Paste the following content:
+This is the configuration code for loki. I explain what each part does below.
 
 ```yaml
-# You can enable authentication to prevent unauthorized access to your logs
 auth_enabled: false
 
-# Ports
 server:
-  http_listen_port: 3100 # Port where Loki will receive logs from Docker (or Promtail)
-  grpc_listen_port: 9096 # Port where Loki will expose its API
+  http_listen_port: 3100
 
 common:
+  path_prefix: /tmp/loki
   instance_addr: 127.0.0.1
-  path_prefix: /loki/data # Loki will store its data in this directory, you can mount a volume here to persist the data
   storage:
     filesystem:
-      chunks_directory: /loki/data/chunks
-      rules_directory: /loki/data/rules
-  replication_factor: 1 # This means that Loki will store only 1 copy of the data
+      chunks_directory: /tmp/loki/chunks
+      rules_directory: /tmp/loki/rules
+  replication_factor: 1
   ring:
     kvstore:
-      store: inmemory # Uses internal memory to store the ring (Loki's internal component for distributing work)
+      store: inmemory
 
-# This part enables caching of query results to improve performance
-# It will use a max cache size of 100MB, increase as you see fit
 query_range:
   results_cache:
     cache:
@@ -97,23 +92,120 @@ query_range:
 
 schema_config:
   configs:
-    - from: 2020-10-24 # Schema applies to logs from this date onwards
-      store: tsdb # Use a time series database to store the data
+    - from: 2020-05-15
+      store: tsdb
       object_store: filesystem
       schema: v13
       index:
         prefix: index_
         period: 24h
 
-# This configures the ruler to send alerts to the alertmanager
 ruler:
   alertmanager_url: http://localhost:9093
 
-# Log retention to avoid running out of disk space
-# It will retain logs for 30 days (adjust as needed)
+analytics:
+  reporting_enabled: false
+
 limits_config:
-  retention_period: 720h
+  retention_period: 30d
+
+compactor:
+  working_directory: /tmp/loki/retention
+  delete_request_store: filesystem
+  retention_enabled: true
+  retention_delete_delay: 2h
 ```
+
+#### What does each part do?
+
+- ```yaml
+  auth_enabled: false
+  ```
+
+  If Loki requires authentication or not. If you're exposing Loki through a reverse proxy or something similar to the internet, you should enable this.
+
+- ```yaml
+  server:
+    http_listen_port: 3100
+  ```
+
+  The port where Loki will receive logs from Docker (or Promtail) and also make them accessible to Gragana.
+
+- ```yaml
+  common:
+    path_prefix: /tmp/loki
+    instance_addr: 127.0.0.1
+    storage:
+      filesystem:
+        chunks_directory: /tmp/loki/chunks
+        rules_directory: /tmp/loki/rules
+    replication_factor: 1
+    ring:
+      kvstore:
+        store: inmemory
+  ```
+
+  This section tells Loki to store everything in the `/tmp/loki` directory.
+
+  That it is running in the local machine (127.0.0.1) and that it should use the `filesystem` (which just means the local disk) as the storage engine.
+
+  We also tell it to just save 1 replica of the data and that it should use an in-memory ring to store the data until it's saved to disk.
+
+- ```yaml
+  query_range:
+    results_cache:
+      cache:
+        embedded_cache:
+          enabled: true
+          max_size_mb: 100
+  ```
+
+  This section tells Loki to cache the results of queries in memory. This is optional, but I like to have it enabled since it improves performance when querying the logs from Grafana.
+
+  The `max_size_mb` is the maximum size of the cache in megabytes. The docs state 100 MB is a good starting point, adjust this as needed.
+
+- ```yaml
+  schema_config:
+    configs:
+      - from: 2020-05-15
+        store: tsdb
+        object_store: filesystem
+        schema: v13
+        index:
+          prefix: index_
+          period: 24h
+  ```
+
+  This is the schema for the logs. It tells Loki to accept logs from a specific date onwards (I usually just set a random date in the past since all my logs will be from the here on out).
+
+  It tells it to use the `tsdb` storage engine (time series database). We also tell it to use the `filesystem` to store other data.
+
+  In the index section, we tell Loki to use the `index_` prefix for the index files and to do so every 24 hours.
+
+- ```yaml
+  ruler:
+    alertmanager_url: http://localhost:9093
+
+  analytics:
+    reporting_enabled: false
+  ```
+
+  Here we're telling Loki to use the local alertmanager instance and to not report any analytics since I'm not going to use them.
+
+- ```yaml
+  limits_config:
+    retention_period: 30d
+
+  compactor:
+    working_directory: /tmp/loki/retention
+    delete_request_store: filesystem
+    retention_enabled: true
+    retention_delete_delay: 2h
+  ```
+
+  Finally, we tell Loki to keep the logs for 30 days and to delete older logs. We set a delay of 2 hours for the deletion.
+
+  Note that `limits_config` won't work unless we set up the compactor. The compactor does what the name sugests, it compacts the logs into chunks and is in charge of deleting old data.
 
 ### 1.3 Create a `docker-compose.yaml` file
 
@@ -126,14 +218,22 @@ Paste the following content:
 ```yaml
 services:
   loki:
+    restart: unless-stopped
     image: grafana/loki:latest
-    volumes:
-      - ./loki-config.yml:/etc/loki/loki-config.yml
     ports:
       - '3100:3100'
-    restart: unless-stopped
-    command: -config.file=/etc/loki/loki-config.yml
+    volumes:
+      - ./loki-config.yml:/etc/loki/local-config.yaml
+      - loki-data:/loki
+    command: -config.file=/etc/loki/local-config.yaml
+
+volumes:
+  loki-data:
 ```
+
+Here we expose the http port for Loki and tell Docker to use the `loki-config.yaml` file for the configuration.
+
+We also create a volume for the data generated by Loki so it can persist even if the container is removed.
 
 > Even though you could run this single container with `docker run`, I like to use `docker-compose` so I don't have to remember the command to start the container.
 
