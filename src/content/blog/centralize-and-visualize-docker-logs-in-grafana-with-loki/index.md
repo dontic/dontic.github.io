@@ -268,8 +268,10 @@ You can repeat this step for every server running Docker.
 This is the easiest part. Run the following command:
 
 ```bash
-docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-permissions
+docker plugin install grafana/loki-docker-driver:3.3.2-amd64 --alias loki --grant-all-permissions
 ```
+
+> Change `-amd64` to `-arm64` in the image tag for ARM64 hosts.
 
 > Check [here](https://grafana.com/docs/loki/latest/send-data/docker-driver/) for the latest version of this command.
 
