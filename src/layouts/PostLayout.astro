@@ -2,6 +2,8 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
+import importImage from '~/utils/importImage';
+import { Image } from 'astro:assets';
 
 // Define the props type
 export interface Props {
@@ -24,6 +26,7 @@ const metadata = {
   ogImagePath: ogImage,
   canonicalUrl: canonicalUrl,
 };
+
 // Format dates
 const formatDate = (date: Date) => {
   return date.toLocaleDateString('en-US', {
@@ -32,6 +35,12 @@ const formatDate = (date: Date) => {
     day: 'numeric',
   });
 };
+
+// Import the ogImage dynamically if it's provided
+let ogImageImage: ImageMetadata | undefined;
+if (ogImage) {
+  ogImageImage = await importImage(ogImage);
+}
 ---
 
 <PageLayout metadata={metadata}>
@@ -86,10 +95,10 @@ const formatDate = (date: Date) => {
     </div>
 
     {
-      post.data.ogImage && (
+      ogImageImage && (
         <div class="mb-6">
-          <img
-            src={post.data.ogImage}
+          <Image
+            src={ogImageImage}
             alt={`Cover image for ${title}`}
             class="rounded-lg w-full max-h-[400px] object-cover shadow-md"
           />
