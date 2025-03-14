@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "devto-sync": "node scripts/devto-sync.js"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
@@ -21,7 +22,9 @@
   },
   "devDependencies": {
     "@iconify-json/tabler": "^1.2.17",
+    "@sinedied/devto-cli": "^1.4.0",
     "@tailwindcss/typography": "^0.5.16",
+    "gray-matter": "^4.0.3",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1"
   }
