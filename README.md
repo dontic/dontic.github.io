@@ -6,7 +6,16 @@ My Personal Blog
 
 Created a functionality to automatically sync certain articles with dev.to
 
-**Steps:**
+**Setup:**
+
+- Ensure you have the following variables in an `.env` file:
+  ```text
+  DEVTO_TOKEN=123456
+  DEVTO_REPO=<github username>/<github repo>
+  DEVTO_BRANCH=<branch name>
+  ```
+
+**Steps to generate and push articles:**
 
 1. Create a blog post like usual.
 2. Set the flag `deto_sync: true` in the front matter.
