@@ -18,6 +18,26 @@ function formatDate(dateStr) {
   return date.toISOString();
 }
 
+// Function to generate table of contents
+function generateTableOfContents(markdown) {
+  const toc = ['## Table of Contents\n'];
+  const lines = markdown.split('\n');
+
+  lines.forEach((line) => {
+    if (line.startsWith('## ')) {
+      const title = line.replace('## ', '').trim();
+      const anchor = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      toc.push(`- [${title}](#${anchor})`);
+    } else if (line.startsWith('### ')) {
+      const title = line.replace('### ', '').trim();
+      const anchor = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      toc.push(`  - [${title}](#${anchor})`);
+    }
+  });
+
+  return toc.join('\n') + '\n\n';
+}
+
 // Function to transform frontmatter to dev.to format
 function transformFrontmatter(frontmatter, blogDir, existingFrontmatter = {}) {
   const coverImagePath = path.join(BLOG_DIR, blogDir, 'cover.png');
@@ -96,11 +116,15 @@ async function processBlogPosts() {
     // Update image references
     const updatedContent = updateImageReferences(markdown, dir);
 
+    // Generate and insert table of contents
+    const toc = generateTableOfContents(updatedContent);
+    const contentWithToc = toc + updatedContent;
+
     // Create new markdown content
-    const newContent = matter.stringify(updatedContent, transformedFrontmatter);
+    const newContent = matter.stringify(contentWithToc, transformedFrontmatter);
 
     // Only write if content has changed
-    if (hasContentChanged(updatedContent, outputPath, dir)) {
+    if (hasContentChanged(contentWithToc, outputPath, dir)) {
       fs.writeFileSync(outputPath, newContent);
       console.log(`Processed ${dir}`);
     } else {
