@@ -1,21 +1,32 @@
 ---
-category: tech
-title: 'Automatically build Docker images with GitHub Actions'
-description: 'Learn how to build Docker images using GitHub Actions'
-author: Daniel Garcia
-pubDatetime: 2024-04-08T12:00:00Z
-modDatetime: 2025-03-12T12:00:00Z
-featured: false
-draft: false
+devto_sync: true
+title: Automatically build Docker images with GitHub Actions
+description: Learn how to build Docker images using GitHub Actions
+published: true
 tags:
   - docker
   - github
   - webdev
   - githubactions
-ogImage: /src/content/blog/automatically-build-docker-images-with-github-actions/cover.png
-# canonicalUrl:
-devto_sync: true
+date: '2024-04-08T12:53:01Z'
+cover_image: ../src/content/blog/automatically-build-docker-images-with-github-actions/cover.png
+canonical_url: 'https://daniel.es/blog/automatically-build-docker-images-with-github-actions/'
+id: 1803957
 ---
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Setting up a Self Hosted Runner](#setting-up-a-self-hosted-runner)
+- [Structure of a GitHub Action](#structure-of-a-github-action)
+  - [A (simple) GitHub action has 4 main parts:](#a-simple-github-action-has-4-main-parts-)
+- [GitHub Action to build Docker Images](#github-action-to-build-docker-images)
+  - [Process overview & trigger conditions](#process-overview-trigger-conditions)
+  - [1. Environment variables and secrets](#1-environment-variables-and-secrets)
+  - [2. Triggers](#2-triggers)
+  - [4. Job Setup](#4-job-setup)
+- [Full GitHub Actions template to release a docker image](#full-github-actions-template-to-release-a-docker-image)
+- [Conclusion](#conclusion)
+
 
 ## Introduction
 
@@ -32,14 +43,14 @@ When I released a new version of a web app, this was the process I followed, whi
 9. Go back to the server and pull from the registry
 10. Realize you did not update an environment variable
 11. **AGHHHJJJ!!!**
-12. ![Flip Table Gif](./tableflip.webp)
+12. ![Flip Table Gif](../src/content/blog/automatically-build-docker-images-with-github-actions/tableflip.webp)
 
 **Here's how I do it now:**
 
 1. Push a new release tag. i.e. `v1.0.1` from any branch I like
 2. That's it!
 
-![Happy Programer](./happy.gif)
+![Happy Programer](../src/content/blog/automatically-build-docker-images-with-github-actions/happy.gif)
 
 ---
 
@@ -65,16 +76,16 @@ Since I already have a home lab and setting up a runner is quite easy, self host
 1. Select the OS you want your runner to be. I'm a fan of Ubuntu and I can pretty much do everything I need with it, so I went with a Linux runner.
 2. Make sure you have any necessary packages installed in the runner. For my use case I would need to install Docker first.
 3. Go to your GitHub repo, then Settings
-   ![GitHub repo settings icon](./repo-settings.png)
+   ![GitHub repo settings icon](../src/content/blog/automatically-build-docker-images-with-github-actions/repo-settings.png)
 4. In the left panel hit **Actions** and then **Runners**
-   ![GitHub actions location in side menu](./repo-actions-runners.png)
+   ![GitHub actions location in side menu](../src/content/blog/automatically-build-docker-images-with-github-actions/repo-actions-runners.png)
 5. Select **New self-hosted Runner**
-   ![New self-hosted runner button](./new-self-hosted-runner.png)
+   ![New self-hosted runner button](../src/content/blog/automatically-build-docker-images-with-github-actions/new-self-hosted-runner.png)
 6. Select the OS you want to use and architecture
-   ![OS runner Options](./runner-os-options.png)
+   ![OS runner Options](../src/content/blog/automatically-build-docker-images-with-github-actions/runner-os-options.png)
 7. Follow the terminal commands displayed below your selection to finish setting up your runner. I do not want to post the commands here since GitHub updates them every once in a while, so just follow their instructions over there.
 8. Once you finish setting the runner up in your Linux machine you should see it in the Runners page from before and you're ready to use it!
-   ![Runner idle card](./runner-idle-card.png)
+   ![Runner idle card](../src/content/blog/automatically-build-docker-images-with-github-actions/runner-idle-card.png)
 
 ---
 

@@ -1,21 +1,39 @@
 ---
-category: tech
-title: 'Master Docker logging with Loki and Grafana'
-description: 'Learn how to centralize and visualize Docker logs in Grafana with Loki with a easy step by step guide'
-author: Daniel Garcia
-pubDatetime: 2024-10-15T15:07:17Z
-modDatetime: 2025-03-13T12:00:00Z
-featured: false
-draft: false
+devto_sync: true
+title: Master Docker logging with Loki and Grafana
+description: Learn how to centralize and visualize Docker logs in Grafana with Loki with a easy step by step guide
+published: true
 tags:
   - webdev
   - docker
   - grafana
   - loki
-ogImage: /src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/cover.png
-# canonicalUrl:
-devto_sync: true
+date: '2024-10-15T16:31:06Z'
+cover_image: ../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/cover.png
+canonical_url: 'https://daniel.es/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/'
+id: 2039433
 ---
+## Table of Contents
+
+- [Introduction](#introduction)
+  - [My approach](#my-approach)
+- [How does it work?](#how-does-it-work-)
+- [1. Setting up Loki](#1-setting-up-loki)
+  - [1.1 Create a directory for our configuration files](#1-1-create-a-directory-for-our-configuration-files)
+  - [1.2 Create a `loki-config.yaml` file](#1-2-create-a-loki-config-yaml-file)
+  - [1.3 Create a `docker-compose.yaml` file](#1-3-create-a-docker-compose-yaml-file)
+  - [1.4 Start Loki!](#1-4-start-loki-)
+  - [1.5 Exposing Loki to the internet](#1-5-exposing-loki-to-the-internet)
+- [2. Setting up the Loki Docker plugin](#2-setting-up-the-loki-docker-plugin)
+  - [2.1 Install the Docker loki plugin](#2-1-install-the-docker-loki-plugin)
+  - [2.2 Configure the Docker daemon](#2-2-configure-the-docker-daemon)
+  - [2.3 Restart Docker](#2-3-restart-docker)
+- [3 Grafana!](#3-grafana-)
+  - [3.1 Install Grafana](#3-1-install-grafana)
+  - [3.2 Connect Grafana to Loki](#3-2-connect-grafana-to-loki)
+  - [3.3 Query the logs](#3-3-query-the-logs)
+- [Conclusion](#conclusion)
+
 
 ## Introduction
 
@@ -35,7 +53,7 @@ I.e.: You can have promtail in a server running Docker containers for a web app,
 
 The set up is really similar to the one I wrote about in the previous article, but with a few differences:
 
-![Setup overview](./setup.png)
+![Setup overview](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/setup.png)
 
 The main difference is that, with this setup, we have the Docker daemon sending the logs directly to Loki, without having to configure Promtail at all!
 
@@ -301,7 +319,7 @@ This tells Docker that it should use the loki log driver instead of the default 
 
 `loki-batch-size` is optional, but I like to set it to 400, meaning it will send 400 logs at a time to Loki. Not too many, not too few.
 
-![Not Great Not Terrible](./not-great-not-terrible.gif)
+![Not Great Not Terrible](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/not-great-not-terrible.gif)
 
 ### 2.3 Restart Docker
 
@@ -343,15 +361,15 @@ You can access Grafana at `http://your-server-ip:3000`.
 
 3. Search for "Loki":
 
-   ![Loki data source](./loki-datasource.png)
+   ![Loki data source](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/loki-datasource.png)
 
 4. Fill in a name and the url of your Loki instance:
 
-   ![Loki data source details](./loki-datasource-details.png)
+   ![Loki data source details](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/loki-datasource-details.png)
 
 5. Click on "Save & Test". You should see a message saying everything is working correctly.
 
-   ![Loki data source test](./save-test.png)
+   ![Loki data source test](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/save-test.png)
 
 ### 3.3 Query the logs
 
@@ -359,11 +377,11 @@ You can access Grafana at `http://your-server-ip:3000`.
 
 2. Select your Loki source at the top:
 
-   ![Select Loki source](./loki-source.png)
+   ![Select Loki source](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/loki-source.png)
 
 3. 🎉 Now comes the super cool part of this setup. You can query the logs by container name, compose project, etc.:
 
-   ![Query logs](./query-logs.png)
+   ![Query logs](../src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/query-logs.png)
 
    This is the best part of this setup, as you can really easily see the logs of a specific container without having to sort through hundreds of files and weird configurations.
 
