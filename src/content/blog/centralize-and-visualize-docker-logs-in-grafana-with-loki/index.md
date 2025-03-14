@@ -1,18 +1,20 @@
 ---
+category: tech
+title: 'Master Docker logging with Loki and Grafana'
+description: 'Learn how to centralize and visualize Docker logs in Grafana with Loki with a easy step by step guide'
 author: Daniel Garcia
 pubDatetime: 2024-10-15T15:07:17Z
 modDatetime: 2025-03-13T12:00:00Z
-title: 'Master Docker logging with Loki and Grafana'
 featured: false
 draft: false
-category: tech
 tags:
-  - WebDev
-  - Docker
-  - Grafana
-  - Loki
-description: 'Learn how to centralize and visualize Docker logs in Grafana with Loki with a easy step by step guide'
+  - webdev
+  - docker
+  - grafana
+  - loki
 ogImage: /src/content/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/cover.png
+# canonicalUrl:
+devto_sync: true
 ---
 
 ## Introduction
@@ -308,6 +310,12 @@ This is the command for Ubuntu/Debian. If you're on a different OS, just Google 
 ```bash
 sudo systemctl restart docker
 ```
+
+> IMPORTANT!
+>
+> Seems that the Loki plugin won't send logs for existing docker containers.
+>
+> You will have to re-create existing containers for them to start sending logs to loki. Not just restart them. You can use the docker flag `--force-recreate` for this task.
 
 Great! Now we have all the Docker containers in this machine sending their logs to our Loki instance!
 
