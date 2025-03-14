@@ -1,18 +1,20 @@
 ---
+category: tech
+title: 'Automatically build Docker images with GitHub Actions'
+description: 'Learn how to build Docker images using GitHub Actions'
 author: Daniel Garcia
 pubDatetime: 2024-04-08T12:00:00Z
 modDatetime: 2025-03-12T12:00:00Z
-title: 'Automatically build Docker images with GitHub Actions'
 featured: false
 draft: false
-category: tech
 tags:
   - docker
   - github
   - webdev
-  - github actions
-description: 'Learn how to build Docker images using GitHub Actions'
+  - githubactions
 ogImage: /src/content/blog/automatically-build-docker-images-with-github-actions/cover.png
+# canonicalUrl:
+devto_sync: true
 ---
 
 ## Introduction
