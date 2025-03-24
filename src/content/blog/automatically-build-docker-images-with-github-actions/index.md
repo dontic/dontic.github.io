@@ -39,6 +39,8 @@ When I released a new version of a web app, this was the process I followed, whi
 1. Push a new release tag. i.e. `v1.0.1` from any branch I like
 2. That's it!
 
+> This works perfectly with [the perfect Git strategy](/blog/the-perfect-git-strategy/)
+
 ![Happy Programer](./happy.gif)
 
 ---
@@ -215,7 +217,7 @@ Please, for the love of God, DO NOT PUT THESE IN YOUR WORKFLOW FILE.
 
 ### 2. Triggers
 
-I want not only for the action to be triggered on push to `release` branches but also manually.
+I want not only for the action to be triggered when I push a version tag, but also manually.
 
 ```yml
 name: Build release Docker image
@@ -223,7 +225,7 @@ name: Build release Docker image
 on:
   # Trigger the action manually from the UI
   workflow_dispatch:
-  # Trigger the action when a vX.X.X tag is pushed
+  # Trigger the action when a version tag is pushed
   push:
     tags:
       - 'v*'
