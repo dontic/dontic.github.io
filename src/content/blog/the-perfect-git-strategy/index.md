@@ -10,7 +10,7 @@ draft: false
 tags:
   - git
   - webdev
-  - ci/cd
+  - cicd
 ogImage: /src/content/blog/the-perfect-git-strategy/cover.png
 # canonicalUrl:
 devto_sync: true
@@ -46,7 +46,7 @@ That's it!
 
 This would be the sweet spot of this strategy:
 
-![The sweet spot](sweet-spot.png)
+![The sweet spot](./sweet-spot.png)
 
 But of course life is never this easy, and wheneve a feature is deployed it often comes with its bugs that we need to fix.
 
@@ -67,7 +67,7 @@ Here are the steps:
 
 It's all much clearer with a diagram:
 
-![Advanced overview](advanced-overview.png)
+![Advanced overview](./advanced-overview.png)
 
 ## Conclusions
 
