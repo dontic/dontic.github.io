@@ -70,6 +70,14 @@ function updateImageReferences(content, blogDir) {
   return content;
 }
 
+// Function to transform local links to fully qualified URLs
+function transformLocalLinks(content) {
+  // Replace links that start with / to use the full domain
+  return content.replace(/\[([^\]]+)\]\(\/([^)]+)\)/g, (match, text, url) => {
+    return `[${text}](https://daniel.es/${url})`;
+  });
+}
+
 // Function to check if content has changed
 function hasContentChanged(newMarkdown, existingPath, blogDir) {
   if (!fs.existsSync(existingPath)) return true;
@@ -114,7 +122,10 @@ async function processBlogPosts() {
     const transformedFrontmatter = transformFrontmatter(frontmatter, dir, existingFrontmatter);
 
     // Update image references
-    const updatedContent = updateImageReferences(markdown, dir);
+    let updatedContent = updateImageReferences(markdown, dir);
+
+    // Transform local links to fully qualified URLs
+    updatedContent = transformLocalLinks(updatedContent);
 
     // Generate and insert table of contents
     const toc = generateTableOfContents(updatedContent);
