@@ -36,7 +36,7 @@ When I released a new version of a web app, this was the process I followed, whi
 
 **Here's how I do it now:**
 
-1. Push a new release tag. i.e. `v1.0.1` from any branch I like
+1. Push a new semantic versioning ([semver](https://semver.org/)) release tag. i.e. `1.0.1` from any branch I like
 2. That's it!
 
 > This works perfectly with [the perfect Git strategy](/blog/the-perfect-git-strategy/)
@@ -47,7 +47,7 @@ When I released a new version of a web app, this was the process I followed, whi
 
 ## Setting up a Self Hosted Runner
 
-> If you already know about GitHub actions and just want to know how to build docker images, proceed to [GitHub Action to build Docker Images](#github-action-to-build-docker-images)
+> If you already know everything about GitHub actions and just want to know how the structure to build docker images, proceed to [GitHub Action to build Docker Images](#github-action-to-build-docker-images)
 
 **Definition**: A runner is an instance that _runs_ whatever you want in your GitHub action. From making it print `Hello World` to building and deploying apps, to making you coffee (seriously). Think of it as a user that runs whatever you tell it to in a remote server (linux, windows...).
 
@@ -169,17 +169,17 @@ You can set up as many jobs and steps as you like in a single action file.
 
 In this section I will show you how to build a docker image from a `Dockerfile` and push it to Dockerhub or your private Docker Registry. All by just creating a version tag.
 
-### Process overview & trigger conditions
+### Process overview & requirements
 
-First, check that your self-hosted runner is running and available in the repository you want to do this, and that you understand [the structure of a GitHub action](#structure-of-a-github-action).
+First, if you're using a self-hosted runner, check that it's running and available in the repository you want to have this on. And that you understand [the structure of a GitHub action](#structure-of-a-github-action).
 
-**Here are the conditions:**
+**Here are the requirements:**
 
-When I push a version tag, I want to get the version name (i.e.: `v1.0.1` &rarr; `1.0.1`), then build the Docker image and tag it with that version number as well as the latest tag (i.e.: `my-image:1.0.1` and `my-image:latest`).
+When I push a version tag, I want to get the version name (i.e.: `1.0.1`), then build the Docker image and tag it with that version number as well as the `latest` tag (i.e.: `my-image:1.0.1` and `my-image:latest`).
 
-After this, I want to push the image to a private Docker Registry I self-host and remove all data from the runner.
+After this, I want to push the image to a private Docker Registry I self-host and remove all data from the runner. But you can also do this to push the docker image to DockerHub.
 
-I also want to store the build cache so that consequent builds are faster.
+I also want to store the build cache so that future images build faster.
 
 **Here's the process overview:**
 
@@ -228,7 +228,7 @@ on:
   # Trigger the action when a version tag is pushed
   push:
     tags:
-      - 'v*'
+      - '[0-9]+.[0-9]+.[0-9]+' # Push events to matching numeric semver tags, i.e., 1.0.0, 20.15.10
 ```
 
 ### 4. Job Setup
@@ -284,16 +284,12 @@ Like GitHub, Docker provides their own set of ready-to-use steps, in this case t
 
 #### 4.4 Get the version number
 
-Here I just get the tag name (`vX.X.X`) and ensure it has the `X.X.X` format (this is called semver)
+Here I just get the tag name (`X.Y.Z`). Since we constrained the triggers to only trigger on numeric semver tags, we confidently know that the tag will be in the right format: `X.Y.Z`.
 
 ```yml
 - name: Get the tag name
   id: get_version
   run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
-- name: Coerce version tag to semver
-  id: coerce_version
-  run: echo "VERSION=$(echo ${{ steps.get_version.outputs.VERSION }} | sed 's/^v//')" >> $GITHUB_OUTPUT
 ```
 
 #### 4.5 Build and push the docker images
@@ -301,14 +297,14 @@ Here I just get the tag name (`vX.X.X`) and ensure it has the `X.X.X` format (th
 Docker provides a super convenient ready-to-use action for this step.
 
 ```yml
-- name: Build and push Landing Page Docker image
+- name: Build and Push the Docker Image
   uses: docker/build-push-action@v6
   with:
     context: .
     file: ./Dockerfile
     push: true
     tags: |
-      ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.coerce_version.outputs.VERSION }}
+      ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
       ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
     cache-from: type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache
     cache-to: type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache,mode=max
@@ -329,7 +325,7 @@ Here's the full action code. You can copy and paste it into your YML file and mo
 
 ```yml
 # This workflow will build a Docker image
-# and push it to a private docker registry when a release tag (i.e.: v1.0.1)
+# and push them to a private docker registry when a release tag (i.e.: 1.0.1)
 # is pushed to the repository.
 #
 # It runs on a self hosted runner.
@@ -347,11 +343,13 @@ env:
 name: Build and Push Docker Image
 
 # Triggers
-# Push on main
 on:
+  # Trigger the action manually from the UI
+  workflow_dispatch:
+  # Trigger the action when a version tag is pushed
   push:
     tags:
-      - 'v*' # Push events to matching v*, i.e., v1.0, v20.15.10
+      - '[0-9]+.[0-9]+.[0-9]+' # Push events to matching numeric semver tags, i.e., 1.0.0, 20.15.10
 
 jobs:
   build-and-push-landing-page:
@@ -378,10 +376,6 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
-      - name: Coerce version tag to semver
-        id: coerce_version
-        run: echo "VERSION=$(echo ${{ steps.get_version.outputs.VERSION }} | sed 's/^v//')" >> $GITHUB_OUTPUT
-
       - name: Build and push Landing Page Docker image
         uses: docker/build-push-action@v6
         with:
@@ -389,7 +383,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.coerce_version.outputs.VERSION }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ steps.get_version.outputs.VERSION }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
           cache-from: type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache,mode=max
