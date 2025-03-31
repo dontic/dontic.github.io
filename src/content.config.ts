@@ -7,8 +7,8 @@ import { glob, file } from 'astro/loaders';
 // 3. Define your collection(s)
 const blog = defineCollection({
   // `loader` can accept an array of multiple patterns as well as string patterns
-  // Load all markdown files in the space-probes directory, except for those that start with "voyager-"
-  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+  // Load all markdown and mdx files in the space-probes directory, except for those that start with "voyager-"
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
     category: z.enum(['tech', 'business', 'personal']),
     title: z.string(),
