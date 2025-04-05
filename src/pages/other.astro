@@ -7,10 +7,10 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-// Filter posts by those that have the tag 'business'
-const businessPosts = publishedPosts.filter((post) => post.data.category === 'business');
+// Filter posts by those that have the tag 'other'
+const otherPosts = publishedPosts.filter((post) => post.data.category === 'other');
 ---
 
 <PageLayout>
-  <PostsByYear posts={businessPosts} />
+  <PostsByYear posts={otherPosts} />
 </PageLayout>

@@ -5,7 +5,7 @@ pubDatetime: 2024-08-28T17:07:18Z
 title: "Red Flags in Startup Co-Founders: Lessons Learned from a Technical Founder's Journey"
 featured: true
 draft: false
-category: business
+category: entrepreneurship
 tags:
   - startup
   - cofounder

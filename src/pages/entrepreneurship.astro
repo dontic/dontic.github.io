@@ -7,10 +7,10 @@ const publishedPosts = await getCollection('blog', ({ data }) => {
   return data.draft !== true;
 });
 
-// Filter posts by those that have the tag 'personal'
-const personalPosts = publishedPosts.filter((post) => post.data.category === 'personal');
+// Filter posts by those that have the tag 'entrepreneurship'
+const entrepreneurshipPosts = publishedPosts.filter((post) => post.data.category === 'entrepreneurship');
 ---
 
 <PageLayout>
-  <PostsByYear posts={personalPosts} />
+  <PostsByYear posts={entrepreneurshipPosts} />
 </PageLayout>
