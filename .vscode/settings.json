@@ -1,6 +1,13 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["devto"],
+  "cSpell.words": [
+    "Aliexpress",
+    "devto",
+    "homelab",
+    "pfsense",
+    "Realtek",
+    "Wyse"
+  ],
   "[mdx]": {
     "editor.wordWrap": "on"
   }
