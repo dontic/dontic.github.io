@@ -14,7 +14,7 @@ export interface Props {
 const { post } = Astro.props;
 
 // Extract the post data
-const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl, category } = post?.data;
+const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl, category, tags } = post?.data;
 
 // Create metadata object to pass to PageLayout
 const metadata = {
@@ -116,6 +116,23 @@ if (ogImage) {
     >
       <slot />
     </div>
+
+    {/* Tags displayed at the bottom of the article */}
+    {
+      tags && tags.length > 0 && (
+        <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <span class="text-gray-700 dark:text-gray-300 font-medium">Tags:</span>
+          <div class="flex flex-wrap gap-2">
+            <Icon name="tabler:tags" class="w-5 h-5 mr-1" />
+            {tags.map((tag) => (
+              <span class="text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md text-xs">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      )
+    }
   </div>
 </PageLayout>
 
