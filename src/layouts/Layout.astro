@@ -45,8 +45,11 @@ if (metadata?.ogImagePath) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- Analytics -->
-    {import.meta.env.PROD && <script defer data-domain="daniel.es" src="https://vince.hlab.es/js/script.js" />}
+    {
+      import.meta.env.PROD && (
+        <script defer src="https://umami.hlab.es/cantcatchme" data-website-id="a64d6684-3021-407b-96ce-7347d7c50604" />
+      )
+    }
 
     <!-- Favicons -->
     <Favicons />
