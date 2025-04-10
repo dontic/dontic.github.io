@@ -67,7 +67,7 @@ if (metadata?.ogImagePath) {
         basic: {
           title: metadata?.title || SITE.title,
           type: 'website',
-          image: ogImage?.src || SITE.ogImage,
+          image: SITE.siteUrl + ogImage?.src || SITE.ogImage,
           url: metadata?.canonicalUrl || Astro.url.href,
         },
         optional: {
@@ -81,7 +81,7 @@ if (metadata?.ogImagePath) {
         site: SITE.twitter.site,
         title: metadata?.title || SITE.title,
         description: metadata?.description || SITE.description,
-        image: ogImage?.src || SITE.ogImage,
+        image: SITE.siteUrl + ogImage?.src || SITE.ogImage,
       }}
     />
 
