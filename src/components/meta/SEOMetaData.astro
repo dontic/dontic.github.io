@@ -17,7 +17,7 @@ const {
     title: SITE.title,
     description: SITE.description,
     type: 'website',
-    image: SITE.ogImage,
+    image: SITE.siteUrl + SITE.ogImage,
     url: canonical,
     siteName: SITE.title,
     locale: SITE.locale,
@@ -27,7 +27,7 @@ const {
     site: SITE.twitter.site,
     title: SITE.title,
     description: SITE.description,
-    image: SITE.ogImage,
+    image: SITE.siteUrl + SITE.ogImage,
   },
 }: MetaData = Astro.props;
 
