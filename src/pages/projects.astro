@@ -13,6 +13,13 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'AutoVisita',
+    description: 'Automating real estate leads in Spain.',
+    href: 'https://autovisita.es/',
+    initDate: new Date('2024-09-01'),
+    openSource: false,
+  },
+  {
     title: 'postifyAI',
     description: 'Automate your SEO content with AI.',
     href: 'https://postifyai.com/',
@@ -25,13 +32,6 @@ const projects: Project[] = [
     href: 'https://github.com/dontic/wayfinder',
     initDate: new Date('2021-05-01'),
     openSource: true,
-  },
-  {
-    title: 'AutoVisita',
-    description: 'Automating real estate leads in Spain.',
-    href: 'https://autovisita.es/',
-    initDate: new Date('2024-09-01'),
-    openSource: false,
   },
   {
     title: 'SynCal',
@@ -62,9 +62,9 @@ const projects: Project[] = [
 <PageLayout>
   <section id="hero">
     <h1 class="text-2xl font-bold">My Projects</h1>
-    <p class="my-4">
-      This is a list of projects I'm either working on or have worked on in the past. Some are open source, most are
-      entrepreneurial projects.
+    <p class="my-4">This is a list of projects I'm either working on or have worked on in the past.</p>
+    <p class="my-4 flex items-center">
+      <Icon name="tabler:brand-open-source" class="w-6 h-6 text-muted mr-1" /> - This icon means it's an open source project.
     </p>
   </section>
 
