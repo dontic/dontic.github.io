@@ -9,6 +9,7 @@ interface Project {
   initDate: Date;
   endDate?: Date;
   openSource?: boolean;
+  closedWhy?: string;
 }
 
 const projects: Project[] = [
@@ -47,6 +48,7 @@ const projects: Project[] = [
     initDate: new Date('2023-12-01'),
     endDate: new Date('2024-07-01'),
     openSource: false,
+    closedWhy: 'https://getemil.io/emilio-is-closing-down/',
   },
   {
     title: 'Fisy',
@@ -82,6 +84,21 @@ const projects: Project[] = [
               >
                 Open Source Project
               </span>
+            </div>
+          )}
+          {project.endDate && (
+            <div class="absolute top-0 right-0 bg-gray-500 text-white py-1 px-4 rounded-bl-md transform rotate-0 shadow-md">
+              Closed
+              {project.closedWhy && (
+                <a
+                  href={project.closedWhy}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="absolute -bottom-6 right-0 text-xs bg-gray-700 text-white px-2 py-1 rounded-bl-md rounded-br-md shadow-md hover:bg-gray-800"
+                >
+                  Why?
+                </a>
+              )}
             </div>
           )}
           <div class="p-6 h-full flex flex-col">
