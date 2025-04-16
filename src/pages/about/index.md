@@ -16,7 +16,7 @@ I've worked at companies like [Tesla](https://www.tesla.com/) and [Correos](http
 
 Now I'm a full time entrepreneur, working on several [projects](/projects/) with the aim to help companies and people automate tasks and save time.
 
-This is my little corner of the interner where [I share my learnings and thoughts](/blog/), both technical and business related, from all my past and current experiences.
+This is my little corner of the internet where [I share my learnings and thoughts](/blog/), both technical and business related, from all my past and current experiences.
 
 Feel free to reach out on [X](https://x.com/onticdani) or [Linkedin](https://www.linkedin.com/in/gsdaniel/).
 
