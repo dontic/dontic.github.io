@@ -1,0 +1,97 @@
+---
+category: tech
+title: 'La Liga vs. Cloudflare war and what you can do about it'
+description: "The whole La Liga vs. Cloudflare war explained, how it's affecting thousands of businesses and what you can do about it"
+author: Daniel Garcia
+pubDatetime: 2025-05-11T12:00:00Z
+# modDatetime: 2025-03-12T12:00:00Z
+featured: false
+draft: false
+tags:
+  - 'la liga'
+  - cloudflare
+  - tebas
+ogImage: /src/content/blog/cloudflare-vs-la-liga/cover.png
+# canonicalUrl:
+devto_sync: false
+---
+
+## Introduction
+
+In the past few months there's been a war over internet censorship in Spain.
+
+[Javier Tebas](https://wikipedia.org/wiki/Javier_Tebas), the president of La Liga (the Spanish football league), in his atempt to fight illegal football streaming sites, asked a judge to [pass an order for all ISPs in Spain to instantly block any IP's](https://www.poderjudicial.es/search/AN/openDocument/766326fb999ba14aa0a8778d75e36f0d/20250331) the company (La Liga) wants, at any given time, with the sole condition that they **shouldn't affect third parties** (forshadowing...).
+
+This means that the La Liga team, when there's a football match, identify a list of IPs from known piracy sites and passes them to all Spanish ISP's to block said IPs.
+
+In principle this is all ok. The issue comes when the La Liga team has (or pretends to not have) any IT knowledge and sends over a **list to block most Cloudflare IP's**, effectively blocking half of the internet in the country.
+
+There's been a lot of outroar online:
+
+- Many people (including myself) complaining they haven't been able to use some online services while the block is active.
+- Cloudflare, together with RootedCon (a Spanish cybersecurity organisation) [had presented an appeal to this order to the same judge and got rejected](https://x.com/jaumepons/status/1904906677335245294).
+- Vercel got majorly affected by this and [their CEO spoke out](https://vercel.com/blog/update-on-spain-and-laliga-blocks-of-the-internet).
+- Many businesses and government sites are being actively blocked like [this](https://x.com/mariomnts/status/1921264388461244714), [this](https://x.com/ingebau/status/1921308962818805932) and [this](https://x.com/Kildos19/status/1921574002671194308).
+
+Even with all this, they have doubled down and won't budge. Javier Tebas said in a public interview that only "4 freaks" were complaining about it and only piracy sites are affected.
+
+Spanish politicians are not doing anything either and have not spoken out about this matter.
+
+Worst part? This isn't even true. A simple VPN can bypass this and people can continue to watch illegal streams just fine.
+
+## What does this mean?
+
+Apart from third parties being affected by this, there is a bigger issue:
+
+> People with influence can actively pass illegal measures and there is nothing the public can do about it.
+
+This type of unjustified, country-wide internet censorship should not be possible or tolerable. Especially when so many businesses are being affected.
+
+> It's not that they are doing it, it's that they **CAN** do it
+
+## How to check if your site is affected by La Liga IP block
+
+[Alejandro](https://x.com/iamzenitram) has made a super useful site to track the blocked IPs and added a cheker where you can input your site or app and see if it's affected:
+
+[Hay Ahora Futbol](https://hayahora.futbol/)
+
+## What can you do about it?
+
+Seeing how the judge that passed the order and refused the appeal from Cloudflare might be corrupted and influenced by Javier Tebas, there are two routes:
+
+- Elevate this case to the consitutional court of Spain (hard)
+- Complain en-masse to the European Commission (easy)
+
+The first one has not yet been carried out by anyone due to the energy, money and time that it requires.
+
+The second one can be done by anyone:
+
+### How to send a complaint to the European Commission
+
+1. Go to [https://ec.europa.eu/law/application-eu-law/report-breach/es/check-your-criteria](https://ec.europa.eu/law/application-eu-law/report-breach/es/check-your-criteria)
+
+2. **Check if your complaint is valid** - You will be asked a series of questions to confirm if the Commission is competent in your case. For example:
+
+   - Is the complaint against an EU country? ✅ (Yes, in this case Spain).
+   - Is it against an incorrect application of EU law? ✅ (Yes, for possible violation of Regulation 2022/612)
+
+3. **Click on “Make a complaint”** - Once you confirm the criteria, you will see a button that allows you to start the process.
+
+4. **Fill in the form** - You will have to fill in the following:
+
+   - Your personal details (you can keep them confidential)
+   - The national authority involved (e.g. Ministry of Culture, CNMC, courts or even internet providers)
+   - A clear description of the facts: explain how the massive IP blocking affects legitimate sites that you use, without being related to piracy.
+   - Cite the regulation you consider violated: Regulation 2022/612, articles on net neutrality and non-discriminatory access to the internet.
+
+5. **Attach evidence if you have it** - If you can, include screenshots, lists of affected IPs, communications with your provider, etc.
+
+6. **Submit the complaint** - After reviewing everything, you can submit the form and you will receive a reference number. The Commission will assess whether to initiate infringement proceedings against the Member State.
+
+(Visit [revistacloud.com](https://revistacloud.com/como-presentar-una-denuncia-ante-la-comision-europea-si-crees-que-el-bloqueo-de-ips-en-espana-vulnera-tus-derechos-digitales/) for more details on the process)
+
+## Conclusions and notes
+
+We shouldn't let high ranking people, corrupt judges/politicians or any other person with power pass illegal measures like these.
+
+If you want to follow the latest news on this I recommend following [Jaume on X](https://x.com/jaumepons) as he's actively speaking out and tracking all the IPs and services being blocked.
