@@ -327,6 +327,7 @@ if (ogImage) {
     updateActiveTocItem();
     handleResponsiveDisplay();
     adjustScrollForHeaderHeight();
+    enhanceProseLinks();
   });
 
   // Also run it immediately if DOM is already loaded
@@ -334,6 +335,7 @@ if (ogImage) {
     generateTableOfContents(TOC_CONFIG.maxLevel);
     handleResponsiveDisplay();
     adjustScrollForHeaderHeight();
+    enhanceProseLinks();
   }
 
   // Update active TOC item on scroll
@@ -531,5 +533,43 @@ if (ogImage) {
     enhanceCodeBlocks();
     generateTableOfContents();
     handleResponsiveDisplay();
+  }
+
+  /** Make all external links in the prose section open in a new tab with nofollow */
+  function enhanceProseLinks() {
+    const proseDiv = document.querySelector('.prose');
+    if (!proseDiv) return;
+
+    const links = proseDiv.querySelectorAll('a');
+    const currentHost = window.location.host;
+
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+
+      // Skip links that are heading anchors (start with #) or don't have an href
+      if (!href) return;
+
+      // Check if this is an external link
+      if (href.startsWith('#')) {
+        // It's an anchor link, do nothing
+        return;
+      } else if (href.startsWith('/') || !href.includes('://')) {
+        // It's a relative internal link, do nothing
+        return;
+      } else {
+        // Try to parse the URL to check the hostname
+        try {
+          const url = new URL(href);
+          // If hostname is different from current host, it's external
+          if (url.host !== currentHost) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'nofollow noopener noreferrer');
+          }
+        } catch (e) {
+          // If URL parsing fails, it's likely a malformed URL, so do nothing
+          console.error('Error parsing URL:', href, e);
+        }
+      }
+    });
   }
 </script>
