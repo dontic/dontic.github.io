@@ -38,7 +38,7 @@ if (metadata?.ogImagePath) {
 ---
 
 <!doctype html>
-<html lang="es" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <!-- Common Metadata -->
     <meta charset="UTF-8" />
@@ -69,6 +69,11 @@ if (metadata?.ogImagePath) {
           type: 'website',
           image: SITE.siteUrl + ogImage?.src || SITE.ogImage,
           url: metadata?.canonicalUrl || Astro.url.href,
+        },
+        article: {
+          authors: metadata?.author || SITE.author ? [metadata?.author || SITE.author] : undefined,
+          publishedTime: metadata?.pubDatetime?.toISOString(),
+          modifiedTime: metadata?.modDatetime?.toISOString(),
         },
         optional: {
           locale: SITE.locale,
