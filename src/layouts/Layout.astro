@@ -72,8 +72,8 @@ if (metadata?.ogImagePath) {
         },
         article: {
           authors: metadata?.author || SITE.author ? [metadata?.author || SITE.author] : undefined,
-          publishedTime: metadata?.pubDatetime?.toISOString(),
-          modifiedTime: metadata?.modDatetime?.toISOString(),
+          publishedTime: metadata?.pubDatetime ? new Date(metadata.pubDatetime).toISOString() : undefined,
+          modifiedTime: metadata?.modDatetime ? new Date(metadata.modDatetime).toISOString() : undefined,
         },
         optional: {
           locale: SITE.locale,
