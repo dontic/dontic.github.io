@@ -13,21 +13,7 @@ tags:
 description: 'Learn how to integrate Google Analytics (GA4) with Astro in multiple ways. Using Partytown, View Transitions, CookieConsent V3 and more.'
 ---
 
----
-
-import Waitlist from '../../../components/common/waitlist.tsx';
-
-**Quick Note!**
-
-_Many people have asked me to do a [full course on how to build and deploy a full stack app from scratch](/blog/im-building-a-course/)._
-
-_If you're interested feel free to join the waitlist and I'll let you know when it's out!_
-
-<Waitlist client:visible />
-
-**Ok, on to the article!**
-
----
+import NewsletterSignup from '~/components/common/newsletterSignup';
 
 ## Before you proceed
 
@@ -48,6 +34,8 @@ I'm writing this because, while implementing basic GA4 analytics is easy, there 
 - [CookieConsent V3](https://cookieconsent.orestbida.com/)
 
 So I wrote this guide with multiple implementations, from easy to advanced, to help you integrate Google Analytics (GA4) with Astro.
+
+<NewsletterSignup client:visible />
 
 ## 0. Get your GA4 tracking ID
 

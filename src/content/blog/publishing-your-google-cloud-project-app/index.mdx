@@ -18,6 +18,8 @@ ogImage: /src/content/blog/publishing-your-google-cloud-project-app/cover.png
 # canonicalURL:
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 This is a 4 part series where I explain the proces for publishing a Google Cloud Project App.
 
 In particular, how I've done this process for [Emilio](https://getemil.io).
@@ -45,6 +47,8 @@ By default the Google App will be in test mode, this has a couple of drawbacks a
 3. The users' refresh tokens will expire after 7 days, so they will need to sign out and sign in again and you will have to do weird stuff in your backend to ensure the refresh token is saved again.
 
 4. Users will get a super ugly message saying that your application is not trusted. In some cases, depending on their privacy settings, they won’t even be able to sign it at all.
+
+<NewsletterSignup client:visible />
 
 ## The steps to publish a Google App
 

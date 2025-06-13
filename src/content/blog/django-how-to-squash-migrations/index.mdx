@@ -16,6 +16,8 @@ ogImage: /src/content/blog/django-how-to-squash-migrations/cover.png
 devto_sync: true
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 ## Introduction
 
 If you've dealt a lot with django migrations, you've probably encountered a situation where you have tens of migrations and you don't know at which point you introduced each one of them or needed to downgrade your application for some reason and it all became a mess.
@@ -23,6 +25,8 @@ If you've dealt a lot with django migrations, you've probably encountered a situ
 Not only that but deployments become a bit of a "wing it" situation when it comes to migrating new model changes.
 
 If you want to learn how to organize and squash your django migrations, you came to the right place.
+
+<NewsletterSignup client:visible />
 
 ## What is "squashing migrations"
 

@@ -17,6 +17,8 @@ ogImage: /src/content/blog/pfsense-fix-realtek-issues/cover.png
 devto_sync: true
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 ## Introduction
 
 I run a homelab at home, and every time I've had to reinstall pfsense I've always had the same issue and had to search on Google for ages. So I'm mainly writing this for myself.
@@ -26,6 +28,8 @@ I have pfsense installed on a Dell Wyse 5070 with a second Realtek RTL8111F PCIE
 The main issue or problem I had is that I had to reassign the pfsense interfaces on every reboot. And I would bash my head against the wall trying to figure out why.
 
 This meant that every time the power went out or a reboot happened, I had to physically go to my pfsense server, plug in a monitor and a keyboard and reassign the interfaces. Whish is a pain in the 🍑.
+
+<NewsletterSignup client:visible />
 
 ## The issue
 

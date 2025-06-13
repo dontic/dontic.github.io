@@ -17,6 +17,8 @@ ogImage: /src/content/blog/2025-05-15-how-to-install-docker-in-wsl-without-docke
 devto_sync: false
 ---
 
+import NewsletterSignup from '../../../components/common/newsletterSignup.tsx';
+
 ## Introduction
 
 I use Windows, mainly because I'm a nerd and I like CAD and 3D printing and I do a bit of gaming then and there, all of these require Windows.
@@ -26,6 +28,8 @@ But when it comes to coding, I **really** like Linux, specially Ubuntu. I'm used
 So for my development workflow I use docker devcontainers, which allow me to develop inside the same environment my app will be deployed in, ensuring a smooth experience and no conflicts.
 
 In windows, there is an issue though, and that is that VSCode Dev Containers really don't like the native Docker Desktop and the experience is horribly slow and impossible to work in. So you need to install WSL, which stands for Windows Subsystem for Linux, then enable WSL support in Docker Desktop and voila, dev containers working like a charm.
+
+<NewsletterSignup client:visible />
 
 ## Why I decided to switch
 

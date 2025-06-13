@@ -13,7 +13,7 @@ tags:
 description: Learn how to create API endpoints directly in your Astro app and create a contact in Brevo with it.
 ---
 
-## Table of contents
+import NewsletterSignup from '~/components/common/newsletterSignup';
 
 ## Introduction
 
@@ -29,6 +29,8 @@ Personally, I use these endpoints for simple actions such as:
 It's also useful for when you need to fetch and process data from a source that requires authentication (I.e. an API key) and you don't want to expose that key in the frontend.
 
 In this article we'll go through the steps to create an API endpoint in Astro.
+
+<NewsletterSignup client:visible />
 
 ## What's the setup?
 

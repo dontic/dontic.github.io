@@ -15,17 +15,15 @@ description: 'Learn how to properly redirect www to non-www with Cloudflare'
 ogImage: /src/content/blog/how-to-redirect-www-cloudflare/cover.png
 ---
 
-- [Introduction](#introduction)
-- [Step by step](#step-by-step)
-- [Why do we need a DNS record for www pointing to a random IP address?](#why-do-we-need-a-dns-record-for-www-pointing-to-a-random-ip-address)
-- [Manually adding the redirect rule](#manually-adding-the-redirect-rule)
-- [Why do I get a `DNS_PROBE_FINISHED_NXDOMAIN` error?](#why-do-i-get-a-dns_probe_finished_nxdomain-error)
+import NewsletterSignup from '~/components/common/newsletterSignup';
 
 ## Introduction
 
 I've read countless tutorials and watched many YouTube videos until I found the correct way to implement a www redirect in Cloudflare.
 
 When you have a website, you may want to redirect the www version of your domain to the non-www version. This is important for SEO, since search engines prefer a single source, and to avoid duplicate content issues. In this article, we will show you how to properly redirect www to non-www with Cloudflare.
+
+<NewsletterSignup client:visible />
 
 ## Step by step
 

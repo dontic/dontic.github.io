@@ -14,21 +14,13 @@ tags:
 description: Learn how to visualize your web app logs in Grafana using Loki.
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 > ⚠️**IMPORTANT**⚠️
 >
 > This guide is for setting up Loki and Promtail in a server where your application generates log files or you want to send syslogs from your server.
 >
 > If you want to set up Loki to centralize Docker logs, check out [this guide](https://daniel.es/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/).
-
-**In this article:**
-
-- [Introduction](#introduction)
-- [What's the setup?](#whats-the-setup)
-- [Setting up Promtail](#setting-up-promtail)
-- [Setting up Loki](#setting-up-loki)
-- [Setting up everything in Grafana](#setting-up-everything-in-grafana)
-
----
 
 ## Introduction
 
@@ -38,7 +30,7 @@ This is what we were doing at [Emilio](https://getemil.io) at first, then Loki c
 
 If this is your case, look no further, you're in the right place to set up a **free and open source** solution to easily visualize, filter and find the log lines you're looking for!
 
----
+<NewsletterSignup client:visible />
 
 ## What's the setup?
 

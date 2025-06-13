@@ -15,6 +15,8 @@ tags:
 description: Learn how to migrate vaultwarden data from one instance to another.
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 ## Background
 
 I've recently updated my Vaultwarden instance in my home lab and wanted yo migrate all the previous data.
@@ -22,6 +24,8 @@ I've recently updated my Vaultwarden instance in my home lab and wanted yo migra
 Yes, you can export the vault from the UI, but I had several users and don't have access to their accounts, so I needed another way to migrate everything to the new instance.
 
 For context, I run Vaultwarden in an Ubuntu LXC in my Proxmox server. I used [tteck's awesome scripts](https://tteck.github.io/Proxmox/) to install it.
+
+<NewsletterSignup client:visible />
 
 ## Here's how to migrate your Vaultwarden data
 

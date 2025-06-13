@@ -16,6 +16,8 @@ tags:
 description: Learn how to load and render Markdown in your Vite React app using Typescript.
 ---
 
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
 ### Backstory (Skip it if you want)
 
 Ok so I was **REALLY **struggling with this one.
@@ -23,6 +25,8 @@ Ok so I was **REALLY **struggling with this one.
 I'm building an app, and for ease of use and maintenance, for the terms and conditions, privacy policy and other stuff I wanted to write them in markdown instead of plain TSX\.
 
 I could not find anything on my particular environment: Vite \+ React \+ Typescript \+ ChakraUI\.
+
+<NewsletterSignup client:visible />
 
 So here's what worked for me:
 
