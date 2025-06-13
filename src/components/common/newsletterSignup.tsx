@@ -6,7 +6,7 @@ interface NewsletterSignupProps {
 }
 
 const NewsletterSignup = ({
-  buttonText = 'Join my newsletter!',
+  buttonText = 'Join the newsletter!',
   placeholder = 'Enter your email',
 }: NewsletterSignupProps) => {
   const [email, setEmail] = useState('');
@@ -20,9 +20,28 @@ const NewsletterSignup = ({
     setStatus('loading');
 
     try {
+      const response = await fetch('https://waitlist.hlab.es/waitlist/users/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          waitlist_name: 'daniel_newsletter',
+          email: email,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setMessage('Thanks for joining the newsletter!');
+        setEmail('');
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Something went wrong');
+      }
     } catch (error) {
       setStatus('error');
-      setMessage(error instanceof Error ? error.message : 'Failed to join waitlist. Please try again.');
+      setMessage(error instanceof Error ? error.message : 'Failed to join newsletter. Please try again.');
     }
   };
 
@@ -48,10 +67,10 @@ const NewsletterSignup = ({
 
         <div className="bg-page rounded-lg p-6">
           <div className="mx-auto p-2 mb-4">
-            <div className="text-xl font-semibold text-default mb-4 text-center">Oh look! Another newsletter!</div>
+            <div className="text-xl font-semibold text-default mb-4 text-center">Hey look! A newsletter!</div>
             <div className="text-default text-center">
-              Join thousands of developers getting weekly insights, tips, and tutorials delivered straight to your
-              inbox.
+              Join thousands of full stack developers getting weekly insights, tips, and tutorials delivered straight to
+              your inbox.
             </div>
           </div>
 
