@@ -8,6 +8,7 @@ import { Icon } from 'astro-icon/components';
 
 import avatarImage from '~/assets/images/avatar.jpeg';
 import Socials from '~/components/common/Socials.astro';
+import NewsletterSignup from '~/components/common/newsletterSignup';
 ---
 
 <PageLayout>
@@ -68,6 +69,10 @@ import Socials from '~/components/common/Socials.astro';
           <p class="mt-2 text-sm">Travel guides and other random stuff.</p>
         </a>
       </div>
+    </div>
+
+    <div class="mt-8">
+      <NewsletterSignup client:visible />
     </div>
   </div>
 </PageLayout>
