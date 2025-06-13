@@ -69,8 +69,7 @@ const NewsletterSignup = ({
           <div className="mx-auto p-2 mb-4">
             <div className="text-xl font-semibold text-default mb-4 text-center">Hey look! A newsletter!</div>
             <div className="text-default text-center">
-              Join hundreds of full stack developers getting weekly insights, tips, and tutorials delivered straight to
-              your inbox.
+              Learn how I build, launch and scale profitable SaaS products — from code to real customers.
             </div>
           </div>
 
