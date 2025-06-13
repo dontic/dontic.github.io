@@ -65,11 +65,11 @@ const NewsletterSignup = ({
         `}
         </style>
 
-        <div className="bg-page rounded-lg p-6">
+        <div className="bg-page rounded-lg p-6 transition ease duration-300">
           <div className="mx-auto p-2 mb-4">
             <div className="text-xl font-semibold text-default mb-4 text-center">Hey look! A newsletter!</div>
             <div className="text-default text-center">
-              Join thousands of full stack developers getting weekly insights, tips, and tutorials delivered straight to
+              Join hundreds of full stack developers getting weekly insights, tips, and tutorials delivered straight to
               your inbox.
             </div>
           </div>
