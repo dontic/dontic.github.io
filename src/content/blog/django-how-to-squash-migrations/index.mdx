@@ -4,7 +4,7 @@ title: 'How to squash migrations in django'
 description: 'Learn how to easily squash Django migrations and clean up your database when releasing a new version of your app.'
 author: Daniel Garcia
 pubDatetime: 2025-04-07T12:00:00Z
-# modDatetime: 2025-03-13T12:00:00Z
+modDatetime: 2025-06-16T12:00:00Z
 featured: false
 draft: false
 tags:
@@ -110,13 +110,13 @@ python manage.py squashmigrations myapp 0002 0005
 
 This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_whatever.py`.
 
-Note that in this step you can give a custom name to your squashed migration file like this:
-
-```bash
-python manage.py squashmigrations myapp 0002 0005 --squashed-name release_2_0_0.py
-```
-
-This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_release_2_0_0.py`.
+> Note that in this step you can give a custom name to your squashed migration file like this:
+>
+> ```bash
+> python manage.py squashmigrations myapp 0002 0005 --squashed-name release_2_0_0
+> ```
+>
+> This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_release_2_0_0.py`.
 
 #### 3. Migrate your database
 
@@ -132,9 +132,12 @@ python manage.py migrate
 >
 > Because that commit will be needed by your teammates to migrate their local databases.
 
-#### 4. Now you can delete the old migrations
+#### 4. **Now** you can delete the old migrations
 
-After you migrated your changes to the dev database you can delete the old migrations and remove the `replaces` clause from the squashed migration file.
+After you committed and migrated your changes to the dev database you need to:
+
+1. Delete the old migrations
+2. Remove the `replaces` clause from the squashed migration file.
 
 #### 5. Done! You can now deploy your changes
 
@@ -171,13 +174,13 @@ python manage.py squashmigrations myapp 0002 0005
 
 This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_whatever.py`.
 
-Note that in this step you can give a custom name to your squashed migration file like this:
-
-```bash
-python manage.py squashmigrations myapp 0002 0005 --squashed-name release_2_0_0.py
-```
-
-This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_release_2_0_0.py`.
+> Note that in this step you can give a custom name to your squashed migration file like this:
+>
+> ```bash
+> python manage.py squashmigrations myapp 0002 0005 --squashed-name release_2_0_0
+> ```
+>
+> This will squash all the migrations from 0002 to 0005 into a single migration file called `0002_release_2_0_0.py`.
 
 #### 3. Migrate your dev and production databases
 
@@ -189,7 +192,7 @@ You should commit the changes like this and then migrate both your dev and produ
 python manage.py migrate
 ```
 
-#### 4. Now you can delete the old migrations
+#### 4. **Now** you can delete the old migrations
 
 After you migrated your changes to all your databases, it is safe to delete the old migrations.
 
