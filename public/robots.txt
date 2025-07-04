@@ -1,6 +1,7 @@
 # robots.txt for https://daniel.es
 
 User-agent: *
+Disallow: /cdn-cgi/
 Allow: /
 
 # Sitemaps
