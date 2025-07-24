@@ -5,10 +5,7 @@ interface NewsletterSignupProps {
   placeholder?: string;
 }
 
-const NewsletterSignup = ({
-  buttonText = 'Join the newsletter!',
-  placeholder = 'Enter your email',
-}: NewsletterSignupProps) => {
+const NewsletterSignup = ({ buttonText = 'Subscribe', placeholder = 'Enter your email' }: NewsletterSignupProps) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
@@ -69,7 +66,8 @@ const NewsletterSignup = ({
           <div className="mx-auto p-2 mb-4">
             <div className="text-xl font-semibold text-default mb-4 text-center">Hey look! A newsletter!</div>
             <div className="text-default text-center">
-              Learn how I build, launch and scale profitable SaaS products — from code to real customers.
+              Each week, I share lessons learned, actionable business tips, practical life advice, and highlights from
+              my journey, directly to your inbox.
             </div>
           </div>
 
@@ -94,6 +92,17 @@ const NewsletterSignup = ({
               {status === 'loading' ? 'Submitting...' : buttonText}
             </button>
           </form>
+
+          <div className="text-center text-xs text-gray-500">
+            <p>
+              By submitting this form, you'll be signed up to my free newsletter. You can opt-out at any time with no
+              hard feelings 😉 Here's our{' '}
+              <a href="/privacy/" className="text-blue-500 hover:text-blue-600">
+                privacy policy
+              </a>{' '}
+              if you like reading.
+            </p>
+          </div>
 
           {message && (
             <p className={`mt-2 text-sm ${status === 'error' ? 'text-red-600' : 'text-green-600'}`}>{message}</p>
