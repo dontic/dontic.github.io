@@ -17,11 +17,11 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
 
 ## Before you proceed
 
-**You probably do not need Google Analytics.**
+⚠️ **You probably do not need Google Analytics.** ⚠️
 
 I've recently written an article about [Google Analytics alternatives](/blog/google-analytics-alternatives/) and why they're great.
 
-If better UI, simpler setup, same (or even more) data, self hosted and no cookie banner sounds good to you, you should probably read that article first.
+Want analytics with just one line of code, no fumbling with cookies, better UI, simpler setup, same (or even more) data, self hosted (you own your data) and no cookie banner? Then you should probably [read that article first](/blog/google-analytics-alternatives/).
 
 If you still want to use Google Analytics, then read on!
 
@@ -180,7 +180,7 @@ Continue reading to see how to implement this with CookieConsent V3.
 
 ## 2. Implementing GA4 with CookieConsent V3
 
-> I freaking love [CookieConsent](https://cookieconsent.orestbida.com/) ❤️
+> I freaking love [CookieConsent](https://cookieconsent.orestbida.com/) ❤️ (not sponsored)
 
 It's a super easy to use library that allows you to implement a cookie consent banner in a few lines of code.
 
@@ -188,7 +188,7 @@ I'll show you 3 ways of implementing this, the easy way, the easy way but with c
 
 ### 2.1 The easy way
 
-Head over to https://playground.cookieconsent.orestbida.com/ and poke around the different parameters until you have a cookie consent banner that you like. Make sure you have the "**Analytics**" option checked under "**Categories**".
+Head over to [playground.cookieconsent.orestbida.com](https://playground.cookieconsent.orestbida.com/) and poke around the different parameters until you have a cookie consent banner that you like. Make sure you have the "**Analytics**" option checked under "**Categories**".
 
 Then, at the bottom you'll see a "Download the `cookieconsent-config.js` javascript file" button. Click it and download the file.
 
@@ -252,7 +252,6 @@ It's easy:
 
 1. Initialize the GA4 scripts with default consents:
 
-````html
 ```html
 <!-- Google tag (gtag.js) -->
 <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -274,7 +273,7 @@ It's easy:
 
   gtag("config", "G-XXXXXXXXXX");
 </script>
-````
+```
 
 > Note we removed the `data-category="analytics"` from the first script tag, since now we don't need to wait for the user to accept the analytics category to collect anonymous data.
 
@@ -345,8 +344,7 @@ export const config: CookieConsentConfig = {
     analytics: {
       services: {
         ga4: {
-          label:
-            '<a href="https://marketingplatform.google.com/about/analytics/terms/us/" target="_blank">Google Analytics 4 (dummy)</a>',
+          label: '[Google Analytics 4 (dummy)](https://marketingplatform.google.com/about/analytics/terms/us/)',
           onAccept: () => {
             console.log('ga4 accepted');
             // TODO: load ga4
@@ -378,7 +376,7 @@ export const config: CookieConsentConfig = {
           acceptAllBtn: 'Accept all',
           acceptNecessaryBtn: 'Reject all',
           showPreferencesBtn: 'Manage preferences',
-          footer: '<a href="#link">Privacy Policy</a>\n<a href="#link">Terms and conditions</a>',
+          footer: '[Privacy Policy](#link)\n[Terms and conditions](#link)',
         },
         preferencesModal: {
           title: 'Consent Preferences Center',

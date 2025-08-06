@@ -38,7 +38,7 @@ In this article we'll create a **simple API endpoint that creates a contact in B
 
 ### 1. Ready your Astro project
 
-If you're new to Astro or haven't set up an Astro project yet, I recommend you to check out the [official documentation](https://docs.astro.build/en/getting-started/).
+If you're new to Astro or haven't set up an Astro project yet, I recommend you check out the [official documentation](https://docs.astro.build/en/getting-started/).
 
 You can also start with one of their [themes](https://astro.build/themes/).
 
@@ -46,7 +46,7 @@ You can also start with one of their [themes](https://astro.build/themes/).
 
 In order to have a working API endpoint that works at runtime, you need to enable [SSR (Server Sider Rendering)](https://docs.astro.build/en/guides/server-side-rendering/).
 
-SSR allows you to have the app run on the server before it gets to the client.
+SSR allows you to have the app run on the server before it gets to the client. And thus, create server functionalities such as API endpoints.
 
 #### 2.1 Adapter
 
@@ -56,7 +56,7 @@ For this, you will need an adapter.
 
 You can see a list of official and community adapters [here](https://docs.astro.build/en/guides/server-side-rendering/#official-adapters).
 
-For this article, I'll use the [`@astrojs/adapter-node` adapter](https://docs.astro.build/en/guides/integrations-guide/node/) since I host my side in a Node docker container.
+For this article, I'll use the [`@astrojs/adapter-node` adapter](https://docs.astro.build/en/guides/integrations-guide/node/) since I host my SSR Astro website in a Node docker container.
 
 Super easy to install:
 

@@ -20,13 +20,13 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
 >
 > This guide is for setting up Loki and Promtail in a server where your application generates log files or you want to send syslogs from your server.
 >
-> If you want to set up Loki to centralize Docker logs, check out [this guide](https://daniel.es/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/).
+> If you want to set up Loki to centralize Docker logs, check out [this guide](/blog/centralize-and-visualize-docker-logs-in-grafana-with-loki/).
 
 ## Introduction
 
 You're tired of `ssh`ing into your server, `cd`ing into your log directory and using `cat` or `vim` to struggle and find logs for your application.
 
-This is what we were doing at [Emilio](https://getemil.io) at first, then Loki came into our lifes and changed everything.
+This is what I was doing with all my [projects](/projects/) at first, then Loki came into our lifes and changed everything.
 
 If this is your case, look no further, you're in the right place to set up a **free and open source** solution to easily visualize, filter and find the log lines you're looking for!
 
@@ -81,10 +81,10 @@ mkdir promtail && cd promtail
 ### 2. Download the Promtail YAML config file
 
 ```
-wget <https://raw.githubusercontent.com/grafana/loki/v2.9.4/clients/cmd/promtail/promtail-docker-config.yaml> -O promtail-config.yaml
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.4/clients/cmd/promtail/promtail-docker-config.yaml -O promtail-config.yaml
 ```
 
-Make sure you check what the latest version of Promtail is here: https://grafana.com/docs/loki/latest/setup/install/docker/
+Make sure you check what the latest version of Promtail is in the following Grafana docs: [grafana.com/docs/loki/latest/setup/install/docker/](https://grafana.com/docs/loki/latest/setup/install/docker/)
 
 ### 3. Modify the config file
 
@@ -210,7 +210,7 @@ mkdir loki && cd loki
 ### 2. Copy the YAML config file
 
 ```
-wget <https://raw.githubusercontent.com/grafana/loki/v2.9.4/cmd/loki/loki-local-config.yaml> -O loki-config.yam
+wget https://raw.githubusercontent.com/grafana/loki/v2.9.4/cmd/loki/loki-local-config.yaml -O loki-config.yam
 ```
 
 Again, make sure you're using the latest version.
@@ -261,7 +261,7 @@ Go to `<loki-endpoint>:3100/ready` and `<loki-endpoint>:31000/metrics` and make 
 
 ## Setting up everything in Grafana
 
-> ✅ For a more detailed guide on how to query logs in Grafana, look into [this recent article](https://dev.to/onticdani/how-to-query-logs-in-grafana-loki-59jh).
+> ✅ For a more detailed guide on how to query logs in Grafana, look into [this recent article](/blog/how-to-query-logs-in-grafana-loki/).
 
 I won't go on details on how to set up a Grafana instance as there are a million guides already. With docker, it's quite straightforward.
 
@@ -309,4 +309,4 @@ Just click on `Live`
 
 If you want to get fancy and see graphs on how many logs you're generating or how many times you had errors on a timeline you can create a Dashboard.
 
-Because dashboards are a creative thing I won't go into how you can create one but you can c[heck this guide out](https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/).
+Because dashboards are a creative thing I won't go into how you can create one but you can [check this guide out](https://grafana.com/blog/2023/05/18/6-easy-ways-to-improve-your-log-dashboards-with-grafana-and-grafana-loki/).

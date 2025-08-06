@@ -20,7 +20,7 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
 
 ## Introduction
 
-At [getemil\.io](http://getemil.io) , we got a generous AWS package that lets us use some of their services for free\. The problem is… I had no experience whatsoever with AWS and their UI is a nightmare \(totally a subjective opinion\) \. So… how did I do this thing?
+At [GearShift](http://gearshift.es), we got a generous AWS package that lets us use some of their services for free\. The problem is… I had no experience whatsoever with AWS and their UI is a nightmare \(totally a subjective opinion\) \. So… how did I do this thing?
 
 This is a 2part article:
 
@@ -41,9 +41,9 @@ EC2 is a VPS \(Virtual Private Server\) just like a Digital Ocean Droplet or a R
 
 ### How to spin up an EC2 instance
 
-#### 1\. Head on to [https://eu\-central\-1\.console\.aws\.amazon\.com/ec2](https://eu-central-1.console.aws.amazon.com/ec2)
+#### 1\. Head on to [eu-central-1.console.aws.amazon.com/ec2](https://eu-central-1.console.aws.amazon.com/ec2)
 
-I'm in EU, remember to change your region if necessary\.
+I'm in EU, remember to change your region if necessary.
 
 #### 2\. Click on "Launch Instance"
 
@@ -135,7 +135,7 @@ Go to your AWS EC2 instance details and copy the public IPv4 DNS:
 
 #### 3\. Connect\!
 
-The default user for an Ubuntu instance is `ubuntu` \.
+The default user for an Ubuntu instance is `ubuntu`.
 
 Run the following:
 
@@ -143,6 +143,6 @@ Run the following:
 ssh -i PeterKeys.pem ubuntu@ipv4-address-you-just-copied
 ```
 
-Done\! You should be inside your EC2 instance\.
+Done! You should be inside your EC2 instance.
 
-What I like to do now is create my user and add my local machine's SSH keys to `authorized_keys` so I can connect directly to my user\. This will be explained in another post\.
+What I like to do now is create my user and add my local machine's SSH keys to `authorized_keys` so I can connect directly to my user\. This will be explained in another post.
