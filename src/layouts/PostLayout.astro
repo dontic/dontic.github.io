@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
 import importImage from '~/utils/importImage';
 import { Image } from 'astro:assets';
+import Comments from '~/components/blog/Comments.astro';
 
 // Define the props type
 export interface Props {
@@ -116,6 +117,12 @@ if (ogImage) {
     >
       <slot />
     </div>
+
+    <!-- Separator -->
+    <div class="my-8 h-px bg-gray-200 dark:bg-gray-700"></div>
+
+    <!-- Comments -->
+    <Comments />
 
     {/* Tags displayed at the bottom of the article */}
     {
