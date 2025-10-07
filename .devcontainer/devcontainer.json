@@ -8,7 +8,7 @@
     },
     // Port forwarding
     "appPort": [
-        "4321:4321"
+        "4323:4323"
     ],
     // Extensions and settings
     "customizations": {
