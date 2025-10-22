@@ -12,8 +12,8 @@ import rehypeExternalLinks from 'rehype-external-links';
 // https://astro.build/config
 export default defineConfig({
   server: {
-    host: true,  // or 0.0.0.0
-    port: 4323,  // Different port from the default 4321
+    // host: true,  // or 0.0.0.0
+    // port: 4321,  // Different port from the default 4321
   },
   site: SITE.siteUrl,
   vite: {
