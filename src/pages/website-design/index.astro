@@ -878,6 +878,16 @@ const metadata = {
     </div>
   </footer>
 
+  <!-- Sticky Bottom Popup -->
+  <div id="sticky-popup" class="sticky-popup">
+    <div class="sticky-popup-pill">
+      <div class="sticky-popup-text">
+        <span class="popup-label">Ready to get started?</span>
+      </div>
+      <a href="https://cal.com/onticdani/website-design" target="_blank" class="popup-cta-button"> Book a call </a>
+    </div>
+  </div>
+
   <style>
     @keyframes gradient-shift {
       0%,
@@ -996,6 +1006,129 @@ const metadata = {
 
     .faq-item.open .faq-icon {
       transform: rotate(135deg);
+    }
+
+    /* Sticky Popup Styles - Hovering Pill */
+    .sticky-popup {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(150%);
+      z-index: 1000;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    .sticky-popup.visible {
+      transform: translateX(-50%) translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-popup-pill {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 9999px;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 0.875rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .sticky-popup-pill:hover {
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    :root.dark .sticky-popup-pill {
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    :root.dark .sticky-popup-pill:hover {
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .sticky-popup-text {
+      display: flex;
+      align-items: center;
+    }
+
+    .popup-label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: rgb(17, 24, 39);
+      white-space: nowrap;
+    }
+
+    :root.dark .popup-label {
+      color: white;
+    }
+
+    .popup-cta-button {
+      background: black;
+      color: white;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.625rem 1.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .popup-cta-button:hover {
+      background: rgb(31, 41, 55);
+      transform: scale(1.05);
+    }
+
+    :root.dark .popup-cta-button {
+      background: white;
+      color: black;
+    }
+
+    :root.dark .popup-cta-button:hover {
+      background: rgb(229, 231, 235);
+    }
+
+    @media (max-width: 640px) {
+      .sticky-popup {
+        bottom: 1.5rem;
+        left: 1rem;
+        right: 1rem;
+        transform: translateX(0) translateY(150%);
+      }
+
+      .sticky-popup.visible {
+        transform: translateX(0) translateY(0);
+      }
+
+      .sticky-popup-pill {
+        padding: 0.75rem 1.25rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .popup-label {
+        font-size: 0.875rem;
+      }
+
+      .popup-cta-button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1.25rem;
+      }
     }
   </style>
 
@@ -1263,6 +1396,44 @@ const metadata = {
           });
         }
       });
+
+      // Sticky Popup functionality
+      const stickyPopup = document.querySelector('#sticky-popup') as HTMLElement;
+      const heroSection = document.querySelector('#hero') as HTMLElement;
+
+      if (stickyPopup && heroSection) {
+        let popupShown = false;
+
+        // Function to check scroll position and show/hide popup
+        const handleScroll = () => {
+          const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+          const scrollPosition = window.scrollY;
+
+          // Show popup when scrolled past hero section
+          if (scrollPosition > heroBottom && !popupShown) {
+            stickyPopup.classList.add('visible');
+            popupShown = true;
+          } else if (scrollPosition <= heroBottom && popupShown) {
+            stickyPopup.classList.remove('visible');
+            popupShown = false;
+          }
+        };
+
+        // Add scroll event listener with throttle for performance
+        let scrollTimeout: number | null = null;
+        window.addEventListener('scroll', () => {
+          if (scrollTimeout) {
+            return;
+          }
+          scrollTimeout = window.setTimeout(() => {
+            handleScroll();
+            scrollTimeout = null;
+          }, 100);
+        });
+
+        // Initial check in case page is already scrolled
+        handleScroll();
+      }
     });
   </script>
 </Layout>
