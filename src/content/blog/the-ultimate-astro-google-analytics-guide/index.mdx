@@ -13,7 +13,7 @@ tags:
 description: 'Learn how to integrate Google Analytics (GA4) with Astro in multiple ways. Using Partytown, View Transitions, CookieConsent V3 and more.'
 ---
 
-import NewsletterSignup from '~/components/common/newsletterSignup';
+import WebsiteDesignCTA from '~/components/common/websiteDesignCTA';
 
 ## Before you proceed
 
@@ -35,7 +35,7 @@ I'm writing this because, while implementing basic GA4 analytics is easy, there 
 
 So I wrote this guide with multiple implementations, from easy to advanced, to help you integrate Google Analytics (GA4) with Astro.
 
-<NewsletterSignup client:visible />
+<WebsiteDesignCTA client:visible />
 
 ## 0. Get your GA4 tracking ID
 
@@ -87,7 +87,37 @@ Remember to change `G-XXXXXXXXXX` with your tracking ID!
 
 That's it! See how easy it was?
 
-## 2. Implementing Partytown
+## 2 Disabling Google Analytics in Development
+
+You probably don't want Google Analytics to track your development environment. This is a pain because it contaminates your analytics data with test visits and make it harder to understand your real traffic. That is, if you are actively developing your site.
+
+Astro provides a simple way to conditionally run code only in production using `import.meta.env.PROD`. You can wrap your GA4 scripts with this condition:
+
+```astro
+{
+  import.meta.env.PROD && (
+    <>
+      <!-- Google tag (gtag.js) -->
+      <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XXXXXXXXXX');
+      </script>
+    </>
+  )
+}
+```
+
+Now Google Analytics will only load when you build your site for production (`npm run build`) and not when you're running the development server (`npm run dev`).
+
+> **Tip:** Read more about these environment variables [in Astro's site](https://docs.astro.build/en/guides/environment-variables/#default-environment-variables).
+
+## 3. Implementing Partytown
 
 **What is Partytown?**
 
@@ -97,16 +127,22 @@ To use this you first need to [install partytown](https://docs.astro.build/en/gu
 
 **Installation:**
 
-1. Install Partytown:
+1. Install Partytown (choose one):
 
+**Option A: Automatic setup (recommended)**
 ```bash
-npm install partytown
+npx astro add partytown
 ```
 
-2. Add the following to your `astro.config.mjs`:
+**Option B: Manual installation**
+```bash
+npm install @astrojs/partytown
+```
+
+2. If you chose manual installation, add the following to your `astro.config.mjs`:
 
 ```js
-import { partytown } from 'astro/config';
+import partytown from '@astrojs/partytown';
 
 export default defineConfig({
   // ...
@@ -178,7 +214,7 @@ They are indeed annoying, but they are also necessary to avoid legal issues.
 
 Continue reading to see how to implement this with CookieConsent V3.
 
-## 2. Implementing GA4 with CookieConsent V3
+## 4. Implementing GA4 with CookieConsent V3
 
 > I freaking love [CookieConsent](https://cookieconsent.orestbida.com/) ❤️ (not sponsored)
 
@@ -186,7 +222,7 @@ It's a super easy to use library that allows you to implement a cookie consent b
 
 I'll show you 3 ways of implementing this, the easy way, the easy way but with consents and the advanced way with consents.
 
-### 2.1 The easy way
+### 4.1 The easy way
 
 Head over to [playground.cookieconsent.orestbida.com](https://playground.cookieconsent.orestbida.com/) and poke around the different parameters until you have a cookie consent banner that you like. Make sure you have the "**Analytics**" option checked under "**Categories**".
 
@@ -236,7 +272,7 @@ Now back to the GA4 implementation in `Layout.astro` (I assume you went with the
 
 This tells CookieConsent that the scripts with `data-category="analytics"` are analytics scripts and should only be run if the user has accepted the analytics category. Pretty nice right?
 
-### 2.2 The easy way with consents
+### 4.2 The easy way with consents
 
 **What do I mean by consents?**
 
@@ -296,7 +332,7 @@ It's easy:
 
 With this implementation we update the consents when the user accepts the analytics category.
 
-### 2.3 The advanced way with consents
+### 4.3 The advanced way with consents
 
 > ⚠️ **IMPORTANT:**
 >
@@ -308,17 +344,17 @@ If you want to have more control over the cookie consent banner, you can impleme
 
 The CookieConsent owner has a pretty amazing [StackBlitz](https://stackblitz.com/edit/withastro-astro-mvdsyj?file=src%2Fcomponents%2FCookieConsentConfig.ts) example that you can use as a base. I will explain here what he's done:
 
-#### 2.3.1. Install the library:
+#### 4.3.1. Install the library:
 
 ```bash
 npm install vanilla-cookieconsent
 ```
 
-#### 2.3.2. Create the necessary files
+#### 4.3.2. Create the necessary files
 
 Create a `CookieConsentConfig.ts` and a `CookieConsent.astro` in your `src/components` directory. I like creating this specifically under `src/components/cookie-consent` just to have it organized. From now one I will assume you do the same.
 
-#### 2.3.3. In `CookieConsentConfig.ts`:
+#### 4.3.3. In `CookieConsentConfig.ts`:
 
 ```ts
 import type { CookieConsentConfig } from 'vanilla-cookieconsent';
@@ -422,7 +458,7 @@ export const config: CookieConsentConfig = {
 };
 ```
 
-#### 2.3.4. In `CookieConsent.astro`:
+#### 4.3.4. In `CookieConsent.astro`:
 
 ```html
 ---
@@ -440,7 +476,7 @@ import '../styles/ccElegantBlack.css';
 </script>
 ```
 
-#### 2.3.5. Back in your `Layout.astro`:
+#### 4.3.5. Back in your `Layout.astro`:
 
 ```astro
 ---
@@ -456,7 +492,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 ...
 ```
 
-#### 2.36. Now let's modify those GA4 script tags so they are a bit more dynamic. Back in your `Layout.astro`:
+#### 4.3.6. Now let's modify those GA4 script tags so they are a bit more dynamic. Back in your `Layout.astro`:
 
 Remove the previous GA4 scripts if you had any and add the following:
 
@@ -499,7 +535,7 @@ Remove the previous GA4 scripts if you had any and add the following:
 </head>
 ```
 
-#### 2.37. And finally, we create an action in `CookieConsentConfig.ts` to update the consents:
+#### 4.3.7. And finally, we create an action in `CookieConsentConfig.ts` to update the consents:
 
 ```ts
 import type { CookieConsentConfig } from "vanilla-cookieconsent";
@@ -543,18 +579,18 @@ This implementation does not differ too much from the easy way with consents, bu
 2. You have more control over the cookie consent banner. You can declare specific services and actions when the user accepts or rejects them.
 3. You can have a more dynamic implementation of the GA4 scripts. I.e.(forshadowing) you can use it with view transitions.
 
-## 3. Implement CookieConsent with View Transitions
+## 5. Implement CookieConsent with View Transitions
 
-To make this work you will need to part from [the implementation we've done in 2.3](#23-the-advanced-way-with-consents).
+To make this work you will need to part from [the implementation we've done in 4.3](#43-the-advanced-way-with-consents).
 
 The caviat here is that Astro View Transitions do 2 things that affect the GA4 scripts:
 
 1. They reset scripts on every page change. Meaning that the scripts will run ONCE on first load, but not on subsequent page changes.
 2. They also reset the html attributes and CookieConsent uses these to keep track of the user's consents.
 
-To solve this we need to do a couple of things (remember you need to implement everything in [2.3](#23-the-advanced-way-with-consents) first):
+To solve this we need to do a couple of things (remember you need to implement everything in [4.3](#43-the-advanced-way-with-consents) first):
 
-### 3.1 Run the GA4 scripts on every page change.
+### 5.1 Run the GA4 scripts on every page change.
 
 To do this we need to add an event listener on `astro:page-load` that will run the GA4 scripts on every page change.
 
@@ -594,7 +630,7 @@ In your `Layout.astro`:
 
 Now the GA4 scripts will run on every page load and change, cool!
 
-### 3.2 Put the CookieConsent component inside an element that is not affected by the view transitions.
+### 5.2 Put the CookieConsent component inside an element that is not affected by the view transitions.
 
 In your `Layout.astro`:
 
@@ -619,7 +655,7 @@ export const config: CookieConsentConfig = {
   root: "#cc-container",
 ```
 
-### 3.3 Create a script to get the CookieConsent html class attributes and restore them on every page change.
+### 5.3 Create a script to get the CookieConsent html class attributes and restore them on every page change.
 
 Back in your `Layout.astro`:
 
