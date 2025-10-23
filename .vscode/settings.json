@@ -1,14 +1,8 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": [
-    "Aliexpress",
-    "devto",
-    "homelab",
-    "pfsense",
-    "Realtek",
-    "Wyse"
-  ],
+  "cSpell.words": ["Aliexpress", "devto", "homelab", "pfsense", "Realtek", "Wyse"],
   "[mdx]": {
     "editor.wordWrap": "on"
-  }
+  },
+  "svg.preview.background": "custom"
 }

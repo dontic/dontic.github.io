@@ -1,0 +1,1260 @@
+---
+import avatarImage from '~/assets/images/avatar.jpeg';
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+// Import website design examples
+import miseoImage from '~/assets/images/website-design/miseo.png';
+import danielImage from '~/assets/images/website-design/daniel.png';
+import estaviaImage from '~/assets/images/website-design/estavia.png';
+import autoipcImage from '~/assets/images/website-design/autoipc.png';
+import saracarviaImage from '~/assets/images/website-design/saracarvia.png';
+import Signature from '~/assets/svg/signature.svg';
+
+const currentYear: number = new Date().getFullYear();
+
+// Gallery data
+const websiteGallery = [
+  {
+    image: danielImage,
+    alt: 'Daniel Portfolio Design',
+    title: 'Daniel Portfolio',
+    description: 'Personal portfolio website',
+  },
+  {
+    image: autoipcImage,
+    alt: 'AutoIPC Website Design',
+    title: 'AutoIPC',
+    description: 'Corporate website',
+  },
+  {
+    image: estaviaImage,
+    alt: 'Estavia Website Design',
+    title: 'Estavia',
+    description: 'E-commerce platform',
+  },
+  {
+    image: miseoImage,
+    alt: 'Miseo Website Design',
+    title: 'Miseo',
+    description: 'Modern business website',
+  },
+];
+---
+
+<Layout>
+  <section id="hero" class="relative overflow-hidden rounded-2xl dark:bg-black/30">
+    <!-- subtle grid bg -->
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10"
+      style="background-image: linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom, black, transparent);"
+    >
+    </div>
+
+    <div class="mt-12 px-6 py-16 sm:py-24 text-center">
+      <!-- avatar with concentric ring -->
+      <div class="mx-auto mb-8 h-32 w-32" id="hero-avatar">
+        <a
+          href="https://cal.com/onticdani/website-design"
+          target="_blank"
+          class="relative h-full w-full cursor-pointer group block"
+          data-tooltip="Available for a call"
+        >
+          <!-- Pulsating rings -->
+          <div id="pulse-ring-1" class="absolute inset-0 rounded-full ring-8 ring-emerald-300 opacity-0"></div>
+          <!-- <div id="pulse-ring-2" class="absolute inset-0 rounded-full ring-8 ring-emerald-300 opacity-0"></div> -->
+
+          <!-- Main avatar with ring -->
+          <div class="relative h-full w-full rounded-full bg-white dark:bg-black p-1 ring-8 ring-emerald-400">
+            <Image
+              src={avatarImage}
+              alt="Headshot"
+              class="rounded-full object-cover ring-1 ring-gray-200"
+              width={200}
+              height={200}
+            />
+          </div>
+
+          <!-- Tooltip -->
+          <div
+            class="tooltip absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          >
+            Available for a call
+            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black dark:bg-white rotate-45">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <h1 id="hero-title" class="mx-auto max-w-2xl text-4xl md:text-6xl font-medium leading-tight tracking-tight">
+        Want a modern, responsive website?
+      </h1>
+
+      <p id="hero-subtitle" class="mx-auto mt-6 max-w-2xl text-xl text-default">
+        I help companies, brands and individuals build their website from scratch or improve their existing one.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="hero-buttons">
+        <a
+          href="https://cal.com/onticdani/website-design"
+          target="_blank"
+          id="book-call-btn"
+          class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-white">Book a call</span>
+        </a>
+
+        <a
+          href="#pricing"
+          id="view-pricing-btn"
+          class="cta-button-secondary relative inline-flex items-center justify-center rounded-full overflow-hidden border border-black/10 dark:border-white/20 px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-black dark:text-white">View pricing</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrollable Gallery Section -->
+  <section class="mt-12" id="gallery-section">
+    <div class="relative overflow-hidden">
+      <!-- Scrollable container -->
+      <div class="overflow-x-auto pb-4 scrollbar-hide scroll-smooth px-20">
+        <div class="flex gap-6" id="gallery-scroll">
+          {
+            websiteGallery.map((item) => (
+              <div class="flex-none mb-20">
+                <div class="group relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 shadow-lg hover:shadow-2xl transition-all duration-300 h-[512px] sm:h-[512px]">
+                  <Image src={item.image} alt={item.alt} class="h-full w-auto object-contain" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 class="text-white text-xl font-semibold">{item.title}</h3>
+                      <p class="text-white/80 text-sm mt-1">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="mt-12" id="testimonial-section" data-fade-up>
+    <div
+      class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20"
+    >
+      <div class="mx-auto max-w-3xl text-center">
+        <blockquote class="text-xl sm:text-2xl font-normal text-default leading-relaxed">
+          "<b>Daniel has nailed what I wanted.</b>
+          <br /> After I struggled with a wordpress agency for years, he was able to design a website that is not only beautiful,
+          but also functional. Definitely a big step up from what I had previously."
+        </blockquote>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <Image
+            src={saracarviaImage}
+            alt="Sara Carvia"
+            class="h-12 w-12 rounded-full object-cover ring-2 ring-gray-200"
+            width={48}
+            height={48}
+          />
+          <div class="text-left">
+            <div class="text-gray-500">
+              <a
+                href="https://www.instagram.com/saracarvia/"
+                target="_blank"
+                class="hover:underline hover:text-default animate-underline">Sara Carvia</a
+              >, Fitness Influencer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Cycle Section -->
+  <section class="mt-12" id="product-cycle-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-5xl">
+        <!-- Title and subtitle -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight">
+            Here for you along the whole journey
+          </h2>
+          <p class="mt-6 text-lg sm:text-xl text-default max-w-3xl mx-auto">
+            I won't only deliver the final product but be there along all the steps to make sure you're satisfied with
+            the result.
+          </p>
+        </div>
+
+        <!-- Grid of cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Shaping & Vision -->
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:target" class="w-8 h-8 text-red-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Shaping & Vision</h3>
+                <p class="text-default leading-relaxed">I'll help you define your needs and goals for your website.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Design -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:palette" class="w-8 h-8 text-green-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Website Design</h3>
+                <p class="text-default leading-relaxed">
+                  I will help bring your vision to life with modern, high converting, responsive landing pages.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Iterations & Tradeoffs -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:refresh" class="w-8 h-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Iterations & Tradeoffs</h3>
+                <p class="text-default leading-relaxed">
+                  We will iterate the website design until you are 100% satisfied with the result.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Implementation -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:rocket" class="w-8 h-8 text-pink-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Complex features</h3>
+                <p class="text-default leading-relaxed">
+                  If you have any bigger requirements like a members area, authentication, checkout, etc; I will be
+                  there to help you implement them.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="mt-12" id="how-it-works-section" data-fade-up>
+    <div class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle grid bg -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 24px 24px;"
+      >
+      </div>
+      <div class="relative mx-auto">
+        <!-- Top label -->
+        <div class="text-center mb-6">
+          <p class="text-gray-400 text-sm sm:text-base font-medium">Straightforward and to the point</p>
+        </div>
+
+        <!-- Main headline -->
+        <h2
+          class="text-center text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight text-white mb-16"
+        >
+          High quality websites, without all the hassle
+        </h2>
+
+        <!-- Steps grid -->
+        <div class="flex flex-col gap-8 max-w-2xl mx-auto">
+          {
+            [
+              {
+                icon: 'tabler:clock',
+                title: 'Schedule an intro',
+                description: 'Tell me about your project and how I can help.',
+              },
+              {
+                icon: 'tabler:message-circle',
+                title: 'Get your first website designs within 48h',
+                description: 'I will deliver your first designs within 48h after our first chat.',
+              },
+              {
+                icon: 'tabler:refresh',
+                title: "Iterate until you're satisfied",
+                description: "We'll revise the website together until you are 100% satisfied.",
+              },
+              {
+                icon: 'tabler:rocket',
+                title: 'Deploy your website',
+                description:
+                  'I will take care of the hosting and deployment of your website and make sure it is working properly.',
+              },
+            ].map((step) => (
+              <div class="flex gap-4" data-fade-up>
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon name={step.icon} class="w-5 h-5 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-white text-lg sm:text-xl font-semibold mb-2">{step.title}</h3>
+                  <p class="text-gray-400 leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="mt-12" id="benefits-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-5xl">
+        <!-- Grid of 3 columns -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <!-- Async first -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:message-circle-2" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">Async first</h3>
+            <p class="text-gray-500 text-base sm:text-lg">WhatsApp and the occasional call</p>
+          </div>
+
+          <!-- Pause any time -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:currency-dollar" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">Tailored to you</h3>
+            <p class="text-gray-500 text-base sm:text-lg">Custom quotes for each project</p>
+          </div>
+
+          <!-- One task at a time -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:clock-hour-4" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">One task at a time</h3>
+            <p class="text-gray-500 text-base sm:text-lg">48h turnover time</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <!-- <section class="mt-12" id="testimonial2-section" data-fade-up>
+    <div
+      class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20"
+    >
+      <div class="mx-auto max-w-3xl text-center">
+        <blockquote class="text-xl sm:text-2xl font-normal text-default leading-relaxed">
+          "<b>Daniel is a great designer.</b>
+          <br /> He is very responsive and has a great eye for detail. I would recommend him to anyone looking for a designer."
+        </blockquote>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <Image
+            src={avatarImage}
+            alt="Daniel"
+            class="h-12 w-12 rounded-full object-cover ring-2 ring-gray-200"
+            width={48}
+            height={48}
+          />
+          <div class="text-left">
+            <div class="text-gray-500">
+              <a
+                href="https://www.instagram.com/onticdani/"
+                target="_blank"
+                class="hover:underline hover:text-default animate-underline">Daniel</a
+              >, Software Engineer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Pricing Section -->
+  <section class="mt-12" id="pricing">
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight mb-6" data-fade-up>
+            Flexible, modular pricing
+          </h2>
+          <p class="text-lg text-default" data-fade-up>
+            Build the perfect website for your needs. Start with a landing page and add modules as you grow.
+          </p>
+        </div>
+
+        <!-- Base Website Packages -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>Base Website Packages</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Landing Page (Mandatory) -->
+            <div
+              class="rounded-2xl border-2 border-emerald-500 bg-white/50 dark:bg-black/20 p-6 relative shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <div
+                class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-semibold px-3 py-1 rounded-full"
+              >
+                REQUIRED
+              </div>
+              <h4 class="text-xl font-semibold mb-2">Landing Page</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">997€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                A single high-converting page (ideal for product, portfolio, or service). Includes copy integration and
+                responsive design.
+              </p>
+            </div>
+
+            <!-- Multi-Page Site -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Multi-Page Site</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">+450€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Add 3–5 extra pages (About, Contact, Services, etc.) to your base landing page.
+              </p>
+            </div>
+
+            <!-- Blog / CMS Module -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Blog / CMS Module</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Add a blog or any repeatable content type (news, projects, case studies). Includes admin interface.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Functionality Add-Ons -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>Functionality Add-Ons</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Analytics + SEO Setup -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Analytics + SEO Setup</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+100€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Google Analytics 4, meta tags, sitemap, and schema setup.
+              </p>
+            </div>
+
+            <!-- Booking / Contact Form -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Booking / Contact Form</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+150€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Integrated form with email notifications or Calendly integration.
+              </p>
+            </div>
+
+            <!-- User Authentication -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">User Authentication</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Add paywalls or private pages to your website. Includes signup, login, and account dashboard.
+              </p>
+            </div>
+
+            <!-- Stripe Checkout -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Stripe Checkout</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Sell products, services, or digital downloads with secure payments.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ongoing Support -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>
+            Ongoing Support <span class="text-default text-lg font-normal">(optional)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <!-- Maintenance -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Maintenance</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">49€</span>
+                <span class="text-default">/month</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">Hosting updates, small tweaks, and security checks.</p>
+            </div>
+
+            <!-- Priority Support -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Priority Support</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">99€</span>
+                <span class="text-default">/month</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">Same-day fixes and updates.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single CTA at the end of pricing section -->
+        <div class="text-center mt-16" data-fade-up>
+          <p class="text-lg text-default mb-6">Ready to build your perfect website?</p>
+          <a
+            href="https://cal.com/onticdani/website-design"
+            target="_blank"
+            id="pricing-book-call-btn"
+            class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-10 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+          >
+            <span class="relative z-10 text-white">Book a call</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Promise Section -->
+  <section class="mt-12" id="promise-section" data-fade-up>
+    <div class="relative overflow-hidden bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle white gradient from top -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse 80% 60% at top center, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 30%, transparent 70%);"
+      >
+      </div>
+
+      <div class="relative mx-auto max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-medium text-white mb-12" data-fade-up>My promise to you</h2>
+
+        <div class="space-y-6 text-white/90 text-lg sm:text-xl leading-relaxed">
+          <p data-fade-up>
+            I love working with companies and individuals on the ideation and creative process of their website.
+          </p>
+
+          <p data-fade-up>
+            For most of my clients, I'm the first website designer that works on their project. And I don't take that
+            responsibility lightly.
+          </p>
+
+          <p data-fade-up>
+            I want you to know that I'm a one-man show. That means I only take on very few clients, so that I can give
+            your product my full attention.
+          </p>
+
+          <p data-fade-up>
+            Every pixel is made especially for you, by me. And once delivered, it will be 100% yours – your intellectual
+            property.
+          </p>
+
+          <p data-fade-up>You will always be communicating with me, and no one else.</p>
+
+          <p data-fade-up>
+            There will come a day when we say our goodbyes. Maybe temporarily. Maybe forever. And that's okay. My
+            service is designed to work like that.
+          </p>
+
+          <p data-fade-up>But until then, I'm here when you need me.</p>
+
+          <!-- Signature -->
+          <div data-fade-up>
+            <Signature width={150} fill="white" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Grid Section -->
+  <!-- <section class="mt-12" id="testimonials-grid-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Yann's product-sense helped me <b>ship 3x faster</b>, while maximising user value"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Costi, Founder at ABCDAncer</div>
+          </div>
+
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Yann's <b>clean and insightful communication</b> style is unique and extremely valuable"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Wesley, Senior Engineer at Spotify</div>
+          </div>
+
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Yann brings an <b>immense pragmatism and a laser-like focus</b> on outcomes"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Henry, Head of UX at Rothschild & Co</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FAQ Section -->
+  <section class="mt-12" id="faq-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl">
+        <!-- Title -->
+        <h2
+          class="text-center text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight mb-12"
+          data-fade-up
+        >
+          Got questions? Here are the answers.
+        </h2>
+
+        <!-- FAQ Accordion -->
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">How does your pricing model work?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Just like Lego, you can build your website package by modules. You can start with a landing page and add
+                more modules as you need them. The pricing is based on the number of modules you need. Once you're happy
+                with the result, you can decide if we leave it at that or if you want me to maintain it for you.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">What types of websites can you design?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                I specialize in high converting, SEO ready, responsive landing pages. But I can also add more complex
+                features like a private members area, a blog, a contact form, a booking system, a payment gateway, etc.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">How quickly can I expect to have my website ready?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                I will deliver the first drafts 48 hours after our first chat. Then we will iterate until you are 100%
+                satisfied. Depending on the size of the projects, clients can expect a medium size landing page to be
+                ready in 2-3 weeks.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">Is there a limit to how many iterations we can go through?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                There's no limit to the number of iterations we can go through. We will iterate until you are 100%
+                satisfied with the result, always within the scope of the project.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">Can I ask for a refund?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                My goal is to make you 100% happy with the result. None of my clients to date have asked for a refund.
+                But if you are not satisfied, we will work together to find a solution.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">How do I communicate with you?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                I mainly use WhatsApp to communicate with my clients. You can use it to send me your feedback, ask me
+                questions, or to schedule a call. If you prefer, you can also use email or a call.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">Do you take care of the hosting and deployment?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Totally! I will make sure your website and features are deployed and working properly. I will also take
+                care of the hosting and maintenance if you need it.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Got more questions? Section -->
+  <section class="mt-12" id="got-more-questions-section" data-fade-up>
+    <div class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle grid bg -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 24px 24px;"
+      >
+      </div>
+      <div class="relative mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-4 px-10">
+        <!-- Left side: Text content -->
+        <div class="flex-1">
+          <h2 class="text-3xl sm:text-4xl font-medium text-white mb-4" data-fade-up>Got more questions?</h2>
+          <p class="text-lg sm:text-xl text-white/70 leading-relaxed" data-fade-up>
+            Book a free 30 min call where we discuss if my offer is the right fit for your needs.
+          </p>
+        </div>
+
+        <!-- Right side: CTA Button -->
+        <div class="flex-shrink-0" data-fade-up>
+          <a
+            href="https://cal.com/onticdani/website-design"
+            target="_blank"
+            class="inline-flex items-center justify-center rounded-full bg-white text-black px-10 py-4 text-lg font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105"
+          >
+            Book a call
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Copyright -->
+  <footer class="mt-12 py-8" data-fade-up>
+    <div class="text-center">
+      <p class="text-default text-sm">© {currentYear} - Yann Schaub</p>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes gradient-shift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .cta-button-primary {
+      background: black;
+    }
+
+    :root.dark .cta-button-primary {
+      background: white;
+    }
+
+    .cta-button-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #10b981);
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-primary:hover::before {
+      opacity: 1;
+    }
+
+    .cta-button-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(16, 185, 129, 0.2),
+        rgba(59, 130, 246, 0.2),
+        rgba(139, 92, 246, 0.2),
+        rgba(236, 72, 153, 0.2),
+        rgba(16, 185, 129, 0.2)
+      );
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-secondary {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    :root.dark .cta-button-secondary {
+      background: transparent;
+    }
+
+    .cta-button-secondary:hover::before {
+      opacity: 1;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .scrollbar-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+
+    /* Hero elements initial state - hidden and shifted down */
+    #hero-title,
+    #hero-subtitle {
+      opacity: 0;
+    }
+
+    #hero-avatar {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #hero-buttons {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #gallery-section {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Fade-up animation initial state */
+    [data-fade-up] {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Text animation styling */
+    .word-wrapper {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(10px);
+    }
+
+    /* FAQ Icon Animation */
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(135deg);
+    }
+  </style>
+
+  <script>
+    import { animate, scroll } from 'motion';
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to split text into words and wrap each in a span
+      const splitTextIntoWords = (element: HTMLElement) => {
+        const text = element.innerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        const processNode = (node: Node): Node[] => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.textContent?.trim().split(/(\s+)/) || [];
+            return words.map((word) => {
+              if (word.trim() === '') {
+                // Preserve whitespace
+                return document.createTextNode(word);
+              }
+              const span = document.createElement('span');
+              span.className = 'word-wrapper';
+              span.textContent = word;
+              return span;
+            });
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as HTMLElement;
+            const newElement = element.cloneNode(false) as HTMLElement;
+            Array.from(element.childNodes).forEach((child) => {
+              processNode(child).forEach((newChild) => {
+                newElement.appendChild(newChild);
+              });
+            });
+            return [newElement];
+          }
+          return [node.cloneNode(true)];
+        };
+
+        element.innerHTML = '';
+        Array.from(doc.body.childNodes).forEach((node) => {
+          processNode(node).forEach((newNode) => {
+            element.appendChild(newNode);
+          });
+        });
+      };
+
+      // Animate text with blur fade-in effect
+      const animateText = async (selector: string, delayOffset = 0) => {
+        const element = document.querySelector(selector) as HTMLElement;
+        if (!element) return;
+
+        // Make parent element visible immediately
+        element.style.opacity = '1';
+
+        splitTextIntoWords(element);
+        const words = element.querySelectorAll('.word-wrapper');
+
+        // Animate each word with stagger
+        words.forEach((word, index) => {
+          animate(
+            word as HTMLElement,
+            {
+              opacity: [0, 1],
+              filter: ['blur(10px)', 'blur(0px)'],
+              y: [10, 0],
+            },
+            {
+              duration: 0.6,
+              delay: delayOffset + index * 0.08,
+              easing: [0.22, 1, 0.36, 1], // Custom ease-out curve
+            } as any
+          );
+        });
+
+        // Return promise that resolves when animation is complete
+        return new Promise((resolve) => {
+          setTimeout(
+            () => {
+              resolve(true);
+            },
+            delayOffset + words.length * 80 + 600
+          );
+        });
+      };
+
+      // Start text animations immediately
+      animateText('#hero-title', 0);
+
+      // Start subtitle animation while title is still animating for continuous flow
+      setTimeout(() => {
+        animateText('#hero-subtitle', 0);
+      }, 400); // Start subtitle after first few words of title
+
+      // Animate hero elements with fade-in and slide-up after text animations
+      setTimeout(() => {
+        const heroAvatar = document.querySelector('#hero-avatar') as HTMLElement;
+        const heroButtons = document.querySelector('#hero-buttons') as HTMLElement;
+        const gallerySection = document.querySelector('#gallery-section') as HTMLElement;
+
+        if (heroAvatar) {
+          animate(
+            heroAvatar,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        if (heroButtons) {
+          animate(
+            heroButtons,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.15,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        if (gallerySection) {
+          animate(
+            gallerySection,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.3,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      }, 2100); // Delay after text animations complete
+
+      // Animate the pulsating rings
+      const animatePulse = (selector: string) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          animate(
+            element as HTMLElement,
+            {
+              scale: [1, 1.4],
+              opacity: [0, 0.7, 0],
+            },
+            {
+              duration: 1.5,
+              repeat: Infinity,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      };
+
+      // Start animations with staggered delays for a continuous pulse effect
+      animatePulse('#pulse-ring-1');
+      // animatePulse('#pulse-ring-2', 1);
+
+      // Animate buttons on hover
+      const animateButton = (buttonId: string) => {
+        const button = document.querySelector(buttonId);
+        if (!button) return;
+
+        button.addEventListener('mouseenter', () => {
+          animate(button as HTMLElement, { scale: 1.05 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+
+        button.addEventListener('mouseleave', () => {
+          animate(button as HTMLElement, { scale: 1 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+      };
+
+      animateButton('#book-call-btn');
+      animateButton('#view-pricing-btn');
+      animateButton('#pricing-book-call-btn');
+
+      // Horizontal scroll animation based on vertical scroll
+      const galleryScroll = document.querySelector('#gallery-scroll') as HTMLElement;
+      const gallerySection = document.querySelector('#gallery-section') as HTMLElement;
+
+      if (galleryScroll && gallerySection) {
+        // Scroll 250 pixels to the left as you scroll down
+        scroll(
+          animate(galleryScroll, {
+            x: [0, -350],
+          }),
+          {
+            target: gallerySection,
+            offset: ['start end', 'end start'], // Start when section enters viewport, end when it leaves
+          }
+        );
+      }
+
+      // Universal fade-up animation for any element with data-fade-up attribute
+      const fadeUpElements = document.querySelectorAll('[data-fade-up]');
+
+      const fadeUpObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Trigger the animation once when element comes into view
+              animate(
+                entry.target as HTMLElement,
+                {
+                  opacity: [0, 1],
+                  y: [40, 0],
+                },
+                {
+                  duration: 0.4,
+                  easing: 'ease-in-out',
+                } as any
+              );
+              // Unobserve after animation triggers so it only happens once
+              fadeUpObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2, // Trigger when 20% of the element is visible
+        }
+      );
+
+      // Observe all elements with data-fade-up attribute
+      fadeUpElements.forEach((element) => {
+        fadeUpObserver.observe(element);
+      });
+
+      // FAQ Accordion functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer') as HTMLElement;
+
+        if (question && answer) {
+          question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+
+            // Close all FAQ items
+            faqItems.forEach((otherItem) => {
+              const otherAnswer = otherItem.querySelector('.faq-answer') as HTMLElement;
+
+              if (otherAnswer) {
+                otherAnswer.style.maxHeight = '0';
+                otherItem.classList.remove('open');
+              }
+            });
+
+            // If this item wasn't open, open it
+            if (!isOpen) {
+              answer.style.maxHeight = answer.scrollHeight + 'px';
+              item.classList.add('open');
+            }
+          });
+        }
+      });
+    });
+  </script>
+</Layout>
