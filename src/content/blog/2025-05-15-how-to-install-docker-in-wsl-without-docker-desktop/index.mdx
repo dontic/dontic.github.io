@@ -17,7 +17,8 @@ ogImage: /src/content/blog/2025-05-15-how-to-install-docker-in-wsl-without-docke
 devto_sync: false
 ---
 
-import NewsletterSignup from '../../../components/common/newsletterSignup.tsx';
+import WebsiteDesignCTA from '../../../components/common/websiteDesignCTA.tsx';
+import NewsletterCTA from '../../../components/common/newsletterSignup.tsx';
 
 ## Introduction
 
@@ -29,7 +30,7 @@ So for my development workflow I use docker devcontainers, which allow me to dev
 
 In windows, there is an issue though, and that is that VSCode Dev Containers really don't like the native Docker Desktop and the experience is horribly slow and impossible to work in. So you need to install WSL, which stands for Windows Subsystem for Linux, then enable WSL support in Docker Desktop and voila, dev containers working like a charm.
 
-<NewsletterSignup client:visible />
+<WebsiteDesignCTA client:visible />
 
 ## Why I decided to switch
 
@@ -103,7 +104,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ### 5. Add your user to the Docker group
 
 ```bash
-sudo usermod -aG docker <your_username>
+sudo usermod -aG docker $USER
 ```
 
 If the docker group wasn't created automatically:
@@ -143,20 +144,30 @@ Edit `/etc/wsl.conf`:
 sudo nano /etc/wsl.conf
 ```
 
-Add `[network]` to it:
+Add the following 2 lines to it:
 
 ```
 [boot]
 systemd=true
 
-# Added this line:
+# Added these 2 lines:
 [network]
+generateResolvConf = false
 ```
 
-### 7. Done!
+### 7. Restart your shell to make the new assignments work
+
+You can either:
+
+1. Close WSL and start it again
+2. Run `su - $USER` to start a new shell session without closing it
+
+### 8. Done!
 
 You can test your docker installation by running:
 
 ```bash
 docker run hello-world
 ```
+
+{/* <NewsletterCTA client:load /> */}
