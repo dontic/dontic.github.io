@@ -41,9 +41,17 @@ const websiteGallery = [
     description: 'Modern business website',
   },
 ];
+
+const metadata = {
+  title: 'Website Design | Daniel Garcia',
+  description:
+    'I help companies, brands and individuals build their website from scratch or improve their existing one.',
+  ogImagePath: '/src/assets/images/og-image-website-design.png',
+  author: 'Daniel Garcia',
+};
 ---
 
-<Layout>
+<Layout metadata={metadata}>
   <section id="hero" class="relative overflow-hidden rounded-2xl dark:bg-black/30">
     <!-- subtle grid bg -->
     <div
