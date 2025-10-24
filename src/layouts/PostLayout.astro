@@ -5,6 +5,7 @@ import type { CollectionEntry } from 'astro:content';
 import importImage from '~/utils/importImage';
 import { Image } from 'astro:assets';
 import Comments from '~/components/blog/Comments.astro';
+import resolveCoverImagePathFromId from '~/utils/resolveCoverImagePath';
 
 // Define the props type
 export interface Props {
@@ -15,16 +16,38 @@ export interface Props {
 const { post } = Astro.props;
 
 // Extract the post data
-const { title, description, author, pubDatetime, modDatetime, ogImage, canonicalUrl, category, tags } = post?.data;
+const {
+  category,
+  title,
+  metaTitle,
+  description,
+  metaDescription,
+  author,
+  pubDatetime,
+  modDatetime,
+  draft,
+  tags,
+  slug,
+  canonicalUrl,
+} = post?.data;
+
+// Resolve og image: prefer frontmatter, otherwise look for a file in the post folder
+let resolvedOgPath: string | undefined;
+if (!resolvedOgPath) {
+  resolvedOgPath = await resolveCoverImagePathFromId(post.id);
+}
 
 // Create metadata object to pass to PageLayout
+// Create metadata object to pass to PageLayout
 const metadata = {
-  title: title,
-  description: description,
+  title: metaTitle ? metaTitle : title,
+  description: metaDescription ? metaDescription : description,
+  metaTitle: metaTitle,
+  metaDescription: metaDescription,
   author: author,
   pubDatetime: pubDatetime,
   modDatetime: modDatetime,
-  ogImagePath: ogImage,
+  ogImagePath: resolvedOgPath,
   canonicalUrl: canonicalUrl,
 };
 
@@ -37,10 +60,10 @@ const formatDate = (date: Date) => {
   });
 };
 
-// Import the ogImage dynamically if it's provided
+// Import the cover image dynamically if it's provided or resolved
 let ogImageImage: ImageMetadata | undefined;
-if (ogImage) {
-  ogImageImage = await importImage(ogImage);
+if (resolvedOgPath) {
+  ogImageImage = await importImage(resolvedOgPath);
 }
 ---
 
