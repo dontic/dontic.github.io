@@ -22,8 +22,9 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
         href="/projects/"
         target="_blank"
         class="font-bold underline underline-offset-1">cool stuff</a
-      >. I also <a href="/website-design/" class="font-bold underline underline-offset-1">design websites</a> for companies
-      and brands.
+      >. I also <a href="/website-design/" class="font-bold underline underline-offset-1"
+        ><span class="gradient-text">design websites</span></a
+      > for companies and brands.
     </p>
     <p class="mt-4">
       I build AI-powered SaaS tools and share exactly how I turn code into real, profitable products — from first idea
@@ -88,3 +89,26 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
     </div>
   </div>
 </PageLayout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
