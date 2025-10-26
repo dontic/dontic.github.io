@@ -6,7 +6,7 @@ description: 'How to install Docker directly in WSL, without the need to install
 # metaDescription:
 author: Daniel Garcia
 pubDatetime: 2025-05-15T12:00:00Z
-# modDatetime:
+modDatetime: 2025-10-25T12:00:00Z
 # draft:
 tags:
   - wsl
@@ -21,13 +21,15 @@ import WebsiteDesignCTA from '../../../components/common/websiteDesignCTA.tsx';
 
 ## Introduction
 
-I use Windows, mainly because I'm a nerd and I like CAD and 3D printing and I do a bit of gaming then and there, all of these require Windows.
+I use Windows, mainly because I'm a nerd and I like CAD and 3D printing and I do a bit of gaming then and there; all of these require Windows.
 
-But when it comes to coding, I **really** like Linux, specially Ubuntu. I'm used to deploying my services in Linux machines as well.
+But when it comes to coding, I **really** like Linux, specially Ubuntu. I'm also used to deploying my services in Linux machines as well.
 
 So for my development workflow I use docker devcontainers, which allow me to develop inside the same environment my app will be deployed in, ensuring a smooth experience and no conflicts.
 
-In windows, there is an issue though, and that is that VSCode Dev Containers really don't like the native Docker Desktop and the experience is horribly slow and impossible to work in. So you need to install WSL, which stands for Windows Subsystem for Linux, then enable WSL support in Docker Desktop and voila, dev containers working like a charm.
+In windows, there is an issue though, and that is that VSCode Dev Containers really don't like the native Docker Desktop and the experience is horribly slow and impossible to work with. So you need to install WSL, which stands for Windows Subsystem for Linux, then enable WSL support in Docker Desktop and _voila_, dev containers working like a charm.
+
+There are some nuances though...
 
 <WebsiteDesignCTA client:visible />
 
@@ -35,12 +37,12 @@ In windows, there is an issue though, and that is that VSCode Dev Containers rea
 
 This is really biased, but I've experienced multiple nuances with docker desktop, mainly:
 
-- A couple of times a year it would just crash or not start, which got me down the rabbit hole of tying to debug the issue and I lost a day on it.
-- While pressenting a nice UI, I'm used to the docker CLI, so I don't use it at all and it consumes unnecessary resources
-- WSL integration is quite polished, but still, sometimes it would have issues
-- The space consumed by Docker Desktop became insane in my Windows system at one point, and after researching, the only way was to re-install Docker Desktop from scratch... so I decided to just delete it and move to docker in WSL.
+- A couple of times a year it would **just crash or not start**, which got me down the rabbit hole of trying to debug the issue and I would lose a day working on it.
+- While pressenting a nice UI, **I'm used to the docker CLI**, so I don't use the GUI at all and it consumes unnecessary resources.
+- WSL integration within Docker Desktop is quite polished, but still, **it would have issues sometimes**.
+- The hard disk **space consumed by Docker Desktop** became insane in my Windows system at one point, and after researching, the only way to free up some space was to re-install Docker Desktop from scratch... so I decided to just delete it and move to docker CLI directly in WSL, bypassing the Windows integration.
 
-I've found that running docker directly in WSL is smoother and lighter on my laptop's resources, which, for local development, is so much nicer as my laptop battery lasts more.
+I've found that **running docker directly in WSL is smoother and lighter** on my laptop's resources, which, for local development, is so much nicer as my laptop battery lasts more.
 
 In the end, installing Docker directly in WSL is quite easy, specially if you're used to Docker CLI and Linux, so it was a no brainer.
 
