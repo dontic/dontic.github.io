@@ -1,0 +1,70 @@
+---
+category: tech
+title: 'How re-run django makemigrations without losing database data'
+description: 'Useful guide on how to remove current migrations and re=run makemigrations without losing all the data in your database'
+author: Daniel Garcia
+pubDatetime: 2025-10-29T12:00:00Z
+# modDatetime:
+featured: false
+# draft:
+tags:
+  - django
+  - python
+  - database
+  - makemigrations
+# canonicalUrl:
+---
+
+## Introduction
+
+I've previously written [how to squash migrations in django](https://daniel.es/blog/django-how-to-squash-migrations), which is the propper way to consolidate several migrations into one file.
+
+But recently, I've found myself in an edge case:
+
+I started a new project, so my migrations were all over the place, I ran 10 `makemigrations` commands in like 40 minutes. I am far from deploying, but I already have some useful data in my dev database for testing purposes that I want to preserve.
+
+So I have 2 solutions for this:
+
+1. [Squash the migrations](https://daniel.es/blog/django-how-to-squash-migrations):
+
+   - **Pros**: Preserve the existing database data
+   - **Cons**: Create _a lot_ of unnecessary database operations and have an overcomplicated migration file (i.e.: I create a model but then I forgot to put decimal constraints on a certain field, that's 2 operations instead of just 1)
+
+2. Run `django manage.py migrate myapp zero` to remove all the migrations from the database, and re-run `python manage.py makemigrations` and `python manage.py migrate`
+
+   - **Pros**: Have a clean migration file
+   - **Cons**: Lose all the database data
+
+So I wondered:
+
+> Isn't there a way we can have the best of both worlds?
+
+Turns out... **we can**!
+
+## Fake reverting migrations in django
+
+The trick is to fake revert the migrations, instead of reverting them for real.
+
+Here's how to do it:
+
+1. Run `python manage.py migrate myapp zero --fake`
+
+   The `--fake` flag will tell django to mark the migration as not applied in the `django_migrations` table, but **without modifying the data** in the database.
+
+2. Delete the migration files (remove all the migration files you want to consolidate into just one)
+
+3. Create new migration files `python manage.py makemigrations myapp`
+
+4. Fake apply the new migration: `python manage.py migrate autoipc --fake`
+
+   This marks the migration as applied without actually applying it in the database.
+
+That's it! You should have a super clean migration file without having lost the data.
+
+This flow is **SUPER useful** during the development phase of django models.
+
+## Words of caution
+
+- **ALWAYS** back up your data first, you never know what can go wrong.
+- **ONLY** do this in isolated git branches when developing new django features. If you do this in prod you will most probably break something.
+- **ONLY** do this if the models match the database schema. If you modify anything in the models in between this process, or have pending migrations, you will break everything.
