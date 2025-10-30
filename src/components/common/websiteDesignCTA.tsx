@@ -7,7 +7,7 @@ interface WebsiteDesignCTAProps {
 const WebsiteDesignCTA = ({
   buttonText = 'Learn More',
   heading = 'Need a Website or WebApp?',
-  description = 'Check out my web development services to get a beautiful, modern website for your business.',
+  description = 'Check out my web development services to get a beautiful, modern website or app for your business.',
 }: WebsiteDesignCTAProps) => {
   const handleClick = () => {
     window.open('/website-design/', '_blank');
