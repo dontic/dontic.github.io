@@ -42,6 +42,14 @@ import Search from 'astro-pagefind/components/Search';
     const openModal = () => {
       searchModal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden'); // Prevent scrolling when modal is open
+
+      // Focus on the search input field
+      setTimeout(() => {
+        const searchInput = document.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
+        if (searchInput) {
+          searchInput.focus();
+        }
+      }, 100);
     };
 
     // Function to close the modal
