@@ -18,7 +18,7 @@ import WebsiteDesignCTA from '../../../../components/common/websiteDesignCTA.tsx
 
 ## Introduction
 
-I've previously written [how to squash migrations in django](https://daniel.es/blog/django-how-to-squash-migrations), which is the propper way to consolidate several migrations into one file.
+I've previously written [how to squash migrations in django](https://daniel.es/blog/django-how-to-squash-migrations/), which is the propper way to consolidate several migrations into one file.
 
 But recently, I've found myself in an edge case:
 
@@ -26,7 +26,7 @@ I started a new project, so my migrations were all over the place, I ran 10 `mak
 
 So I have 2 solutions for this:
 
-1. [Squash the migrations](https://daniel.es/blog/django-how-to-squash-migrations):
+1. [Squash the migrations](https://daniel.es/blog/django-how-to-squash-migrations/):
 
    - **Pros**: Preserve the existing database data
    - **Cons**: Create _a lot_ of unnecessary database operations and have an overcomplicated migration file (i.e.: I create a model but then I forgot to put decimal constraints on a certain field, that's 2 operations instead of just 1)
