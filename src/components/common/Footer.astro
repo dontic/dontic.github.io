@@ -4,12 +4,22 @@
 import { SITE } from '~/config';
 import { Icon } from 'astro-icon/components';
 import Socials from '~/components/common/Socials.astro';
+import { getCollection } from 'astro:content';
+import generateSlug from '~/utils/slugify';
 
 const { showRSS } = SITE.footer;
 
 const { showRSS: boolean = showRSS } = Astro.props;
 
 const currentLocale = Astro.currentLocale;
+
+// Get all blog posts to check if alternate versions exist
+let posts = await getCollection('blog');
+posts = posts.filter((post) => post.data.draft !== true);
+
+// Create sets of available slugs for each locale
+const enSlugs = new Set(posts.filter((post) => post.filePath?.includes('/en/')).map((post) => generateSlug(post)));
+const esSlugs = new Set(posts.filter((post) => post.filePath?.includes('/es/')).map((post) => generateSlug(post)));
 
 // Language switcher logic
 const currentPath = Astro.url.pathname;
@@ -19,14 +29,47 @@ let alternateFlagClass: string;
 
 if (currentLocale === 'es') {
   // Switch to English: remove /es prefix
-  alternatePath = currentPath.replace(/^\/es/, '') || '/';
+  const potentialPath = currentPath.replace(/^\/es/, '') || '/';
   alternateLocale = 'en';
   alternateFlagClass = 'flag-country-gb';
+
+  // Check if this is a blog post path
+  const blogMatch = currentPath.match(/^\/es\/blog\/(.+)/);
+  if (blogMatch) {
+    const slug = blogMatch[1].replace('/', '');
+    // Check if this slug exists in English
+    if (enSlugs.has(slug)) {
+      alternatePath = potentialPath;
+    } else {
+      // Redirect to English home page
+      alternatePath = '/';
+    }
+  } else {
+    // For non-blog pages, use the potential path (you can add more checks here if needed)
+    alternatePath = potentialPath;
+  }
 } else {
   // Switch to Spanish: add /es prefix
-  alternatePath = `/es${currentPath}`;
+  const potentialPath = `/es${currentPath}`;
   alternateLocale = 'es';
   alternateFlagClass = 'flag-country-es';
+
+  // Check if this is a blog post path
+  const blogMatch = currentPath.match(/^\/blog\/(.+)/);
+
+  if (blogMatch) {
+    const slug = blogMatch[1].replace('/', '');
+    // Check if this slug exists in Spanish
+    if (esSlugs.has(slug)) {
+      alternatePath = potentialPath;
+    } else {
+      // Redirect to Spanish home page
+      alternatePath = '/es/';
+    }
+  } else {
+    // For non-blog pages, use the potential path (you can add more checks here if needed)
+    alternatePath = potentialPath;
+  }
 }
 ---
 
