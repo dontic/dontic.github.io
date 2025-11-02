@@ -5,8 +5,7 @@ description: 'The first issue of my (hopefully) weekly newsletter.'
 author: Daniel Garcia
 pubDatetime: 2025-07-22T12:00:00Z
 # modDatetime: 2025-03-13T12:00:00Z
-featured: false
-draft: false
+draft: true
 tags:
   - newsletter
 # ogImage: /src/content/blog/why-i-closed-down-fisy/cover.png

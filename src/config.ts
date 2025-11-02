@@ -39,6 +39,28 @@ export const SITE: SiteConfig = {
   },
 };
 
+export const SITE_ES: SiteConfig = {
+  title: 'Daniel García',
+  description: 'Blog Personal',
+  author: 'Daniel García',
+  siteUrl: 'https://daniel.es',
+  header: {
+    links: [
+      { href: '/es/blog/', text: 'Blog' },
+      { href: '/es/projects/', text: 'Proyectos' },
+      { href: '/es/about/', text: 'Sobre mí' },
+    ],
+  },
+  footer: {
+    showRSS: true,
+  },
+  ogImage: '/src/assets/images/og-image.png', // Needs to be an absolute path /src/...
+  locale: 'es_ES',
+  twitter: {
+    site: '@onticdani',
+  },
+};
+
 export const socialLinks = [
   {
     name: 'GitHub',

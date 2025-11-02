@@ -16,6 +16,10 @@ export default defineConfig({
     // port: 4321,  // Different port from the default 4321
   },
   site: SITE.siteUrl,
+  i18n: {
+    locales: ['es', 'en'],
+    defaultLocale: 'en',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

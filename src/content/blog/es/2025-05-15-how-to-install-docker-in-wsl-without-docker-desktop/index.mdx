@@ -1,0 +1,175 @@
+---
+category: tech
+title: 'Instalar Docker directamente en WSL sin Docker Desktop'
+# metaTitle:
+description: 'Cómo instalar Docker directamente en WSL, sin tener que instalar Docker Desktop en tu ordenador Windows'
+# metaDescription:
+author: Daniel Garcia
+pubDatetime: 2025-05-15T12:00:00Z
+modDatetime: 2025-10-25T12:00:00Z
+draft: false
+tags:
+  - wsl
+  - docker
+  - 'docker desktop'
+  - ubuntu
+# canonicalUrl:
+---
+
+import WebsiteDesignCTA from '../../../../components/common/websiteDesignCTA.tsx';
+
+## Introducción
+
+Uso Windows, principalmente porque soy un friki y me encanta diseñar en CAD, la impresión 3D y juego videjuegos de vez en cuando; todas estas cosas necesitan Windows.
+
+Pero cuando escribo código me **encanta** usar Linux, específicamente Ubuntu. Pero además estoy acostumbrado a desplegar mis web apps en servidores Linux.
+
+Por esta razón desarrollo dentro de contenedores docker usando VSCode "devcontainers", los cuales me permiten desarrollar dentro del mismo entorno en el que mi app se va a desplegar, asegurándome que todo va a funcionar a la perfección.
+
+Pero estos "devcontainers" tienen un problema grande en Windows, y es que no les gusta nada correr directamente en Docker Desktop en Windows y la experiencia es horrorsa e inusable. Así que no te queda otra que instalar WSL (Windows Subsistem for Linux) y correr los "devcontainer ahí".
+
+Aún así hay ciertos problemas...
+
+<WebsiteDesignCTA client:visible />
+
+## Por qué decidí cambiar
+
+Esto es muy subjetivo, pero he experimentado varios problemas usando Docker Desktop, principalmente:
+
+- Algunas veces Docker Desktop me dejaba de funcionar o no arrancaba, y cuando me pasaba tenía que tirarme horas investigando para solucionarlo.
+- Aunque te permite usar una UI bastante bien hecha, prefiero usar una terminal para gestionar Docker, así que el GUI consumía recursos innecesarios de mi ordenador.
+- La integración de WSL dentro de Docker Desktop está bastante bien, pero aún así fallaba de vez en cuando.
+- Docker Desktop consumía muchísimo espacio en mi disco duro. Investigando vi que la única solución decente era desinstalar y volver a reinstalar Docker Desktop. Así que llegados a este punto decidí instalarlo directamente en WSL, sin instalarlo en Windows.
+
+Después de hacer esto me he dado cuenta de que Docker directamente en WSL va más rápido y ocupa menos espacio, así que para desarrollar localmente es una experiencia mucho más agradable y la batería de mi portátil dura bastante más.
+
+Al final, instalar Docker directamente en WSL es bastante sencillo, especialmente si usas la terminal para usar Docker y Linux, entonces no hay duda.
+
+## Cómo instalar Docker en WSL sin instalar Docker Desktop
+
+Vamos a ello:
+
+### 1. Desinstalar cualquier versión de Docker
+
+Si ya tienes Docker Desktop instalado, desinstálalo. Puedes hacerlo eliminando la app en "Desinstalar apps" en el menú de Windows.
+
+### 2. Instala WSL si aún no lo tienes
+
+WSL es bastante fácil de instalar, pero como se sale del alcance de este artículo, no voy a entrar en detalles aquí.
+
+### 3. Modifica las instalaciones de las tablas IP
+
+> Si NO utilizas Ubuntu 22.04 o Debian 10/11, puedes ignorar este paso.
+
+Si, como yo, te encanta Ubuntu y tienes la versión 22.04 como distribución WSL, debes modificar el archivo de tablas IP:
+
+En tu terminal WSL, ejecuta:
+
+```bash
+sudo update-alternatives --config iptables
+```
+
+A continuación, selecciona la opción `1` para cambiar a las instalaciones heredadas de tablas IP.
+
+### 4. Instala Docker directamente en WSL
+
+Dependiendo de tu distribución de Linux, puede que haya algunos cambios en este proceso, por lo que te aconsejo que vayas a la documentación de instalación de Docker y selecciones la tuya.
+
+Sin embargo, para Ubuntu, este es el proceso más reciente utilizando `apt`:
+
+1. Instala el repositorio de Docker.
+
+```bash
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+2. Instala Docker usando `apt`:
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### 5. Añade tu usuario al grupo `docker`
+
+```bash
+sudo usermod -aG docker $USER
+```
+
+Si el grupo `docker` no se ha creado automáticamente:
+
+```bash
+sudo addgroup docker
+```
+
+### 6. Actualiza tu DNS en WSL
+
+WSL points the DNS server to your local machine in a weird but effective way. This is usually ok but I've found that sometimes I would have connectivity issues in my docker containers. So I recommend doing the following:
+
+WSL apunta su DNS al servidor DNS local de tu ordenador de una manera efectiva. Esto normalmente funciona perfectamente, pero he encontrado momentos en los que he tenido problemas de conectividad con mis contenedores de Docker. Así que recomiendo hacer lo siguiente:
+
+1. Actualiza los nameservers
+
+Edita tu archivo `resolv.conf`:
+
+```bash
+sudo nano /etc/resolv.conf
+```
+
+Cambia el nameserver existente a Cloudflare (`1.1.1.1`) o Google (`8.8.8.8`) DNS:
+
+```
+# This file was automatically generated by WSL. To stop automatic generation of this file, add the following entry to /etc/wsl.conf:
+# [network]
+# generateResolvConf = false
+# nameserver 10.255.255.254 -> he comentado esta linea
+
+nameserver 1.1.1.1
+```
+
+2. Haz que `resolv.conf` no se regenere en cada reinicio:
+
+Edita `/etc/wsl.conf`:
+
+```bash
+sudo nano /etc/wsl.conf
+```
+
+Añade las siguientes 2 líneas:
+
+```
+[boot]
+systemd=true
+
+# He añadido estas 2 líneas:
+[network]
+generateResolvConf = false
+```
+
+### 7. Reinicia el shell para que las asignaciones hagan efecto
+
+Puedes hacer cualquiera de estas dos cosas:
+
+1. Cierra WSL y reinicialo de nuevo
+2. Ejecuta `su - $USER` para empezar una nueva sesión de shell sin cerrar WSL.
+
+### 8. Listo!
+
+Puedes probar tu nueva instalación de docker ejecutando:
+
+```bash
+docker run hello-world
+```
+
+{/* <NewsletterCTA client:load /> */}

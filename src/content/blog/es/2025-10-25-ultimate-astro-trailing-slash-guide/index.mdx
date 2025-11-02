@@ -1,0 +1,91 @@
+---
+category: tech
+title: 'The ultimate Astro trailingSlash guide'
+description: 'Learn everything you need to know about Astro trailingSlash config'
+author: Daniel Garcia
+pubDatetime: 2025-10-25T12:00:00Z
+# modDatetime:
+draft: true
+tags:
+  - Astro
+  - Web Dev
+  - trailingSlash
+  - Tutorial
+# canonicalUrl:
+---
+
+import WebsiteDesignCTA from '../../../../components/common/websiteDesignCTA.tsx';
+
+## Introduction
+
+If you're like me and love [building modern sites with Astro](https://daniel.es/website-design/) you probably encountered the `trailingSlash` dilemma and wondered why is such a big deal and if you should go with or without it for your site.
+
+We'll solve all of these questions and see my preferred way of implementing it.
+
+<WebsiteDesignCTA client:visible />
+
+## What the hell is trailing slash?
+
+Quite elemental my dear Watson.
+
+It's how you want your Astro routes to end, with or without a `/`
+
+- Trailig slash **yes** : `/about/`
+- Traling slash **no**: `/about`
+
+## Why even care?
+
+This is important mainly for SEO purposes.
+
+Having 2 existing routes for the same content, i.e.: `/about` and `/about/`, can be confusing and search engines like Google might interpret it as **duplicated content** and penalize you for it.
+
+So it's always good practice to decide on one for your whole project and create 301 redirect rules for the other, let me explain:
+
+1. You chose to have your routes _without_ a trailing slash: `/about`. This is where your real content will live.
+2. You create a redirect rule from `/about/` -> `/about`
+
+This signals that you serve your content in `/about/` and anyone trying to go to `/about` will be redirected to it.
+
+## Why the redirects?
+
+Well, you can't trust everyone linking to your website to get it right all the time, and you don't want people to meet your `404` page!
+
+ThankfulLy Astro does all this work for us automatically, let's see how.
+
+## My preferred Astro config
+
+Let's go through this in small steps:
+
+1. Decide on what you prefer, trailing slash or no traling slash, there is no right answer, this comes from what your OCD brain likes better.
+
+   I went _with_ trailing slash cause I like `/about/` more than `/about`, sue me.
+
+   For \*reasons\*, I will asume you did the same so we can keep this guide homogenous.
+
+2. Now set the `trailingSlash` config in `astro.config.mjs` like this:
+
+```js
+// ...
+export default defineConfig({
+  // ...
+  trailingSlash: 'always', // or 'never' if you went without tralingSlash
+});
+```
+
+Tha's it!
+
+This config does the following:
+
+1. In production, it will create automatic 301 redirects from routes without trailing slashes to the ones with trailing slashies, i.e.: `/about` -> `301` -> `/about/`. This, in case anyone \*dares\* to link to your site without a trailing slash.
+
+2. In development mode you will get an error page if you end up in a page _without_ a trailing slash. This way you know you need to fix those links and prevent having an extra redirect in production.
+
+## Conclusion
+
+Apart from learning that _with_ tralingSlash is the way to go, you know have the necessary concepts of how this works and why it exsists:
+
+- Avoid duplicating routes with the same content
+- Implement automatic 301 redirects
+- Trailing slashes are Conclusion
+
+Catch you on the next one!

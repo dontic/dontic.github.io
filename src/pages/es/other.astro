@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import PostsByYear from '~/components/blog/PostsByYear.astro';
+
+// Get all posts
+let posts = await getCollection('blog');
+
+// Remove draft posts
+posts = posts.filter((post) => post.data.draft !== true);
+
+// Get only posts with locale es
+posts = posts.filter((post) => post.filePath?.includes('/es/'));
+
+// Filter posts by those that have the tag 'other'
+const otherPosts = posts.filter((post) => post.data.category === 'other');
+---
+
+<PageLayout>
+  <PostsByYear posts={otherPosts} />
+</PageLayout>

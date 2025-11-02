@@ -17,6 +17,8 @@ export interface Props {
 const { links = [], isFullWidth = false, showRssFeed = false, position = 'center' } = Astro.props;
 
 const currentPath = `/${new URL(Astro.url).pathname}/`;
+
+const currentLocale = Astro.currentLocale;
 ---
 
 <header id="header" class="flex-none">
@@ -33,7 +35,7 @@ const currentPath = `/${new URL(Astro.url).pathname}/`;
   >
     <!-- Logo -->
     <div class="flex items-center justify-between flex-1 md:flex-initial">
-      <a class="flex items-center" href="/">
+      <a class="flex items-center" href={`${currentLocale !== 'en' ? `/${currentLocale}/` : '/'}`}>
         <Logo />
       </a>
     </div>

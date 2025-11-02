@@ -1,0 +1,1476 @@
+---
+import avatarImage from '~/assets/images/avatar.jpeg';
+import { Image } from 'astro:assets';
+import Layout from '~/layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+// Import website design examples
+import miseoImage from '~/assets/images/website-design/miseo.png';
+import danielImage from '~/assets/images/website-design/daniel.png';
+import estaviaImage from '~/assets/images/website-design/estavia.png';
+import autoipcImage from '~/assets/images/website-design/autoipc.png';
+import saracarviaImage from '~/assets/images/website-design/saracarvia.png';
+import Signature from '~/assets/svg/signature.svg';
+
+const currentYear: number = new Date().getFullYear();
+
+// Gallery data
+const websiteGallery = [
+  {
+    image: danielImage,
+    alt: 'Portfolio de Daniel',
+    title: 'Portfolio de Daniel',
+    description: 'Portfolio personal',
+  },
+  {
+    image: autoipcImage,
+    alt: 'Diseño de AutoIPC',
+    title: 'AutoIPC',
+    description: 'Sitio web corporativo',
+  },
+  {
+    image: estaviaImage,
+    alt: 'Diseño de Estavia',
+    title: 'Estavia',
+    description: 'Plataforma de e-commerce',
+  },
+  {
+    image: miseoImage,
+    alt: 'Diseño de Miseo',
+    title: 'Miseo',
+    description: 'Sitio web moderno',
+  },
+];
+
+const metadata = {
+  title: 'Diseño de Sitios Web y Web Apps | Daniel Garcia',
+  description:
+    'Ayudo a empresas, marcas y individuos a construir su sitio web desde cero o mejorar su sitio web existente.',
+  ogImagePath: '/src/assets/images/og-image-website-design.png',
+  author: 'Daniel García',
+};
+---
+
+<Layout metadata={metadata}>
+  <section id="hero" class="relative overflow-hidden rounded-2xl dark:bg-black/30">
+    <!-- subtle grid bg -->
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10"
+      style="background-image: linear-gradient(to right, rgba(0,0,0,.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,.05) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom, black, transparent);"
+    >
+    </div>
+
+    <div class="mt-12 px-6 py-16 sm:py-24 text-center">
+      <!-- avatar with concentric ring -->
+      <div class="mx-auto mb-8 h-32 w-32" id="hero-avatar">
+        <a
+          href="https://cal.com/onticdani/website-design"
+          target="_blank"
+          class="relative h-full w-full cursor-pointer group block"
+          data-tooltip="Available for a call"
+        >
+          <!-- Pulsating rings -->
+          <div id="pulse-ring-1" class="absolute inset-0 rounded-full ring-8 ring-emerald-300 opacity-0"></div>
+          <!-- <div id="pulse-ring-2" class="absolute inset-0 rounded-full ring-8 ring-emerald-300 opacity-0"></div> -->
+
+          <!-- Main avatar with ring -->
+          <div class="relative h-full w-full rounded-full bg-white dark:bg-black p-1 ring-8 ring-emerald-400">
+            <Image
+              src={avatarImage}
+              alt="Headshot"
+              class="rounded-full object-cover ring-1 ring-gray-200"
+              width={200}
+              height={200}
+            />
+          </div>
+
+          <!-- Tooltip -->
+          <div
+            class="tooltip absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-black dark:bg-white text-white dark:text-black px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          >
+            Disponible para una llamada
+            <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-black dark:bg-white rotate-45">
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <h1 id="hero-title" class="mx-auto max-w-2xl text-4xl md:text-6xl font-medium leading-tight tracking-tight">
+        ¿Quieres una página o aplicación web moderna?
+      </h1>
+
+      <p id="hero-subtitle" class="mx-auto mt-6 max-w-2xl text-xl text-default">
+        Ayudo a empresas, marcas e individuos a construir su sitio web desde cero o mejorar su sitio web existente.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="hero-buttons">
+        <a
+          href="https://cal.com/onticdani/website-design"
+          target="_blank"
+          id="book-call-btn"
+          class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-white">Reservar una llamada</span>
+        </a>
+
+        <a
+          href="#pricing"
+          id="view-pricing-btn"
+          class="cta-button-secondary relative inline-flex items-center justify-center rounded-full overflow-hidden border border-black/10 dark:border-white/20 px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-black dark:text-white">Ver precios</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrollable Gallery Section -->
+  <section class="mt-12" id="gallery-section">
+    <div class="relative overflow-hidden">
+      <!-- Scrollable container -->
+      <div class="overflow-x-auto pb-4 scrollbar-hide scroll-smooth px-20">
+        <div class="flex gap-6" id="gallery-scroll">
+          {
+            websiteGallery.map((item) => (
+              <div class="flex-none mb-20">
+                <div class="group relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 shadow-lg hover:shadow-2xl transition-all duration-300 h-[512px] sm:h-[512px]">
+                  <Image src={item.image} alt={item.alt} class="h-full w-auto object-contain" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 class="text-white text-xl font-semibold">{item.title}</h3>
+                      <p class="text-white/80 text-sm mt-1">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="mt-12" id="testimonial-section" data-fade-up>
+    <div
+      class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20"
+    >
+      <div class="mx-auto max-w-3xl text-center">
+        <blockquote class="text-xl sm:text-2xl font-normal text-default leading-relaxed">
+          "<b>Daniel ha conseguido lo que yo quería.</b>
+          <br /> Después de haber luchado con una agencia de WordPress durante años, ha sido capaz de diseñar un sitio web
+          que no solo es bonito, pero también funcional. Definitivamente una gran mejora comparado con lo que tenía anteriormente."
+        </blockquote>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <Image
+            src={saracarviaImage}
+            alt="Sara Carvia"
+            class="h-12 w-12 rounded-full object-cover ring-2 ring-gray-200"
+            width={48}
+            height={48}
+          />
+          <div class="text-left">
+            <div class="text-gray-500">
+              <a
+                href="https://www.instagram.com/saracarvia/"
+                target="_blank"
+                class="hover:underline hover:text-default animate-underline">Sara Carvia</a
+              >, Influencer de Fitness
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Cycle Section -->
+  <section class="mt-12" id="product-cycle-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-5xl">
+        <!-- Title and subtitle -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight">
+            Junto a ti durante todo el proceso
+          </h2>
+          <p class="mt-6 text-lg sm:text-xl text-default max-w-3xl mx-auto">
+            No solo entregaré el producto final, sino que estaré disponible durante todos los pasos para asegurarme de
+            que estés satisfecho con el resultado.
+          </p>
+        </div>
+
+        <!-- Grid of cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Shaping & Vision -->
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:target" class="w-8 h-8 text-red-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Definición y visión</h3>
+                <p class="text-default leading-relaxed">
+                  Ayudo a definir tus necesidades y objetivos para tu sitio web.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Design -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:palette" class="w-8 h-8 text-green-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Diseño de sitio web</h3>
+                <p class="text-default leading-relaxed">
+                  Ayudo a traer tu visión a la vida con páginas y apps web modernas, de alto rendimiento y responsivas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Iterations & Tradeoffs -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:refresh" class="w-8 h-8 text-blue-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Iteraciones</h3>
+                <p class="text-default leading-relaxed">
+                  Iteraremos el diseño del sitio web hasta que estés 100% satisfecho con el resultado.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Implementation -->
+          <div
+            class="rounded-2xl bg-white/50 dark:bg-black/20 p-8 hover:shadow-lg transition-shadow duration-300"
+            data-fade-up
+          >
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <Icon name="tabler:rocket" class="w-8 h-8 text-pink-600" />
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Características complejas</h3>
+                <p class="text-default leading-relaxed">
+                  Si tienes cualquier requisito mayor como un área de miembros, autenticación, commerce, etc; estaré ahí
+                  para ayudarte a implementarlas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="mt-12" id="how-it-works-section" data-fade-up>
+    <div class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle grid bg -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 24px 24px;"
+      >
+      </div>
+      <div class="relative mx-auto">
+        <!-- Top label -->
+        <div class="text-center mb-6">
+          <p class="text-gray-400 text-sm sm:text-base font-medium">Directo y conciso</p>
+        </div>
+
+        <!-- Main headline -->
+        <h2
+          class="text-center text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight text-white mb-16"
+        >
+          Sitios web de alta calidad, sin complicaciones
+        </h2>
+
+        <!-- Steps grid -->
+        <div class="flex flex-col gap-8 max-w-2xl mx-auto">
+          {
+            [
+              {
+                icon: 'tabler:clock',
+                title: 'Programar una introducción',
+                description: 'Cuéntame sobre tu proyecto y veremos cómo puedo ayudarte.',
+              },
+              {
+                icon: 'tabler:message-circle',
+                title: 'Recibirás tus primeros diseños de sitio web en 48h',
+                description: 'Entregaré tus primeros diseños dentro de 48h después de nuestra primera conversación.',
+              },
+              {
+                icon: 'tabler:refresh',
+                title: 'Iterar hasta que estés satisfecho',
+                description: 'Revisaremos el sitio web juntos hasta que estés 100% satisfecho.',
+              },
+              {
+                icon: 'tabler:rocket',
+                title: 'Desplegar tu sitio web',
+                description:
+                  'Me encargaré del hosting y despliegue de tu sitio web, y me aseguraré que funcione correctamente.',
+              },
+            ].map((step) => (
+              <div class="flex gap-4" data-fade-up>
+                <div class="flex-shrink-0">
+                  <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon name={step.icon} class="w-5 h-5 text-white" />
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-white text-lg sm:text-xl font-semibold mb-2">{step.title}</h3>
+                  <p class="text-gray-400 leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="mt-12" id="benefits-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-5xl">
+        <!-- Grid of 3 columns -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <!-- Async first -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:message-circle-2" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">Trabajo asíncrono</h3>
+            <p class="text-gray-500 text-base sm:text-lg">WhatsApp y llamadas ocasionales</p>
+          </div>
+
+          <!-- Pause any time -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:currency-dollar" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">Adaptado a ti</h3>
+            <p class="text-gray-500 text-base sm:text-lg">Cotizaciones personalizadas para cada proyecto</p>
+          </div>
+
+          <!-- One task at a time -->
+          <div class="text-center">
+            <div class="flex justify-center mb-6">
+              <Icon name="tabler:clock-hour-4" class="w-12 h-12 text-gray-500" />
+            </div>
+            <h3 class="text-xl sm:text-2xl font-medium mb-4">Una tarea a la vez</h3>
+            <p class="text-gray-500 text-base sm:text-lg">Tiempo de entrega de 48h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <!-- <section class="mt-12" id="testimonial2-section" data-fade-up>
+    <div
+      class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20"
+    >
+      <div class="mx-auto max-w-3xl text-center">
+        <blockquote class="text-xl sm:text-2xl font-normal text-default leading-relaxed">
+          "<b>Daniel is a great designer.</b>
+          <br /> He is very responsive and has a great eye for detail. I would recommend him to anyone looking for a designer."
+        </blockquote>
+
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <Image
+            src={avatarImage}
+            alt="Daniel"
+            class="h-12 w-12 rounded-full object-cover ring-2 ring-gray-200"
+            width={48}
+            height={48}
+          />
+          <div class="text-left">
+            <div class="text-gray-500">
+              <a
+                href="https://www.instagram.com/onticdani/"
+                target="_blank"
+                class="hover:underline hover:text-default animate-underline">Daniel</a
+              >, Software Engineer
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Pricing Section -->
+  <section class="mt-12" id="pricing">
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight mb-6" data-fade-up>
+            Precios flexibles y modulares
+          </h2>
+          <p class="text-lg text-default" data-fade-up>
+            Construye el sitio web perfecto para tus necesidades. Comienza con una página de inicio y añade módulos a
+            medida que creces.
+          </p>
+        </div>
+
+        <!-- Base Website Packages -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>Paquetes de sitio web base</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Landing Page (Mandatory) -->
+            <div
+              class="rounded-2xl border-2 border-emerald-500 bg-white/50 dark:bg-black/20 p-6 relative shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <div
+                class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-semibold px-3 py-1 rounded-full"
+              >
+                REQUERIDO
+              </div>
+              <h4 class="text-xl font-semibold mb-2">Página de inicio</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">997€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Una sola página de alta conversión (ideal para productos, portafolio, o servicio). Incluye integración
+                de contenido y diseño funcional.
+              </p>
+            </div>
+
+            <!-- Multi-Page Site -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Sitio web multípágina</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">+450€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Añade 3–5 páginas adicionales (Acerca de, Contacto, Servicios, etc.) a tu página de inicio.
+              </p>
+            </div>
+
+            <!-- Blog / CMS Module -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Módulo de blog / CMS</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Añade un blog o cualquier tipo de contenido repetible (noticias, proyectos, estudios de caso). Incluye
+                interfaz de administración.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Functionality Add-Ons -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>Funcionalidades adicionales</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Analytics + SEO Setup -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Analíticas + Configuración SEO</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+100€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Google Analytics 4, meta tags, sitemap, y configuración de esquema.
+              </p>
+            </div>
+
+            <!-- Booking / Contact Form -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Reservas / Formulario de Contacto</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+150€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Formularios integrados con notificaciones de email o integraciones con apps como Calendly.
+              </p>
+            </div>
+
+            <!-- User Authentication -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Plataforma de usuarios</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Añade paywalls o páginas privadas a tu sitio web. Incluye registro, inicio de sesión, y panel de control
+                de cuenta.
+              </p>
+            </div>
+
+            <!-- Stripe Checkout -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-lg font-semibold mb-2">Checkout de Stripe</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-3xl font-medium">+350€</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Vende productos, servicios, o descargas digitales con pagos seguros.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ongoing Support -->
+        <div class="mb-12">
+          <h3 class="text-2xl font-medium mb-6" data-fade-up>
+            Soporte continuo <span class="text-default text-lg font-normal">(opcional)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <!-- Maintenance -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Mantenimiento</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">49€</span>
+                <span class="text-default">/month</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">
+                Actualizaciones de hosting, modificaciones, y verificaciones de seguridad.
+              </p>
+            </div>
+
+            <!-- Priority Support -->
+            <div
+              class="rounded-2xl border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/20 p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+              data-fade-up
+            >
+              <h4 class="text-xl font-semibold mb-2">Soporte prioritario</h4>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-4xl font-medium">99€</span>
+                <span class="text-default">/month</span>
+              </div>
+              <p class="text-default text-sm leading-relaxed">Correcciones y actualizaciones en el mismo día.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single CTA at the end of pricing section -->
+        <div class="text-center mt-16" data-fade-up>
+          <p class="text-lg text-default mb-6">¿Listo para construir tu sitio web perfecto?</p>
+          <a
+            href="https://cal.com/onticdani/website-design"
+            target="_blank"
+            id="pricing-book-call-btn"
+            class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-10 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+          >
+            <span class="relative z-10 text-white">Hazme una llamada</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Promise Section -->
+  <section class="mt-12" id="promise-section">
+    <div class="relative overflow-hidden bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle white gradient from top -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background: radial-gradient(ellipse 80% 60% at top center, rgba(255,255,255,.15) 0%, rgba(255,255,255,.08) 30%, transparent 70%);"
+      >
+      </div>
+
+      <div class="relative mx-auto max-w-3xl">
+        <h2 class="text-3xl sm:text-4xl font-medium text-white mb-12" data-fade-up>Mi promesa para ti</h2>
+
+        <div class="space-y-6 text-white/90 text-lg sm:text-xl leading-relaxed">
+          <p data-fade-up>
+            Me encanta trabajar con empresas y personas en el proceso de ideación y creatividad de su sitio web.
+          </p>
+
+          <p data-fade-up>
+            Para la mayoría de mis clientes, soy el primer diseñador web que trabaja en su proyecto. Y no me tomo esa
+            responsabilidad a la ligera.
+          </p>
+
+          <p data-fade-up>
+            Ante todo, quiero que sepas que soy una sola persona. Esto significa que trabajo solo con pocos clientes,
+            para que pueda dar mi atención completa a cada uno de ellos.
+          </p>
+
+          <p data-fade-up>
+            Cada píxel es hecho especialmente para ti, por mí. Y una vez entregado, será 100% tuyo – tu propiedad
+            intelectual.
+          </p>
+
+          <p data-fade-up>Siempre estarás comunicándote conmigo, y nadie más.</p>
+
+          <p data-fade-up>
+            Habrá un día en que nos tengamos que decir adiós. Quizá temporalmente o quizá para siempre. Y eso está bien.
+            Mis servicios están diseñados para funcionar así.
+          </p>
+
+          <p data-fade-up>Hasta entonces, estoy aquí cuando lo necesites.</p>
+
+          <!-- Signature -->
+          <div data-fade-up>
+            <Signature width={150} fill="white" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Grid Section -->
+  <!-- <section class="mt-12" id="testimonials-grid-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Daniel's product-sense helped me <b>ship 3x faster</b>, while maximising user value"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Costi, Founder at ABCDAncer</div>
+          </div>
+
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Daniel's <b>clean and insightful communication</b> style is unique and extremely valuable"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Wesley, Senior Engineer at Spotify</div>
+          </div>
+
+          <div
+            class="rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 p-8 flex flex-col"
+            data-fade-up
+          >
+            <blockquote class="text-default leading-relaxed mb-6 flex-grow">
+              "Daniel brings an <b>immense pragmatism and a laser-like focus</b> on outcomes"
+            </blockquote>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Henry, Head of UX at Rothschild & Co</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FAQ Section -->
+  <section class="mt-12" id="faq-section" data-fade-up>
+    <div class="relative overflow-hidden rounded-2xl bg-white/70 dark:bg-black/30 px-6 py-16 sm:py-20">
+      <div class="mx-auto max-w-4xl">
+        <!-- Title -->
+        <h2
+          class="text-center text-3xl sm:text-4xl md:text-5xl font-medium leading-tight tracking-tight mb-12"
+          data-fade-up
+        >
+          ¿Tienes preguntas? Aquí están las respuestas.
+        </h2>
+
+        <!-- FAQ Accordion -->
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Cómo funciona tu modelo de precios?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Al igual que Lego, puedes construir tu paquete de sitio web por módulos. Puedes empezar con una página
+                de inicio y añadir más módulos a medida que los necesites. El precio se basa en el número de módulos que
+                necesitas. Una vez estés contento con el resultado, puedes decidir si lo dejamos así o si quieres que lo
+                mantenga yo para ti.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Qué tipo de sitios web puedes diseñar?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Me especializo en páginas de alta conversión, con SEO listo, y diseño funcional. Pero también puedo
+                añadir características más complejas como un área de miembros privada, un blog, un formulario de
+                contacto, un sistema de reservas, una pasarela de pago, etc.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Cuánto tiempo puedo esperar para tener mi sitio web listo?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Entregaré los primeros borradores en 48 horas después de nuestra primera conversación. Luego iteraremos
+                hasta que estés 100% contento. Dependiendo del tamaño del proyecto, los clientes pueden esperar una
+                página de inicio de tamaño medio para estar lista en 2-3 semanas.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Hay un límite para el número de iteraciones que podemos hacer?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                There's no limite al número de iteraciones que podemos hacer. Iteraremos hasta que estés 100% contento
+                con el resultado, siempre dentro del alcance del proyecto.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Puedo pedir un reembolso?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Mi objetivo es hacer que estés 100% contento con el resultado. Ninguno de mis clientes hasta la fecha ha
+                pedido un reembolso. Pero si no estás contento, trabajaremos juntos para encontrar una solución.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Cómo puedo comunicarme contigo?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Principalmente uso WhatsApp para comunicarme con mis clientes. Puedes usarlo para enviarme tu feedback,
+                preguntarme preguntas, o para programar una llamada. Si prefieres, también podemos utilizar email o una
+                llamada.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div
+            class="faq-item rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-black/20 overflow-hidden"
+            data-fade-up
+          >
+            <button
+              class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <span class="font-medium text-lg">¿Te haces cargo del despliegue y el hosting?</span>
+              <span class="faq-icon flex-shrink-0 text-2xl transition-transform duration-300">+</span>
+            </button>
+            <div class="faq-answer overflow-hidden transition-all duration-300 ease-in-out" style="max-height: 0;">
+              <div class="px-6 pb-5 text-default leading-relaxed">
+                Totalmente! Me aseguraré de que tu sitio web y características estén desplegadas y funcionando
+                correctamente. También me puedo encargar del hosting y mantenimiento si lo necesitas.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Got more questions? Section -->
+  <section class="mt-12" id="got-more-questions-section" data-fade-up>
+    <div class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl bg-black dark:bg-gray-950 px-6 py-16 sm:py-20">
+      <!-- subtle grid bg -->
+      <div
+        aria-hidden="true"
+        class="absolute inset-0"
+        style="background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 24px 24px;"
+      >
+      </div>
+      <div class="relative mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-4 px-10">
+        <!-- Left side: Text content -->
+        <div class="flex-1">
+          <h2 class="text-3xl sm:text-4xl font-medium text-white mb-4" data-fade-up>¿Tienes más preguntas?</h2>
+          <p class="text-lg sm:text-xl text-white/70 leading-relaxed" data-fade-up>
+            Hazme una llamada gratis de 30 minutos, donde hablaremos sobre si mi oferta es la adecuada para tus
+            necesidades.
+          </p>
+        </div>
+
+        <!-- Right side: CTA Button -->
+        <div class="flex-shrink-0" data-fade-up>
+          <a
+            href="https://cal.com/onticdani/website-design"
+            target="_blank"
+            class="inline-flex items-center justify-center rounded-full bg-white text-black px-10 py-4 text-lg font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105"
+          >
+            Hazme una llamada
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Copyright -->
+  <footer class="mt-12 py-8" data-fade-up>
+    <div class="text-center mb-20">
+      <p class="text-default text-sm">© {currentYear} - Daniel Garcia</p>
+    </div>
+  </footer>
+
+  <!-- Sticky Bottom Popup -->
+  <div id="sticky-popup" class="sticky-popup">
+    <div class="sticky-popup-pill">
+      <div class="sticky-popup-text">
+        <span class="popup-label">¿Listo para empezar?</span>
+      </div>
+      <a href="https://cal.com/onticdani/website-design" target="_blank" class="popup-cta-button">
+        Hazme una llamada
+      </a>
+    </div>
+  </div>
+
+  <style>
+    @keyframes gradient-shift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .cta-button-primary {
+      background: black;
+    }
+
+    :root.dark .cta-button-primary {
+      background: white;
+    }
+
+    .cta-button-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6, #ec4899, #10b981);
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-primary:hover::before {
+      opacity: 1;
+    }
+
+    .cta-button-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(16, 185, 129, 0.2),
+        rgba(59, 130, 246, 0.2),
+        rgba(139, 92, 246, 0.2),
+        rgba(236, 72, 153, 0.2),
+        rgba(16, 185, 129, 0.2)
+      );
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-secondary {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    :root.dark .cta-button-secondary {
+      background: transparent;
+    }
+
+    .cta-button-secondary:hover::before {
+      opacity: 1;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    .scrollbar-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none; /* Chrome, Safari and Opera */
+    }
+
+    /* Hero elements initial state - hidden and shifted down */
+    #hero-title,
+    #hero-subtitle {
+      opacity: 0;
+    }
+
+    #hero-avatar {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #hero-buttons {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #gallery-section {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Fade-up animation initial state */
+    [data-fade-up] {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Text animation styling */
+    .word-wrapper {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(10px);
+    }
+
+    /* FAQ Icon Animation */
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(135deg);
+    }
+
+    /* Sticky Popup Styles - Hovering Pill */
+    .sticky-popup {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(150%);
+      z-index: 1000;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    .sticky-popup.visible {
+      transform: translateX(-50%) translateY(0);
+      pointer-events: all;
+    }
+
+    .sticky-popup-pill {
+      background: white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 9999px;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 0.875rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .sticky-popup-pill:hover {
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    :root.dark .sticky-popup-pill {
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    :root.dark .sticky-popup-pill:hover {
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .sticky-popup-text {
+      display: flex;
+      align-items: center;
+    }
+
+    .popup-label {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: rgb(17, 24, 39);
+      white-space: nowrap;
+    }
+
+    :root.dark .popup-label {
+      color: white;
+    }
+
+    .popup-cta-button {
+      background: black;
+      color: white;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.625rem 1.5rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .popup-cta-button:hover {
+      background: rgb(31, 41, 55);
+      transform: scale(1.05);
+    }
+
+    :root.dark .popup-cta-button {
+      background: white;
+      color: black;
+    }
+
+    :root.dark .popup-cta-button:hover {
+      background: rgb(229, 231, 235);
+    }
+
+    @media (max-width: 640px) {
+      .sticky-popup {
+        bottom: 1.5rem;
+        left: 1rem;
+        right: 1rem;
+        transform: translateX(0) translateY(150%);
+      }
+
+      .sticky-popup.visible {
+        transform: translateX(0) translateY(0);
+      }
+
+      .sticky-popup-pill {
+        padding: 0.75rem 1.25rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .popup-label {
+        font-size: 0.875rem;
+      }
+
+      .popup-cta-button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1.25rem;
+      }
+    }
+  </style>
+
+  <script>
+    import { animate, scroll } from 'motion';
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to split text into words and wrap each in a span
+      const splitTextIntoWords = (element: HTMLElement) => {
+        const text = element.innerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        const processNode = (node: Node): Node[] => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.textContent?.trim().split(/(\s+)/) || [];
+            return words.map((word) => {
+              if (word.trim() === '') {
+                // Preserve whitespace
+                return document.createTextNode(word);
+              }
+              const span = document.createElement('span');
+              span.className = 'word-wrapper';
+              span.textContent = word;
+              return span;
+            });
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as HTMLElement;
+            const newElement = element.cloneNode(false) as HTMLElement;
+            Array.from(element.childNodes).forEach((child) => {
+              processNode(child).forEach((newChild) => {
+                newElement.appendChild(newChild);
+              });
+            });
+            return [newElement];
+          }
+          return [node.cloneNode(true)];
+        };
+
+        element.innerHTML = '';
+        Array.from(doc.body.childNodes).forEach((node) => {
+          processNode(node).forEach((newNode) => {
+            element.appendChild(newNode);
+          });
+        });
+      };
+
+      // Animate text with blur fade-in effect
+      const animateText = async (selector: string, delayOffset = 0) => {
+        const element = document.querySelector(selector) as HTMLElement;
+        if (!element) return;
+
+        // Make parent element visible immediately
+        element.style.opacity = '1';
+
+        splitTextIntoWords(element);
+        const words = element.querySelectorAll('.word-wrapper');
+
+        // Animate each word with stagger
+        words.forEach((word, index) => {
+          animate(
+            word as HTMLElement,
+            {
+              opacity: [0, 1],
+              filter: ['blur(10px)', 'blur(0px)'],
+              y: [10, 0],
+            },
+            {
+              duration: 0.6,
+              delay: delayOffset + index * 0.08,
+              easing: [0.22, 1, 0.36, 1], // Custom ease-out curve
+            } as any
+          );
+        });
+
+        // Return promise that resolves when animation is complete
+        return new Promise((resolve) => {
+          setTimeout(
+            () => {
+              resolve(true);
+            },
+            delayOffset + words.length * 80 + 600
+          );
+        });
+      };
+
+      // Start text animations immediately
+      animateText('#hero-title', 0);
+
+      // Start subtitle animation while title is still animating for continuous flow
+      setTimeout(() => {
+        animateText('#hero-subtitle', 0);
+      }, 400); // Start subtitle after first few words of title
+
+      // Animate hero elements with fade-in and slide-up after text animations
+      setTimeout(() => {
+        const heroAvatar = document.querySelector('#hero-avatar') as HTMLElement;
+        const heroButtons = document.querySelector('#hero-buttons') as HTMLElement;
+        const gallerySection = document.querySelector('#gallery-section') as HTMLElement;
+
+        if (heroAvatar) {
+          animate(
+            heroAvatar,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        if (heroButtons) {
+          animate(
+            heroButtons,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.15,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        if (gallerySection) {
+          animate(
+            gallerySection,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.3,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      }, 2100); // Delay after text animations complete
+
+      // Animate the pulsating rings
+      const animatePulse = (selector: string) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          animate(
+            element as HTMLElement,
+            {
+              scale: [1, 1.4],
+              opacity: [0, 0.7, 0],
+            },
+            {
+              duration: 1.5,
+              repeat: Infinity,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      };
+
+      // Start animations with staggered delays for a continuous pulse effect
+      animatePulse('#pulse-ring-1');
+      // animatePulse('#pulse-ring-2', 1);
+
+      // Animate buttons on hover
+      const animateButton = (buttonId: string) => {
+        const button = document.querySelector(buttonId);
+        if (!button) return;
+
+        button.addEventListener('mouseenter', () => {
+          animate(button as HTMLElement, { scale: 1.05 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+
+        button.addEventListener('mouseleave', () => {
+          animate(button as HTMLElement, { scale: 1 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+      };
+
+      animateButton('#book-call-btn');
+      animateButton('#view-pricing-btn');
+      animateButton('#pricing-book-call-btn');
+
+      // Horizontal scroll animation based on vertical scroll
+      const galleryScroll = document.querySelector('#gallery-scroll') as HTMLElement;
+      const gallerySection = document.querySelector('#gallery-section') as HTMLElement;
+
+      if (galleryScroll && gallerySection) {
+        // Scroll 250 pixels to the left as you scroll down
+        scroll(
+          animate(galleryScroll, {
+            x: [0, -350],
+          }),
+          {
+            target: gallerySection,
+            offset: ['start end', 'end start'], // Start when section enters viewport, end when it leaves
+          }
+        );
+      }
+
+      // Universal fade-up animation for any element with data-fade-up attribute
+      const fadeUpElements = document.querySelectorAll('[data-fade-up]');
+
+      const fadeUpObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Trigger the animation once when element comes into view
+              animate(
+                entry.target as HTMLElement,
+                {
+                  opacity: [0, 1],
+                  y: [40, 0],
+                },
+                {
+                  duration: 0.4,
+                  easing: 'ease-in-out',
+                } as any
+              );
+              // Unobserve after animation triggers so it only happens once
+              fadeUpObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.2, // Trigger when 20% of the element is visible
+        }
+      );
+
+      // Observe all elements with data-fade-up attribute
+      fadeUpElements.forEach((element) => {
+        fadeUpObserver.observe(element);
+      });
+
+      // FAQ Accordion functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer') as HTMLElement;
+
+        if (question && answer) {
+          question.addEventListener('click', () => {
+            const isOpen = item.classList.contains('open');
+
+            // Close all FAQ items
+            faqItems.forEach((otherItem) => {
+              const otherAnswer = otherItem.querySelector('.faq-answer') as HTMLElement;
+
+              if (otherAnswer) {
+                otherAnswer.style.maxHeight = '0';
+                otherItem.classList.remove('open');
+              }
+            });
+
+            // If this item wasn't open, open it
+            if (!isOpen) {
+              answer.style.maxHeight = answer.scrollHeight + 'px';
+              item.classList.add('open');
+            }
+          });
+        }
+      });
+
+      // Sticky Popup functionality
+      const stickyPopup = document.querySelector('#sticky-popup') as HTMLElement;
+      const heroSection = document.querySelector('#hero') as HTMLElement;
+
+      if (stickyPopup && heroSection) {
+        let popupShown = false;
+
+        // Function to check scroll position and show/hide popup
+        const handleScroll = () => {
+          const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+          const scrollPosition = window.scrollY;
+
+          // Show popup when scrolled past hero section
+          if (scrollPosition > heroBottom && !popupShown) {
+            stickyPopup.classList.add('visible');
+            popupShown = true;
+          } else if (scrollPosition <= heroBottom && popupShown) {
+            stickyPopup.classList.remove('visible');
+            popupShown = false;
+          }
+        };
+
+        // Add scroll event listener with throttle for performance
+        let scrollTimeout: number | null = null;
+        window.addEventListener('scroll', () => {
+          if (scrollTimeout) {
+            return;
+          }
+          scrollTimeout = window.setTimeout(() => {
+            handleScroll();
+            scrollTimeout = null;
+          }, 100);
+        });
+
+        // Initial check in case page is already scrolled
+        handleScroll();
+      }
+    });
+  </script>
+
+  <script>
+    // Redirect to English version if browser language is NOT Spanish
+    (function () {
+      // Check if we've already done this redirect in this session
+      const hasRedirected = sessionStorage.getItem('locale-redirect-checked');
+
+      if (!hasRedirected) {
+        // Get browser language preference
+        const browserLang = navigator.language || navigator.languages?.[0];
+
+        // Check if Spanish is NOT preferred
+        if (browserLang && !browserLang.toLowerCase().startsWith('es')) {
+          // Mark that we've checked to avoid redirect loops
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+          // Redirect to English version
+          window.location.href = '/website-design/';
+        } else {
+          // Mark as checked even if not redirecting
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+        }
+      }
+    })();
+  </script>
+</Layout>

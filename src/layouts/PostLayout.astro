@@ -15,6 +15,10 @@ export interface Props {
 // Accept post data as a prop
 const { post } = Astro.props;
 
+// Detect current locale
+const currentLocale = Astro.currentLocale;
+const isSpanish = currentLocale === 'es';
+
 // Extract the post data
 const {
   category,
@@ -27,7 +31,6 @@ const {
   modDatetime,
   draft,
   tags,
-  slug,
   canonicalUrl,
 } = post?.data;
 
@@ -51,13 +54,20 @@ const metadata = {
   canonicalUrl: canonicalUrl,
 };
 
-// Format dates
+// Format dates based on locale
 const formatDate = (date: Date) => {
-  return date.toLocaleDateString('en-US', {
+  const locale = isSpanish ? 'es-ES' : 'en-US';
+  return date.toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+};
+
+// Translations
+const translations = {
+  updated: isSpanish ? 'Actualizado' : 'Updated',
+  tags: isSpanish ? 'Etiquetas' : 'Tags',
 };
 
 // Import the cover image dynamically if it's provided or resolved
@@ -110,7 +120,9 @@ if (resolvedOgPath) {
             {modDatetime && (
               <div class="flex items-center">
                 <Icon name="tabler:refresh" class="w-5 h-5 mr-1" />
-                <span>Updated: {formatDate(modDatetime)}</span>
+                <span>
+                  {translations.updated}: {formatDate(modDatetime)}
+                </span>
               </div>
             )}
           </div>
@@ -151,7 +163,7 @@ if (resolvedOgPath) {
     {
       tags && tags.length > 0 && (
         <div class="flex flex-wrap items-center gap-2 mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <span class="text-gray-700 dark:text-gray-300 font-medium">Tags:</span>
+          <span class="text-gray-700 dark:text-gray-300 font-medium">{translations.tags}:</span>
           <div class="flex flex-wrap gap-2">
             <Icon name="tabler:tags" class="w-5 h-5 mr-1" />
             {tags.map((tag) => (

@@ -13,6 +13,8 @@ const getPostDate = (post: CollectionEntry<'blog'>) => {
   return post.data.modDatetime || post.data.pubDatetime;
 };
 
+// console.log(posts.map((post) => post.filePath));
+
 // Sort posts by date (newest first) and group by year
 const postsByYear = posts
   .sort((a, b) => getPostDate(b).getTime() - getPostDate(a).getTime())
@@ -33,6 +35,11 @@ const postsByYear = posts
 const years = Object.keys(postsByYear)
   .map(Number)
   .sort((a, b) => b - a);
+
+// Log the ids
+// console.log(posts.map((post) => post.id));
+
+const locale = Astro.currentLocale;
 ---
 
 {
@@ -46,7 +53,7 @@ const years = Object.keys(postsByYear)
           return (
             <li class="flex items-start">
               <span class="text-gray-500 w-12 flex-shrink-0 text-right mr-4">{formattedDate}</span>
-              <a href={`/blog/${generateSlug(post)}/`} class="hover:underline">
+              <a href={`/${locale !== 'en' ? `${locale}/` : ''}blog/${generateSlug(post)}/`} class="hover:underline">
                 {post.data.title}
               </a>
             </li>

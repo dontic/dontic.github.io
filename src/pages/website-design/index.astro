@@ -656,7 +656,7 @@ const metadata = {
             data-fade-up
           >
             <blockquote class="text-default leading-relaxed mb-6 flex-grow">
-              "Yann's product-sense helped me <b>ship 3x faster</b>, while maximising user value"
+              "Daniel's product-sense helped me <b>ship 3x faster</b>, while maximising user value"
             </blockquote>
             <div class="text-sm text-gray-500 dark:text-gray-400">Costi, Founder at ABCDAncer</div>
           </div>
@@ -666,7 +666,7 @@ const metadata = {
             data-fade-up
           >
             <blockquote class="text-default leading-relaxed mb-6 flex-grow">
-              "Yann's <b>clean and insightful communication</b> style is unique and extremely valuable"
+              "Daniel's <b>clean and insightful communication</b> style is unique and extremely valuable"
             </blockquote>
             <div class="text-sm text-gray-500 dark:text-gray-400">Wesley, Senior Engineer at Spotify</div>
           </div>
@@ -676,7 +676,7 @@ const metadata = {
             data-fade-up
           >
             <blockquote class="text-default leading-relaxed mb-6 flex-grow">
-              "Yann brings an <b>immense pragmatism and a laser-like focus</b> on outcomes"
+              "Daniel brings an <b>immense pragmatism and a laser-like focus</b> on outcomes"
             </blockquote>
             <div class="text-sm text-gray-500 dark:text-gray-400">Henry, Head of UX at Rothschild & Co</div>
           </div>
@@ -873,8 +873,8 @@ const metadata = {
 
   <!-- Footer Copyright -->
   <footer class="mt-12 py-8" data-fade-up>
-    <div class="text-center">
-      <p class="text-default text-sm">© {currentYear} - Yann Schaub</p>
+    <div class="text-center mb-20">
+      <p class="text-default text-sm">© {currentYear} - Daniel Garcia</p>
     </div>
   </footer>
 
@@ -1435,5 +1435,29 @@ const metadata = {
         handleScroll();
       }
     });
+  </script>
+
+  <script>
+    // Redirect to Spanish version if browser language is Spanish
+    (function () {
+      // Check if we've already done this redirect in this session
+      const hasRedirected = sessionStorage.getItem('locale-redirect-checked');
+
+      if (!hasRedirected) {
+        // Get browser language preference
+        const browserLang = navigator.language || navigator.languages?.[0];
+
+        // Check if Spanish is preferred (es, es-ES, es-MX, etc.)
+        if (browserLang && browserLang.toLowerCase().startsWith('es')) {
+          // Mark that we've checked to avoid redirect loops
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+          // Redirect to Spanish version
+          window.location.href = '/es/website-design/';
+        } else {
+          // Mark as checked even if not redirecting
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+        }
+      }
+    })();
   </script>
 </Layout>

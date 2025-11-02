@@ -5,12 +5,20 @@ import generateSlug from '~/utils/slugify';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  let posts = await getCollection('blog');
+
+  // Remove draft posts
+  posts = posts.filter((post) => post.data.draft !== true);
+
+  // Get only english posts
+  posts = posts.filter((post) => post.filePath?.includes('/en/'));
+
   return posts.map((post) => ({
     params: { id: generateSlug(post) },
     props: { post },
   }));
 }
+
 // 2. For your template, you can get the entry directly from the prop
 const { post } = Astro.props;
 const { Content } = await render(post);

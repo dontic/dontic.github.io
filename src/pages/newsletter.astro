@@ -4,9 +4,14 @@ import PageLayout from '~/layouts/PageLayout.astro';
 import PostsByYear from '~/components/blog/PostsByYear.astro';
 import NewsletterSignup from '~/components/common/newsletterSignup';
 
-const publishedPosts = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
-});
+// Get all posts
+const posts = await getCollection('blog');
+
+// Remove draft posts
+let publishedPosts = posts.filter((post) => post.data.draft !== true);
+
+// Get only posts with locale en
+publishedPosts = publishedPosts.filter((post) => post.filePath?.includes('/en/'));
 
 // Filter posts by those that have the tag 'newsletter'
 const newsletterPosts = publishedPosts.filter((post) => post.data.tags.includes('newsletter'));

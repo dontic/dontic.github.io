@@ -1,0 +1,152 @@
+---
+author: Daniel Garcia
+pubDatetime: 2024-03-22T15:07:17Z
+# modDatetime:
+title: 'Cómo consultar logs en Grafana Loki'
+draft: true
+category: tech
+tags:
+  - WebDev
+  - Logging
+  - Grafana
+  - Loki
+description: 'Aprende a consultar logs en Grafana Loki con una guía paso a paso sencilla'
+# canonicalUrl:
+---
+
+import WebsiteDesignCTA from '../../../../components/common/websiteDesignCTA.tsx';
+
+## Introducción
+
+Anteriormente escribí un artículo sobre [cómo centralizar y consultar logs fácilmente con Promtail + Loki + Grafana](/es/blog/how-to-centralize-and-visualize-your-app-logs-in-grafana/).
+
+En este artículo me centraré en la parte de las consultas: cómo consultar correctamente los logs en Grafana y cómo parsear tu formato de logs para filtrar fácilmente las líneas que quieres ver.
+
+<WebsiteDesignCTA client:visible />
+
+## Consultar tus primeros logs
+
+Aunque puedes crear dashboards o paneles llamativos, la consulta de logs es más útil en la vista **Explorar** de Grafana.
+
+Puedes encontrar esa vista en el panel izquierdo:
+
+![Panel izquierdo de Grafana](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/maykt7ue57yte37z43bx.png)
+
+Si has seguido mi tutorial anterior podrás seleccionar un job o un nombre de archivo en los filtros de etiquetas:
+
+![Selector de job y nombre de archivo en Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/poh3dwabssoospelfj6j.png)
+
+Ahora, en la parte superior derecha, pulsa «Run query»:
+
+![Botón «Run query» de Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8ez6codqm7laja2xtsry.png)
+
+Después verás algo como esto:
+
+![Vista Explore de Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/2d59efjp6hehj3vs2n8r.png)
+
+La interfaz consta de un gráfico de barras que indica la cantidad de logs a lo largo del tiempo y una consulta de 1000 líneas con los logs más recientes.
+
+En el panel superior puedes ajustar el rango temporal de tu consulta:
+
+![Selector de rango temporal en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q00pamwvm648znc4148w.png)
+
+Y en el panel de consulta puedes cambiar el límite. Ten en cuenta que aumentar demasiado el límite puede tumbar tu instancia de Loki:
+
+![Límite de resultados de consulta en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6dvvbiz4vycqbqjktyep.png)
+
+---
+
+## Filtra logs fácilmente en Grafana
+
+Es bastante fácil empezar a filtrar logs.
+
+Empieza pulsando: **Operations**
+
+![Botón de operaciones de consulta en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pwsgq8ib5y7sd1t5iqhf.png)
+
+Estas son las operaciones disponibles en el momento de escribir este artículo:
+
+![Operaciones de consulta disponibles en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/notu57o4cljnpzzajxtj.png)
+
+La más útil cuando estás empezando es **Line filters**
+
+![Operador de filtro de líneas en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/91366d9n7rq3265bdwqs.png)
+
+Puedes elegir el filtro que quieras para buscar líneas específicas. Aquí tienes un ejemplo para consultar líneas que contengan «ERROR»:
+
+![Ejemplo del operador de filtro de líneas en Grafana Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qy08tf9l30oojjejdws0.png)
+
+Puedes añadir tantas operaciones como quieras.
+
+El gráfico de barras es una gran forma de ver cuántas veces ocurrieron, a lo largo del tiempo, las líneas que coinciden con tu consulta. Genial para seguir errores, warnings, fallos específicos...
+
+---
+
+## Cómo parsear logs de Loki en Grafana
+
+Esto es algo muy chulo que Grafana te permite hacer y ayuda muchísimo a filtrar.
+
+Usaré nuestro formato de logs como ejemplo:
+
+```
+2024-03-19 09:48:57,608 - 244843ce48f8 - INFO - views - History ID: 123782
+```
+
+El patrón del log es el siguiente:
+
+```
+<datetime> - <docker_container_id> - <log_level> - <module> - <log_message>
+```
+
+Para que tengas más referencia, también puedes hacer cosas como esta:
+
+```
+0.191.12.2 - - [10/Jun/2021:09:14:29 +0000] "GET /api/plugins/versioncheck HTTP/1.1" 200 2 "-" "Go-http-client/2.0" "13.76.247.102, 34.120.177.193" "TLSv1.2" "US" ""
+```
+
+```
+<ip> - - <_> "<method> <uri> <_>" <status> <size> <_> "<agent>" <_>
+```
+
+Para parsear líneas con un patrón específico como el nuestro, ve a **+ Operations**, **Formats** y luego **Patterns**
+
+![Menú de patrón de logs](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/me10232wcweqctyz5014.png)
+
+Después solo tienes que insertar el patrón con el mismo formato que arriba:
+
+![Ejemplo de patrón de logs en Grafana](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bq0knibd54strw79jdbp.png)
+
+Si vuelves a consultar los logs verás que no pasa nada especial, pero con esto ahora podemos consultar por etiquetas específicas.
+
+Pulsa **+ Operations** y selecciona **Label Filters** y luego **Label Filter Expressions**
+
+![Menú de filtros por etiqueta](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ltqtagf8t30nslxt0x50.png)
+
+Con esto ahora puedo filtrar los logs de forma muy selectiva.
+
+Imagina que quiero consultar los logs de ERROR del usuario «daniel»:
+
+![Consulta de logs en Loki usando etiquetas](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/innt4vt6b5l6f6fz6sen.png)
+
+Ahora puedes combinar etiquetas y filtros para encontrar exactamente lo que buscas.
+
+## Usar el contexto en Grafana Loki
+
+Grafana lanzó esto el año pasado y es ALUCINANTE.
+
+Supón que has encontrado instancias de un error. Genial, ¿pero qué información te da eso? Quieres ver qué pasó antes y después de esa línea de log para ver la causa y la consecuencia de ese error.
+
+Para esto, es muy fácil:
+
+1. Pasa el ratón por encima de la línea para la que quieres ver contexto
+2. Pulsa el icono de _show context_ en la parte superior derecha de la línea
+
+![Icono de contexto](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f96lvc5mo1r75m5zbamy.png)
+
+3. Se abrirá una nueva ventana donde verás el contexto (logs antes y después) de esa línea:
+
+![Vista de contexto de logs en Loki](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hzq12h20kb825emh0xdd.png)
+
+4. Ahora puedes usar etiquetas para filtrar por distintos nombres de archivo, jobs o etiquetas de log.
+
+![Filtrar el contexto con etiquetas](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mzx6emfw88fast766e8e.png)

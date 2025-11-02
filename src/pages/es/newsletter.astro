@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '~/layouts/PageLayout.astro';
+import PostsByYear from '~/components/blog/PostsByYear.astro';
+import NewsletterSignup from '~/components/common/newsletterSignup';
+
+// Get all posts
+const posts = await getCollection('blog');
+
+// Remove draft posts
+let publishedPosts = posts.filter((post) => post.data.draft !== true);
+
+// Get only posts with locale es
+publishedPosts = publishedPosts.filter((post) => post.filePath?.includes('/es/'));
+
+// Filter posts by those that have the tag 'newsletter'
+const newsletterPosts = publishedPosts.filter((post) => post.data.tags.includes('newsletter'));
+---
+
+<PageLayout>
+  <div class="mt-8">
+    <NewsletterSignup client:visible />
+  </div>
+  <div class="mt-8">
+    <h2 class="text-2xl font-bold">Publicaciones del newsletter</h2>
+  </div>
+  <div class="mt-8">
+    <PostsByYear posts={newsletterPosts} />
+  </div>
+</PageLayout>

@@ -8,23 +8,63 @@ import Socials from '~/components/common/Socials.astro';
 const { showRSS } = SITE.footer;
 
 const { showRSS: boolean = showRSS } = Astro.props;
+
+const currentLocale = Astro.currentLocale;
+
+// Language switcher logic
+const currentPath = Astro.url.pathname;
+let alternatePath: string;
+let alternateLocale: string;
+let alternateFlagClass: string;
+
+if (currentLocale === 'es') {
+  // Switch to English: remove /es prefix
+  alternatePath = currentPath.replace(/^\/es/, '') || '/';
+  alternateLocale = 'en';
+  alternateFlagClass = 'flag-country-gb';
+} else {
+  // Switch to Spanish: add /es prefix
+  alternatePath = `/es${currentPath}`;
+  alternateLocale = 'es';
+  alternateFlagClass = 'flag-country-es';
+}
 ---
 
 <footer class="my-10">
   <div class="border-t border-gray-200 dark:border-gray-800 mx-10 my-8"></div>
   <div class="container mx-auto max-w-3xl">
     <div class="flex justify-between items-center">
-      <p class="flex flex-col md:flex-row">
-        <span>Copyright &copy; {new Date().getFullYear()}</span>
-        <span class="hidden md:block mx-2">|</span>
+      <!-- Left: Copyright -->
+      <p class="flex flex-row flex-wrap flex-1">
+        <span class="whitespace-nowrap">Copyright &copy; {new Date().getFullYear()}</span>
+        <span class="mx-2">|</span>
         <span>{SITE.title}</span>
       </p>
 
-      <div class="flex items-center gap-4">
+      <!-- Center: Language switcher -->
+      <div class="flex justify-center flex-1">
+        <a
+          href={alternatePath}
+          class="hover-scale"
+          aria-label={`Switch to ${alternateLocale === 'es' ? 'Spanish' : 'English'}`}
+          title={alternateLocale === 'es' ? 'Español' : 'English'}
+        >
+          <span
+            class={`flag ${alternateFlagClass} inline-block rounded-lg`}
+            style="width: 24px; height: 18px; background-size: cover;"></span>
+        </a>
+      </div>
+
+      <!-- Right: Socials and RSS -->
+      <div class="flex items-center gap-4 justify-end flex-1">
         <Socials />
         {
           SITE.footer.showRSS && (
-            <a href="/rss.xml" class="hover-scale hover-rotate" aria-label="RSS Feed">
+            <a
+              href={`${currentLocale !== 'en' ? `/${currentLocale}` : ''}/rss.xml`}
+              class="hover-scale hover-rotate"
+              aria-label="RSS Feed"
+            >
               <Icon name="tabler:rss" class="w-5 h-5" />
             </a>
           )

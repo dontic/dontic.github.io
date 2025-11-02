@@ -4,13 +4,24 @@ interface WebsiteDesignCTAProps {
   description?: string;
 }
 
-const WebsiteDesignCTA = ({
-  buttonText = 'Learn More',
-  heading = 'Need a Website or WebApp?',
-  description = 'Check out my web development services to get a beautiful, modern website or app for your business.',
-}: WebsiteDesignCTAProps) => {
+const WebsiteDesignCTA = ({ buttonText, heading, description }: WebsiteDesignCTAProps) => {
+  // Detect locale from URL
+  const isSpanish = typeof window !== 'undefined' && window.location.pathname.includes('/es/');
+
+  // Set default values based on locale
+  const defaultButtonText = isSpanish ? 'Más Información' : 'Learn More';
+  const defaultHeading = isSpanish ? '¿Necesitas un Sitio Web o Aplicación Web?' : 'Need a Website or WebApp?';
+  const defaultDescription = isSpanish
+    ? 'Echa un vistazo a mis servicios de desarrollo web para obtener un sitio web o aplicación hermosa y moderna para tu negocio.'
+    : 'Check out my web development services to get a beautiful, modern website or app for your business.';
+
+  // Use provided props or fall back to locale-specific defaults
+  const finalButtonText = buttonText ?? defaultButtonText;
+  const finalHeading = heading ?? defaultHeading;
+  const finalDescription = description ?? defaultDescription;
+
   const handleClick = () => {
-    window.open('/website-design/', '_blank');
+    window.open(isSpanish ? '/es/website-design/' : '/website-design/', '_blank');
   };
 
   return (
@@ -35,8 +46,8 @@ const WebsiteDesignCTA = ({
 
         <div className="bg-page rounded-lg p-6 transition ease duration-300">
           <div className="mx-auto p-2 mb-4">
-            <div className="text-xl font-semibold text-default mb-4 text-center">{heading}</div>
-            <div className="text-default text-center">{description}</div>
+            <div className="text-xl font-semibold text-default mb-4 text-center">{finalHeading}</div>
+            <div className="text-default text-center">{finalDescription}</div>
           </div>
 
           <div className="flex justify-center">
@@ -45,7 +56,7 @@ const WebsiteDesignCTA = ({
               data-umami-event="website-design-cta-click"
               className="px-6 py-3 bg-blue-400 text-white font-medium rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:cursor-pointer transition-all duration-300 hover:scale-105"
             >
-              {buttonText}
+              {finalButtonText}
             </button>
           </div>
         </div>

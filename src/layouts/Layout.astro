@@ -5,7 +5,7 @@ import Favicons from '~/components/meta/Favicons.astro';
 import SiteVerification from '~/components/meta/SiteVerification.astro';
 import '~/styles/global.css';
 import '@fontsource-variable/inter';
-import { SITE } from '~/config';
+import { SITE, SITE_ES } from '~/config';
 import { SEO } from 'astro-seo';
 
 import importImage from '~/utils/importImage';
@@ -35,15 +35,21 @@ if (metadata?.ogImagePath) {
 } else {
   ogImage = await importImage(SITE.ogImage);
 }
+
+const currentLocale = Astro.currentLocale;
+const site = currentLocale === 'es' ? SITE_ES : SITE;
 ---
 
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang={currentLocale} dir="ltr">
   <head>
     <!-- Common Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    
+    <!-- Tabler Flags -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-flags.min.css" />
 
     {
       import.meta.env.PROD && (
@@ -57,36 +63,36 @@ if (metadata?.ogImagePath) {
     <!-- SEO stuff -->
     <!-- Uses SITE config by default -->
     <SEO
-      title={metadata?.title || SITE.title}
-      titleTemplate={metadata?.useTitleTemplate ? `%s - ${SITE.title}` : undefined}
-      description={metadata?.description || SITE.description}
+      title={metadata?.title || site.title}
+      titleTemplate={metadata?.useTitleTemplate ? `%s - ${site.title}` : undefined}
+      description={metadata?.description || site.description}
       canonical={metadata?.canonicalUrl || Astro.url.href}
       noindex={metadata?.index === false}
       nofollow={metadata?.follow === false}
       openGraph={{
         basic: {
-          title: metadata?.title || SITE.title,
+          title: metadata?.title || site.title,
           type: 'website',
-          image: SITE.siteUrl + ogImage?.src || SITE.ogImage,
+          image: site.siteUrl + ogImage?.src || site.ogImage,
           url: metadata?.canonicalUrl || Astro.url.href,
         },
         article: {
-          authors: metadata?.author || SITE.author ? [metadata?.author || SITE.author] : undefined,
+          authors: metadata?.author || site.author ? [metadata?.author || site.author] : undefined,
           publishedTime: metadata?.pubDatetime ? new Date(metadata.pubDatetime).toISOString() : undefined,
           modifiedTime: metadata?.modDatetime ? new Date(metadata.modDatetime).toISOString() : undefined,
         },
         optional: {
-          locale: SITE.locale,
-          siteName: SITE.title,
-          description: metadata?.description || SITE.description,
+          locale: site.locale,
+          siteName: site.title,
+          description: metadata?.description || site.description,
         },
       }}
       twitter={{
         card: 'summary_large_image',
-        site: SITE.twitter.site,
-        title: metadata?.title || SITE.title,
-        description: metadata?.description || SITE.description,
-        image: SITE.siteUrl + ogImage?.src || SITE.ogImage,
+        site: site.twitter.site,
+        title: metadata?.title || site.title,
+        description: metadata?.description || site.description,
+        image: site.siteUrl + ogImage?.src || site.ogImage,
       }}
     />
 

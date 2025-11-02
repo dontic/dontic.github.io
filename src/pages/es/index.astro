@@ -1,0 +1,136 @@
+---
+// index.astro
+
+import PageLayout from '~/layouts/PageLayout.astro';
+
+import Image from 'astro/components/Image.astro';
+import { Icon } from 'astro-icon/components';
+
+import avatarImage from '~/assets/images/avatar.jpeg';
+import Socials from '~/components/common/Socials.astro';
+import NewsletterSignup from '~/components/common/newsletterSignup';
+---
+
+<PageLayout>
+  <div class="text-justify">
+    <!-- Hero Section -->
+    <div class="mb-4">
+      <Image src={avatarImage} alt="Daniel Garcia" class="size-24 rounded-full border-2 border-gray-200/30 shadow-lg" />
+    </div>
+    <p>
+      Soy Daniel García, un emprendedor construyendo <a
+        href="/es/projects/"
+        class="font-bold underline underline-offset-1">cosas interesantes</a
+      >. También <a href="/es/website-design/" target="_blank" class="font-bold underline underline-offset-1"
+        ><span class="gradient-text">diseño páginas web y web apps</span></a
+      > para empresas y marcas.
+    </p>
+    <p class="mt-4">
+      Construyo herramientas SaaS con IA y comparto exactamente cómo transformo el código en productos reales y
+      rentables — desde la primera idea hasta clientes pagantes. Puedes ver mis otros <a
+        href="/es/projects/"
+        class="font-bold underline underline-offset-1">proyectos</a
+      >.
+    </p>
+  </div>
+
+  <!-- Socials -->
+  <div class="mt-8">
+    <Socials />
+  </div>
+
+  <!-- Blogs -->
+  <div class="mt-8">
+    <h2 class="text-xl font-bold mb-4">Escribo sobre:</h2>
+    <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+      <a
+        href={`/es/tech/`}
+        class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+      >
+        <h3 class="font-bold text-lg flex items-center">
+          <span class="underline underline-offset-2">Tech</span>
+          <Icon name="tabler:external-link" class="ml-1 size-4" />
+        </h3>
+        <p class="mt-2 text-sm">Guías de código, nuevas tendencias y más.</p>
+      </a>
+
+      <a
+        href="/es/entrepreneurship/"
+        class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+      >
+        <h3 class="font-bold text-lg flex items-center">
+          <span class="underline underline-offset-2">Emprendimiento</span>
+          <Icon name="tabler:external-link" class="ml-1 size-4" />
+        </h3>
+        <p class="mt-2 text-sm">Negocios, productividad, vida y salud mental.</p>
+      </a>
+
+      <a
+        href="/es/other/"
+        class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
+      >
+        <h3 class="font-bold text-lg flex items-center">
+          <span class="underline underline-offset-2">Otro</span>
+          <Icon name="tabler:external-link" class="ml-1 size-4" />
+        </h3>
+        <p class="mt-2 text-sm">Guías de viaje y otras cosas aleatorias.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-8" id="newsletter">
+    <NewsletterSignup client:visible />
+  </div>
+</PageLayout>
+
+<script>
+  // Redirect to English version if user lands directly and browser language is NOT Spanish
+  (function () {
+    // Check if this is a direct visit (not from same site)
+    const referrer = document.referrer;
+    const currentDomain = window.location.hostname;
+    const isDirectVisit = !referrer || !referrer.includes(currentDomain);
+
+    // Check if we've already done this redirect in this session
+    const hasRedirected = sessionStorage.getItem('locale-redirect-checked');
+
+    if (isDirectVisit && !hasRedirected) {
+      // Get browser language preference
+      const browserLang = navigator.language || navigator.languages?.[0];
+
+      // Check if Spanish is NOT preferred
+      if (browserLang && !browserLang.toLowerCase().startsWith('es')) {
+        // Mark that we've checked to avoid redirect loops
+        sessionStorage.setItem('locale-redirect-checked', 'true');
+        // Redirect to English version
+        window.location.href = '/';
+      } else {
+        // Mark as checked even if not redirecting
+        sessionStorage.setItem('locale-redirect-checked', 'true');
+      }
+    }
+  })();
+</script>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
