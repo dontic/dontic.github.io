@@ -1,3 +1,5 @@
+import avatarImage from '~/assets/images/avatar.jpeg';
+
 interface WebsiteDesignCTAProps {
   buttonText?: string;
   heading?: string;
@@ -25,9 +27,9 @@ const WebsiteDesignCTA = ({ buttonText, heading, description }: WebsiteDesignCTA
   };
 
   return (
-    <div className="w-full justify-center flex">
+    <div className="w-full justify-center flex mt-16">
       <div
-        className="p-1 rounded-xl shadow-lg max-w-lg"
+        className="p-1 rounded-xl shadow-lg max-w-lg relative"
         style={{
           background: 'linear-gradient(45deg, #ec4899, #ef4444, #eab308, #22c55e, #3b82f6, #6366f1, #a855f7, #ec4899)',
           backgroundSize: '400% 400%',
@@ -41,10 +43,54 @@ const WebsiteDesignCTA = ({ buttonText, heading, description }: WebsiteDesignCTA
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
           }
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+          }
         `}
         </style>
 
-        <div className="bg-page rounded-lg p-6 transition ease duration-300">
+        {/* Avatar hovering on top of the card */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-43px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 10,
+          }}
+        >
+          <div
+            style={{
+              padding: '3px',
+              background:
+                'linear-gradient(45deg, #ec4899, #ef4444, #eab308, #22c55e, #3b82f6, #6366f1, #a855f7, #ec4899)',
+              backgroundSize: '400% 400%',
+              animation: 'gradient-move 3s ease infinite, float 3s ease-in-out infinite',
+              width: '86px',
+              height: '86px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+            }}
+          >
+            <img
+              src={avatarImage.src}
+              alt="Avatar"
+              style={{
+                width: '80px',
+                height: '80px',
+                display: 'block',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="bg-page rounded-lg p-6 pt-12 transition ease duration-300">
           <div className="mx-auto p-2 mb-4">
             <div className="text-xl font-semibold text-default mb-4 text-center">{finalHeading}</div>
             <div className="text-default text-center">{finalDescription}</div>
