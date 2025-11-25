@@ -1,40 +1,372 @@
 ---
-// index.astro
-
 import PageLayout from '~/layouts/PageLayout.astro';
-
-import Image from 'astro/components/Image.astro';
 import avatarImage from '~/assets/images/avatar.jpeg';
-import Socials from '~/components/common/Socials.astro';
+import { Image } from 'astro:assets';
 ---
 
-<PageLayout> Hello </PageLayout>
+<PageLayout>
+  <section id="hero" class="relative overflow-hidden rounded-2xl">
+    <!-- subtle grid bg -->
+    <div aria-hidden="true" class="absolute inset-0 -z-10 grid-background"></div>
 
-<script>
-  // Redirect to Spanish version if user lands directly and browser language is Spanish
-  (function () {
-    // Check if this is a direct visit (not from same site)
-    const referrer = document.referrer;
-    const currentDomain = window.location.hostname;
-    const isDirectVisit = !referrer || !referrer.includes(currentDomain);
+    <div class="mt-12 px-6 py-16 sm:py-24 text-center">
+      <!-- avatar -->
+      <div class="mx-auto mb-8 h-32 w-32" id="hero-avatar">
+        <div class="relative h-full w-full">
+          <!-- Pulsating rings -->
+          <div id="pulse-ring-1" class="absolute inset-0 rounded-full ring-8 ring-blue-300 opacity-0"></div>
 
-    // Check if we've already done this redirect in this session
-    const hasRedirected = sessionStorage.getItem('locale-redirect-checked');
+          <!-- Main avatar with ring -->
+          <div class="relative h-full w-full rounded-full bg-white dark:bg-black p-1 ring-8 ring-blue-400">
+            <Image
+              src={avatarImage}
+              alt="Daniel Garcia"
+              class="rounded-full object-cover ring-1 ring-gray-200"
+              width={200}
+              height={200}
+            />
+          </div>
+        </div>
+      </div>
 
-    if (isDirectVisit && !hasRedirected) {
-      // Get browser language preference
-      const browserLang = navigator.language || navigator.languages?.[0];
+      <h1 id="hero-title" class="mx-auto max-w-4xl text-4xl md:text-6xl font-medium leading-tight tracking-tight">
+        Building tools, writing about code and helping developers ship faster.
+      </h1>
 
-      // Check if Spanish is preferred (es, es-ES, es-MX, etc.)
-      if (browserLang && browserLang.toLowerCase().startsWith('es')) {
-        // Mark that we've checked to avoid redirect loops
-        sessionStorage.setItem('locale-redirect-checked', 'true');
-        // Redirect to Spanish version
-        window.location.href = '/es/';
-      } else {
-        // Mark as checked even if not redirecting
-        sessionStorage.setItem('locale-redirect-checked', 'true');
+      <p id="hero-subtitle" class="mx-auto mt-6 max-w-3xl text-xl text-default">
+        Hi! I'm Daniel, a solopreneur building AI-powered SaaS and clear, practical guides on Docker, DevOps, automation
+        and indie hacking.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="hero-buttons">
+        <a
+          href="/docker-course"
+          id="docker-course-btn"
+          class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-white dark:text-black">Take my Docker course</span>
+        </a>
+
+        <a
+          href="/devops-consulting"
+          id="consulting-btn"
+          class="cta-button-secondary relative inline-flex items-center justify-center rounded-full overflow-hidden border border-black/10 dark:border-white/20 px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+        >
+          <span class="relative z-10 text-black dark:text-white">DevOps and backend consulting</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Grid background styling */
+    .grid-background {
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image:
+        linear-gradient(to bottom, black 20%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%);
+      mask-composite: intersect;
+      -webkit-mask-image:
+        linear-gradient(to bottom, black 20%, transparent 100%),
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%);
+      -webkit-mask-composite: source-in;
+    }
+
+    :root.dark .grid-background {
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    }
+
+    @keyframes gradient-shift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
       }
     }
-  })();
-</script>
+
+    .cta-button-primary {
+      background: black;
+    }
+
+    :root.dark .cta-button-primary {
+      background: white;
+    }
+
+    .cta-button-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-primary:hover::before {
+      opacity: 1;
+    }
+
+    .cta-button-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        45deg,
+        rgba(59, 130, 246, 0.2),
+        rgba(139, 92, 246, 0.2),
+        rgba(236, 72, 153, 0.2),
+        rgba(16, 185, 129, 0.2),
+        rgba(59, 130, 246, 0.2)
+      );
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button-secondary {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    :root.dark .cta-button-secondary {
+      background: transparent;
+    }
+
+    .cta-button-secondary:hover::before {
+      opacity: 1;
+    }
+
+    /* Hero elements initial state - hidden and shifted down */
+    #hero-title,
+    #hero-subtitle {
+      opacity: 0;
+    }
+
+    #hero-avatar {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    #hero-buttons {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Text animation styling */
+    .word-wrapper {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(10px);
+    }
+  </style>
+
+  <script>
+    import { animate } from 'motion';
+
+    // Wait for DOM to be ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to split text into words and wrap each in a span
+      const splitTextIntoWords = (element: HTMLElement) => {
+        const text = element.innerHTML;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        const processNode = (node: Node): Node[] => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const words = node.textContent?.trim().split(/(\s+)/) || [];
+            return words.map((word) => {
+              if (word.trim() === '') {
+                // Preserve whitespace
+                return document.createTextNode(word);
+              }
+              const span = document.createElement('span');
+              span.className = 'word-wrapper';
+              span.textContent = word;
+              return span;
+            });
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as HTMLElement;
+            const newElement = element.cloneNode(false) as HTMLElement;
+            Array.from(element.childNodes).forEach((child) => {
+              processNode(child).forEach((newChild) => {
+                newElement.appendChild(newChild);
+              });
+            });
+            return [newElement];
+          }
+          return [node.cloneNode(true)];
+        };
+
+        element.innerHTML = '';
+        Array.from(doc.body.childNodes).forEach((node) => {
+          processNode(node).forEach((newNode) => {
+            element.appendChild(newNode);
+          });
+        });
+      };
+
+      // Animate text with blur fade-in effect
+      const animateText = async (selector: string, delayOffset = 0) => {
+        const element = document.querySelector(selector) as HTMLElement;
+        if (!element) return;
+
+        // Make parent element visible immediately
+        element.style.opacity = '1';
+
+        splitTextIntoWords(element);
+        const words = element.querySelectorAll('.word-wrapper');
+
+        // Animate each word with stagger
+        words.forEach((word, index) => {
+          animate(
+            word as HTMLElement,
+            {
+              opacity: [0, 1],
+              filter: ['blur(10px)', 'blur(0px)'],
+              y: [10, 0],
+            },
+            {
+              duration: 0.6,
+              delay: delayOffset + index * 0.08,
+              easing: [0.22, 1, 0.36, 1], // Custom ease-out curve
+            } as any
+          );
+        });
+
+        // Return promise that resolves when animation is complete
+        return new Promise((resolve) => {
+          setTimeout(
+            () => {
+              resolve(true);
+            },
+            delayOffset + words.length * 80 + 600
+          );
+        });
+      };
+
+      // Start text animations immediately
+      animateText('#hero-title', 0);
+
+      // Start subtitle animation while title is still animating for continuous flow
+      setTimeout(() => {
+        animateText('#hero-subtitle', 0);
+      }, 400); // Start subtitle after first few words of title
+
+      // Animate hero elements with fade-in and slide-up after text animations
+      setTimeout(() => {
+        const heroAvatar = document.querySelector('#hero-avatar') as HTMLElement;
+        const heroButtons = document.querySelector('#hero-buttons') as HTMLElement;
+
+        if (heroAvatar) {
+          animate(
+            heroAvatar,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        if (heroButtons) {
+          animate(
+            heroButtons,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.15,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      }, 2100); // Delay after text animations complete
+
+      // Animate the pulsating rings
+      const animatePulse = (selector: string) => {
+        const element = document.querySelector(selector);
+        if (element) {
+          animate(
+            element as HTMLElement,
+            {
+              scale: [1, 1.4],
+              opacity: [0, 0.7, 0],
+            },
+            {
+              duration: 1.5,
+              repeat: Infinity,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      };
+
+      // Start pulsating animation
+      animatePulse('#pulse-ring-1');
+
+      // Animate buttons on hover
+      const animateButton = (buttonId: string) => {
+        const button = document.querySelector(buttonId);
+        if (!button) return;
+
+        button.addEventListener('mouseenter', () => {
+          animate(button as HTMLElement, { scale: 1.05 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+
+        button.addEventListener('mouseleave', () => {
+          animate(button as HTMLElement, { scale: 1 }, { duration: 0.3, easing: 'ease-out' } as any);
+        });
+      };
+
+      animateButton('#docker-course-btn');
+      animateButton('#consulting-btn');
+    });
+  </script>
+
+  <script>
+    // Redirect to Spanish version if user lands directly and browser language is Spanish
+    (function () {
+      // Check if this is a direct visit (not from same site)
+      const referrer = document.referrer;
+      const currentDomain = window.location.hostname;
+      const isDirectVisit = !referrer || !referrer.includes(currentDomain);
+
+      // Check if we've already done this redirect in this session
+      const hasRedirected = sessionStorage.getItem('locale-redirect-checked');
+
+      if (isDirectVisit && !hasRedirected) {
+        // Get browser language preference
+        const browserLang = navigator.language || navigator.languages?.[0];
+
+        // Check if Spanish is preferred (es, es-ES, es-MX, etc.)
+        if (browserLang && browserLang.toLowerCase().startsWith('es')) {
+          // Mark that we've checked to avoid redirect loops
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+          // Redirect to Spanish version
+          window.location.href = '/es/';
+        } else {
+          // Mark as checked even if not redirecting
+          sessionStorage.setItem('locale-redirect-checked', 'true');
+        }
+      }
+    })();
+  </script>
+</PageLayout>
