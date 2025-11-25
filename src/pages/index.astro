@@ -2,6 +2,9 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import avatarImage from '~/assets/images/avatar.jpeg';
 import { Image } from 'astro:assets';
+import djangoLogo from '~/icons/django-logo.svg';
+import dockerLogo from '~/icons/docker-logo.svg';
+import githubLogo from '~/icons/github-logo.svg';
 ---
 
 <PageLayout>
@@ -54,6 +57,67 @@ import { Image } from 'astro:assets';
         >
           <span class="relative z-10 text-black dark:text-white">DevOps and backend consulting</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section id="social-proof" class="py-16 px-6 overflow-hidden">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-center text-lg md:text-xl text-default font-medium mb-12 opacity-0" id="social-proof-text">
+        My blog has been read by 100k+ developers
+      </p>
+
+      <div class="relative h-64 md:h-80" id="cloud-container">
+        <!-- Django Logo -->
+        <div class="cloud-item absolute opacity-0" style="top: 5%; left: 8%;">
+          <div class="logo-wrapper">
+            <Image src={djangoLogo} alt="Django" width={80} height={80} class="dark:invert" />
+          </div>
+        </div>
+
+        <!-- Docker Logo -->
+        <div class="cloud-item absolute opacity-0" style="top: 58%; left: 3%;">
+          <div class="logo-wrapper">
+            <Image src={dockerLogo} alt="Docker" width={70} height={70} />
+          </div>
+        </div>
+
+        <!-- GitHub Logo -->
+        <div class="cloud-item absolute opacity-0" style="top: 65%; right: 8%;">
+          <div class="logo-wrapper">
+            <Image src={githubLogo} alt="GitHub" width={65} height={65} class="dark:invert" />
+          </div>
+        </div>
+
+        <!-- Text Badges -->
+        <div class="cloud-item absolute opacity-0" style="top: 12%; left: 38%;">
+          <div class="badge">DevOps</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 35%; left: 28%;">
+          <div class="badge">Indie SaaS</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 48%; left: 50%;">
+          <div class="badge">Automation</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 18%; right: 12%;">
+          <div class="badge">Backend</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 68%; left: 35%;">
+          <div class="badge">CI/CD</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 3%; right: 22%;">
+          <div class="badge">Python</div>
+        </div>
+
+        <div class="cloud-item absolute opacity-0" style="top: 42%; right: 8%;">
+          <div class="badge">Containers</div>
+        </div>
       </div>
     </div>
   </section>
@@ -170,6 +234,91 @@ import { Image } from 'astro:assets';
       opacity: 0;
       filter: blur(10px);
       transform: translateY(10px);
+    }
+
+    /* Social Proof Section Styles */
+    #social-proof {
+      position: relative;
+    }
+
+    .cloud-item {
+      transition: transform 0.3s ease;
+    }
+
+    .cloud-item:hover {
+      transform: scale(1.1) translateY(-5px);
+      z-index: 10;
+    }
+
+    .logo-wrapper {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.3s ease;
+    }
+
+    :root.dark .logo-wrapper {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    .logo-wrapper:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    :root.dark .logo-wrapper:hover {
+      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+    }
+
+    .badge {
+      padding: 0.5rem 1.2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 24px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .badge:hover {
+      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Alternative badge colors */
+    .cloud-item:nth-child(4) .badge {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .cloud-item:nth-child(5) .badge {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .cloud-item:nth-child(6) .badge {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    .cloud-item:nth-child(7) .badge {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    .cloud-item:nth-child(8) .badge {
+      background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+    }
+
+    .cloud-item:nth-child(9) .badge {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      color: #333;
+    }
+
+    .cloud-item:nth-child(10) .badge {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      color: #333;
     }
   </style>
 
@@ -338,6 +487,71 @@ import { Image } from 'astro:assets';
 
       animateButton('#docker-course-btn');
       animateButton('#consulting-btn');
+
+      // Animate social proof section
+      const animateSocialProof = () => {
+        const socialProofText = document.querySelector('#social-proof-text');
+        const cloudItems = document.querySelectorAll('.cloud-item');
+
+        // Animate the text first
+        if (socialProofText) {
+          animate(
+            socialProofText,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.2,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        // Animate cloud items with stagger
+        cloudItems.forEach((item, index) => {
+          animate(
+            item as HTMLElement,
+            {
+              opacity: [0, 1],
+              scale: [0.8, 1],
+              rotate: [Math.random() * 10 - 5, 0],
+            },
+            {
+              duration: 0.6,
+              delay: 0.5 + index * 0.1,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        });
+
+        // Add floating animation to cloud items
+        cloudItems.forEach((item, index) => {
+          const floatDelay = index * 0.3;
+          const floatDuration = 3 + Math.random() * 2;
+
+          animate(
+            item as HTMLElement,
+            {
+              y: [-5, 5],
+              x: [-3, 3],
+            },
+            {
+              duration: floatDuration,
+              delay: floatDelay + 1.5,
+              repeat: Infinity,
+              direction: 'alternate',
+              easing: 'ease-in-out',
+            } as any
+          );
+        });
+      };
+
+      // Start social proof animation after hero animations
+      setTimeout(() => {
+        animateSocialProof();
+      }, 2500);
     });
   </script>
 
