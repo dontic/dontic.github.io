@@ -1,6 +1,7 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
 import avatarImage from '~/assets/images/avatar.jpeg';
+import meImage from '~/assets/images/me.png';
 import { Image } from 'astro:assets';
 import djangoLogo from '~/icons/django-logo.svg';
 import dockerLogo from '~/icons/docker-logo.svg';
@@ -469,6 +470,39 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="about-me" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="about-container">
+        <div class="about-image opacity-0">
+          <Image src={meImage} alt="Daniel Garcia" class="rounded-2xl" width={400} height={400} />
+        </div>
+        <div class="about-content">
+          <h2 class="about-title opacity-0">About Me</h2>
+          <p class="about-text opacity-0">
+            I'm Daniel, a solopreneur from Spain building AI products, teaching what I learn, and sharing the
+            behind-the-scenes of building tech businesses.
+          </p>
+          <div class="about-link-wrapper opacity-0">
+            <a href="/about/" class="about-link">
+              Read my full story
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1065,6 +1099,129 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
     .consulting-btn:hover svg {
       transform: translateX(3px);
     }
+
+    /* About Me Section Styles */
+    #about-me {
+      position: relative;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .about-container {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 3rem;
+      }
+    }
+
+    .about-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: all 0.3s ease;
+    }
+
+    :root.dark .about-image img {
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+    }
+
+    .about-image img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    }
+
+    :root.dark .about-image img:hover {
+      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
+    }
+
+    @media (min-width: 768px) {
+      .about-image img {
+        max-width: 100%;
+      }
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.9);
+      margin: 0;
+    }
+
+    :root.dark .about-title {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    @media (min-width: 768px) {
+      .about-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    .about-text {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: rgba(0, 0, 0, 0.75);
+      margin: 0;
+    }
+
+    :root.dark .about-text {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (min-width: 768px) {
+      .about-text {
+        font-size: 1.25rem;
+      }
+    }
+
+    .about-link-wrapper {
+      margin-top: 1.5rem;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #667eea;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: gap 0.3s ease;
+    }
+
+    :root.dark .about-link {
+      color: #8b9bfa;
+    }
+
+    .about-link:hover {
+      gap: 0.75rem;
+    }
+
+    .about-link svg {
+      transition: transform 0.3s ease;
+    }
+
+    .about-link:hover svg {
+      transform: translateX(3px);
+    }
   </style>
 
   <script>
@@ -1504,6 +1661,98 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
           }
         );
         consultingObserver.observe(consultingSection);
+      }
+
+      // Animate About Me section on scroll into view
+      const animateAboutMe = () => {
+        const aboutImage = document.querySelector('.about-image');
+        const aboutTitle = document.querySelector('.about-title');
+        const aboutText = document.querySelector('.about-text');
+        const aboutLinkWrapper = document.querySelector('.about-link-wrapper');
+
+        // Animate image
+        if (aboutImage) {
+          animate(
+            aboutImage,
+            {
+              opacity: [0, 1],
+              x: [-40, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.1,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        }
+
+        // Animate title
+        if (aboutTitle) {
+          animate(
+            aboutTitle,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.3,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        // Animate text
+        if (aboutText) {
+          animate(
+            aboutText,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.5,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+
+        // Animate link
+        if (aboutLinkWrapper) {
+          animate(
+            aboutLinkWrapper,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.7,
+              easing: 'ease-out',
+            } as any
+          );
+        }
+      };
+
+      // Use Intersection Observer for about me section
+      const aboutMeSection = document.querySelector('#about-me');
+      if (aboutMeSection) {
+        const aboutMeObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateAboutMe();
+                aboutMeObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+            rootMargin: '0px',
+          }
+        );
+        aboutMeObserver.observe(aboutMeSection);
       }
 
       // Use Intersection Observer to trigger animation when section is visible
