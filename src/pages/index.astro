@@ -43,16 +43,19 @@ import githubLogo from '~/icons/github-logo.svg';
 
       <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="hero-buttons">
         <a
-          href="/docker-course"
+          href="#flagship-product"
           id="docker-course-btn"
           class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
+          data-umami-event="docker-course-btn-click"
         >
           <span class="relative z-10 text-white dark:text-black">Take my Docker course</span>
         </a>
 
         <a
-          href="/devops-consulting"
+          href="https://cal.com/onticdani/30min"
+          target="_blank"
           id="consulting-btn"
+          data-umami-event="consulting-btn-click"
           class="cta-button-secondary relative inline-flex items-center justify-center rounded-full overflow-hidden border border-black/10 dark:border-white/20 px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
         >
           <span class="relative z-10 text-black dark:text-white">DevOps and backend consulting</span>
@@ -210,7 +213,7 @@ import githubLogo from '~/icons/github-logo.svg';
           </a>
 
           <!-- Pillar C: Expert Help for Founders & Makers -->
-          <a href="/consulting/" class="pillar-card opacity-0">
+          <a href="https://cal.com/onticdani/30min" target="_blank" class="pillar-card opacity-0">
             <div class="pillar-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -243,6 +246,112 @@ import githubLogo from '~/icons/github-logo.svg';
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
               </svg>
             </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flagship Product Section -->
+  <section id="flagship-product" class="px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="flagship-card">
+        <div class="flagship-badge opacity-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+            ></path>
+          </svg>
+          Oh look! A super cool looking course!
+        </div>
+
+        <h2 class="flagship-title opacity-0">Deploying Your SaaS with Docker | A Practical Course for Developers</h2>
+
+        <ul class="flagship-bullets">
+          <li class="flagship-bullet-item opacity-0">
+            <div class="bullet-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+            </div>
+            <span>Learn Docker the way real projects use it</span>
+          </li>
+          <li class="flagship-bullet-item opacity-0">
+            <div class="bullet-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+            </div>
+            <span>Ship reliably without wanting to burn down everything</span>
+          </li>
+          <li class="flagship-bullet-item opacity-0">
+            <div class="bullet-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+            </div>
+            <span>Secure deployments, logs, monitoring and alerts</span>
+          </li>
+          <li class="flagship-bullet-item opacity-0">
+            <div class="bullet-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+                stroke="currentColor"
+                class="w-5 h-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
+              </svg>
+            </div>
+            <span>Step-by-step examples from my real SaaS builds</span>
+          </li>
+        </ul>
+
+        <div class="flagship-cta opacity-0">
+          <a href="/docker-course" class="flagship-cta-button">
+            <span>Get Early Access</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
+            </svg>
           </a>
         </div>
       </div>
@@ -538,6 +647,184 @@ import githubLogo from '~/icons/github-logo.svg';
     :root.dark .pillar-link {
       color: #8b9bfa;
     }
+
+    /* Flagship Product Section Styles */
+    #flagship-product {
+      position: relative;
+    }
+
+    .flagship-card {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+      border: 2px solid rgba(59, 130, 246, 0.2);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    :root.dark .flagship-card {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+      border: 2px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .flagship-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
+      background-size: 300% 300%;
+      animation: gradient-shift 8s ease infinite;
+      border-radius: 24px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+
+    .flagship-card:hover::before {
+      opacity: 0.3;
+    }
+
+    .flagship-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    :root.dark .flagship-card:hover {
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+    }
+
+    .flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .flagship-title {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #db2777 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+    }
+
+    :root.dark .flagship-title {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+    }
+
+    @media (min-width: 768px) {
+      .flagship-title {
+        font-size: 2.5rem;
+      }
+    }
+
+    .flagship-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .flagship-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: rgba(0, 0, 0, 0.8);
+    }
+
+    :root.dark .flagship-bullet-item {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .bullet-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 8px;
+      color: white;
+      margin-top: 0.125rem;
+    }
+
+    .flagship-cta {
+      display: flex;
+      justify-content: center;
+    }
+
+    .flagship-cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      padding: 1.25rem 2.5rem;
+      border-radius: 16px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flagship-cta-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
+      background-size: 300% 300%;
+      animation: gradient-shift 6s ease infinite;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .flagship-cta-button:hover::before {
+      opacity: 1;
+    }
+
+    .flagship-cta-button:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5);
+    }
+
+    .flagship-cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .flagship-cta-button svg {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .flagship-cta-button:hover svg {
+      transform: translateX(4px);
+    }
   </style>
 
   <script>
@@ -809,6 +1096,100 @@ import githubLogo from '~/icons/github-logo.svg';
           );
         });
       };
+
+      // Animate Flagship Product section on scroll into view
+      const animateFlagshipProduct = () => {
+        const flagshipBadge = document.querySelector('.flagship-badge');
+        const flagshipTitle = document.querySelector('.flagship-title');
+        const flagshipBullets = document.querySelectorAll('.flagship-bullet-item');
+        const flagshipCta = document.querySelector('.flagship-cta');
+
+        // Animate badge
+        if (flagshipBadge) {
+          animate(
+            flagshipBadge,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+              scale: [0.9, 1],
+            },
+            {
+              duration: 0.6,
+              delay: 0.1,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        }
+
+        // Animate title
+        if (flagshipTitle) {
+          animate(
+            flagshipTitle,
+            {
+              opacity: [0, 1],
+              y: [30, 0],
+            },
+            {
+              duration: 0.8,
+              delay: 0.3,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        }
+
+        // Animate bullets with stagger
+        flagshipBullets.forEach((bullet, index) => {
+          animate(
+            bullet as HTMLElement,
+            {
+              opacity: [0, 1],
+              x: [-20, 0],
+            },
+            {
+              duration: 0.6,
+              delay: 0.5 + index * 0.1,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        });
+
+        // Animate CTA
+        if (flagshipCta) {
+          animate(
+            flagshipCta,
+            {
+              opacity: [0, 1],
+              y: [20, 0],
+              scale: [0.95, 1],
+            },
+            {
+              duration: 0.7,
+              delay: 0.9,
+              easing: [0.22, 1, 0.36, 1],
+            } as any
+          );
+        }
+      };
+
+      // Use Intersection Observer for flagship product section
+      const flagshipSection = document.querySelector('#flagship-product');
+      if (flagshipSection) {
+        const flagshipObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                animateFlagshipProduct();
+                flagshipObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+            rootMargin: '0px',
+          }
+        );
+        flagshipObserver.observe(flagshipSection);
+      }
 
       // Use Intersection Observer to trigger animation when section is visible
       const whatIDoSection = document.querySelector('#what-i-do');
