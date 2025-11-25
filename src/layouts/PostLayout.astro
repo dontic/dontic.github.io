@@ -148,7 +148,14 @@ if (resolvedOgPath) {
       prose-a:text-blue-700
       prose-a:dark:text-blue-200
       prose-p:text-justify prose-img:rounded-xl
-      prose-headings:underline"
+      prose-headings:underline
+      prose-blockquote:border-l-4 prose-blockquote:border-blue-500 
+      prose-blockquote:bg-blue-50 prose-blockquote:dark:bg-blue-950/30
+      prose-blockquote:py-2 prose-blockquote:px-4 
+      prose-blockquote:not-italic prose-blockquote:font-normal
+      prose-blockquote:text-gray-700 prose-blockquote:dark:text-gray-300
+      prose-blockquote:rounded-r-md
+      prose-blockquote:before:content-none prose-blockquote:after:content-none"
     >
       <slot />
     </div>
@@ -177,6 +184,21 @@ if (resolvedOgPath) {
     }
   </div>
 </PageLayout>
+
+<style is:global>
+  /* Remove quotes from blockquotes */
+  .prose blockquote::before,
+  .prose blockquote::after {
+    content: none !important;
+  }
+  
+  .prose blockquote p:first-of-type::before,
+  .prose blockquote p:first-of-type::after,
+  .prose blockquote p:last-of-type::before,
+  .prose blockquote p:last-of-type::after {
+    content: none !important;
+  }
+</style>
 
 <script is:inline>
   /** Attaches links to headings in the document,
