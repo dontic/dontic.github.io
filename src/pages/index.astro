@@ -138,7 +138,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
           </h2>
 
           <!-- Pillar A: Technical Writing & Tutorials -->
-          <a href="/blog/" class="pillar-card opacity-0">
+          <a href="/blog/" class="pillar-card opacity-0" data-umami-event="blog-pillar-click">
             <div class="pillar-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
         <!-- Right Column -->
         <div class="flex flex-col gap-6" id="pillars-right-column">
           <!-- Pillar B: Indie SaaS Products -->
-          <a href="/projects/" class="pillar-card opacity-0">
+          <a href="/projects/" class="pillar-card opacity-0" data-umami-event="projects-pillar-click">
             <div class="pillar-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +215,12 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
           </a>
 
           <!-- Pillar C: Expert Help for Founders & Makers -->
-          <a href="https://cal.com/onticdani/30min" target="_blank" class="pillar-card opacity-0">
+          <a
+            href="https://cal.com/onticdani/30min"
+            target="_blank"
+            class="pillar-card opacity-0"
+            data-umami-event="consulting-pillar-click"
+          >
             <div class="pillar-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -489,7 +494,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
             behind-the-scenes of building tech businesses.
           </p>
           <div class="about-link-wrapper opacity-0">
-            <a href="/about/" class="about-link">
+            <a href="/about/" class="about-link" data-umami-event="about-link-click">
               Read my full story
               <svg
                 xmlns="http://www.w3.org/2000/svg"
