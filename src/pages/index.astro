@@ -4,89 +4,11 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 
 import Image from 'astro/components/Image.astro';
-import { Icon } from 'astro-icon/components';
-
 import avatarImage from '~/assets/images/avatar.jpeg';
 import Socials from '~/components/common/Socials.astro';
-import NewsletterSignup from '~/components/common/newsletterSignup';
 ---
 
-<PageLayout>
-  <div class="text-justify">
-    <!-- Hero Section -->
-    <div class="mb-4">
-      <Image src={avatarImage} alt="Daniel Garcia" class="size-24 rounded-full border-2 border-gray-200/30 shadow-lg" />
-    </div>
-    <p>
-      I’m Daniel — a solopreneur building <a href="/projects/" class="font-bold underline underline-offset-1"
-        >cool stuff</a
-      >. I also <a href="/website-design/" target="_blank" class="font-bold underline underline-offset-1"
-        ><span class="gradient-text">design websites</span></a
-      > for companies and brands.
-    </p>
-    <p class="mt-4">
-      I build AI-powered SaaS tools and share exactly how I turn code into real, profitable products — from first idea
-      to paying customers. You can check out my other <a
-        href="/projects/"
-        class="font-bold underline underline-offset-1">projects</a
-      >.
-    </p>
-    <p class="mt-4">
-      I write about code, startups, automation, and lessons from the solo founder journey. Both in my <a
-        href="/blog/"
-        class="font-bold underline underline-offset-1">blog</a
-      > and my <a href="/newsletter/" class="font-bold underline underline-offset-1">newsletter</a> .
-    </p>
-
-    <!-- Socials -->
-    <div class="mt-8">
-      <Socials />
-    </div>
-
-    <!-- Blogs -->
-    <div class="mt-8">
-      <h2 class="text-xl font-bold mb-4">I write about:</h2>
-      <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
-        <a
-          href="/tech/"
-          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
-        >
-          <h3 class="font-bold text-lg flex items-center">
-            <span class="underline underline-offset-2">Tech</span>
-            <Icon name="tabler:external-link" class="ml-1 size-4" />
-          </h3>
-          <p class="mt-2 text-sm">Coding guides, new trends and more.</p>
-        </a>
-
-        <a
-          href="/entrepreneurship/"
-          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
-        >
-          <h3 class="font-bold text-lg flex items-center">
-            <span class="underline underline-offset-2">Entrepreneurship</span>
-            <Icon name="tabler:external-link" class="ml-1 size-4" />
-          </h3>
-          <p class="mt-2 text-sm">Business, productivity, life and mental health.</p>
-        </a>
-
-        <a
-          href="/other/"
-          class="block p-4 border border-gray-200/30 rounded-lg hover:bg-gray-100/10 transition-colors text-left"
-        >
-          <h3 class="font-bold text-lg flex items-center">
-            <span class="underline underline-offset-2">Other</span>
-            <Icon name="tabler:external-link" class="ml-1 size-4" />
-          </h3>
-          <p class="mt-2 text-sm">Travel guides and other random stuff.</p>
-        </a>
-      </div>
-    </div>
-
-    <div class="mt-8" id="newsletter">
-      <NewsletterSignup client:visible />
-    </div>
-  </div>
-</PageLayout>
+<PageLayout> Hello </PageLayout>
 
 <script>
   // Redirect to Spanish version if user lands directly and browser language is Spanish
@@ -116,26 +38,3 @@ import NewsletterSignup from '~/components/common/newsletterSignup';
     }
   })();
 </script>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b);
-    background-size: 200% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-shift 3s ease infinite;
-  }
-
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-</style>
