@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '~/layouts/PageLayout.astro';
+import avatar from '~/assets/images/avatar_dialog.png';
+import eskateImage from '~/assets/images/about/eskate.jpg';
+import teslaImage from '~/assets/images/about/tesla.jpg';
+import entrepreneurImage from '~/assets/images/about/entrepreneur.jpg';
+
+const metadata = {
+  title: 'Sobre mí | Daniel Garcia',
+  description: 'Sobre Daniel Garcia',
+  author: 'Daniel Garcia',
+};
+
+const quickFacts = [
+  'Empecé a aprender a programar cuando tenía 14 años, específicamente Python.',
+  'Pasé 6 años estudiando una carrera de ingeniería y dos másteres en Madrid mientras hacía muchos proyectos de programación y electrónica en mi tiempo libre.',
+  'Trabajé como Ingeniero de Calidad en la Gigafactory de Tesla en Berlín durante 3 años, pero también construía herramientas web internas en mi tiempo libre.',
+  'Decidí convertirme en emprendedor después de sentirme aburrido en Tesla.',
+  'He tenido 2 proyectos fallidos, una pelea con un socio, 5 trabajos de consultoría y 1 negocio de éxito.',
+];
+
+const timelineItems = [
+  {
+    dates: '1995-2013',
+    description: `
+      <p>Nací en Madrid, España. Pasé mi infancia experimentando con <strong>electrónica</strong> y <strong>construyendo cosas</strong> por mi cuenta.</p>
+      <p><strong>Empecé a programar cuando tenía 14 años</strong>. Mis profesores me sacaban de clase para <strong>arreglar los ordenadores del colegio</strong>.</p>
+    `,
+    image: eskateImage,
+    imageAlt: 'Monopatín eléctrico',
+  },
+  {
+    dates: '2013-2019',
+    description: `
+      <p>Estudié una <strong>carrera de ingeniería y dos másteres</strong> en Madrid y un año en Filadelfia, EE.UU.; mientras hacía muchos proyectos de programación y electrónica en mi tiempo libre.</p>
+      <p>Fue durante este tiempo que decidí que <strong>quería ser emprendedor</strong>.</p>
+    `,
+  },
+  {
+    dates: '2020',
+    description: `
+      <p>Empecé a trabajar como <strong>becario de Calidad en Correos</strong> y rápidamente me convertí en <strong>la persona de referencia para análisis de datos y automatización</strong>.</p>
+      <p>Fui la <strong>primera persona en el departamento que sabía programar</strong> y automatizar tareas de análisis de datos.</p>
+    `,
+  },
+  {
+    dates: '2020-2023',
+    description: `
+      <p>Empecé a trabajar como <strong>Ingeniero de Calidad en Tesla</strong>, trabajé en <strong>Noruega, Francia, Alemania, Emiratos Árabes Unidos y España</strong>.</p>
+      <p>Mi trabajo principal era <strong>analizar datos de servicio y fábrica</strong> y solucionar los principales problemas que tenía la flota europea.</p>
+    `,
+    image: teslaImage,
+    imageAlt: 'Tesla',
+  },
+  {
+    dates: '2023-Presente',
+    description: `
+      <p>Decidí <strong>convertirme en emprendedor</strong> después de sentirme aburrido en Tesla durante un tiempo. Sabía que era ahora o nunca.</p>
+      <p>Empecé a aprender <strong>desarrollo full stack</strong> de forma adecuada.</p>
+      <p>Abandoné un proyecto propio para construir una startup con un cofundador, eso salió mal...</p>
+      <p>Empecé a hacer <strong>consultoría</strong> para otras startups y empresas, principalmente en <strong>automatización con IA y DevOps</strong>; y escribiendo muchas guías útiles sobre cosas que aprendí en el camino (probablemente así es como has llegado aquí).</p>
+      <p>Ahora dirijo <strong>3 negocios</strong>, 1 de los cuales ha alcanzado <strong>~60K ARR</strong>, los otros 2 están en etapas iniciales en el momento de escribir esto.<p>
+    `,
+    image: entrepreneurImage,
+    imageAlt: 'Emprendedor',
+  },
+  // Add more timeline items here
+];
+---
+
+<PageLayout metadata={metadata}>
+  <!-- Hero Section -->
+  <section class="mb-16">
+    <h1 class="text-4xl md:text-5xl font-bold leading-normal">
+      Hola, soy Daniel 
+      <Image src={avatar} alt="Avatar de Daniel" class="inline-block w-16 h-16 md:w-20 md:h-20 rounded-full object-contain align-middle mr-3" />
+      Un Ingeniero Industrial convertido en desarrollador full stack e Indie Hacker.
+    </h1>
+  </section>
+
+  <!-- Quick Facts Section -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold mb-8">Datos rápidos sobre mí</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      {quickFacts.map((fact) => (
+        fact && (
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <p class="text-default">{fact}</p>
+          </div>
+        )
+      ))}
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="mb-16">
+    <h2 class="text-3xl font-bold mb-8">Mi historia</h2>
+    <div class="relative border-l-2 border-gray-300 pl-8 space-y-8">
+      {timelineItems.map((item) => (
+        <div class="relative">
+          <!-- Timeline dot -->
+          <div class="absolute -left-[41px] w-4 h-4 bg-blue-500 rounded-full"></div>
+          
+          <!-- Timeline content -->
+          <div class="mb-4">
+            <span class="text-sm font-semibold text-blue-500">{item.dates}</span>
+            {item.image && (
+              <div class="mt-4 mb-4">
+                <Image src={item.image} alt={item.imageAlt} class="rounded-lg shadow-lg w-full max-w-2xl" />
+              </div>
+            )}
+            <div class="text-default mt-2 prose prose-invert max-w-none" set:html={item.description}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</PageLayout>
+
