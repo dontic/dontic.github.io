@@ -88,9 +88,12 @@ Además, no es una ITV normal, sino una **ITV de importación/homologación**:
 > - Ficha técnica extranjera
 > - Contrato de compraventa
 
-1. Pagar y pasar la ITV ese día (suelen ser unos 100€ - 150€ dependiendo de la ITV).
+1. Pagar y pasar la ITV ese día (suelen ser unos 150€ - 250€ dependiendo de la ITV).
 
-2. Obtener ficha técnica Española.
+2. Obtener ficha técnica Española, te darán:
+   - Un ejemplar para tí
+   - Un ejemplar para los servicios de insdustria de la provicincia en la que se matricula el vehículo
+   - Un ejemplar para la jefatura provincial de tráfico
 
 ## 6. Impuesto de transmisiones patrimoniales (ITP - Modelo 620)
 
@@ -161,10 +164,10 @@ Fácil:
 
 Estos son los epígrades actuales que dictan que % tienes que pagar según las emisiones del coche:
 
-- Hasta 120 g/km de CO2: 0%
-- Entre 121 y 159 g/km de CO2: 4,75%
-- Entre 160 y 199 g/km de CO2: 9,75%
-- Por encima de 200 g/km de CO2: 14,75%
+- Epígrafe 1 -> Hasta 120 g/km de CO2: 0%
+- Epígrafe 2 -> Entre 121 y 159 g/km de CO2: 4,75%
+- Epígrafe 3 -> Entre 160 y 199 g/km de CO2: 9,75%
+- Epígrafe 4 -> Por encima de 200 g/km de CO2: 14,75%
 
 > Recomiendo usar [esta herramienta intuitiva](https://www.dieselogasolina.com/calcular-impuesto-matriculacion-coche-moto-hacienda.html) para calcular lo que te va a costar este impuesto.
 
@@ -172,22 +175,76 @@ Estos son los epígrades actuales que dictan que % tienes que pagar según las e
 
 Se paga directamente en la agencia tributaria en toda España:
 
-1. Accede [aquí](https://sede.agenciatributaria.gob.es/Sede/procedimientoini/G502.shtml).
+1.  Accede [aquí](https://sede.agenciatributaria.gob.es/Sede/procedimientoini/G502.shtml).
 
-2. Selecciona "Modelo 576. Presentación"
+2.  Selecciona "Modelo 576. Presentación". Te pedirá tu certificado digital.
 
-3. Rellena los datos
+    ![Modelo 576 Presentación](./modelo-576-presentacion.png)
 
-4. Paga (_tocotó_)
+3.  Te aparecerá un dialogó donde tendrás que seleccionar Automóviles e introducir el número de bastidor. Luego le damos a "Aceptar"
 
-5. Descarga el justificante
+    ![Nueva Declaración](./nueva-declaracion.png)
+
+4.  La siguiente página es el formulario, donde rellenamos:
+
+    a. **Identificación** -> Rellena tu NIF y tu nombre completo
+
+    b. **Hecho Imponible** -> Seleccionamos "Primera matriculación definitiva de medios de transporte"
+
+    ![Hecho imponible](./hecho-imponible.png)
+
+    c. En **Características del medio de transporte** seleccionamos lo que corresponda, en mi caso selecciono:
+
+    - "Medio de transporte usado"
+    - "Adquirido en un Estado de la Unión Europea distinto de España"
+    - Fecha de puesta en servicio -> Fecha de primera matriculación (definitiva o provisional) dentro del a Unión Europea.
+    - Kilómetros del coche
+
+    ![Caracteristicas del medio de transporte](./caracteristicas.png)
+
+    d. **Vehículos**:
+
+    - La marca y el modelo -> En el modelo recomiendo poner el que más se acerque en tablas
+    - Observaciones -> `00 - Resto de vehículos` (Mira el resto de opciones por si aplican a tu caso)
+    - Código ITV -> Dejar vacío
+    - Número de serie tarjeta ITV -> Viene en **rojo** en la parte de arriba de la ficha técnica de la ITV
+    - Tipo de tarjeta ITV -> Es una letra grande que viene al lado del número de serie
+    - Marcamos el tipo de combustible
+    - Cilindrada -> Apartado P.1 de la ficha técnica
+    - Clasificación construcción -> Apartado C.L de la ficha técnica
+    - Clasificación uso -> Dejar vacío
+    - Clasificación 70/156/CEE -> Apartado J de la ficha técnica
+    - Emisiones CO2 -> Apartado V.7 de la ficha técnica
+
+    ![576 - Vehiculos](./vehiculos.png)
+
+    e. **"Identificación de la persona o entidad que ha introducido en España el vehículo (sólo tarjetas ITV tipo "A")"**:
+
+    - Aquí simplemente introducimos el CIF y la razón social de la empresa de transporte que nos haya traido el coche.
+    - Si lo hemos traido nosotros, será nuestro DNI y nuestro nombre.
+
+    f. **Liquidación** (aquí viene lo interesante):
+
+    - **Base imponible** -> Nos vamos a [este enlace](https://www.dieselogasolina.com/calcular-impuesto-matriculacion-coche-moto-hacienda.html), rellenamos los datos del coche y copiamos la base imponible final.
+
+    ![Herramienta diesel o gasolina](./diesel-gasolina.png)
+
+    - **Tipo** -> Seleccionamos el número de epígrafe que aplique a nuestro coche (los tienes más arriba) e indtroducimos el % que corresponda a ese epígrafe. En mi caso es el Epígrafe 4 -> Más de 200 g/km de CO2.
+
+    - Le damos a vlaidar declaración
+
+    - Si está todo correcto, le damos a Formalizar Ingreso / Devolución
+
+5.  Paga (_tocotó_)
+
+6.  Descarga tanto el justificante de pago como la presentación de la declaración
 
 ## 8. Impuesto de circulación (IVTM)
 
 > **Pre-requisitos**:
 >
 > - Ficha técnica Española
-> - Datos del coche (Bastidor, emisiones, etc.)
+> - Datos del coche (Bastidor)
 
 Mas impuestos! Vamoooos!
 
@@ -195,7 +252,7 @@ Este lo tienes que pagar en el ayuntamiento.
 
 > **👁️ OJO!! 👁️**
 >
-> Que hay algunos ayuntamientos que de manera telemática solo te permiten pagar por matrícula (cosa que obviamente todavía no tienes).
+> Hay algunos ayuntamientos que de manera telemática solo te permiten pagar por matrícula (cosa que obviamente todavía no tienes).
 >
 > En estos casos tendrás que ir presencialmente con la documentación del coche y gestionarlo allí.
 
@@ -215,15 +272,19 @@ No tienes que introducir ningún dato, por así decirlo es como si comprases "un
 
 1. Accede [aquí](https://sedeclave.dgt.gob.es/WEB_Tasas7/).
 
-2. Selecciona "Pagar"
+2. Selecciona "Pagar Tasas"
 
-3. Selecciona "1.1 Matriculación o rehabilitación de vehículos - 99.77eur"
+3. Accede con DNI o certificado electrónico
 
-4. Selecciona cantidad "1"
+4. Abre el Grupo 1: Permisos de Circulación
 
-5. Paga (_tocotó_)
+   ![Permisos de Circulación](./permisos-circulacion.png)
 
-6. Descarga el justificante
+5. Añade al carrito la tasa "1.1 Matriculación o rehabilitación de vehículos - 99.77eur"
+
+6. Paga (_tocotó_)
+
+7. Descarga el justificante de pago y las el documento de las tasas
 
 ## 10 Proceso de matriculación en tráfico
 
@@ -244,20 +305,51 @@ Este trámite se puede realizar online en tráfico:
 
 1. Accede [aquí](https://sede.dgt.gob.es/es/vehiculos/matriculaciones-de-vehiculos/matriculacion-ordinaria/).
 
-2. Rellena todos los datos del formulario.
+2. Lugar de compra del vehículo -> Es un vehículo proveniente del extranjero (nuevo o usado)
 
-3. Adjunta toda la documentación.
+3. Qué clase de vehículo quieres matricular -> Cualquier otro tipo vehículo (coche, moto, autobús, camión, … )
 
-4. Descarga el justificante.
+4. Le damos a "Realizar la matriculación" y nos metemos con nuestro certificado digital.
 
-En unos días recibes en tu domicilio el permiso de circulación.
+5. Rellenamos nuestros datos personales
+
+6. Nos vamos a la sección solicitud:
+
+   - Matrícula del vehículo -> Lo dejamos en blanco
+   - Bastidor del vehículo -> Lo metemos
+   - Materia de tramitación -> Matriculación
+   - Información del trámite a solicitar -> Metemos el siguiente texto:
+     ```
+      Solicito la matriculación en España de un vehículo usado procedente de otro Estado miembro de la UE, a nombre de persona física, en la Comunidad de Madrid.
+      Se adjunta la documentación necesaria, habiéndose realizado previamente el pago del modelo 576, IVTM, tasas DGT y aportada la documentación de origen y ficha técnica.
+      Bastidor (VIN): [Tu basticor].
+      Solicito la asignación de matrícula española y la expedición del permiso de circulación.
+     ```
+
+7. En "Documentos a adjuntar" metemos:
+
+   - El ITP (si corresponde)
+   - El Modelo 576
+   - El IVTM
+   - Las tasas de la DGT
+   - La ficha técnica española
+   - El contrato de compraventa
+   - La factura de compra (si corresponde)
+
+8. Le damos a "Enviar"
+
+9. Descarga el justificante.
+
+Si no te ponen ninguna pega o no falta documentación, en unos días recibirás el permiso de circulación.
 
 ## 11. Solicitar matrículas verdes (opcional)
 
 > **Pre-requisitos**:
 >
 > - Justificante del pago del Impuesto de matriculación (IEDMT - 576)
-> - Justificante del pago de las Tasas de circulación
+> - Justificante de solicitud de matriculación definitiva
+> - Justificante del pago de las Tasas 1.1 (matriculación)
+> - Justificante del pago de las Tasas 1.4 (ploacas verdes)
 > - Justificante del pago del Impuesto de circulación (IVTM)
 > - El contrato de compraventa
 
@@ -267,15 +359,15 @@ Yo las cogí porque estaba que no cagaba con poder usarlo.
 
 Se puede tramitar online:
 
-1. Accede [aquí](https://sede.dgt.gob.es/es/vehiculos/matriculaciones-de-vehiculos/matricula-temporal-placas-verdes/).
+1. Paga las tasas 1.4 siguiendo [el mismo proceso que el de las tasas 1.1](#9-tasas-de-circulación)
 
-2. Pincha en "Registro electrónico"
+2. Accede [aquí](https://sede.dgt.gob.es/es/vehiculos/matriculaciones-de-vehiculos/matricula-temporal-placas-verdes/).
 
-3. Selecciona "Vehículo pendiente de tramitar su matriculación definitiva"
+3. Pincha en "Registro electrónico"
 
-4. Adjunta toda la documentación.
+4. Selecciona "Vehículo pendiente de tramitar su matriculación definitiva"
 
-5. Paga (_tocotó_)
+5. Adjunta toda la documentación.
 
 6. Una vez aprobada, ve a un sitio de matrículas y pide tus placas verdes. Con ellas podrás contratar un seguro y circular sin problema!
 
