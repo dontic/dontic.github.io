@@ -1,0 +1,107 @@
+---
+category: tech
+title: 'How to Install and Run ClawdBot'
+description: 'A step-by-step guide to installing and running ClawdBot, an AI-powered Discord/Telegram/WhatsApp bot that brings the power of AI to your life.'
+author: Daniel Garcia
+pubDatetime: 2026-01-25T12:00:00Z
+# modDatetime:
+draft: false
+tags:
+  - clawdbot
+  - ai
+  - claude
+  - tutorial
+# canonicalUrl:
+---
+
+## What is ClawdBot?
+
+ClawdBot is an amazing tool that integrates AI into your life in a super practical way.
+
+Imagine having a personal assistant that schedules and reminds you of meetings, replies to emails, gives you morning briefings or even controls your home automation. These are some of the things ClawdBot can do with the power of AI.
+
+It works via a messagingn app, such as WhatsApp, Telegram, Discord, etc.
+
+Normally, with AI, you need to prompt it first, in this case, ClawdBot will actively message you reminding you of important stuff as well.
+
+## The setup
+
+The creator of ClawdBot has made it super easy to install it.
+
+In this guide I will focus on installing ClawdBot:
+
+- On a Linux (Ubuntu) server
+- Using Anthropic
+- Configured to communicate via Telegram
+
+Let's get to it:
+
+### 1. Get a Linux server
+
+There are many server providers, such as AWS, that have free tiers where you can have a server for free. You can also use an old laptop or a raspberry pi if you have it handy. The server won't need too many resources.
+
+In my case, I spun up a new Ubuntu virtual machine in my homelab.
+
+### 2. Install ClawdBot
+
+In your server terminal, run the following:
+
+```bash
+curl -fsSL https://clawd.bot/install.sh | bash
+```
+
+It will then begin installing all the dependencies.
+
+### 3. Run the wizard
+
+Once it finishes installing all the necessary packages, ClawdBot will begin to ask you stuff.
+
+1. It will first need your acknowledgement that some stuff might be risky (imagine ClawdBot deletes a meeting by mistake), these are edge cases though that will probably never happen, but this disclosure is necessary. Hit "Yes".
+
+2. Select **"QuickStart"**
+
+3. For the Model/auth provider, select the one you prefer the most. I really like Anthropic's Opus 4.5 model, so I will select Anthropic in this Guide, but feel free to do it with OpenAI or other supplier if you have a favorite.
+
+4. Choose the "API Key" as I found it to be the easiest to do.
+
+   For Anthropic just go to [Claude Platform](https://platform.claude.com/dashboard) and generate a new API key. I recommend doing this in a new workspace. Once done, paste it into the ClawdBot console. For Open AI it's similar, just generate a new API key in the OpenAI platform.
+
+5. Select your favorite model, for me it's Opus 4.5
+
+6. For the channel I will be using Telegram as I'm familiar with it and, in my opinion, it works better than WhatsApp.
+
+### 4. Create your telegram bot
+
+1. Open Telegram and search for "@botfather"
+
+2. Send a message with the text "/newbot"
+
+3. Name it whatever you like, I will call it ClawdBot
+
+4. Choose a username, in my case I named it "myClawdBot"
+
+5. Copy the generated token and paste it into the ClawdBot wizard
+
+### 5. Skills
+
+The wizard will ask you if you want to Configure the skills.
+
+1. Hit "yes"
+
+2. When asked if you want to see the Homebrew install command, hit yes.
+
+   Then, in another shell of the same server, run that command.
+
+3. When asked your preffered method hit "npm"
+
+4. When asked if you want to install any missing dependencies, skip for now. We can install any we need later.
+
+### 6. Hooks
+
+Select skip for now.
+
+### 7. Text your bot!
+
+Go to telegram, find your bot and hit "start".
+
+If there are any problems, it will guide you through any necessary configuration.
