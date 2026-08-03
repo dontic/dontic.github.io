@@ -2,7 +2,7 @@
 // SearchButton.astro
 
 import { Icon } from 'astro-icon/components';
-import Search from 'astro-pagefind/components/Search';
+import Search from 'astro-pagefind/components/Search.astro';
 ---
 
 <button id="searchButton" class="p-2 cursor-pointer hover-scale hover-rotate" aria-label="Open search">
@@ -20,7 +20,11 @@ import Search from 'astro-pagefind/components/Search';
     </button>
     <p class="text-xl text-black font-bold mb-4">Search</p>
     <div class="w-full">
-      <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false, pageSize: 5, autofocus: true }} />
+      <Search
+        instance="search"
+        className="pagefind-ui"
+        searchboxOptions={{ 'max-results': 5, 'hide-shortcut': true }}
+      />
     </div>
   </div>
 </div>
@@ -43,12 +47,10 @@ import Search from 'astro-pagefind/components/Search';
       searchModal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden'); // Prevent scrolling when modal is open
 
-      // Focus on the search input field
+      // Focus the searchbox once it's visible (the web component exposes focus())
       setTimeout(() => {
-        const searchInput = document.querySelector('.pagefind-ui__search-input') as HTMLInputElement;
-        if (searchInput) {
-          searchInput.focus();
-        }
+        const searchbox = document.querySelector('pagefind-searchbox') as HTMLElement | null;
+        searchbox?.focus();
       }, 100);
     };
 
@@ -69,10 +71,15 @@ import Search from 'astro-pagefind/components/Search';
       }
     });
 
-    // Close modal with Escape key
+    // Close modal with Escape key, open it with the searchbox's Cmd/Ctrl+K shortcut
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
         closeModal();
+      }
+
+      if (e.key.toLowerCase() === 'k' && (e.metaKey || e.ctrlKey) && searchModal.classList.contains('hidden')) {
+        e.preventDefault();
+        openModal();
       }
     });
   });
@@ -80,45 +87,35 @@ import Search from 'astro-pagefind/components/Search';
 
 <style is:global>
   .pagefind-ui {
-    --pagefind-ui-scale: 0.75;
-    --pagefind-ui-primary: navy;
-    --pagefind-ui-text: black;
-    --pagefind-ui-border: slategrey;
-    --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: 0.25rem;
-    --pagefind-ui-font: sans-serif;
+    --pf-searchbox-max-width: 100%;
+    --pf-font: sans-serif;
+    --pf-text: black;
+    --pf-border: slategrey;
+    --pf-border-radius: 0.25rem;
 
     width: 100%;
   }
 
-  .pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
-    position: relative; /* Changed from absolute to work better in modal */
-    left: 0;
-    right: 0;
-    margin-top: 0px;
-    z-index: 1;
-    padding: 0 1em 1em;
-    overflow-y: visible; /* Allow content to flow naturally */
+  /*
+   * @pagefind/component-ui ships its rules behind an `:is(*, #\#)` specificity hack,
+   * so plain selectors lose to it — these overrides need `!important` to land.
+   */
+
+  /* Let the dropdown flow inline instead of overlaying, so it isn't clipped by the modal */
+  .pagefind-ui .pf-searchbox-dropdown {
+    position: relative !important;
+    max-height: none !important;
     box-shadow:
       0 10px 10px -5px rgba(0, 0, 0, 0.2),
-      0 2px 2px 0 rgba(0, 0, 0, 0.1);
-    border-bottom-right-radius: var(--pagefind-ui-border-radius);
-    border-bottom-left-radius: var(--pagefind-ui-border-radius);
-    background-color: var(--pagefind-ui-background);
+      0 2px 2px 0 rgba(0, 0, 0, 0.1) !important;
   }
 
-  /* Ensure search results can scroll within the modal */
-  .pagefind-ui .pagefind-ui__results {
-    max-height: none;
-    overflow-y: visible;
+  .pagefind-ui .pf-searchbox-result-title {
+    color: navy !important;
   }
 
-  .pagefind-ui .pagefind-ui__result-link {
-    color: var(--pagefind-ui-primary);
-  }
-
-  .pagefind-ui .pagefind-ui__result-excerpt {
-    color: var(--pagefind-ui-text);
+  .pagefind-ui .pf-searchbox-result-excerpt {
+    color: black !important;
   }
 
   /* Additional styles for modal */

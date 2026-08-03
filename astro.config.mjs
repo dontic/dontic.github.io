@@ -7,7 +7,8 @@ import { SITE } from './src/config'; // Use a relative import to avoid errors
 import pagefind from 'astro-pagefind';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import rehypeExternalLinks from 'rehype-external-links';
+import { satteri } from '@astrojs/markdown-satteri';
+import { externalLinks } from './src/plugins/external-links';
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,14 +24,12 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [
-    sitemap(),
-    icon(),
-    pagefind(),
-    mdx({
-      rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: [] }]],
+  markdown: {
+    // Astro's native Markdown pipeline; MDX inherits these plugins
+    processor: satteri({
+      hastPlugins: [externalLinks],
     }),
-    react(),
-  ],
+  },
+  integrations: [sitemap(), icon(), pagefind(), mdx(), react()],
   trailingSlash: 'always',
 });

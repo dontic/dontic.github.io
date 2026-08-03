@@ -16,6 +16,8 @@
       ]
     },
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+    // Resolve types for `.astro` files imported from packages (e.g. astro-pagefind)
+    "allowArbitraryExtensions": true
   }
 }

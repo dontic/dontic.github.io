@@ -45,7 +45,13 @@ description: Mis recomendaciones de Madrid como local.
 11. Si tienes la oportunidad, visita el interior del Palacio Real (donde vivían los reyes hace años y donde se gestó todo el asunto de la república), pero especialmente la Catedral de la Almudena, que es preciosa por dentro. También hay unas bonitas vistas hacia el oeste alrededor del palacio.
 12. Dirígete hacia el norte hasta la Plaza de España, la han renovado recientemente y es un lugar genial para sentarse y relajarse un rato. Sube a la azotea del Hotel Riu, es impresionante, hay unas vistas fantásticas de Madrid desde allí. Creo que cobran unos 5 € o 10 € por subir, pero merece la pena.
 13. Ve al Templo de Debod, unas ruinas egipcias auténticas. El parque que lo rodea es muy bonito y tiene unas vistas preciosas de la Casa de Campo. Desde aquí se puede ver el palacio y la catedral.
-14. Ya está, ahora estarás muy cansado y quizá quieras matarme, pero estoy seguro de que ha merecido la pena. ---## COMIDA Madrid, y España en general, es conocida por su deliciosa comida. Aquí tienes algunos platos y restaurantes que no te puedes perder en Madrid.
+14. Ya está, ahora estarás muy cansado y quizá quieras matarme, pero estoy seguro de que ha merecido la pena. 
+
+---
+
+## COMIDA 
+
+Madrid, y España en general, es conocida por su deliciosa comida. Aquí tienes algunos platos y restaurantes que no te puedes perder en Madrid.
 
 ## Qué comer:
 
