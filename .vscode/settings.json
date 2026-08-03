@@ -4,5 +4,20 @@
   "[mdx]": {
     "editor.wordWrap": "on"
   },
-  "svg.preview.background": "custom"
+  "svg.preview.background": "custom",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#298dff",
+    "titleBar.activeBackground": "#298dff",
+    "titleBar.activeForeground": "#000000",
+    "titleBar.inactiveBackground": "#002C5F",
+    "statusBar.background": "#002C5F",
+    "statusBar.debuggingBackground": "#002C5F",
+    "statusBar.noFolderBackground": "#002C5F",
+    "activityBar.foreground": "#000000",
+    "activityBar.inactiveForeground": "#000000",
+    "titleBar.inactiveForeground": "#FFFFFF",
+    "statusBar.foreground": "#FFFFFF",
+    "statusBar.debuggingForeground": "#FFFFFF",
+    "statusBar.noFolderForeground": "#FFFFFF"
+  }
 }
