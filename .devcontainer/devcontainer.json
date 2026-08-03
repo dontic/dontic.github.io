@@ -64,5 +64,8 @@
       }
     }
   },
-  "mounts": ["source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"]
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.claude,target=/root/.claude,type=bind,consistency=cached"
+  ]
 }
