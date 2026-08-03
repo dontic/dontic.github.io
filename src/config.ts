@@ -26,7 +26,7 @@ export const SITE: SiteConfig = {
     links: [
       { href: '/blog/', text: 'Blog' },
       { href: '/projects/', text: 'Projects' },
-      { href: '/about/', text: 'About me' },
+      { href: '/#my-story', text: 'About me' },
     ],
   },
   footer: {
@@ -48,7 +48,7 @@ export const SITE_ES: SiteConfig = {
     links: [
       { href: '/es/blog/', text: 'Blog' },
       { href: '/es/projects/', text: 'Proyectos' },
-      { href: '/es/about/', text: 'Sobre mí' },
+      { href: '/es/#my-story', text: 'Sobre mí' },
     ],
   },
   footer: {

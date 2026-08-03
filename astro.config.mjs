@@ -32,4 +32,9 @@ export default defineConfig({
   },
   integrations: [sitemap(), icon(), pagefind(), mdx(), react()],
   trailingSlash: 'always',
+  redirects: {
+    // The about page now lives on the landing page
+    '/about': '/#my-story',
+    '/es/about': '/es/#my-story',
+  },
 });

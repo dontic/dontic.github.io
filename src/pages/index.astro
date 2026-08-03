@@ -2,11 +2,85 @@
 import PageLayout from '~/layouts/PageLayout.astro';
 import avatarImage from '~/assets/images/avatar.jpeg';
 import meImage from '~/assets/images/me.png';
+import eskateImage from '~/assets/images/about/eskate.jpg';
+import teslaImage from '~/assets/images/about/tesla.jpg';
+import entrepreneurImage from '~/assets/images/about/entrepreneur.jpg';
 import { Image } from 'astro:assets';
-import djangoLogo from '~/icons/django-logo.svg';
-import dockerLogo from '~/icons/docker-logo.svg';
-import githubLogo from '~/icons/github-logo.svg';
-import WaitlistSignup from '~/components/common/WaitlistSignup';
+
+const timelineItems = [
+  {
+    dates: '1995-2013',
+    description: `
+      <p>I was born in Madrid, Spain. I spent my childhood experimenting with <strong>electronics</strong> and <strong>building things</strong> on my own.</p>
+      <p>I <strong>picked up code when I was 14</strong>. My teachers would grab me out of class to <strong>fix the school's computers</strong>.</p>
+    `,
+    image: eskateImage,
+    imageAlt: 'Electric skateboard',
+  },
+  {
+    dates: '2013-2019',
+    description: `
+      <p>I studied an <strong>engineering degree and two masters degrees</strong> in Madrid and a year in Philadelphia, USA; while doing many code and electronic projects on the side.</p>
+      <p>It was during this time that I decided I <strong>wanted to be an entrepreneur</strong>.</p>
+    `,
+  },
+  {
+    dates: '2020',
+    description: `
+      <p>I started working as a <strong>Quality Intern at Correos</strong> (the Spanish postal service) and quickly became the <strong>go-to person for data analysis and automation</strong>.</p>
+      <p>I was the <strong>first person in the department who knew how to code</strong> and automate data analysis tasks.</p>
+    `,
+  },
+  {
+    dates: '2020-2023',
+    description: `
+      <p>I started working as a <strong>Quality Engineer at Tesla</strong>, I worked in <strong>Norway, France, Germany, United Arab Emirates and Spain</strong>.</p>
+      <p>My main job was to <strong>analyze service and factory data</strong> and fix the top issues the European fleet was having.</p>
+    `,
+    image: teslaImage,
+    imageAlt: 'Tesla',
+  },
+  {
+    dates: '2023',
+    description: `
+      <p>I <strong>left Tesla in May</strong> in a bet to start entrepreneurship.</p>
+      <p>I spent the next <strong>7 months learning full stack development</strong> (Django + React) as well as deployments with Docker.</p>
+    `,
+  },
+  {
+    dates: '2024',
+    description: `
+      <p>I <strong>co-founded an email productivity startup</strong> with a friend I met the past year. It was starting to gain traction when disputes between us started happening. In the end I decided it was best for us to <strong>part ways</strong>.</p>
+      <p>I then worked a couple of months for <strong>Placeholder</strong>, a Canada/US based real estate startup.</p>
+    `,
+  },
+  {
+    dates: '2025',
+    description: `
+      <p>Decided to start again, <strong>solo-founded estavia.ai</strong>, a real estate lead automation tool for the Spanish market.</p>
+      <p>In December, after <strong>3 months of hard marketing, cold calls and networking</strong>, I decided to stop putting all my time into it. It's still running and being maintained for a few real estate agencies.</p>
+    `,
+    image: entrepreneurImage,
+    imageAlt: 'Entrepreneur',
+  },
+  {
+    dates: '2026-Present',
+    description: `
+      <p>While I do <strong>software consulting</strong> I keep trying new stuff to see what I enjoy doing.</p>
+      <p>One of those crazy ideas was starting a <a href="https://www.youtube.com/@onticdani" target="_blank" rel="noopener"><strong>YouTube channel about enthusiast cars</strong></a>.</p>
+    `
+  },
+  // Add more timeline items here
+];
+
+const services = [
+  'Internal software tools',
+  'Web apps',
+  'Automations',
+  'AI integrations',
+  'Websites',
+  'Grafana data dashboards',
+];
 ---
 
 <PageLayout>
@@ -35,318 +109,75 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
       </div>
 
       <h1 id="hero-title" class="mx-auto max-w-4xl text-4xl md:text-6xl font-medium leading-tight tracking-tight">
-        Building tools, writing about code and helping developers ship faster.
+        Welcome to my little internet space
       </h1>
 
       <p id="hero-subtitle" class="mx-auto mt-6 max-w-3xl text-xl text-default">
-        Hi! I'm Daniel, a solopreneur building AI-powered SaaS and clear, practical guides on Docker, DevOps, automation
-        and indie hacking.
+        Thanks for visiting! I've been a Tesla Engineer, a two time failed-startup founder, content creator, full stack
+        freelancer. I created this page to share my learnings, technical and non-technical with others in hopes it helps
+        somebody.
       </p>
 
       <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center" id="hero-buttons">
         <a
-          href="#flagship-product"
-          id="docker-course-btn"
+          href="/blog/"
+          id="blog-btn"
           class="cta-button-primary relative inline-flex items-center justify-center rounded-full overflow-hidden px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
-          data-umami-event="docker-course-btn-click"
+          data-umami-event="blog-btn-click"
         >
-          <span class="relative z-10 text-white dark:text-black">Take my Docker course</span>
+          <span class="relative z-10 text-white dark:text-black">Read the blog</span>
         </a>
 
         <a
-          href="https://cal.com/onticdani/30min"
-          target="_blank"
-          id="consulting-btn"
-          data-umami-event="consulting-btn-click"
+          href="#my-story"
+          id="story-btn"
+          data-umami-event="story-btn-click"
           class="cta-button-secondary relative inline-flex items-center justify-center rounded-full overflow-hidden border border-black/10 dark:border-white/20 px-8 py-4 text-lg font-semibold shadow-md hover:shadow-xl transition-shadow duration-300"
         >
-          <span class="relative z-10 text-black dark:text-white">DevOps and backend consulting</span>
+          <span class="relative z-10 text-black dark:text-white">My story</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Social Proof Section -->
-  <section id="social-proof" class="py-16 px-6 overflow-hidden">
-    <div class="max-w-5xl mx-auto">
-      <p class="text-center text-lg md:text-xl text-default font-medium mb-12 opacity-0" id="social-proof-text">
-        My blog has been read by 100k+ developers
-      </p>
-
-      <div class="relative h-64 md:h-80" id="cloud-container">
-        <!-- Django Logo -->
-        <div class="cloud-item absolute opacity-0" style="top: 5%; left: 8%;">
-          <div class="logo-wrapper">
-            <Image src={djangoLogo} alt="Django" width={80} height={80} class="dark:invert" />
-          </div>
-        </div>
-
-        <!-- Docker Logo -->
-        <div class="cloud-item absolute opacity-0" style="top: 58%; left: 3%;">
-          <div class="logo-wrapper">
-            <Image src={dockerLogo} alt="Docker" width={70} height={70} />
-          </div>
-        </div>
-
-        <!-- GitHub Logo -->
-        <div class="cloud-item absolute opacity-0" style="top: 65%; right: 8%;">
-          <div class="logo-wrapper">
-            <Image src={githubLogo} alt="GitHub" width={65} height={65} class="dark:invert" />
-          </div>
-        </div>
-
-        <!-- Text Badges -->
-        <div class="cloud-item absolute opacity-0" style="top: 12%; left: 38%;">
-          <div class="badge">DevOps</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 35%; left: 28%;">
-          <div class="badge">Indie SaaS</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 48%; left: 50%;">
-          <div class="badge">Automation</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 18%; right: 12%;">
-          <div class="badge">Backend</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 68%; left: 35%;">
-          <div class="badge">CI/CD</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 3%; right: 22%;">
-          <div class="badge">Python</div>
-        </div>
-
-        <div class="cloud-item absolute opacity-0" style="top: 42%; right: 8%;">
-          <div class="badge">Containers</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What I Do Section -->
-  <section id="what-i-do" class="py-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Left Column -->
-        <div class="flex flex-col gap-6">
-          <h2 class="text-3xl md:text-4xl font-bold opacity-0" id="what-i-do-title">
-            How can I help <strong>you</strong>?
-          </h2>
-
-          <!-- Pillar A: Technical Writing & Tutorials -->
-          <a href="/blog/" class="pillar-card opacity-0" data-umami-event="blog-pillar-click">
-            <div class="pillar-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-3">Technical Writing & Tutorials</h3>
-            <p class="text-default mb-4">
-              I publish <strong>practical, no-fluff guides</strong> on Docker, DevOps, Django, Grafana, logging, and real
-              SaaS infrastructure.
-            </p>
-            <div class="pillar-link">
-              Read the blog
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-              </svg>
-            </div>
-          </a>
-        </div>
-
-        <!-- Right Column -->
-        <div class="flex flex-col gap-6" id="pillars-right-column">
-          <!-- Pillar B: Indie SaaS Products -->
-          <a href="/projects/" class="pillar-card opacity-0" data-umami-event="projects-pillar-click">
-            <div class="pillar-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-3">Indie SaaS Products</h3>
-            <p class="text-default mb-4">
-              I'm constantly building <strong>new SaaS products</strong> and I publish everything I learn along the way on
-              my X account and my blog so I can help you avoid the same mistakes I made.
-            </p>
-            <div class="pillar-link">
-              See my projects
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-              </svg>
-            </div>
-          </a>
-
-          <!-- Pillar C: Expert Help for Founders & Makers -->
-          <a
-            href="https://cal.com/onticdani/30min"
-            target="_blank"
-            class="pillar-card opacity-0"
-            data-umami-event="consulting-pillar-click"
-          >
-            <div class="pillar-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-3">Expert Help for Founders & Makers</h3>
-            <p class="text-default mb-4">
-              I help solo devs and small teams with infra, deployments, logging, and secure setups.
-            </p>
-            <div class="pillar-link">
-              Work with me
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Flagship Product Section -->
-  <section id="flagship-product" class="px-6">
+  <!-- My Story Section -->
+  <section id="my-story" class="py-16 px-6">
     <div class="max-w-4xl mx-auto">
-      <div class="flagship-card">
-        <div class="flagship-badge opacity-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-            ></path>
-          </svg>
-          Oh look! A super cool course!
+      <div class="about-container">
+        <div class="about-image opacity-0">
+          <Image src={meImage} alt="Daniel Garcia" class="rounded-2xl" width={400} height={400} />
         </div>
+        <div class="about-content">
+          <h2 class="about-title opacity-0">Hey, I'm Daniel</h2>
+          <p class="about-text opacity-0">
+            An Industrial Engineer from Madrid turned full stack developer and indie hacker. I write here about what I
+            learn along the way: code, business, and everything in between.
+          </p>
+        </div>
+      </div>
 
-        <h2 class="flagship-title opacity-0">Deploying Your SaaS with Docker | A Practical Course for Developers</h2>
+      <!-- Timeline -->
+      <h3 class="story-subtitle opacity-0">My journey</h3>
+      <div class="relative border-l-2 border-gray-300 dark:border-gray-700 pl-8 space-y-8">
+        {
+          timelineItems.map((item) => (
+            <div class="timeline-item opacity-0 relative">
+              {/* Timeline dot */}
+              <div class="absolute -left-[41px] w-4 h-4 bg-blue-500 rounded-full" />
 
-        <ul class="flagship-bullets">
-          <li class="flagship-bullet-item opacity-0">
-            <div class="bullet-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-              </svg>
+              {/* Timeline content */}
+              <div class="mb-4">
+                <span class="text-sm font-semibold text-blue-500">{item.dates}</span>
+                {item.image && (
+                  <div class="mt-4 mb-4">
+                    <Image src={item.image} alt={item.imageAlt} class="rounded-lg shadow-lg w-full max-w-2xl" />
+                  </div>
+                )}
+                <div class="text-default mt-2 prose dark:prose-invert max-w-none" set:html={item.description} />
+              </div>
             </div>
-            <span>Learn Docker the way real projects use it</span>
-          </li>
-          <li class="flagship-bullet-item opacity-0">
-            <div class="bullet-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-              </svg>
-            </div>
-            <span>Ship reliably without wanting to burn down everything</span>
-          </li>
-          <li class="flagship-bullet-item opacity-0">
-            <div class="bullet-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-              </svg>
-            </div>
-            <span>Secure deployments, logs, monitoring and alerts</span>
-          </li>
-          <li class="flagship-bullet-item opacity-0">
-            <div class="bullet-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2.5"
-                stroke="currentColor"
-                class="w-5 h-5"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
-              </svg>
-            </div>
-            <span>Step-by-step examples from my real SaaS builds</span>
-          </li>
-        </ul>
-
-        <WaitlistSignup client:visible buttonText="Get Early Access" waitlistName="docker_course" />
+          ))
+        }
       </div>
     </div>
   </section>
@@ -355,105 +186,34 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
   <section id="consulting" class="py-16 px-6">
     <div class="max-w-3xl mx-auto">
       <div class="consulting-card">
-        <h3 class="consulting-headline opacity-0">I take a few consulting clients each month.</h3>
+        <h3 class="consulting-headline opacity-0">I take a few freelance clients each month.</h3>
+
+        <p class="consulting-intro opacity-0">
+          I mainly build software tools, web apps, automations, AI integrations, websites and data dashboards on Grafana.
+        </p>
 
         <div class="consulting-services opacity-0">
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Dockerizing apps</span>
-          </div>
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>CI/CD pipelines</span>
-          </div>
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Production infrastructure</span>
-          </div>
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Cloudflare security</span>
-          </div>
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Logging & monitoring</span>
-          </div>
-          <div class="service-item">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Analytics</span>
-          </div>
+          {
+            services.map((service) => (
+              <div class="service-item">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span>{service}</span>
+              </div>
+            ))
+          }
         </div>
 
         <div class="consulting-cta opacity-0">
@@ -463,7 +223,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
             class="consulting-btn"
             data-umami-event="consulting-request-click"
           >
-            Request a consultation
+            Let's have a chat
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -475,39 +235,6 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Me Section -->
-  <section id="about-me" class="py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="about-container">
-        <div class="about-image opacity-0">
-          <Image src={meImage} alt="Daniel Garcia" class="rounded-2xl" width={400} height={400} />
-        </div>
-        <div class="about-content">
-          <h2 class="about-title opacity-0">About Me</h2>
-          <p class="about-text opacity-0">
-            I'm Daniel, a solopreneur from Spain building AI products, teaching what I learn, and sharing the
-            behind-the-scenes of building tech businesses.
-          </p>
-          <div class="about-link-wrapper opacity-0">
-            <a href="/about/" class="about-link" data-umami-event="about-link-click">
-              Read my full story
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-              </svg>
-            </a>
-          </div>
         </div>
       </div>
     </div>
@@ -637,486 +364,8 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
       transform: translateY(10px);
     }
 
-    /* Social Proof Section Styles */
-    #social-proof {
-      position: relative;
-    }
-
-    .cloud-item {
-      transition: transform 0.3s ease;
-    }
-
-    .cloud-item:hover {
-      transform: scale(1.1) translateY(-5px);
-      z-index: 10;
-    }
-
-    .logo-wrapper {
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: box-shadow 0.3s ease;
-    }
-
-    :root.dark .logo-wrapper {
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
-    }
-
-    .logo-wrapper:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    :root.dark .logo-wrapper:hover {
-      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
-    }
-
-    .badge {
-      padding: 0.5rem 1.2rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border-radius: 24px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .badge:hover {
-      box-shadow: 0 4px 16px rgba(102, 126, 234, 0.5);
-    }
-
-    /* Alternative badge colors */
-    .cloud-item:nth-child(4) .badge {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-
-    .cloud-item:nth-child(5) .badge {
-      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    }
-
-    .cloud-item:nth-child(6) .badge {
-      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    }
-
-    .cloud-item:nth-child(7) .badge {
-      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    }
-
-    .cloud-item:nth-child(8) .badge {
-      background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
-    }
-
-    .cloud-item:nth-child(9) .badge {
-      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-      color: #333;
-    }
-
-    .cloud-item:nth-child(10) .badge {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-      color: #333;
-    }
-
-    /* What I Do Section Styles */
-    #what-i-do-title {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    /* Shift right column up on desktop for staggered effect */
-    @media (min-width: 768px) {
-      #pillars-right-column {
-        margin-top: -3rem;
-      }
-    }
-
-    .pillar-card {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      cursor: pointer;
-    }
-
-    :root.dark .pillar-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .pillar-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    :root.dark .pillar-card:hover {
-      box-shadow: 0 12px 24px rgba(255, 255, 255, 0.12);
-    }
-
-    .pillar-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .pillar-icon svg {
-      width: 48px;
-      height: 48px;
-      color: #3b82f6;
-    }
-
-    .pillar-card:nth-child(2) .pillar-icon svg {
-      color: #0ea5e9;
-    }
-
-    .pillar-card:nth-child(3) .pillar-icon svg {
-      color: #06b6d4;
-    }
-
-    :root.dark .pillar-icon svg {
-      color: #60a5fa;
-    }
-
-    :root.dark .pillar-card:nth-child(2) .pillar-icon svg {
-      color: #38bdf8;
-    }
-
-    :root.dark .pillar-card:nth-child(3) .pillar-icon svg {
-      color: #22d3ee;
-    }
-
-    .pillar-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #667eea;
-      font-weight: 600;
-      transition: gap 0.3s ease;
-      margin-top: auto;
-    }
-
-    .pillar-card:hover .pillar-link {
-      gap: 0.75rem;
-    }
-
-    :root.dark .pillar-link {
-      color: #8b9bfa;
-    }
-
-    /* Flagship Product Section Styles */
-    #flagship-product {
-      position: relative;
-    }
-
-    .flagship-card {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
-      border: 2px solid rgba(59, 130, 246, 0.2);
-      border-radius: 24px;
-      padding: 3rem 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    :root.dark .flagship-card {
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
-      border: 2px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .flagship-card::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
-      background-size: 300% 300%;
-      animation: gradient-shift 8s ease infinite;
-      border-radius: 24px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      z-index: -1;
-    }
-
-    .flagship-card:hover::before {
-      opacity: 0.3;
-    }
-
-    .flagship-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-    }
-
-    :root.dark .flagship-card:hover {
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-    }
-
-    .flagship-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    }
-
-    .flagship-title {
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 2rem;
-      background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #db2777 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% 200%;
-    }
-
-    :root.dark .flagship-title {
-      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% 200%;
-    }
-
-    @media (min-width: 768px) {
-      .flagship-title {
-        font-size: 2.5rem;
-      }
-    }
-
-    .flagship-bullets {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2.5rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .flagship-bullet-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: rgba(0, 0, 0, 0.8);
-    }
-
-    :root.dark .flagship-bullet-item {
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .bullet-icon {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      border-radius: 8px;
-      color: white;
-      margin-top: 0.125rem;
-    }
-
-    .flagship-cta {
-      display: flex;
-      justify-content: center;
-    }
-
-    .flagship-cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-      color: white;
-      padding: 1.25rem 2.5rem;
-      border-radius: 16px;
-      font-size: 1.25rem;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
-      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .flagship-cta-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #10b981, #3b82f6);
-      background-size: 300% 300%;
-      animation: gradient-shift 6s ease infinite;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .flagship-cta-button:hover::before {
-      opacity: 1;
-    }
-
-    .flagship-cta-button:hover {
-      transform: translateY(-2px) scale(1.05);
-      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.5);
-    }
-
-    .flagship-cta-button span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .flagship-cta-button svg {
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease;
-    }
-
-    .flagship-cta-button:hover svg {
-      transform: translateX(4px);
-    }
-
-    /* Consulting Section Styles */
-    #consulting {
-      position: relative;
-    }
-
-    .consulting-card {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 16px;
-      padding: 2rem 2rem;
-      transition: all 0.3s ease;
-    }
-
-    :root.dark .consulting-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .consulting-headline {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-align: center;
-      color: rgba(0, 0, 0, 0.85);
-    }
-
-    :root.dark .consulting-headline {
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    @media (min-width: 768px) {
-      .consulting-headline {
-        font-size: 1.75rem;
-      }
-    }
-
-    .consulting-services {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    @media (min-width: 640px) {
-      .consulting-services {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-      }
-    }
-
-    .service-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: rgba(0, 0, 0, 0.75);
-      transition: all 0.2s ease;
-    }
-
-    :root.dark .service-item {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .service-item svg {
-      flex-shrink: 0;
-      color: #3b82f6;
-    }
-
-    :root.dark .service-item svg {
-      color: #60a5fa;
-    }
-
-    .service-item:hover {
-      color: #3b82f6;
-    }
-
-    :root.dark .service-item:hover {
-      color: #60a5fa;
-    }
-
-    .consulting-cta {
-      display: flex;
-      justify-content: center;
-    }
-
-    .consulting-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      padding: 0.875rem 1.75rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    :root.dark .consulting-btn {
-      background: rgba(255, 255, 255, 0.9);
-      color: black;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .consulting-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-      gap: 0.75rem;
-    }
-
-    :root.dark .consulting-btn:hover {
-      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
-    }
-
-    .consulting-btn svg {
-      transition: transform 0.3s ease;
-    }
-
-    .consulting-btn:hover svg {
-      transform: translateX(3px);
-    }
-
-    /* About Me Section Styles */
-    #about-me {
+    /* My Story Section Styles */
+    #my-story {
       position: relative;
     }
 
@@ -1207,35 +456,171 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
       }
     }
 
-    .about-link-wrapper {
-      margin-top: 1.5rem;
+    .story-subtitle {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 3.5rem 0 2rem;
+      color: rgba(0, 0, 0, 0.9);
     }
 
-    .about-link {
+    :root.dark .story-subtitle {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    @media (min-width: 768px) {
+      .story-subtitle {
+        font-size: 1.75rem;
+      }
+    }
+
+    /* Consulting Section Styles */
+    #consulting {
+      position: relative;
+    }
+
+    .consulting-card {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 2rem 2rem;
+      transition: all 0.3s ease;
+    }
+
+    :root.dark .consulting-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .consulting-headline {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    :root.dark .consulting-headline {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    @media (min-width: 768px) {
+      .consulting-headline {
+        font-size: 1.75rem;
+      }
+    }
+
+    .consulting-intro {
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    :root.dark .consulting-intro {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .consulting-services {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .consulting-services {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: rgba(0, 0, 0, 0.75);
+      transition: all 0.2s ease;
+    }
+
+    :root.dark .service-item {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .service-item svg {
+      flex-shrink: 0;
+      color: #3b82f6;
+    }
+
+    :root.dark .service-item svg {
+      color: #60a5fa;
+    }
+
+    .service-item:hover {
+      color: #3b82f6;
+    }
+
+    :root.dark .service-item:hover {
+      color: #60a5fa;
+    }
+
+    .consulting-cta {
+      display: flex;
+      justify-content: center;
+    }
+
+    .consulting-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      color: #667eea;
-      font-weight: 600;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 0.875rem 1.75rem;
+      border-radius: 12px;
       font-size: 1rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: gap 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    :root.dark .about-link {
-      color: #8b9bfa;
+    :root.dark .consulting-btn {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .about-link:hover {
+    .consulting-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
       gap: 0.75rem;
     }
 
-    .about-link svg {
+    :root.dark .consulting-btn:hover {
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+    }
+
+    .consulting-btn svg {
       transition: transform 0.3s ease;
     }
 
-    .about-link:hover svg {
+    .consulting-btn:hover svg {
       transform: translateX(3px);
+    }
+
+    /* Skip the reveal animations entirely for reduced-motion visitors */
+    @media (prefers-reduced-motion: reduce) {
+      .opacity-0,
+      .word-wrapper,
+      #hero-title,
+      #hero-subtitle,
+      #hero-avatar,
+      #hero-buttons {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+      }
     }
   </style>
 
@@ -1306,7 +691,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
             },
             {
               duration: 0.6,
-              delay: delayOffset + index * 0.08,
+              delay: delayOffset + index * 0.04,
               easing: [0.22, 1, 0.36, 1], // Custom ease-out curve
             } as any
           );
@@ -1318,7 +703,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
             () => {
               resolve(true);
             },
-            delayOffset + words.length * 80 + 600
+            delayOffset + words.length * 40 + 600
           );
         });
       };
@@ -1364,7 +749,7 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
             } as any
           );
         }
-      }, 2100); // Delay after text animations complete
+      }, 1800); // Delay after text animations complete
 
       // Animate the pulsating rings
       const animatePulse = (selector: string) => {
@@ -1402,293 +787,56 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
         });
       };
 
-      animateButton('#docker-course-btn');
-      animateButton('#consulting-btn');
+      animateButton('#blog-btn');
+      animateButton('#story-btn');
 
-      // Animate social proof section
-      const animateSocialProof = () => {
-        const socialProofText = document.querySelector('#social-proof-text');
-        const cloudItems = document.querySelectorAll('.cloud-item');
-
-        // Animate the text first
-        if (socialProofText) {
-          animate(
-            socialProofText,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.2,
-              easing: 'ease-out',
-            } as any
-          );
-        }
-
-        // Animate cloud items with stagger
-        cloudItems.forEach((item, index) => {
-          animate(
-            item as HTMLElement,
-            {
-              opacity: [0, 1],
-              scale: [0.8, 1],
-              rotate: [Math.random() * 10 - 5, 0],
-            },
-            {
-              duration: 0.6,
-              delay: 0.5 + index * 0.1,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        });
-
-        // Add floating animation to cloud items
-        cloudItems.forEach((item, index) => {
-          const floatDelay = index * 0.3;
-          const floatDuration = 3 + Math.random() * 2;
-
-          animate(
-            item as HTMLElement,
-            {
-              y: [-5, 5],
-              x: [-3, 3],
-            },
-            {
-              duration: floatDuration,
-              delay: floatDelay + 1.5,
-              repeat: Infinity,
-              direction: 'alternate',
-              easing: 'ease-in-out',
-            } as any
-          );
-        });
+      // Fade an element up into view
+      const fadeUp = (element: Element, delay: number) => {
+        animate(
+          element as HTMLElement,
+          {
+            opacity: [0, 1],
+            y: [20, 0],
+          },
+          {
+            duration: 0.7,
+            delay,
+            easing: [0.22, 1, 0.36, 1],
+          } as any
+        );
       };
 
-      // Start social proof animation after hero animations
-      setTimeout(() => {
-        animateSocialProof();
-      }, 2500);
+      // Run a callback once its section scrolls into view
+      const onceInView = (selector: string, callback: () => void) => {
+        const section = document.querySelector(selector);
+        if (!section) return;
 
-      // Animate What I Do section on scroll into view
-      const animateWhatIDo = () => {
-        const whatIDoTitle = document.querySelector('#what-i-do-title');
-        const pillarCards = document.querySelectorAll('.pillar-card');
-
-        // Animate the title and all cards together
-        if (whatIDoTitle) {
-          animate(
-            whatIDoTitle,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.1,
-              easing: 'ease-out',
-            } as any
-          );
-        }
-
-        // Animate all pillar cards with stagger
-        pillarCards.forEach((card, index) => {
-          animate(
-            card as HTMLElement,
-            {
-              opacity: [0, 1],
-              y: [30, 0],
-              scale: [0.95, 1],
-            },
-            {
-              duration: 0.7,
-              delay: 0.2 + index * 0.15,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        });
-      };
-
-      // Animate Flagship Product section on scroll into view
-      const animateFlagshipProduct = () => {
-        const flagshipBadge = document.querySelector('.flagship-badge');
-        const flagshipTitle = document.querySelector('.flagship-title');
-        const flagshipBullets = document.querySelectorAll('.flagship-bullet-item');
-        const flagshipCta = document.querySelector('.flagship-cta');
-
-        // Animate badge
-        if (flagshipBadge) {
-          animate(
-            flagshipBadge,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-              scale: [0.9, 1],
-            },
-            {
-              duration: 0.6,
-              delay: 0.1,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        }
-
-        // Animate title
-        if (flagshipTitle) {
-          animate(
-            flagshipTitle,
-            {
-              opacity: [0, 1],
-              y: [30, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.3,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        }
-
-        // Animate bullets with stagger
-        flagshipBullets.forEach((bullet, index) => {
-          animate(
-            bullet as HTMLElement,
-            {
-              opacity: [0, 1],
-              x: [-20, 0],
-            },
-            {
-              duration: 0.6,
-              delay: 0.5 + index * 0.1,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        });
-
-        // Animate CTA
-        if (flagshipCta) {
-          animate(
-            flagshipCta,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-              scale: [0.95, 1],
-            },
-            {
-              duration: 0.7,
-              delay: 0.9,
-              easing: [0.22, 1, 0.36, 1],
-            } as any
-          );
-        }
-      };
-
-      // Use Intersection Observer for flagship product section
-      const flagshipSection = document.querySelector('#flagship-product');
-      if (flagshipSection) {
-        const flagshipObserver = new IntersectionObserver(
+        const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                animateFlagshipProduct();
-                flagshipObserver.unobserve(entry.target);
+                callback();
+                observer.unobserve(entry.target);
               }
             });
           },
           {
-            threshold: 0.2,
+            threshold: 0.1,
             rootMargin: '0px',
           }
         );
-        flagshipObserver.observe(flagshipSection);
-      }
-
-      // Animate Consulting section on scroll into view
-      const animateConsulting = () => {
-        const consultingHeadline = document.querySelector('.consulting-headline');
-        const consultingServices = document.querySelector('.consulting-services');
-        const consultingCta = document.querySelector('.consulting-cta');
-
-        // Animate headline
-        if (consultingHeadline) {
-          animate(
-            consultingHeadline,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.7,
-              delay: 0.1,
-              easing: 'ease-out',
-            } as any
-          );
-        }
-
-        // Animate services
-        if (consultingServices) {
-          animate(
-            consultingServices,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.7,
-              delay: 0.3,
-              easing: 'ease-out',
-            } as any
-          );
-        }
-
-        // Animate CTA
-        if (consultingCta) {
-          animate(
-            consultingCta,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.7,
-              delay: 0.5,
-              easing: 'ease-out',
-            } as any
-          );
-        }
+        observer.observe(section);
       };
 
-      // Use Intersection Observer for consulting section
-      const consultingSection = document.querySelector('#consulting');
-      if (consultingSection) {
-        const consultingObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                animateConsulting();
-                consultingObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.2,
-            rootMargin: '0px',
-          }
-        );
-        consultingObserver.observe(consultingSection);
-      }
-
-      // Animate About Me section on scroll into view
-      const animateAboutMe = () => {
+      // Animate My Story section on scroll into view
+      onceInView('#my-story', () => {
         const aboutImage = document.querySelector('.about-image');
         const aboutTitle = document.querySelector('.about-title');
         const aboutText = document.querySelector('.about-text');
-        const aboutLinkWrapper = document.querySelector('.about-link-wrapper');
 
-        // Animate image
         if (aboutImage) {
           animate(
-            aboutImage,
+            aboutImage as HTMLElement,
             {
               opacity: [0, 1],
               x: [-40, 0],
@@ -1701,94 +849,41 @@ import WaitlistSignup from '~/components/common/WaitlistSignup';
           );
         }
 
-        // Animate title
-        if (aboutTitle) {
-          animate(
-            aboutTitle,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.3,
-              easing: 'ease-out',
-            } as any
-          );
+        if (aboutTitle) fadeUp(aboutTitle, 0.3);
+        if (aboutText) fadeUp(aboutText, 0.45);
+      });
+
+      // Reveal the section subtitles and each timeline item as they scroll into view
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              fadeUp(entry.target, 0);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '0px 0px -5% 0px',
         }
+      );
+      document
+        .querySelectorAll('.story-subtitle, .timeline-item')
+        .forEach((element) => revealObserver.observe(element));
 
-        // Animate text
-        if (aboutText) {
-          animate(
-            aboutText,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.5,
-              easing: 'ease-out',
-            } as any
-          );
-        }
+      // Animate Consulting section on scroll into view
+      onceInView('#consulting', () => {
+        const consultingHeadline = document.querySelector('.consulting-headline');
+        const consultingIntro = document.querySelector('.consulting-intro');
+        const consultingServices = document.querySelector('.consulting-services');
+        const consultingCta = document.querySelector('.consulting-cta');
 
-        // Animate link
-        if (aboutLinkWrapper) {
-          animate(
-            aboutLinkWrapper,
-            {
-              opacity: [0, 1],
-              y: [20, 0],
-            },
-            {
-              duration: 0.8,
-              delay: 0.7,
-              easing: 'ease-out',
-            } as any
-          );
-        }
-      };
-
-      // Use Intersection Observer for about me section
-      const aboutMeSection = document.querySelector('#about-me');
-      if (aboutMeSection) {
-        const aboutMeObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                animateAboutMe();
-                aboutMeObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.2,
-            rootMargin: '0px',
-          }
-        );
-        aboutMeObserver.observe(aboutMeSection);
-      }
-
-      // Use Intersection Observer to trigger animation when section is visible
-      const whatIDoSection = document.querySelector('#what-i-do');
-      if (whatIDoSection) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                animateWhatIDo();
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.2, // Trigger when 20% of section is visible
-            rootMargin: '0px',
-          }
-        );
-        observer.observe(whatIDoSection);
-      }
+        if (consultingHeadline) fadeUp(consultingHeadline, 0.1);
+        if (consultingIntro) fadeUp(consultingIntro, 0.2);
+        if (consultingServices) fadeUp(consultingServices, 0.3);
+        if (consultingCta) fadeUp(consultingCta, 0.5);
+      });
     });
   </script>
 
