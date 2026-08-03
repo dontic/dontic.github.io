@@ -15,8 +15,6 @@ tags:
 devto_sync: false
 ---
 
-import WebsiteDesignCTA from '../../../../components/common/websiteDesignCTA.tsx';
-
 ## Introduction
 
 For one of my projects, I refactored the backend code and started from scratch after noticing there was a much easier way to do it.
@@ -26,8 +24,6 @@ Note that you should not really do this if you already have something launched, 
 So now I needed to migrate all the data from the old database to the new one.
 
 Note that a database migration can also come from upgrading your postgres database version as well, or even when migrating server vendors. Basically any process that requires you to create a new database instance somewhere else from the one you are using.
-
-<WebsiteDesignCTA client:visible />
 
 ## 1. Creating the new database and connect your django app to it
 

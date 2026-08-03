@@ -16,8 +16,6 @@ tags:
 # canonicalUrl:
 ---
 
-import DockerCourseCTA from '../../../../components/common/dockerCourseCTA.tsx';
-
 ## Introduction
 
 I use Windows, mainly because I'm a nerd and I like CAD and 3D printing and I do a bit of gaming then and there; all of these require Windows.
@@ -29,8 +27,6 @@ So for my development workflow I use docker devcontainers, which allow me to dev
 In windows, there is an issue though, and that is that VSCode Dev Containers really don't like the native Docker Desktop and the experience is horribly slow and impossible to work with. So you need to install WSL, which stands for Windows Subsystem for Linux, then enable WSL support in Docker Desktop and _voila_, dev containers working like a charm.
 
 There are some nuances though...
-
-<DockerCourseCTA client:visible />
 
 ## Why I decided to switch
 
@@ -169,5 +165,3 @@ You can test your docker installation by running:
 ```bash
 docker run hello-world
 ```
-
-{/* <NewsletterCTA client:load /> */}
