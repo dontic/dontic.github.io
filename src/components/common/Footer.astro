@@ -12,6 +12,11 @@ const { showRSS } = SITE.footer;
 const { showRSS: boolean = showRSS } = Astro.props;
 
 const currentLocale = Astro.currentLocale;
+const isSpanish = currentLocale === 'es';
+
+const tagline = isSpanish
+  ? 'Esta web no tiene anuncios. Sin rastreo de Google. Sin basura generada por IA.'
+  : 'This website contains no ads. No Google tracking. No AI slop.';
 
 // Get all blog posts to check if alternate versions exist
 let posts = await getCollection('blog');
@@ -114,5 +119,8 @@ if (currentLocale === 'es') {
         }
       </div>
     </div>
+
+    <!-- Tagline -->
+    <p class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">{tagline}</p>
   </div>
 </footer>
